@@ -15,7 +15,7 @@ print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""
+helpMessage ="""BG戦神実験版V1.2.2
 [Id︎]
 [Mid]
 [Me︎]
@@ -36,7 +36,7 @@ helpMessage ="""
 [Up]
 [Cv join]
 
-[*] Command in the groups [*]
+BG戦神-群組專用指令
 
 [Curl]
 [Ourl]
@@ -50,7 +50,7 @@ helpMessage ="""
 [Gn 「group name」]
 [Nk 「name」]
 
-[*] Command kicker only [*]
+BG戦神-kicker專用指令
 
 [Bye]
 [Kill ban]
@@ -61,10 +61,10 @@ helpMessage ="""
 [Unban︎] Share Contact
 [Banlist︎]
 [Cek ban]
-[Cv mid]
-[Cv ︎invite:「mid」]
-[Cv ︎rename:「name」]
-[Cv ︎gift]
+[CV mid]
+[CV invite:「mid」]
+[CV rename:「name」]
+[CV gift]
 [Respo︎n]
 [Bot cancel]
 [Title:]
