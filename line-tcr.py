@@ -21,7 +21,6 @@ kc = LINETCR.LINE()
 kc.login(qr=True)
 kc.loginResult()
 
-ki = kk = kc = cl 
 
 print "login success"
 reload(sys)
