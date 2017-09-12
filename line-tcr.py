@@ -26,7 +26,7 @@ print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""BG戦神実験版V1.2.2
+helpMessage ="""BG戦神実験版V1.3.2
 [Id︎]
 [Mid]
 [Me︎]
@@ -1530,7 +1530,7 @@ def bot(op):
                                     k3.sendText(msg.to,"Succes Cv")
                                 except:
                                     ki.sendText(msg.to,"error")
-            elif "Ban @" in msg.text:
+            elif "Ban@" in msg.text:
                 if msg.toType == 2:
                     print "[Ban]ok"
                     _name = msg.text.replace("Ban @","")
@@ -1560,7 +1560,7 @@ def bot(op):
                                 ki.sendText(msg.to,"Error")
                                 kk.sendText(msg.to,"Error")
                                 kc.sendText(msg.to,"Error")
-            elif "Unban @" in msg.text:
+            elif "Unban@" in msg.text:
                 if msg.toType == 2:
                     print "[Unban]ok"
                     _name = msg.text.replace("Unban @","")
@@ -1718,20 +1718,6 @@ def bot(op):
                     for _mid in gMembMids:
                         cl.cancelGroupInvitation(msg.to,[_mid])
                     cl.sendText(msg.to,"I pretended to cancel and canceled.")
-            elif "random:" in msg.text:
-                if msg.toType == 2:
-                    strnum = msg.text.replace("random:","")
-                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;./_][!&%$#)(=~^|'
-                    try:
-                        num = int(strnum)
-                        group = cl.getGroup(msg.to)
-                        for var in range(0,num):
-                            name = "".join([random.choice(source_str) for x in xrange(10)])
-                            time.sleep(0.01)
-                            group.name = name
-                            cl.updateGroup(group)
-                    except:
-                        cl.sendText(msg.to,"Error")
             elif "albumâ†’" in msg.text:
                 try:
                     albumtags = msg.text.replace("albumâ†’","")
@@ -1763,7 +1749,7 @@ def bot(op):
 def a2():
     now2 = datetime.now()
     nowT = datetime.strftime(now2,"%M")
-    if nowT[14:] in ["10","15","20","25","30","35","40","45","50","55","00"]:
+    if nowT[14:] in ["10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","40","45","50","55","00"]:
         return False
     else:
         return True
