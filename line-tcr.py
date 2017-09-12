@@ -103,7 +103,7 @@ wait = {
     "wblack":False,
     "dblack":False,
     "clock":True,
-    "cName":"Chivas ",
+    "cName":"BG戦神BOT ",
     "blacklist":{},
     "wblacklist":False,
     "dblacklist":False,
