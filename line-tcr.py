@@ -31,21 +31,14 @@ helpMessage ="""BG戦神実験版V1.3.2
 [Mid]
 [Me︎]
 [Up]
-[Curl]
+[urloff]
 [url]
-[Invite：「mid」]
-[Kick：「mid」]
 [Ginfo]
 [Cancel]
-[Gn 「group name」]
-[Kill ban]
-[Kill 「@」]
-[Ban 「@」]
-[Unban 「@」]
-[Ban︎]
-[Unban︎]
-[Banlist︎]
-[Cek ban]
+[Gn:]
+[Kill]
+[Blk]
+[Bl]
 [Respo︎n]
 """
 KAC=[cl,ki,kk,kc]
@@ -55,7 +48,7 @@ Bmid = kk.getProfile().mid
 Cmid = kc.getProfile().mid
 
 Bots=[mid,Amid,Bmid,Cmid]
-admin=["YOUR_MID_HERE"]
+admin=["uc216d8664c4e1f43772c98b1b0b8956e"]
 wait = {
     'contact':True,
     'autoJoin':True,
@@ -592,32 +585,21 @@ def bot(op):
                     if X.invitee is not None:
                         gInviMids = [contact.mid for contact in X.invitee]
                         cl.cancelGroupInvitation(msg.to, gInviMids)
+			ki.cancelGroupInvitation(msg.to, gInviMids)
+			kk.cancelGroupInvitation(msg.to, gInviMids)
+			kc.cancelGroupInvitation(msg.to, gInviMids)
+			cl.sendText(msg.to, str(len(group.invitee)) + "人 已被戦神取消(´∀｀)♡")
+			ki.sendText("[戦神" + datetime.datetime.today().strftime('%H:%M:%S') + "]"
                     else:
                         if wait["lang"] == "JP":
-                            cl.sendText(msg.to,"No one is inviting")
+                            cl.sendText(msg.to,"邀請中沒人啊..." + "\n[戦神" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                         else:
-                            cl.sendText(msg.to,"Sorry, nobody absent")
+                            cl.sendText(msg.to,"邀請中沒人啊..." + "\n[戦神" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 else:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Can not be used outside the group")
                     else:
                         cl.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cancel","cancel"]:
-                if msg.toType == 2:
-                    G = k3.getGroup(msg.to)
-                    if G.invitee is not None:
-                        gInviMids = [contact.mid for contact in G.invitee]
-                        k3.cancelGroupInvitation(msg.to, gInviMids)
-                    else:
-                        if wait["lang"] == "JP":
-                            k3.sendText(msg.to,"No one is inviting")
-                        else:
-                            k3.sendText(msg.to,"Sorry, nobody absent")
-                else:
-                    if wait["lang"] == "JP":
-                        k3.sendText(msg.to,"Can not be used outside the group")
-                    else:
-                        k3.sendText(msg.to,"Not for use less than group")
             #elif "gurl" == msg.text:
                 #print cl.getGroup(msg.to)
                 ##cl.sendMessage(msg)
@@ -1345,14 +1327,14 @@ def bot(op):
                         G = cl.getGroup(msg.to)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
+			cl.sendText(msg.to, "戦神BOT追加成功")
+			gurl = ki.reissueGroupTicket(msg.to)
+			ki.sendText(msg.to, "line://ti/g/" + gurl)
+			kk.sendText(msg.to,"戦神保護開始!")
+			kc.sendText(msg.to,"禁止踢出機器!")
                         print "kicker ok"
                         G.preventJoinByTicket(G)
                         ki.updateGroup(G)
-			cl.sendText(msg.to, "戦神BOT追加成功")
-			ki.sendText(msg.to, "line://ti/g/" + gurl)
-			gurl = ki.reissueGroupTicket(msg.to)
-			kk.sendText(msg.to,"戦神保護開始!")
-			kc.sendText(msg.to,"禁止踢出機器!")
 
             elif msg.text in ["Cv1 join"]:
                   X = cl.getGroup(msg.to)
@@ -1530,7 +1512,7 @@ def bot(op):
                                     k3.sendText(msg.to,"Succes Cv")
                                 except:
                                     ki.sendText(msg.to,"error")
-            elif "Ban@" in msg.text:
+            elif "BGbl:@" in msg.text:
                 if msg.toType == 2:
                     print "[Ban]ok"
                     _name = msg.text.replace("Ban@","")
@@ -1543,24 +1525,24 @@ def bot(op):
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        ki.sendText(msg.to,"Not found Cv")
-                        kk.sendText(msg.to,"Not found Cv")
-                        kc.sendText(msg.to,"Not found Cv")
+                        ki.sendText(msg.to,"沒有找到用戶")
+                        kk.sendText(msg.to,"Not found")
+                        kc.sendText(msg.to,"><")
                     else:
                         for target in targets:
                             try:
                                 wait["blacklist"][target] = True
                                 f=codecs.open('st2__b.json','w','utf-8')
                                 json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-                                cl.sendText(msg.to,"Succes Cv")
-                                ki.sendText(msg.to,"Succes Cv")
-                                kk.sendText(msg.to,"Succes Cv")
-                                kc.sendText(msg.to,"Succes Cv")
+                                cl.sendText(msg.to,"戦神Bot")
+                                ki.sendText(msg.to,"已加入黑單")
+                                kk.sendText(msg.to,"Add to blacklist")
+                                kc.sendText(msg.to,"^^")
                             except:
                                 ki.sendText(msg.to,"Error")
                                 kk.sendText(msg.to,"Error")
                                 kc.sendText(msg.to,"Error")
-            elif "Unban@" in msg.text:
+            elif "BGubl:@" in msg.text:
                 if msg.toType == 2:
                     print "[Unban]ok"
                     _name = msg.text.replace("Unban@","")
@@ -1573,22 +1555,22 @@ def bot(op):
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        ki.sendText(msg.to,"Not found Cv")
-                        kk.sendText(msg.to,"Not found Cv")
-                        kc.sendText(msg.to,"Not found Cv")
+                        ki.sendText(msg.to,"沒有找到用戶")
+                        kk.sendText(msg.to,"Not found")
+                        kc.sendText(msg.to,"><")
                     else:
                         for target in targets:
                             try:
                                 del wait["blacklist"][target]
                                 f=codecs.open('st2__b.json','w','utf-8')
                                 json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-                                cl.sendText(msg.to,"成功")
-                                ki.sendText(msg.to,"已加入黑單")
-                                kk.sendText(msg.to,"add to blacklist")
+                                cl.sendText(msg.to,"戦神Bot")
+                                ki.sendText(msg.to,"已解除黑單")
+                                kk.sendText(msg.to,"Delete from blacklist")
                                 kc.sendText(msg.to,"^^")
                             except:
-                                ki.sendText(msg.to,"已加入黑單")
-                                kk.sendText(msg.to,"add to blacklist")
+                                ki.sendText(msg.to,"已解除黑單")
+                                kk.sendText(msg.to,"Delete from blacklist")
                                 kc.sendText(msg.to,"^^")
 #-----------------------------------------------
             elif msg.text in ["Test"]:
@@ -1663,21 +1645,18 @@ def bot(op):
                 ki.sendText(msg.to,"send contact")
                 kk.sendText(msg.to,"send contact")
                 kc.sendText(msg.to,"send contact")
-            elif msg.text in ["Banlist"]:
+            elif msg.text in ["Bl","BL","bl"]:
                 if wait["blacklist"] == {}:
-                    cl.sendText(msg.to,"nothing")
-                    ki.sendText(msg.to,"nothing")
-                    kk.sendText(msg.to,"nothing")
-                    kc.sendText(msg.to,"nothing")
+                    cl.sendText(msg.to,"戦神Bot")
+                    ki.sendText(msg.to,"沒有黑名單")
+                    kk.sendText(msg.to,"no blacklist")
+                    kc.sendText(msg.to,"><")
                 else:
                     cl.sendText(msg.to,"黑名單用戶如下:")
                     mc = ""
                     for mi_d in wait["blacklist"]:
                         mc += "->" +cl.getContact(mi_d).displayName + "\n"
                     cl.sendText(msg.to,mc)
-                    ki.sendText(msg.to,mc)
-                    kk.sendText(msg.to,mc)
-                    kc.sendText(msg.to,mc)
             elif msg.text in ["Cek ban"]:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
@@ -1689,7 +1668,7 @@ def bot(op):
                     for mm in matched_list:
                         cocoa += mm + "\n"
                     cl.sendText(msg.to,cocoa + "")
-            elif msg.text in ["Kill ban"]:
+            elif msg.text in ["Blk"]:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
                     gMembMids = [contact.mid for contact in group.members]
@@ -1697,17 +1676,17 @@ def bot(op):
                     for tag in wait["blacklist"]:
                         matched_list+=filter(lambda str: str == tag, gMembMids)
                     if matched_list == []:
-                        cl.sendText(msg.to,"沒有黑單在此群")
+                        cl.sendText(msg.to,"戦神Bot")
                         ki.sendText(msg.to,"沒有黑單在此群")
-                        kk.sendText(msg.to,"沒有黑單在此群")
-                        kc.sendText(msg.to,"沒有黑單在此群")
+                        kk.sendText(msg.to,"No blacklist in this group.")
+                        kc.sendText(msg.to,"><")
                         return
                     for jj in matched_list:
                         cl.kickoutFromGroup(msg.to,[jj])
                         ki.kickoutFromGroup(msg.to,[jj])
                         kk.kickoutFromGroup(msg.to,[jj])
                         kc.kickoutFromGroup(msg.to,[jj])
-                    cl.sendText(msg.to,"已成功!")
+                    cl.sendText(msg.to,"戦神Bot")
                     ki.sendText(msg.to,"黑單用戶踢出!")
                     kk.sendText(msg.to,"Blacklist user is kicked!")
                     kc.sendText(msg.to,"^^")
@@ -1718,20 +1697,20 @@ def bot(op):
                     for _mid in gMembMids:
                         cl.cancelGroupInvitation(msg.to,[_mid])
                     cl.sendText(msg.to,"I pretended to cancel and canceled.")
-            elif "albumâ†’" in msg.text:
+            elif "album:" in msg.text:
                 try:
-                    albumtags = msg.text.replace("albumâ†’","")
+                    albumtags = msg.text.replace("album:","")
                     gid = albumtags[:6]
                     name = albumtags.replace(albumtags[:34],"")
                     cl.createAlbum(gid,name)
                     cl.sendText(msg.to,name + "created an album")
                 except:
                     cl.sendText(msg.to,"Error")
-            elif "fakecâ†’" in msg.text:
+            elif "fake:" in msg.text:
                 try:
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;./_][!&%$#)(=~^|'
                     name = "".join([random.choice(source_str) for x in xrange(10)])
-                    anu = msg.text.replace("fakecâ†’","")
+                    anu = msg.text.replace("fake:","")
                     cl.sendText(msg.to,str(cl.channel.createAlbum(msg.to,name,anu)))
                 except Exception as e:
                     try:
