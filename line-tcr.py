@@ -589,7 +589,7 @@ def bot(op):
 			kk.cancelGroupInvitation(msg.to, gInviMids)
 			kc.cancelGroupInvitation(msg.to, gInviMids)
 			cl.sendText(msg.to, str(len(group.invitee)) + "人 已被戦神取消(´∀｀)♡")
-			ki.sendText("[戦神" + datetime.datetime.today().strftime('%H:%M:%S') + "]"
+			ki.sendText("[戦神" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                     else:
                         if wait["lang"] == "JP":
                             cl.sendText(msg.to,"邀請中沒人啊..." + "\n[戦神" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
