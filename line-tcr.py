@@ -1304,16 +1304,16 @@ def bot(op):
                             print (msg.to,[jj])
                         except:
                             pass
-            elif "Cleanse" in msg.text:
-                if msg.toType == 2:
+            elif "Destroy" in msg.text:
+                if msg.from_ in admin:
                     print "ok"
-                    _name = msg.text.replace("Cleanse","")
+                    _name = msg.text.replace("Destroy","")
                     gs = ki.getGroup(msg.to)
                     gs = kk.getGroup(msg.to)
                     gs = kc.getGroup(msg.to)
-                    ki.sendText(msg.to,"Just some casual cleansing ô")
-                    kk.sendText(msg.to,"Group cleansed.")
-                    kc.sendText(msg.to,"Fuck You All")
+                    ki.sendText(msg.to,"戦神Bot降臨~")
+                    kk.sendText(msg.to,"戦神Bot降臨~")
+                    kc.sendText(msg.to,"戦神Bot降臨~")
                     targets = []
                     for g in gs.members:
                         if _name in g.displayName:
