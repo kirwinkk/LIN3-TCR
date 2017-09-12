@@ -30,40 +30,15 @@ helpMessage ="""BG戦神実験版V1.2.2
 [Id︎]
 [Mid]
 [Me︎]
-[TL︎:「Text」]
-[Mc 「mid」]
-[K on/off]
-[Join︎ on/off]
-[Gcancel:︎「Number of people」]
-[Group cancelalll︎]
-[Leave︎ on/off]
-[Add on/off]
-[Share on/off]
-[Message change:「text」]
-[Message check]
-[Confirm]
-[Jam on/off]
-[Change clock:「name」]
 [Up]
-[Cv join]
-
-BG戦神-群組專用指令
-
 [Curl]
 [Ourl]
 [url]
-[url:「Group ID」]
 [Invite：「mid」]
 [Kick：「mid」]
 [Ginfo]
-[jointicket]
 [Cancel]
 [Gn 「group name」]
-[Nk 「name」]
-
-BG戦神-kicker專用指令
-
-[Bye]
 [Kill ban]
 [Kill 「@」]
 [Ban 「@」] By Tag
@@ -72,13 +47,7 @@ BG戦神-kicker專用指令
 [Unban︎] Share Contact
 [Banlist︎]
 [Cek ban]
-[CV mid]
-[CV invite:「mid」]
-[CV rename:「name」]
-[CV gift]
 [Respo︎n]
-[Bot cancel]
-[Title:]
 """
 KAC=[cl,ki,kk,kc]
 mid = cl.getProfile().mid
@@ -1361,7 +1330,7 @@ def bot(op):
 
 #-----------------------------------------------
 
-            elif msg.text in ["All join"]:
+            elif msg.text in ["BGbot"]:
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = False
