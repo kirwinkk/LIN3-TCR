@@ -32,7 +32,6 @@ helpMessage ="""BG戦神実験版V1.2.2
 [Me︎]
 [Up]
 [Curl]
-[Ourl]
 [url]
 [Invite：「mid」]
 [Kick：「mid」]
@@ -1350,8 +1349,10 @@ def bot(op):
                         G.preventJoinByTicket(G)
                         ki.updateGroup(G)
 			cl.sendText(msg.to, "戦神BOT追加成功")
-			ki.sendText(msg.to, "保護開始!")
-			kk.sendText(msg.to, "")
+			ki.sendText(msg.to, "line://ti/g/" + gurl)
+			gurl = ki.reissueGroupTicket(msg.to)
+			kk.sendText(msg.to,"戦神保護開始!")
+			kc.sendText(msg.to,"禁止踢出機器!")
 
             elif msg.text in ["Cv1 join"]:
                   X = cl.getGroup(msg.to)
@@ -1445,8 +1446,8 @@ def bot(op):
                     for tag in wait["blacklist"]:
                         matched_list+=filter(lambda str: str == tag, gMembMids)
                     if matched_list == []:
-                        kk.sendText(msg.to,"Fuck You")
-                        kc.sendText(msg.to,"Fuck You")
+                        kk.sendText(msg.to,"沒有黑單在此群")
+                        kc.sendText(msg.to,"沒有黑單在此群")
                         return
                     for jj in matched_list:
                         try:
