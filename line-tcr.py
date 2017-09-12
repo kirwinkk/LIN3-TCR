@@ -1790,7 +1790,7 @@ def bot(op):
 def a2():
     now2 = datetime.now()
     nowT = datetime.strftime(now2,"%M")
-    if nowT[14:] in ["10","20","30","40","50","00"]:
+    if nowT[14:] in ["10","20","15","25","30","35","40","45","50","55","00"]:
         return False
     else:
         return True
