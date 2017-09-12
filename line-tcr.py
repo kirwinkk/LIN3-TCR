@@ -884,8 +884,8 @@ def bot(op):
                 msg.contentMetadata = {"mid":mmid}
                 cl.sendMessage(msg)
             elif msg.text in ["é€£çµ¡å…ˆ:ã‚ªãƒ³","K on","Contact on","é¡¯ç¤ºï¼šé–‹"]:
-		if msg.from_ in admin:
-                if wait["contact"] == True:
+	        if msg.from_ in admin:
+                  if wait["contact"] == True:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"already on")
                     else:
@@ -911,7 +911,7 @@ def bot(op):
                         cl.sendText(msg.to,"done")
             elif msg.text in ["è‡ªå‹•å‚åŠ :ã‚ªãƒ³","Join on","Auto join:on","è‡ªå‹•åƒåŠ ï¼šé–‹"]:
 		if msg.from_ in admin:
-                if wait["autoJoin"] == True:
+                 if wait["autoJoin"] == True:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"already on")
                     else:
@@ -924,7 +924,7 @@ def bot(op):
                         cl.sendText(msg.to,"done")
             elif msg.text in ["è‡ªå‹•å‚åŠ :ã‚ªãƒ•","Join off","Auto join:off","è‡ªå‹•åƒåŠ ï¼šé—œ"]:
 		if msg.from_ in admin:
-                if wait["autoJoin"] == False:
+                 if wait["autoJoin"] == False:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"already off")
                     else:
@@ -1127,20 +1127,20 @@ def bot(op):
             elif "Message add: " in msg.text:
 		if msg.from_ in admin:
                 wait["message"] = msg.text.replace("Message add: ","")
-                if wait["lang"] == "JP":
+                 if wait["lang"] == "JP":
                     cl.sendText(msg.to,"message changed")
                 else:
                     cl.sendText(msg.to,"doneã€‚")
             elif msg.text in ["Message","è‡ªå‹•è¿½åŠ å•å€™èªžç¢ºèª"]:
 		if msg.from_ in admin:
-                if wait["lang"] == "JP":
+                 if wait["lang"] == "JP":
                     cl.sendText(msg.to,"message change to\n\n" + wait["message"])
                 else:
                     cl.sendText(msg.to,"The automatic appending information is set as followsã€‚\n\n" + wait["message"])
             elif "Comment:" in msg.text:
 		if msg.from_ in admin:
                 c = msg.text.replace("Comment:","")
-                if c in [""," ","\n",None]:
+                 if c in [""," ","\n",None]:
                     cl.sendText(msg.to,"message changed")
                 else:
                     wait["comment"] = c
@@ -1148,14 +1148,14 @@ def bot(op):
             elif "Add comment:" in msg.text:
 		if msg.from_ in admin:
                 c = msg.text.replace("Add comment:","")
-                if c in [""," ","\n",None]:
+                 if c in [""," ","\n",None]:
                     cl.sendText(msg.to,"String that can not be changed")
                 else:
                     wait["comment"] = c
                     cl.sendText(msg.to,"changed\n\n" + c)
             elif msg.text in ["ã‚³ãƒ¡ãƒ³ãƒˆ:ã‚ªãƒ³","Comment on","Comment:on","è‡ªå‹•é¦–é ç•™è¨€ï¼šé–‹"]:
 		if msg.from_ in admin:
-                if wait["commentOn"] == True:
+                  if wait["commentOn"] == True:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"done")
                     else:
@@ -1168,7 +1168,7 @@ def bot(op):
                         cl.sendText(msg.to,"è¦äº†å¼€ã€‚")
             elif msg.text in ["ã‚³ãƒ¡ãƒ³ãƒˆ:ã‚ªãƒ•","Comment on","Comment off","è‡ªå‹•é¦–é ç•™è¨€ï¼šé—œ"]:
 		if msg.from_ in admin:
-                if wait["commentOn"] == False:
+                  if wait["commentOn"] == False:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"done")
                     else:
@@ -1262,9 +1262,9 @@ def bot(op):
                     cl.sendText(msg.to,"done")
             elif msg.text in ["Jam off"]:
 		if msg.from_ in admin:
-                if wait["clock"] == False:
+                 if wait["clock"] == False:
                     cl.sendText(msg.to,"already off")
-                else:
+                 else:
                     wait["clock"] = False
                     cl.sendText(msg.to,"done")
             elif msg.text in ["Change clock "]:
@@ -1341,7 +1341,7 @@ def bot(op):
                         G.preventJoinByTicket(G)
                         ki.updateGroup(G)
 
-            elif msg.text in ["Cv1 join"]:
+            elif msg.text in ["BG1 join"]:
                   X = cl.getGroup(msg.to)
                   X.preventJoinByTicket = False
                   cl.updateGroup(X)
@@ -1353,7 +1353,7 @@ def bot(op):
                   ki.updateGroup(G)
                   Ticket = kk.reissueGroupTicket(msg.to)
 
-            elif msg.text in ["Cv2 join"]:
+            elif msg.text in ["BG2 join"]:
                   X = cl.getGroup(msg.to)
                   X.preventJoinByTicket = False
                   cl.updateGroup(X)
@@ -1367,7 +1367,7 @@ def bot(op):
 
 #-----------------------------------------------
 #.acceptGroupInvitationByTicket(msg.to,Ticket)
-            elif msg.text in ["Cv3 join"]:
+            elif msg.text in ["BG3 join"]:
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = False
@@ -1381,7 +1381,7 @@ def bot(op):
 #-----------------------------------------------
             elif msg.text in ["BGbye"]:
 		if msg.from_ in admin:
-                if msg.toType == 2:
+                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
                         ki.leaveGroup(msg.to)
@@ -1485,7 +1485,6 @@ def bot(op):
                                     ki.sendText(msg.to,"error")
             elif "Bl:@" in msg.text:
 		if msg.from_ in admin:
-                if msg.toType == 2:
                     print "[Ban]ok"
                     _name = msg.text.replace("Bl:@","")
                     _nametarget = _name.rstrip('  ')
@@ -1516,7 +1515,6 @@ def bot(op):
 				kc.sendText(msg.to,"Add to blacklist")
             elif "Ubl:@" in msg.text:
 		if msg.from_ in admin:
-                if msg.toType == 2:
                     print "[Unban]ok"
                     _name = msg.text.replace("Ubl:@","")
                     _nametarget = _name.rstrip('  ')
