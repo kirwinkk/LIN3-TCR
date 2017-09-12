@@ -502,19 +502,6 @@ def bot(op):
                     kc.updateGroup(X)
                 else:
                     kc.sendText(msg.to,"It can't be used besides the group.")
-            elif "Kick " in msg.text:
-		if msg.from_ in admin:
-                midd = msg.text.replace("Kick ","")
-                cl.kickoutFromGroup(msg.to,[midd])
-            elif "Cv1 kick " in msg.text:
-                midd = msg.text.replace("Cv1 kick ","")
-                ki.kickoutFromGroup(msg.to,[midd])
-            elif "Cv2 kick " in msg.text:
-                midd = msg.text.replace("Cv2 kick ","")
-                kk.kickoutFromGroup(msg.to,[midd])
-            elif "Cv3 kick " in msg.text:
-                midd = msg.text.replace("Cv3 kick ","")
-                kc.kickoutFromGroup(msg.to,[midd])
             elif "Invite " in msg.text:
                 midd = msg.text.replace("Invite ","")
                 cl.findAndAddContactsByMid(midd)
