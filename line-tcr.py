@@ -41,10 +41,10 @@ helpMessage ="""BG戦神実験版V1.2.2
 [Gn 「group name」]
 [Kill ban]
 [Kill 「@」]
-[Ban 「@」] By Tag
-[Unban 「@」] By Tag
-[Ban︎] Share Contact
-[Unban︎] Share Contact
+[Ban 「@」]
+[Unban 「@」]
+[Ban︎]
+[Unban︎]
 [Banlist︎]
 [Cek ban]
 [Respo︎n]
@@ -1330,7 +1330,7 @@ def bot(op):
 
 #-----------------------------------------------
 
-            elif msg.text in ["BGbot"]:
+            elif msg.text in ["BGbot","BG bot","BG Bot"]:
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = False
@@ -1349,6 +1349,9 @@ def bot(op):
                         print "kicker ok"
                         G.preventJoinByTicket(G)
                         ki.updateGroup(G)
+			cl.sendText(msg.to, "戦神BOT追加成功")
+			ki.sendText(msg.to, "保護開始!")
+			kk.sendText(msg.to, "")
 
             elif msg.text in ["Cv1 join"]:
                   X = cl.getGroup(msg.to)
@@ -1388,7 +1391,7 @@ def bot(op):
                         G.preventJoinByTicket = True
                         kc.updateGroup(G)
 #-----------------------------------------------
-            elif msg.text in ["Bye all"]:
+            elif msg.text in ["BGbyeall"]:
                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
@@ -1639,7 +1642,7 @@ def bot(op):
 
             elif msg.text in ["Sp","Speed","speed"]:
                 start = time.time()
-                cl.sendText(msg.to, "Progress...")
+                cl.sendText(msg.to, "讀取中...")
                 elapsed_time = time.time() - start
                 cl.sendText(msg.to, "%sseconds" % (elapsed_time))
                 ki.sendText(msg.to, "%sseconds" % (elapsed_time))
