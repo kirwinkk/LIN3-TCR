@@ -1486,9 +1486,9 @@ def bot(op):
                                 ki.sendText(msg.to,"Group cleanse")
                                 kk.sendText(msg.to,"Group cleanse")
                                 kc.sendText(msg.to,"Group cleanse")
-            elif "Nk " in msg.text:
+            elif "Nk@" in msg.text:
                   if msg.from_ in admin:
-                       nk0 = msg.text.replace("Nk ","")
+                       nk0 = msg.text.replace("Nk@","")
                        nk1 = nk0.lstrip()
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
@@ -1511,8 +1511,8 @@ def bot(op):
                                 except:
                                     ki.sendText(msg.to,"Succes Cv")
                                     kk.sendText(msg.to,"Fuck You")
-            elif "Blacklist @ " in msg.text:
-                _name = msg.text.replace("Blacklist @ ","")
+            elif "Blacklist@" in msg.text:
+                _name = msg.text.replace("Blacklist@","")
                 _kicktarget = _name.rstrip(' ')
                 gs = ki2.getGroup(msg.to)
                 targets = []
@@ -1533,7 +1533,7 @@ def bot(op):
             elif "Ban@" in msg.text:
                 if msg.toType == 2:
                     print "[Ban]ok"
-                    _name = msg.text.replace("Ban @","")
+                    _name = msg.text.replace("Ban@","")
                     _nametarget = _name.rstrip('  ')
                     gs = ki.getGroup(msg.to)
                     gs = kk.getGroup(msg.to)
@@ -1563,7 +1563,7 @@ def bot(op):
             elif "Unban@" in msg.text:
                 if msg.toType == 2:
                     print "[Unban]ok"
-                    _name = msg.text.replace("Unban @","")
+                    _name = msg.text.replace("Unban@","")
                     _nametarget = _name.rstrip('  ')
                     gs = ki.getGroup(msg.to)
                     gs = kk.getGroup(msg.to)
@@ -1582,14 +1582,14 @@ def bot(op):
                                 del wait["blacklist"][target]
                                 f=codecs.open('st2__b.json','w','utf-8')
                                 json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-                                cl.sendText(msg.to,"Succes Cv")
-                                ki.sendText(msg.to,"Succes Cv")
-                                kk.sendText(msg.to,"Succes Cv")
-                                kc.sendText(msg.to,"Succes Cv")
+                                cl.sendText(msg.to,"成功")
+                                ki.sendText(msg.to,"已加入黑單")
+                                kk.sendText(msg.to,"add to blacklist")
+                                kc.sendText(msg.to,"^^")
                             except:
-                                ki.sendText(msg.to,"Succes Cv")
-                                kk.sendText(msg.to,"Succes Cv")
-                                kc.sendText(msg.to,"Succes Cv")
+                                ki.sendText(msg.to,"已加入黑單")
+                                kk.sendText(msg.to,"add to blacklist")
+                                kc.sendText(msg.to,"^^")
 #-----------------------------------------------
             elif msg.text in ["Test"]:
                 ki.sendText(msg.to,"Ok Cv 􀨁􀄻double thumbs up􏿿")
