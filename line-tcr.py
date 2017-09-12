@@ -602,7 +602,7 @@ def bot(op):
                         cl.sendText(msg.to,"Can not be used outside the group")
                     else:
                         cl.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cv cancel","Bot cancel"]:
+            elif msg.text in ["Cancel","cancel"]:
                 if msg.toType == 2:
                     G = k3.getGroup(msg.to)
                     if G.invitee is not None:
@@ -1707,10 +1707,10 @@ def bot(op):
                         ki.kickoutFromGroup(msg.to,[jj])
                         kk.kickoutFromGroup(msg.to,[jj])
                         kc.kickoutFromGroup(msg.to,[jj])
-                    cl.sendText(msg.to,"黑單用戶踢出!")
+                    cl.sendText(msg.to,"已成功!")
                     ki.sendText(msg.to,"黑單用戶踢出!")
-                    kk.sendText(msg.to,"黑單用戶踢出!")
-                    kc.sendText(msg.to,"黑單用戶踢出!")
+                    kk.sendText(msg.to,"Blacklist user is kicked!")
+                    kc.sendText(msg.to,"^^")
             elif msg.text in ["Clear"]:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
