@@ -597,7 +597,6 @@ def bot(op):
                 ##cl.sendMessage(msg)
             elif msg.text in ["urlon","Urlon"]:
 		if msg.from_ in admin:
-                if msg.toType == 2:
                     X = cl.getGroup(msg.to)
                     X.preventJoinByTicket = False
                     cl.updateGroup(X)
@@ -610,7 +609,7 @@ def bot(op):
                         cl.sendText(msg.to,"Can not be used outside the group")
                     else:
                         cl.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cv1 ourl","Cv1 link on"]:
+            elif msg.text in ["BG1urlon"]:
                 if msg.toType == 2:
                     X = cl.getGroup(msg.to)
                     X.preventJoinByTicket = False
@@ -624,7 +623,7 @@ def bot(op):
                         cl.sendText(msg.to,"Can not be used outside the group")
                     else:
                         cl.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cv2 ourl","Cv2 link on"]:
+            elif msg.text in ["BG2urlon"]:
                 if msg.toType == 2:
                     X = kk.getGroup(msg.to)
                     X.preventJoinByTicket = False
@@ -638,7 +637,7 @@ def bot(op):
                         kk.sendText(msg.to,"Can not be used outside the group")
                     else:
                         kk.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cv3 ourl","Cv3 link on"]:
+            elif msg.text in ["BG3urlon"]:
                 if msg.toType == 2:
                     X = kc.getGroup(msg.to)
                     X.preventJoinByTicket = False
@@ -652,7 +651,7 @@ def bot(op):
                         kc.sendText(msg.to,"Can not be used outside the group")
                     else:
                         kc.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Curl","Link off"]:
+            elif msg.text in ["urloff","Urloff"]:
                 if msg.toType == 2:
                     X = cl.getGroup(msg.to)
                     X.preventJoinByTicket = True
@@ -666,7 +665,7 @@ def bot(op):
                         cl.sendText(msg.to,"Can not be used outside the group")
                     else:
                         cl.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cv1 curl","Cv1 link off"]:
+            elif msg.text in ["BG1urloff"]:
                 if msg.toType == 2:
                     X = ki.getGroup(msg.to)
                     X.preventJoinByTicket = True
@@ -680,7 +679,7 @@ def bot(op):
                         ki.sendText(msg.to,"Can not be used outside the group")
                     else:
                         ki.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cv2 curl","Cv2 link off"]:
+            elif msg.text in ["BG2urloff"]:
                 if msg.toType == 2:
                     X = kk.getGroup(msg.to)
                     X.preventJoinByTicket = True
@@ -694,7 +693,7 @@ def bot(op):
                         kk.sendText(msg.to,"Can not be used outside the group")
                     else:
                         kk.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cv3 curl","Cv3 link off"]:
+            elif msg.text in ["BG1urloff"]:
                 if msg.toType == 2:
                     X = kc.getGroup(msg.to)
                     X.preventJoinByTicket = True
@@ -708,8 +707,8 @@ def bot(op):
                         kc.sendText(msg.to,"Can not be used outside the group")
                     else:
                         kc.sendText(msg.to,"Not for use less than group")
-            elif "jointicket " in msg.text.lower():
-		rplace=msg.text.lower().replace("jointicket ")
+            elif "jointicket" in msg.text.lower():
+		rplace=msg.text.lower().replace("jointicket")
 		if rplace == "on":
 			wait["atjointicket"]=True
 		elif rplace == "off":
