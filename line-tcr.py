@@ -1670,7 +1670,7 @@ def bot(op):
                     kk.sendText(msg.to,"nothing")
                     kc.sendText(msg.to,"nothing")
                 else:
-                    cl.sendText(msg.to,"Blacklist user")
+                    cl.sendText(msg.to,"黑名單用戶如下:")
                     mc = ""
                     for mi_d in wait["blacklist"]:
                         mc += "->" +cl.getContact(mi_d).displayName + "\n"
@@ -1697,20 +1697,20 @@ def bot(op):
                     for tag in wait["blacklist"]:
                         matched_list+=filter(lambda str: str == tag, gMembMids)
                     if matched_list == []:
-                        cl.sendText(msg.to,"There was no blacklist user")
-                        ki.sendText(msg.to,"There was no blacklist user")
-                        kk.sendText(msg.to,"There was no blacklist user")
-                        kc.sendText(msg.to,"There was no blacklist user")
+                        cl.sendText(msg.to,"沒有黑單在此群")
+                        ki.sendText(msg.to,"沒有黑單在此群")
+                        kk.sendText(msg.to,"沒有黑單在此群")
+                        kc.sendText(msg.to,"沒有黑單在此群")
                         return
                     for jj in matched_list:
                         cl.kickoutFromGroup(msg.to,[jj])
                         ki.kickoutFromGroup(msg.to,[jj])
                         kk.kickoutFromGroup(msg.to,[jj])
                         kc.kickoutFromGroup(msg.to,[jj])
-                    cl.sendText(msg.to,"Blacklist emang pantas tuk di usir")
-                    ki.sendText(msg.to,"Blacklist emang pantas tuk di usir")
-                    kk.sendText(msg.to,"Blacklist emang pantas tuk di usir")
-                    kc.sendText(msg.to,"Blacklist emang pantas tuk di usir")
+                    cl.sendText(msg.to,"黑單用戶踢出!")
+                    ki.sendText(msg.to,"黑單用戶踢出!")
+                    kk.sendText(msg.to,"黑單用戶踢出!")
+                    kc.sendText(msg.to,"黑單用戶踢出!")
             elif msg.text in ["Clear"]:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
@@ -1763,7 +1763,7 @@ def bot(op):
 def a2():
     now2 = datetime.now()
     nowT = datetime.strftime(now2,"%M")
-    if nowT[14:] in ["10","20","15","25","30","35","40","45","50","55","00"]:
+    if nowT[14:] in ["10","15","20","25","30","35","40","45","50","55","00"]:
         return False
     else:
         return True
