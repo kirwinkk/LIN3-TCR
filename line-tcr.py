@@ -170,21 +170,11 @@ def bot(op):
 
                 if op.param3 in Cmid:
                     if op.param2 in Dmid:
-                        X = kg.getGroup(op.param1)
-                        X.preventJoinByTicket = False
-                        kg.updateGroup(X)
-                        Ti = kg.reissueGroupTicket(op.param1)
-                        kc.acceptGroupInvitationByTicket(op.param1,Ti)
-                        X.preventJoinByTicket = True
-                        kg.updateGroup(X)
-                        Ti = kg.reissueGroupTicket(op.param1)
-		if op.param3 in Dmid:
-                    if op.param2 in mid:
                         X = cl.getGroup(op.param1)
                         X.preventJoinByTicket = False
                         cl.updateGroup(X)
                         Ti = cl.reissueGroupTicket(op.param1)
-                        kg.acceptGroupInvitationByTicket(op.param1,Ti)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ti)
                         X.preventJoinByTicket = True
                         cl.updateGroup(X)
                         Ti = cl.reissueGroupTicket(op.param1)
