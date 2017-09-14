@@ -1358,7 +1358,7 @@ def bot(op):
                                 cl.sendText(msg.to,"已黑單此用戶")
                             except:
                                 cl.sendText(msg.to,"已黑單此用戶")
-                  else:
+                else:
 			cl.sendText(msg.to,"無法操作 權限不足")
 			print "[Error]Command denied - Admin permission required"
             elif "Ubl:@" in msg.text:
@@ -1384,7 +1384,7 @@ def bot(op):
                                 cl.sendText(msg.to,"已解除黑單")
                             except:
                                 cl.sendText(msg.to,"已解除黑單")
-                  else:
+                else:
 			cl.sendText(msg.to,"無法操作 權限不足")
 			print "[Error]Command denied - Admin permission required"
 #-----------------------------------------------
