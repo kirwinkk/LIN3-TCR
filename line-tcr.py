@@ -3,55 +3,91 @@
 import LINETCR
 from LINETCR.lib.curve.ttypes import *
 from datetime import datetime
-import time,random,sys,json,codecs,threading,glob,re
+import time,random,sys,json,codecs,threading,glob,os,subprocess,multiprocessing
+
+#login type bisa, token, qr
+#bot.login(qr=True)
+#bot.login(token="AuthToken")
 
 cl = LINETCR.LINE()
-cl.login(token="AuthToken")
+cl.login(token="EkPNKZ5taXxs94MAjd00.3FLXqaAHaqU2vr+bb+uJKa.ZqxuSnbwaNf/z4KRG/9eBCDfOtWbyV4RutvUUj8ycQs=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(token="AuthToken")
+ki.login(token="EkZhcF8rMuo2wJIHi2f1.qmf+mG4qg58AVj7ARoBTuq.5XEglG53v/qNTk3gDXj0s3t29ntftAUDJqXs6KP6pwA=")
 ki.loginResult()
 
 kk = LINETCR.LINE()
-kk.login(token="AuthToken")
+kk.login(token=" EkuMEf3VmGJFyrIrG2B8.iarQyHUgknIRni5Recj+Ea.YqQMm0x3pxdVakJR9dzGR5vYaBwbXvp0GNijehgcwws=")
 kk.loginResult()
 
 kc = LINETCR.LINE()
-kc.login(token="AuthToken")
+kc.login(token="EktnGq1fkej2rtdtFQZ4.WjRz5oW1/nfIsExC/cMSza.In/ajYAUPDDKRfsT2KIvxHyGW0vf4Xe7R8GsH2zsknU=")
 kc.loginResult()
 
 kd = LINETCR.LINE()
-kd.login(token="AuthToken")
+kd.login(token="EkJR2mYI6t0pFqC6mKDd.eem+p7zyhJGXULW/YtGNpq.CMh3AR0SMBwAazienffM/rUgrEOZXJnd+bh20SmINc8=")
 kd.loginResult()
 
 ke = LINETCR.LINE()
-ke.login(token="AuthToken")
+ke.login(token="EkXoj8F364tywCIlXKA0.3d81No0uyJfmd61BOYIYCa.2Qu1F8OMTW6P4zbQvC3FSod6HfNKMzi4Xo04WK3zQLU=")
 ke.loginResult()
 
 kf = LINETCR.LINE()
-kf.login(token="AuthToken")
+kf.login(token="EkHTI2EBxg37DVJVUlC7.TvrivhCzmMUw1JoimPbQvW.jBZgFNZ1pHkRRPxWw194/6U01xLMwCiwz5CbmYORPN8=")
 kf.loginResult()
-
 
 print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""BG戦神実験版V1.3.2
-[Id︎]
-[Mid]
-[Me︎]
-[Up]
-[urloff]
-[url]
-[Ginfo]
-[Cancel]
-[Gn:]
-[Kill]
-[Blk]
-[Bl]
-[Respo︎n]
+helpMessage ="""ℬᎶ戦神BotV6.1.1
+--以下指令為基本功能--
+[help]   查看指令
+[ver]   查看版本以及說明
+[Author]   作者顯示
+[Mid]   顯示早就mid
+[gid]   顯示群組
+[Me]   顯示自己友資
+
+--以下指令為設定用--
+[contoct on/off]   友資詳情
+[join on/off]   自動入群
+[clock on/off]   時鐘
+[Add on/off]   自動加友
+[set]   確認設定
+
+--以下指令為群組使用--
+[Ginfo]   顯示群組詳情
+[cancel]   取消所有邀請
+[Nk:@]   標註踢人
+[Bl:@]   標註黑單
+[Ban]   友資黑單
+[Unban]   友資解除黑單
+[Bl]   查看黑單
+[Kill]   踢出黑單
+[Cleanse]   踢出所有成員
+
+--以下指令為kicker用--
+[BGbot]   追加kicker
+[BGbye]   kicker退出
+[Test]   查看所有kicker
+[Sp]   反應速度
+[Url]   取得群組網址
+[Urlon]   開啟群組網址
+[Urloff]   關閉群組網址
+[Show:]   顯示mid友資
+[kick:]   踢出mid
+[Invite:]   邀請mid
+[Gift]   發送禮物
+
+-以下指令為額外功用-
+[TL:]   Po文
+[Up]   更新時間
+[point]   已讀點
+[Read]   顯示已讀
+[Time]   現在時間
+部分指令前打[BG1/2/3]可指定kicker動作
 """
 KAC=[cl,ki,kk,kc,kd,ke,kf]
 mid = cl.getProfile().mid
@@ -85,32 +121,12 @@ wait = {
     "cName3":"Battle God",
     "cName4":"戦神のstyle",
     "cName5":"神聖のℬᎶ戦神",
+    "cName6":"전쟁의 신戦神",
+    "cName7":"ℬᎶfamily",
     "blacklist":{},
     "wblacklist":False,
     "dblacklist":False,
     "protectionOn":True
-    }
-wait = {
-    'contact':False,
-    'autoJoin':True,
-    'autoCancel':{"on":True,"members":1},
-    'leaveRoom':True,
-    'timeline':True,
-    'autoAdd':True,
-    'message':"ℬᎶ戦神Bot 追加成功",
-    "lang":"JP",
-    "comment":"ℬᎶ戦神Bot 追加成功",
-    "commentOn":True,
-    "commentBlack":{},
-    "wblack":False,
-    "dblack":False,
-    "clock":True,
-    "cName":"ℬᎶ戦神Bot",
-    "blacklist":{},
-    "wblacklist":False,
-    "dblacklist":False,
-    "protectionOn":True,
-    "atjointicket":True
     }
 
 wait2 = {
@@ -172,7 +188,6 @@ def bot(op):
                     if op.param2 in admin:
                         pass
                     else:
-                        wait["blacklist"][op.param2] = True
                         cl.reissueGroupTicket(op.param1)
                         X = cl.getGroup(op.param1)
                         X.preventJoinByTicket = True
@@ -1336,8 +1351,32 @@ def bot(op):
                     nowT = datetime.strftime(now2,"(%H:%M)")
                     profile = cl.getProfile()
                     profile.displayName = wait["cName"] + nowT
+                    profile = ki.getProfile()
+                    profile.displayName = wait["cName2"] + nowT
+                    profile = kk.getProfile()
+                    profile.displayName = wait["cName3"] + nowT
+                    profile = kc.getProfile()
+                    profile.displayName = wait["cName4"] + nowT
+                    profile = kd.getProfile()
+                    profile.displayName = wait["cName5"] + nowT
+                    profile = ke.getProfile()
+                    profile.displayName = wait["cName6"] + nowT
+                    profile = kf.getProfile()
+                    profile.displayName = wait["cName7"] + nowT
                     cl.updateProfile(profile)
+                    ki.updateProfile(profile)
+                    kk.updateProfile(profile)
+                    kc.updateProfile(profile)
+                    kd.updateProfile(profile)
+                    ke.updateProfile(profile)
+                    kf.updateProfile(profile)
                     cl.sendText(msg.to,"已更新")
+                    ki.sendText(msg.to,"已更新")
+                    kk.sendText(msg.to,"已更新")
+                    kc.sendText(msg.to,"已更新")
+                    kd.sendText(msg.to,"已更新")
+                    ke.sendText(msg.to,"已更新")
+                    kf.sendText(msg.to,"已更新")
                 else:
                     cl.sendText(msg.to,"Please turn on the name clock")
 #----------------------------------------------
@@ -1700,14 +1739,31 @@ def nameUpdate():
                 now2 = datetime.now()
                 nowT = datetime.strftime(now2,"(%H:%M)")
                 profile = cl.getProfile()
-                profile.displayName = wait["cName"] + nowT
+                profile.displayName = wait["cName"]
                 cl.updateProfile(profile)
+
+                profile2 = kk.getProfile()
+                profile2.displayName = wait["cName2"]
+                kk.updateProfile(profile2)
+
+                profile3 = ki.getProfile()
+                profile3.displayName = wait["cName3"]
+                ki.updateProfile(profile3)
+
+                profile4 = kc.getProfile()
+                profile4.displayName = wait["cName4"]
+                kc.updateProfile(profile4)
+
+                profile5 = kg.getProfile()
+                profile5.displayName = wait["cName5"]
+                kg.updateProfile(profile5)
             time.sleep(600)
         except:
             pass
 thread2 = threading.Thread(target=nameUpdate)
 thread2.daemon = True
 thread2.start()
+
 
 while True:
     try:
