@@ -6,31 +6,31 @@ from datetime import datetime
 import time,random,sys,json,codecs,threading,glob,re
 
 cl = LINETCR.LINE()
-cl.login(qr=True)
+cl.login(token="AuthToken")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(qr=True)
+ki.login(token="AuthToken")
 ki.loginResult()
 
 kk = LINETCR.LINE()
-kk.login(qr=True)
+kk.login(token="AuthToken")
 kk.loginResult()
 
 kc = LINETCR.LINE()
-kc.login(qr=True)
+kc.login(token="AuthToken")
 kc.loginResult()
 
 kd = LINETCR.LINE()
-kd.login(qr=True)
+kd.login(token="AuthToken")
 kd.loginResult()
 
 ke = LINETCR.LINE()
-ke.login(qr=True)
+ke.login(token="AuthToken")
 ke.loginResult()
 
 kf = LINETCR.LINE()
-kf.login(qr=True)
+kf.login(token="AuthToken")
 kf.loginResult()
 
 
@@ -81,6 +81,31 @@ wait = {
     "dblack":False,
     "clock":True,
     "cName":"ℬᎶ戦神Bot",
+    "cName2":"血の戦神",
+    "cName3":"Battle God",
+    "cName4":"戦神のstyle",
+    "cName5":"神聖のℬᎶ戦神",
+    "blacklist":{},
+    "wblacklist":False,
+    "dblacklist":False,
+    "protectionOn":True
+    }
+wait = {
+    'contact':False,
+    'autoJoin':True,
+    'autoCancel':{"on":True,"members":1},
+    'leaveRoom':True,
+    'timeline':True,
+    'autoAdd':True,
+    'message':"ℬᎶ戦神Bot 追加成功",
+    "lang":"JP",
+    "comment":"ℬᎶ戦神Bot 追加成功",
+    "commentOn":True,
+    "commentBlack":{},
+    "wblack":False,
+    "dblack":False,
+    "clock":True,
+    "cName":"ℬᎶ戦神Bot",
     "blacklist":{},
     "wblacklist":False,
     "dblacklist":False,
@@ -94,6 +119,11 @@ wait2 = {
     'setTime':{},
     'ROM':{}
     }
+
+cancelinvite = {
+    'autoCancel':True,
+    'autoCancelUrl':True
+}
 
 setTime = {}
 setTime = wait2['setTime']
@@ -134,6 +164,24 @@ def bot(op):
                     pass
                 else:
                     cl.sendText(op.param1,str(wait["message"]))
+        if op.type == 11:
+            if cancelinvite["autoCancelUrl"] == True:
+                if cl.getGroup(op.param1).preventJoinByTicket == False:
+                    if op.param2 in Bots:
+                        pass
+                    if op.param2 in admin:
+                        pass
+                    else:
+                        wait["blacklist"][op.param2] = True
+                        cl.reissueGroupTicket(op.param1)
+                        X = cl.getGroup(op.param1)
+                        X.preventJoinByTicket = True
+                        cl.updateGroup(X)
+                        print "Url Opened, Autokick on"
+                else:
+                    print "random group update"
+            else:
+                pass
         if op.type == 13:
                 if op.param3 in mid:
                     if op.param2 in Amid:
