@@ -13,21 +13,9 @@ ki = LINETCR.LINE()
 ki.login(qr=True)
 ki.loginResult()
 
-ki = LINETCR.LINE()
-ki.login(qr=True)
-ki.loginResult()
-
 kk = LINETCR.LINE()
 kk.login(qr=True)
 kk.loginResult()
-
-kk = LINETCR.LINE()
-kk.login(qr=True)
-kk.loginResult()
-
-kc = LINETCR.LINE()
-kc.login(qr=True)
-kc.loginResult()
 
 kc = LINETCR.LINE()
 kc.login(qr=True)
@@ -205,19 +193,6 @@ def bot(op):
                     cl.cancelGroupInvitation(op.param1, matched_list)
 
         if op.type == 19:
-                if op.param3 in admin:
-                    if op.param2 in Bots:
-                        pass
-                else:
-                    kk.kickoutFromGroup(op.param1,[op.param2])
-		    ki.kickoutFromGroup(op.param1,[op.param2])
-                    wait["blacklist"][op.param2] = True
-                    print "kicker kicked"
-                    try:
-                        random.choice(KAC).inviteIntoGroup(op.param1,op.param3)
-                    except:
-                        random.choice(KAC).inviteIntoGroup(op.param1,op.param3)
-
                 if mid in op.param3:
                     if op.param2 in Bots:
                         pass
