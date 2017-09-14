@@ -172,7 +172,6 @@ def bot(op):
                     if op.param2 in admin:
                         pass
                     else:
-                        wait["blacklist"][op.param2] = True
                         cl.reissueGroupTicket(op.param1)
                         X = cl.getGroup(op.param1)
                         X.preventJoinByTicket = True
