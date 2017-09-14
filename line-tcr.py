@@ -1365,17 +1365,11 @@ def bot(op):
                         invsend = 0
                         Ticket = cl.reissueGroupTicket(msg.to)
                         ki.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.2)
                         kk.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.2)
                         kc.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.2)
                         kd.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.2)
                         ke.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.2)
                         kf.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.2)
                         G = ki.getGroup(msg.to)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
@@ -1390,6 +1384,7 @@ def bot(op):
                 if msg.from_ in staff:
                     ginfo = cl.getGroup(msg.to)
                     try:
+			cl.leaveGroup(msg.to)
                         ki.leaveGroup(msg.to)
                         kk.leaveGroup(msg.to)
                         kc.leaveGroup(msg.to)
