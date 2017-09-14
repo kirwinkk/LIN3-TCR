@@ -6,52 +6,80 @@ from datetime import datetime
 import time,random,sys,json,codecs,threading,glob,re
 
 cl = LINETCR.LINE()
-cl.login(token="AuthToken")
+cl.login(token="EkPNKZ5taXxs94MAjd00.3FLXqaAHaqU2vr+bb+uJKa.ZqxuSnbwaNf/z4KRG/9eBCDfOtWbyV4RutvUUj8ycQs=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(token="AuthToken")
+ki.login(token="EkZhcF8rMuo2wJIHi2f1.qmf+mG4qg58AVj7ARoBTuq.5XEglG53v/qNTk3gDXj0s3t29ntftAUDJqXs6KP6pwA=")
 ki.loginResult()
 
 kk = LINETCR.LINE()
-kk.login(token="AuthToken")
+kk.login(token=" EkuMEf3VmGJFyrIrG2B8.iarQyHUgknIRni5Recj+Ea.YqQMm0x3pxdVakJR9dzGR5vYaBwbXvp0GNijehgcwws=")
 kk.loginResult()
 
 kc = LINETCR.LINE()
-kc.login(token="AuthToken")
+kc.login(token="EktnGq1fkej2rtdtFQZ4.WjRz5oW1/nfIsExC/cMSza.In/ajYAUPDDKRfsT2KIvxHyGW0vf4Xe7R8GsH2zsknU=")
 kc.loginResult()
 
 kd = LINETCR.LINE()
-kd.login(token="AuthToken")
+kd.login(token="EkJR2mYI6t0pFqC6mKDd.eem+p7zyhJGXULW/YtGNpq.CMh3AR0SMBwAazienffM/rUgrEOZXJnd+bh20SmINc8=")
 kd.loginResult()
 
 ke = LINETCR.LINE()
-ke.login(token="AuthToken")
+ke.login(token="EkXoj8F364tywCIlXKA0.3d81No0uyJfmd61BOYIYCa.2Qu1F8OMTW6P4zbQvC3FSod6HfNKMzi4Xo04WK3zQLU=")
 ke.loginResult()
 
 kf = LINETCR.LINE()
-kf.login(token="AuthToken")
+kf.login(token="EkHTI2EBxg37DVJVUlC7.TvrivhCzmMUw1JoimPbQvW.jBZgFNZ1pHkRRPxWw194/6U01xLMwCiwz5CbmYORPN8=")
 kf.loginResult()
-
 
 print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""BG戦神実験版V1.3.2
-[Id︎]
-[Mid]
-[Me︎]
-[Up]
-[urloff]
-[url]
-[Ginfo]
-[Cancel]
-[Gn:]
-[Kill]
-[Blk]
-[Bl]
-[Respo︎n]
+helpMessage ="""ℬᎶ戦神BotV6.3.1
+--以下指令為基本功能--
+[help]   查看指令
+[ver]   查看版本以及說明
+[Author]   作者顯示
+[Mid]   顯示早就mid
+[gid]   顯示群組
+[Me]   顯示自己友資
+--以下指令為設定用--
+[contoct on/off]   友資詳情
+[join on/off]   自動入群
+[clock on/off]   時鐘
+[Add on/off]   自動加友
+[set]   確認設定
+--以下指令為群組使用--
+[Ginfo]   顯示群組詳情
+[cancel]   取消所有邀請
+[Nk:@]   標註踢人
+[Bl:@]   標註黑單
+[Ban]   友資黑單
+[Unban]   友資解除黑單
+[Bl]   查看黑單
+[Kill]   踢出黑單
+[Cleanse]   踢出所有成員
+--以下指令為kicker用--
+[BGbot]   追加kicker
+[BGbye]   kicker退出
+[Test]   查看所有kicker
+[Sp]   反應速度
+[Url]   取得群組網址
+[Urlon]   開啟群組網址
+[Urloff]   關閉群組網址
+[Show:]   顯示mid友資
+[kick:]   踢出mid
+[Invite:]   邀請mid
+[Gift]   發送禮物
+-以下指令為額外功用-
+[TL:]   Po文
+[Up]   更新時間
+[point]   已讀點
+[Read]   顯示已讀
+[Time]   現在時間
+部分指令前打[BG1/2/3]可指定kicker動作
 """
 KAC=[cl,ki,kk,kc,kd,ke,kf]
 mid = cl.getProfile().mid
