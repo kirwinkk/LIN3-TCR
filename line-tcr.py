@@ -233,11 +233,14 @@ def bot(op):
                     G = fuck.getGroup(op.param1)
                     ginfo = fuck.getGroup
                     G.preventJoinByTicket = True
+                    Ticket = ki.reissueGroupTicket(op.param1)
+                    ky.acceptGroupInvitationByTicket(op.param1,Ticket)
                     ki.updateGroup(G)
-                    fuck.kickoutFromGroup(op.param1,[op.param2])
+                    ky.kickoutFromGroup(op.param1,[op.param2])  
                     G = fuck.getGroup(op.param1)   
                     G.preventJoinByTicket = True
                     fuck.updateGroup(G)
+                    ky.leaveGroup(op.param1)
                  except Exception, e:
                            print e
 				
@@ -274,17 +277,17 @@ def bot(op):
                    try:
                        G = ki.getGroup(op.param1)
                        ginfo = ki.getGroup
-		       klist=[ki,kk,kc,cl]
+		       klist=[ki,kk,kc]
                        G.preventJoinByTicket = False
                        ki.updateGroup(G)
                        invsend = 0
                        Ticket = ki.reissueGroupTicket(op.param1)
                        ky.acceptGroupInvitationByTicket(op.param1,Ticket)
                        klist.acceptGroupInvitationByTicket(op.param1,Ticket)
-                       G = ki.getGroup(op.param1)             
-                       G.preventJoinByTicket = True
+                       X = cl.getGroup(op.param1)             
+                       X.preventJoinByTicket = True
                        ky.kickoutFromGroup(op.param1,[op.param2])                       
-		       ki.updateGroup(G)
+		       cl.updateGroup(X)
                        ky.leaveGroup(op.param1)
                    except Exception, e:
                             print e
