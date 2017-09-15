@@ -6,48 +6,80 @@ from datetime import datetime
 import time,random,sys,json,codecs,threading,glob,re
 
 cl = LINETCR.LINE()
-cl.login(qr=True)
+cl.login(token='EkJkx9BcAp9vLxrxk5Z0.3FLXqaAHaqU2vr+bb+uJKa.q198wdC1ICmGEBjCjqevyGY6xFnpCt+oXyaDSwTyuX4=')
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(qr=True)
+ki.login(token='EkcP6iUI5KMLwmg6eeV8.iarQyHUgknIRni5Recj+Ea.s10yE5eXbUZ5LjTZqJ7v+UOJ6AP5Z7KwcOdaihy1mdg=')
 ki.loginResult()
 
 kk = LINETCR.LINE()
-kk.login(qr=True)
+kk.login(token='EkQmqtjsfrXnqhTWI8r4.WjRz5oW1/nfIsExC/cMSza.FOPtV6Z7BG2Xd1q8Pt4tnvC/atDIDrKP5SKnuaoUKBY=')
 kk.loginResult()
 
 kc = LINETCR.LINE()
-kc.login(qr=True)
+kc.login(token='EkrlaNcDB0FZsM6didP1.qmf+mG4qg58AVj7ARoBTuq.TNqTDoqvlwBk7QNjWohphJUqpTfkz4tZuVizpnYAtck=')
 kc.loginResult()
 
+ky = LINETCR.LINE()
+ky.login(token='EkqLcYvJ0OIKRK4aA7ad.eem+p7zyhJGXULW/YtGNpq.ALQbpKhzUFeOYTj1aByyxdOLZtGLTQ2o8E33vBWzpDc=')
+ky.loginResult()
 
 print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""BG戦神実験版V1.3.2
-[Id︎]
-[Mid]
-[Me︎]
-[Up]
-[urloff]
-[url]
-[Ginfo]
-[Cancel]
-[Gn:]
-[Kill]
-[Blk]
-[Bl]
-[Respo︎n]
+helpMessage ="""ℬᎶ戦神BotV6.2.1
+--以下指令為基本功能--
+[help]   查看指令
+[ver]   查看版本以及說明
+[Author]   作者顯示
+[Mid]   顯示早就mid
+[gid]   顯示群組
+[Me]   顯示自己友資
+--以下指令為設定用--
+[contoct on/off]   友資詳情
+[join on/off]   自動入群
+[clock on/off]   時鐘
+[Add on/off]   自動加友
+[set]   確認設定
+--以下指令為群組使用--
+[Ginfo]   顯示群組詳情
+[cancel]   取消所有邀請
+[Nk:@]   標註踢人
+[Bl:@]   標註黑單
+[Ban]   友資黑單
+[Unban]   友資解除黑單
+[Bl]   查看黑單
+[Kill]   踢出黑單
+[Cleanse]   踢出所有成員
+--以下指令為kicker用--
+[BGbot]   追加kicker
+[BGbye]   kicker退出
+[Test]   查看所有kicker
+[Sp]   反應速度
+[Url]   取得群組網址
+[Urlon]   開啟群組網址
+[Urloff]   關閉群組網址
+[Show:]   顯示mid友資
+[kick:]   踢出mid
+[Invite:]   邀請mid
+[Gift]   發送禮物
+-以下指令為額外功用-
+[TL:]   Po文
+[Up]   更新時間
+[point]   已讀點
+[Read]   顯示已讀
+[Time]   現在時間
+部分指令前打[BG1/2/3]可指定kicker動作
 """
-KAC=[cl,ki,kk,kc]
+KAC=[cl,ki,kk,kc,ky]
 mid = cl.getProfile().mid
 Amid = ki.getProfile().mid
 Bmid = kk.getProfile().mid
 Cmid = kc.getProfile().mid
-
-Bots=[mid,Amid,Bmid,Cmid]
+Lmid = ky.getProfile().mid
+Bots=[mid,Amid,Bmid,Cmid,Lmid]
 admin = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 staff = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 wait = {
@@ -191,8 +223,96 @@ def bot(op):
                     pass
                 else:
                     cl.cancelGroupInvitation(op.param1, matched_list)
+		
+        if op.type == 11:
+            if not op.param2 in Bots:
+              if wait["protectionOn"] == True:
+                 try:
+                    klist=[ki,kk,kc]
+                    fuck=random.choice(klist) 
+                    G = fuck.getGroup(op.param1)
+                    ginfo = fuck.getGroup
+                    G.preventJoinByTicket = True
+                    ki.updateGroup(G)
+                    fuck.kickoutFromGroup(op.param1,[op.param2])
+                    G = fuck.getGroup(op.param1)   
+                    G.preventJoinByTicket = True
+                    fuck.updateGroup(G)
+                 except Exception, e:
+                           print e
+				
+        if op.type == 13:
+            if not op.param2 in Bots:
+                if wait["protectionOn"] == True:  
+                    klist=[ki,kk,kc]
+                    puck=random.choice(klist)
+                    G = puck.getGroup(op.param1)
+                    if G is not None:
+                        gInviMids = [contact.mid for contact in G.invitee]
+                        puck.cancelGroupInvitation(op.param1, gInviMids)
+
 
         if op.type == 19:
+                if not op.param2 in Bots:
+                    try:
+                        gs = ki.getGroup(op.param1)
+                        gs = kk.getGroup(op.param1)
+                        gs = kc.getGroup(op.param1)
+                        targets = [op.param2]
+                        for target in targets:
+                           try:
+                                wait["blacklist"][target] = True
+                                f=codecs.open('st2__b.json','w','utf-8')
+                                json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                           except:
+                            pass
+                                
+                    except Exception, e:
+                        print e
+                if not op.param2 in Bots:
+                  if wait["protectionOn"] == True:  
+                   try:
+                       G = ki.getGroup(op.param1)
+                       ginfo = ki.getGroup
+                       G.preventJoinByTicket = False
+                       ki.updateGroup(G)
+                       invsend = 0
+                       Ticket = ki.reissueGroupTicket(op.param1)
+                       ky.acceptGroupInvitationByTicket(op.param1,Ticket)
+                       cl.acceptGroupInvitationByTicket(op.param1,Ti)
+                       kk.acceptGroupInvitationByTicket(op.param1,Ti)
+                       kc.acceptGroupInvitationByTicket(op.param1,Ti)
+                    X = cl.getGroup(op.param1)
+                       G = cl.getGroup(op.param1)             
+                       G.preventJoinByTicket = True
+                       ky.kickoutFromGroup(op.param1,[op.param2])                       
+		       cl.updateGroup(G)
+                       ky.leaveGroup(op.param1)
+                   except Exception, e:
+                            print e
+				
+                if not op.param2 in Bots:
+                  if wait["protectionOn"] == True:  
+                   try:
+                       G = cl.getGroup(op.param1)
+                       ginfo = cl.getGroup
+                       G.preventJoinByTicket = False
+                       cl.updateGroup(G)
+                       invsend = 0
+                       Ticket = ki.reissueGroupTicket(op.param1)
+                       ky.acceptGroupInvitationByTicket(op.param1,Ticket)
+                       ki.acceptGroupInvitationByTicket(op.param1,Ti)
+                       kk.acceptGroupInvitationByTicket(op.param1,Ti)
+                       kc.acceptGroupInvitationByTicket(op.param1,Ti)
+                    X = kk.getGroup(op.param1)
+                       G = kk.getGroup(op.param1)             
+                       G.preventJoinByTicket = True
+                       ky.kickoutFromGroup(op.param1,[op.param2])                       
+		       kk.updateGroup(G)
+                       ky.leaveGroup(op.param1)
+                   except Exception, e:
+                            print e
+
                 if mid in op.param3:
                     if op.param2 in Bots:
                         pass
@@ -566,6 +686,32 @@ def bot(op):
             #elif "gurl" == msg.text:
                 #print cl.getGroup(msg.to)
                 ##cl.sendMessage(msg)
+		
+            elif msg.text in ["protecton","/Protecton"]:
+                if wait["/protecton"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"目前已是初級保護狀態\n\n"+ datetime.datetime.today().strftime('%H:%M:%S'))
+                    else:
+                        cl.sendText(msg.to,"開啟初級保護模式\n\n"+ datetime.datetime.today().strftime('%H:%M:%S'))
+                else:
+                    wait["protectionOn"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"開啟初級保護模式\n\n"+ datetime.datetime.today().strftime('%H:%M:%S'))
+                    else:
+                        cl.sendText(msg.to,"目前已是初級保護狀態\n\n"+ datetime.datetime.today().strftime('%H:%M:%S'))
+            elif msg.text in ["/protectoff","/Protectoff"]:
+                if wait["protectionOn"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"目前已關閉初級保護狀態\n\n"+ datetime.datetime.today().strftime('%H:%M:%S'))
+                    else:
+                        cl.sendText(msg.to,"關閉初級保護模式\n\n"+ datetime.datetime.today().strftime('%H:%M:%S'))
+                else:
+                    wait["protectionOn"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"關閉初級保護模式\n\n"+ datetime.datetime.today().strftime('%H:%M:%S'))
+                    else:
+                        cl.sendText(msg.to,"目前已關閉初級保護狀態\n\n"+ datetime.datetime.today().strftime('%H:%M:%S'))
+
             elif msg.text in ["urlon","Urlon"]:
                 if msg.from_ in staff:
                     X = cl.getGroup(msg.to)
@@ -1211,11 +1357,8 @@ def bot(op):
                         invsend = 0
                         Ticket = cl.reissueGroupTicket(msg.to)
                         ki.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.2)
                         kk.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.2)
                         kc.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.2)
                         G = cl.getGroup(msg.to)
                         G.preventJoinByTicket = True
                         cl.updateGroup(G)
