@@ -73,8 +73,7 @@ helpMessage ="""ℬᎶ戦神BotV6.5.2
 [Time]   現在時間
 部分指令前打[BG1/2/3]可指定kicker動作
 
-此機器作者↓
-"""
+此機器作者↓"""
 KAC=[cl,ki,kk,kc,ky]
 mid = cl.getProfile().mid
 Amid = ki.getProfile().mid
