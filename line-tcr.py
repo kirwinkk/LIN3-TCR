@@ -73,8 +73,7 @@ helpMessage ="""ℬᎶ戦神BotV6.5.2
 [Time]   現在時間
 部分指令前打[BG1/2/3]可指定kicker動作
 
-此機器作者↓
-"""
+此機器作者↓"""
 KAC=[cl,ki,kk,kc,ky]
 mid = cl.getProfile().mid
 Amid = ki.getProfile().mid
@@ -1500,35 +1499,43 @@ def bot(op):
 		else:
                     cl.sendText(msg.to,"權限不足 無法執行")
 		
-            elif "Cleanse" in msg.text:
-                if msg.from_ in admin:
-                    print "ok"
-                    _name = msg.text.replace("Cleanse","")
-                    gs = ki.getGroup(msg.to)
-                    gs = kk.getGroup(msg.to)
-                    gs = kc.getGroup(msg.to)
-                    ki.sendText(msg.to,"ℬᎶ戦神Bot降臨~")
-                    kk.sendText(msg.to,"ℬᎶ戦神Bot降臨~")
-                    kc.sendText(msg.to,"ℬᎶ戦神Bot降臨~")
-                    targets = []
-                    for g in gs.members:
-                        if _name in g.displayName:
-                            targets.append(g.mid)
-                    if targets == []:
-                        ki.sendText(msg.to,"錯誤")
-                        kk.sendText(msg.to,"錯誤")
-                        kc.sendText(msg.to,"錯誤")
-                    else:
-                        for target in targets:
-                            try:
-                                klist=[ki,kk,kc]
-                                kicker=random.choice(klist)
-                                kicker.kickoutFromGroup(msg.to,[target])
-                                print (msg.to,[g.mid])
-                            except:
-                                ki.sendText(msg.to,"Group cleanse")
-                                kk.sendText(msg.to,"Group cleanse")
-                                kc.sendText(msg.to,"Group cleanse")
+		
+elif msg.text in ["Cleanse","cleanse"]:
+                if msg.toType == 2:
+                    if msg.from_ in admin:
+                        print "[Command]Cleanse executing"
+                        _name = msg.text.replace("Cleanse","")
+                        gs = ki.getGroup(msg.to)
+                        gs = kk.getGroup(msg.to)
+                        gs = kc.getGroup(msg.to)
+			ki.sendText(msg.to,"ℬᎶ戦神Bot降臨~")
+                        kk.sendText(msg.to,"ℬᎶ戦神Bot降臨~")
+                        kc.sendText(msg.to,"ℬᎶ戦神Bot降臨~")
+                        targets = []
+                        for g in gs.members:
+                            if _name in g.displayName:
+                                targets.append(g.mid)
+                        # --------------[Bot and Admin MID]----------------
+                        targets.remove(adminMID)
+                        targets.remove(mid)
+                        targets.remove(Amid)
+                        targets.remove(Bmid)
+                        targets.remove(Cmid)
+                        targets.remove(Lmid)
+                        # --------------[Bot and Admin MID]----------------
+                        if targets == []:
+                            ki.sendText(msg.to,"ℬᎶ戦神Bot降臨~")
+                        else:
+                            for target in targets:
+                                try:
+                                    klist=[ki,kk,kc,cl,kg]
+                                    kicker=random.choice(klist)
+                                    kicker.kickoutFromGroup(msg.to,[target])
+                                    print (msg.to,[g.mid])
+                                except:
+                                    ki.sendText(msg.to,"ℬᎶ戦神Bot降臨~")
+                                    kk.sendText(msg.to,"ℬᎶ戦神Bot降臨~")
+                                    kc.sendText(msg.to,"ℬᎶ戦神Bot降臨~")
 		else:
                     cl.sendText(msg.to,"權限不足 無法執行")
 
