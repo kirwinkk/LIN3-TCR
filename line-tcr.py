@@ -9,7 +9,7 @@ cl = LINETCR.LINE()
 cl.login(qr=True)
 cl.loginResult()
 
-profile, setting, tracer = cl.getProfile(), cl.getSettings(), LineTracer(cl)
+profile, setting, tracer = cl.getProfile(), cl.getSettings(), LINETCR(cl)
 offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
 
 wait = {
