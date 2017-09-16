@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
+
 import LINETCR
 from LINETCR.lib.curve.ttypes import *
 from datetime import datetime
 import time,random,sys,json,codecs,threading,glob,re
 
 cl = LINETCR.LINE()
-cl.login(qr=True)
+cl.login(token="Ek4caEJ8UPCs4iNyxkp5.uEmdFcf6siszYLOn7RH6zq.GzZM3nhElQycHMM3FHoAkrF5H8bYJPKJM7/mLwDZ/jM=")
 cl.loginResult()
 
 print "login success"
@@ -22,7 +24,6 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"ℬᎶ戦神Bot 作者↓",
     "lang":"JP",
     "comment":"ℬᎶ戦神Family",
     "commentOn":True,
