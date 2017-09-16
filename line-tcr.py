@@ -51,8 +51,6 @@ def NOTIFIED_INVITE_INTO_GROUP(op):
         print ("\n\nNOTIFIED_INVITE_INTO_GROUP\n\n")
         return
 
-tracer.addOpInterrupt(13, NOTIFIED_INVITE_INTO_GROUP)
-
 def NOTIFIED_ADD_CONTACT(op):
     try:
         sendMessage(op.param1, "ℬᎶ戦神Cancel Bot 作者↓")
@@ -62,8 +60,6 @@ def NOTIFIED_ADD_CONTACT(op):
         print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
         return
 
-tracer.addOpInterrupt(5,NOTIFIED_ADD_CONTACT)
-
 def NOTIFIED_KICKOUT_FROM_GROUP(op):
     if not op.param2 in ["uc216d8664c4e1f43772c98b1b0b8956e"]:
 	try:
@@ -72,9 +68,3 @@ def NOTIFIED_KICKOUT_FROM_GROUP(op):
 	      cl.inviteIntoGroup(op.param1,[op.param3])
 	except Exception, e:
 	   print 'failed'
-
-tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
-
-
-while True:
-    tracer.execute()
