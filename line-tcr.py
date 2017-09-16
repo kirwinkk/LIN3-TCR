@@ -127,12 +127,10 @@ def bot(op):
         if op.type == 13:
            cl.getGroup(op.param1)
            cl.acceptGroupInvitation(op.param1)
-	   group = cl.getGroup(op.param1)
-           gMembMids = [contact.mid for contact in group.invitee]
-           for _mid in gMembMids:
-               cl.cancelGroupInvitation(op.param1,[_mid])
-           sendMessage(op.param1, "ℬᎶ戦神Cancel Bot 作者↓")
-	   sendMessage(op.param1, text=None, contentMetadata={'mid': "uc216d8664c4e1f43772c98b1b0b8956e"}, contentType=13)
+           X = cl.getGroup(msg.to)
+           if X.invitee is not None:
+           gInviMids = [contact.mid for contact in X.invitee]
+           cl.cancelGroupInvitation(msg.to, gInviMids)
 	   cl.leaveGroup(op.param1)
     except Exception as e:
         print e
