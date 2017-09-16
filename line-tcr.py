@@ -68,3 +68,13 @@ def NOTIFIED_KICKOUT_FROM_GROUP(op):
 	      cl.inviteIntoGroup(op.param1,[op.param3])
 	except Exception, e:
 	   print 'failed'
+while True:
+    try:
+        Ops = cl.fetchOps(cl.Poll.rev, 5)
+    except EOFError:
+        raise Exception("It might be wrong revision\n" + str(cl.Poll.rev))
+
+    for Op in Ops:
+        if (Op.type != OpType.END_OF_OPERATION):
+            cl.Poll.rev = max(cl.Poll.rev, Op.revision)
+            bot(Op)
