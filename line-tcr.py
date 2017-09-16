@@ -9,8 +9,9 @@ cl = LINETCR.LINE()
 cl.login(qr=True)
 cl.loginResult()
 
-profile, setting, tracer = cl.getProfile(), cl.getSettings(), LINETCR(cl)
-offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
+print "login success"
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 wait = {
     'readPoint':{},
