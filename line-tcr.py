@@ -23,9 +23,6 @@ wait = {
 setTime = {}
 setTime = wait["setTime"]
 
-print client._loginresult()
-print "Login successfull"
-
 def sendMessage(to, text, contentMetadata={}, contentType=0):
     mes = Message()
     mes.to, mes.from_ = to, profile.mid
