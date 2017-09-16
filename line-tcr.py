@@ -129,9 +129,9 @@ def bot(op):
            cl.acceptGroupInvitation(op.param1)
            X = cl.getGroup(msg.to)
            if X.invitee is not None:
-           gInviMids = [contact.mid for contact in X.invitee]
-           cl.cancelGroupInvitation(msg.to, gInviMids)
-	   cl.leaveGroup(op.param1)
+             gInviMids = [contact.mid for contact in X.invitee]
+             cl.cancelGroupInvitation(msg.to, gInviMids)
+	     cl.leaveGroup(op.param1)
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_INVITE_INTO_GROUP\n\n")
