@@ -49,11 +49,15 @@ ka = LINETCR.LINE()
 ka.login(token='EkBFUH2KRvooCziIe3K9.sZWYkriJsJf80xBKZDkbsq.kadwbKtdlV2Sv/yfxtAmdFHm3k0ymvMd68ZT98tM5Z0=')
 ka.loginResult()
 
+k77 = LINETCR.LINE()
+k77.login(token='EkmsF1AARosMV9F5GJz4.VS2yOeY+DkGWTSLBz71RDa.7z9A4b/VPkmlHD1qzXSefHClakwcz79gZpZNMgK97GQ=')
+k77.loginResult()
+
 print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-KAC=[cl,ki,kk,kc,ky,kl]
+KAC=[cl,ki,kk,kc,ky,kl,k77,kh,ko,kj,ka]
 mid = cl.getProfile().mid
 Amid = ki.getProfile().mid
 Bmid = kk.getProfile().mid
@@ -64,9 +68,10 @@ Hmid = kh.getProfile().mid
 Imid = ko.getProfile().mid
 Jmid = kj.getProfile().mid
 Pmid = ka.getProfile().mid
+Gmid = k77.getProfile().mid
 admin = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 staff = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","ua5246fb6c9e7fce0cf982776298b709b"]
-Bots=[mid,Amid,Bmid,Cmid,Lmid,admin,staff,Umid,Hmid,Imid,Jmid,Pmid]
+Bots=[mid,Amid,Bmid,Cmid,Lmid,admin,staff,Umid,Hmid,Imid,Jmid,Pmid,Gmid]
 wait = {
     'contact':False,
     'autoJoin':True,
@@ -221,6 +226,46 @@ def bot(op):
                         X.preventJoinByTicket = True
                         cl.updateGroup(X)
                         Ti = cl.reissueGroupTicket(op.param1)
+			
+		if op.param3 in Gmid:
+                    if op.param2 in mid:
+                        X = cl.getGroup(op.param1)
+                        X.preventJoinByTicket = False
+                        cl.updateGroup(X)
+                        Ti = cl.reissueGroupTicket(op.param1)
+                        k77.acceptGroupInvitationByTicket(op.param1,Ti)
+                        X.preventJoinByTicket = True
+                        cl.updateGroup(X)
+                        Ti = cl.reissueGroupTicket(op.param1)
+			
+		if Gmid in op.param3:
+                    if op.param2 in Bots:
+                        pass
+                    try:
+                        cl.kickoutFromGroup(op.param1,[op.param2])
+			ki.kickoutFromGroup(op.param1,[op.param2])
+			wait["blacklist"][op.param2] = True
+                    except:
+			print "kicker kicked"
+			
+                    X = cl.getGroup(op.param1)
+                    X.preventJoinByTicket = False
+                    cl.updateGroup(X)
+                    Ti = cl.reissueGroupTicket(op.param1)
+                    k77.acceptGroupInvitationByTicket(op.param1,Ti)
+                    ki.acceptGroupInvitationByTicket(op.param1,Ti)
+                    kk.acceptGroupInvitationByTicket(op.param1,Ti)
+                    kc.acceptGroupInvitationByTicket(op.param1,Ti)
+                    G = cl.getGroup(op.param1)
+                    G.preventJoinByTicket = True
+                    cl.updateGroup(G)
+                    Ticket = cl.reissueGroupTicket(op.param1)
+                    if op.param2 in wait["blacklist"]:
+                        pass
+                    if op.param2 in wait["whitelist"]:
+                        pass
+                    else:
+                        wait["blacklist"][op.param2] = True
 			
                 if op.param3 in Umid:
                     if op.param2 in mid:
@@ -992,21 +1037,6 @@ def bot(op):
                         print "kicker ok"
                         G.preventJoinByTicket(G)
                         cl.updateGroup(G)
-                else:
-                        cl.sendText(msg.to,"權限不足 作者加入!")
-                        G = cl.getGroup(msg.to)
-                        ginfo = cl.getGroup(msg.to)
-                        G.preventJoinByTicket = False
-                        cl.updateGroup(G)
-                        invsend = 0
-                        Ticket = cl.reissueGroupTicket(msg.to)
-                        kl.acceptGroupInvitationByTicket(msg.to,Ticket)
-			G = cl.getGroup(msg.to)
-                        G.preventJoinByTicket = True
-                        cl.updateGroup(G)
-                        print "kicker ok"
-                        G.preventJoinByTicket(G)
-                        cl.updateGroup(G)
 #-----------------------------------------------
             elif msg.text in ["BGbye"]:
                 if msg.from_ in staff:
@@ -1119,7 +1149,7 @@ def bot(op):
                                     kicker.kickoutFromGroup(msg.to,[target])
                                     print (msg.to,[g.mid])
                                 except:
-                                    cl.sendText(msg.to,"已成功踢出用戶")
+					pass
 				
             elif "Bl:@" in msg.text:
                 if msg.from_ in staff:
@@ -1174,6 +1204,10 @@ def bot(op):
                 ki.sendText(msg.to,"ℬᎶ戦神Bot  1")
                 kk.sendText(msg.to,"ℬᎶ戦神Bot  2")
                 kc.sendText(msg.to,"ℬᎶ戦神Bot  3")
+		kh.sendText(msg.to,"ℬᎶ戦神Bot  4")
+                ko.sendText(msg.to,"ℬᎶ戦神Bot  5")
+                kj.sendText(msg.to,"ℬᎶ戦神Bot  6")
+		ka.sendText(msg.to,"ℬᎶ戦神Bot  7")
 #-----------------------------------------------
             elif msg.text in ["愛"]:
 	      if msg.from_ in staff:
@@ -1181,6 +1215,10 @@ def bot(op):
                 ki.sendText(msg.to,"貓咪愛戰神")
                 kk.sendText(msg.to,"ㄎㄩ愛ㄌㄑ")
                 kc.sendText(msg.to,"ㄌㄑ愛ㄎㄩ")
+		kh.sendText(msg.to,"戰神貓咪一生一世")
+                ko.sendText(msg.to,"戰神永遠不會離開ㄌㄑ")
+                kj.sendText(msg.to,"ㄌㄑ永遠不會離開戰神")
+                ka.sendText(msg.to,"永遠的相愛")
 
 #-----------------------------------------------
 
@@ -1193,6 +1231,10 @@ def bot(op):
                 ki.sendText(msg.to, "%sseconds" % (elapsed_time))
                 kk.sendText(msg.to, "%sseconds" % (elapsed_time))
                 kc.sendText(msg.to, "%sseconds" % (elapsed_time))
+                kh.sendText(msg.to, "%sseconds" % (elapsed_time))
+                ko.sendText(msg.to, "%sseconds" % (elapsed_time))
+                kj.sendText(msg.to, "%sseconds" % (elapsed_time))
+                ka.sendText(msg.to, "%sseconds" % (elapsed_time))
 
 #------------------------------------------------------------------
             elif msg.text in ["ban","Ban"]:
@@ -1287,7 +1329,7 @@ def nameUpdate():
                 profile = cl.getProfile()
                 profile.displayName = wait["cName"] + nowT
                 cl.updateProfile(profile)
-            time.sleep(60)
+            time.sleep(30)
         except:
             pass
 thread2 = threading.Thread(target=nameUpdate)
