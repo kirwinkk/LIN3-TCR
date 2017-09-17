@@ -1150,8 +1150,7 @@ def bot(op):
                                 except:
 				
             elif "Bl:@" in msg.text:
-                if msg.from_ in staff:
-                    print "[Ban]ok"
+                if msg.from_ in staff
                     _name = msg.text.replace("Bl:@","")
                     _nametarget = _name.rstrip('  ')
                     gs = ki.getGroup(msg.to)
