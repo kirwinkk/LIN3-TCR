@@ -116,17 +116,17 @@ wait = {
     'leaveRoom':False,
     'timeline':True,
     'autoAdd':True,
-    'message':"ℬᎶ戦神Bot 作者:http://line.me/ti/p/4-ZKcjagH0",
+    'message':"ℬᎶ戦神Bot\n作者:http://line.me/ti/p/4-ZKcjagH0\n(Made In Taiwan)",
     'lang':"JP",
-    'comment':"ℬᎶ戦神Bot 作者:http://line.me/ti/p/4-ZKcjagH0",
+    'comment':"ℬᎶ戦神Bot\n作者:http://line.me/ti/p/4-ZKcjagH0\n(Made In Taiwan)",
     'commentOn':True,
     'commentBlack':{},
     'wblack':False,
     'dblack':False,
-    'clock':False,
+    'clock':True,
     'cName':"ℬᎶ戦神",
     'cNames':"ℬᎶ戦神追加保護",
-    'blacklist':{},
+    'blacklist':{"u969edec039c60e100a6f996fc2302b47","uf8ae5b9b95db47234d38dc1bc24c0eb5","u19299f3c3989b1dd84b28f540904d776","uc11292c7d93d9e832a47c6697b409338","u74f8794cefa3b9d68cef0f8243b79292","ue896e2fc17c84371fcf5ec5ee82d2dc6","udb0a0d7a49b7ecc5392fe07f2c07cd10","uc9f884747739f174b6b533ec0824f1ae","u20135aafe82c525bc1b8ce3efe04329a"},
     'wblacklist':False,
     'dblacklist':False,
     'protect':True,
@@ -425,16 +425,17 @@ def bot(op):
                     if group.invitee is not None:
                         gInviMids = [contact.mid for contact in group.invitee]
                         cl.cancelGroupInvitation(msg.to, gInviMids)
+                        cl.sendText(msg.to,"已取消邀請")
                     else:
                         if wait["lang"] == "JP":
-                            cl.sendText(msg.to,"No invites👈")
+                            cl.sendText(msg.to,"邀請中沒人><")
                         else:
-                            cl.sendText(msg.to,"Invite people inside not👈")
+                            cl.sendText(msg.to,"邀請中沒人><")
                 else:
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"Tidak ada undangan👈")
+                        cl.sendText(msg.to,"邀請中沒人><")
                     else:
-                        cl.sendText(msg.to,"invitan tidak ada")
+                        cl.sendText(msg.to,"邀請中沒人><")
             #elif "gurl" == msg.text:
                 #print cl.getGroup(msg.to)
                 ##cl.sendMessage(msg)
@@ -490,13 +491,13 @@ def bot(op):
             elif "Mid2" == msg.text:
                 ki2.sendText(msg.to,ki2mid)
             elif "Mid3" == msg.text:
-                ki3.sendText(msg.to,kimid)
+                ki3.sendText(msg.to,ki3mid)
             elif "Mid4" == msg.text:
-                ki4.sendText(msg.to,ki2mid)
+                ki4.sendText(msg.to,ki4mid)
             elif "Mid5" == msg.text:
-                ki5.sendText(msg.to,kimid)
+                ki5.sendText(msg.to,ki5mid)
             elif "Mid6" == msg.text:
-                ki6.sendText(msg.to,ki2mid)
+                ki6.sendText(msg.to,ki6mid)
             elif "Botmid" == msg.text:
                 ki.sendText(msg.to,kimid)
                 ki2.sendText(msg.to,ki2mid)
@@ -534,7 +535,7 @@ def bot(op):
                     profile.displayName = string
                     ki6.updateProfile(profile)
             elif "Allsm:" in msg.text:
-                string = msg.text.replace("Allbio:","")
+                string = msg.text.replace("Allsm:","")
                 if len(string.decode('utf-8')) <= 500:
                     profile = ki.getProfile()
                     profile.statusMessage = string
@@ -1151,6 +1152,18 @@ def bot(op):
                 else:
                     cl.sendText(msg.to,"已更新")
 #-----------------------------------------------------------
+
+            elif msg.text in ["Sp","Speed","speed"]:
+                start = time.time()
+                cl.sendText(msg.to, "BG戦神Bot讀取中...")
+                elapsed_time = time.time() - start
+                cl.sendText(msg.to, "%sseconds" % (elapsed_time))
+                ki.sendText(msg.to, "%sseconds" % (elapsed_time))
+                ki2.sendText(msg.to, "%sseconds" % (elapsed_time))
+                ki3.sendText(msg.to, "%sseconds" % (elapsed_time))
+		ki4.sendText(msg.to, "%sseconds" % (elapsed_time))
+		ki5.sendText(msg.to, "%sseconds" % (elapsed_time))
+		ki6.sendText(msg.to, "%sseconds" % (elapsed_time))
 
             elif ("Bunuh " in msg.text):
                    targets = []
@@ -2038,7 +2051,7 @@ def autolike():
         if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
           try:    
             cl.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1002)
-            cl.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"ℬᎶ戦神Taiwan Bot")
+            cl.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"ℬᎶ戦神 Bot\n作者:戦神(Made In Taiwan)")
             print "Like"
           except:
             pass
@@ -2055,7 +2068,7 @@ def autolike():
         if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
           try:    
             ki2.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1002)
-            ki2.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"ℬᎶ戦神Taiwan Bot")
+            ki2.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"ℬᎶ戦神 Bot\n作者:戦神(Made In Taiwan)")
             print "Like"
           except:
             pass
@@ -2072,7 +2085,7 @@ def autolike():
         if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
           try:    
             ki.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1002)
-            ki.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"ℬᎶ戦神Taiwan Bot")
+            ki.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"ℬᎶ戦神 Bot\n作者:戦神(Made In Taiwan)")
             print "Like"
           except:
             pass
