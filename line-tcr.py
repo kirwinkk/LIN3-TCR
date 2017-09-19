@@ -126,7 +126,7 @@ wait = {
     'clock':True,
     'cName':"ℬᎶ戦神",
     'cNames':"ℬᎶ戦神追加保護",
-    'blacklist':{"u969edec039c60e100a6f996fc2302b47","uf8ae5b9b95db47234d38dc1bc24c0eb5","u19299f3c3989b1dd84b28f540904d776","uc11292c7d93d9e832a47c6697b409338","u74f8794cefa3b9d68cef0f8243b79292","ue896e2fc17c84371fcf5ec5ee82d2dc6","udb0a0d7a49b7ecc5392fe07f2c07cd10","uc9f884747739f174b6b533ec0824f1ae","u20135aafe82c525bc1b8ce3efe04329a"},
+    'blacklist':{},
     'wblacklist':False,
     'dblacklist':False,
     'protect':True,
@@ -201,8 +201,6 @@ def bot(op):
             if msg.contentType == 16:
                 url = msg.contentMetadata["postEndUrl"]
                 cl.like(url[25:58], url[66:], likeType=1001)
-		ki.like(url[25:58], url[66:], likeType=1001)
-		ki2.like(url[25:58], url[66:], likeType=1001)
         if op.type == 25:
             msg = op.message
             if msg.contentType == 13:
@@ -1180,7 +1178,7 @@ def bot(op):
                    key = eval(msg.contentMetadata["MENTION"])
                    key1 = key["MENTIONEES"][0]["M"]
                    mi = cl.getContact(key1)
-                   cl.sendText(msg.to,"Mid:" +  key1)
+                   cl.sendText(msg.to,"" +  key1)
 				
 				
             elif "Mk:@" in msg.text:
@@ -1693,12 +1691,7 @@ def bot(op):
                         cl.updateGroup(G)
                     else:
                         G = ki.getGroup(op.param1)
-
-                            
-                        
-                        
                         ki.kickoutFromGroup(op.param1,[op.param2])
-
                         G.preventJoinByTicket = False
                         ki.updateGroup(G)
                         Ticket = ki.reissueGroupTicket(op.param1)
@@ -1733,9 +1726,7 @@ def bot(op):
                         ki2.updateGroup(G)
                     else:
                         G = ki2.getGroup(op.param1)
-
                         ki2.kickoutFromGroup(op.param1,[op.param2])
-
                         G.preventJoinByTicket = False
                         ki2.updateGroup(G)
                         Ticket = ki2.reissueGroupTicket(op.param1)
@@ -1767,10 +1758,7 @@ def bot(op):
                         ki2.updateGroup(G)
                     else:
                         G = cl.getGroup(op.param1)
-
-                        
                         ki2.kickoutFromGroup(op.param1,[op.param2])
-
                         G.preventJoinByTicket = False
                         ki2.updateGroup(G)
                         Ticket = ki2.reissueGroupTicket(op.param1)
@@ -1801,10 +1789,7 @@ def bot(op):
                         ki3.updateGroup(G)
                     else:
                         G = cl.getGroup(op.param1)
-
-                        
                         ki3.kickoutFromGroup(op.param1,[op.param2])
-
                         G.preventJoinByTicket = False
                         ki3.updateGroup(G)
                         Ticket = ki3.reissueGroupTicket(op.param1)
@@ -1835,10 +1820,7 @@ def bot(op):
                         ki5.updateGroup(G)
                     else:
                         G = ki5.getGroup(op.param1)
-
-                        
                         ki5.kickoutFromGroup(op.param1,[op.param2])
-
                         G.preventJoinByTicket = False
                         ki5.updateGroup(G)
                         Ticket = ki5.reissueGroupTicket(op.param1)
@@ -1869,10 +1851,7 @@ def bot(op):
                         ki4.updateGroup(G)
                     else:
                         G = ki4.getGroup(op.param1)
-
-                        
                         ki4.kickoutFromGroup(op.param1,[op.param2])
-
                         G.preventJoinByTicket = False
                         ki4.updateGroup(G)
                         Ticket = ki4.reissueGroupTicket(op.param1)
@@ -1903,10 +1882,7 @@ def bot(op):
                         ki5.updateGroup(G)
                     else:
                         G = ki5.getGroup(op.param1)
-
-                        
                         ki5.kickoutFromGroup(op.param1,[op.param2])
-
                         G.preventJoinByTicket = False
                         ki5.updateGroup(G)
                         Ticket = ki5.reissueGroupTicket(op.param1)
@@ -2047,17 +2023,17 @@ thread2.start()
 
 def autolike():
      for zx in range(0,50):
-        hasil = cl.activity
+        hasil = cl.activity(limit=100000000000000000000000000000000000000000000000000)
         if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
           try:    
             cl.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1002)
-            cl.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"ℬᎶ戦神 Bot\n作者:戦神(Made In Taiwan)")
+            cl.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"Auto Like by : Kitsune\n\nhttp://line.me/ti/p/%40ryu7435j\nhttp://line.me/ti/p/~fcimicrosoftaditya")
             print "Like"
           except:
             pass
         else:
             print "Already Liked"
-     time.sleep(60)
+     time.sleep(30)
 thread2 = threading.Thread(target=autolike)
 thread2.daemon = True
 thread2.start()
