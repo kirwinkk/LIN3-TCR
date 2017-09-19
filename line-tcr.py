@@ -115,7 +115,7 @@ wait = {
     'contact':True,
     'autoJoin':True,
     'autoCancel':{"on":True,"members":1},
-    'leaveRoom':True,
+    'leaveRoom':False,
     'timeline':True,
     'autoAdd':True,
     'message':"ℬᎶ戦神Bot 作者:http://line.me/ti/p/4-ZKcjagH0",
@@ -261,7 +261,7 @@ def bot(op):
                     if wait["lang"] == "JP":
                         msg.text = "文章網址 URL\n" + msg.contentMetadata["postEndUrl"]
                     else:
-                        msg.text = "URLâ†’\n" + msg.contentMetadata["postEndUrl"]
+                        msg.text = "文章網址 URL\n" + msg.contentMetadata["postEndUrl"]
                     cl.sendText(msg.to,msg.text)
             elif msg.text is None:
                 return
@@ -291,7 +291,36 @@ def bot(op):
                 midd = msg.text.replace("Invite:","")
                 cl.findAndAddContactsByMid(midd)
                 cl.inviteIntoGroup(msg.to,[midd])
+            elif "Bot1invite:" in msg.text:
+                midd = msg.text.replace("Invite:","")
+                ki.findAndAddContactsByMid(midd)
+                ki.inviteIntoGroup(msg.to,[midd])
 		
+            elif "Bot2invite:" in msg.text:
+                midd = msg.text.replace("Invite:","")
+                ki2.findAndAddContactsByMid(midd)
+                ki2.inviteIntoGroup(msg.to,[midd])
+		
+            elif "Bot3invite:" in msg.text:
+                midd = msg.text.replace("Invite:","")
+                ki3.findAndAddContactsByMid(midd)
+                ki3.inviteIntoGroup(msg.to,[midd])
+		
+            elif "Bot4invite:" in msg.text:
+                midd = msg.text.replace("Invite:","")
+                ki4.findAndAddContactsByMid(midd)
+                ki4.inviteIntoGroup(msg.to,[midd])
+		
+            elif "Bot5invite:" in msg.text:
+                midd = msg.text.replace("Invite:","")
+                ki5.findAndAddContactsByMid(midd)
+                ki5.inviteIntoGroup(msg.to,[midd])
+		
+            elif "Bot6invite:" in msg.text:
+                midd = msg.text.replace("Invite:","")
+                ki6.findAndAddContactsByMid(midd)
+                ki6.inviteIntoGroup(msg.to,[midd])
+
             elif "Botmid" == msg.text:
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': kimid}
@@ -410,11 +439,10 @@ def bot(op):
                 #print cl.getGroup(msg.to)
                 ##cl.sendMessage(msg)
             elif msg.text in ["author","Author","作者"]:
-                if msg.from_ in staff:
 			msg.contentType = 13
 			cl.sendText(msg.to,"此機器作者↓")
                         msg.contentMetadata = {'mid': "uc216d8664c4e1f43772c98b1b0b8956e"}
-                        cl.sendMessage(msg)
+                        cl.sendText(msg)
 		
             elif msg.text in ["Urlon"]:
                 if msg.toType == 2:
@@ -450,7 +478,7 @@ def bot(op):
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': ginfo.creator.mid}
                 cl.sendText(msg.to,"ℬᎶ戦神Bot-群組詳情\n[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中")
-                cl.sendMessage(msg)
+                cl.sendText(msg)
             elif "Contact" == msg.text:
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': msg.to}
@@ -505,7 +533,7 @@ def bot(op):
                     profile = ki6.getProfile()
                     profile.displayName = string
                     ki6.updateProfile(profile)
-            elif "Allbio:" in msg.text:
+            elif "Allsm:" in msg.text:
                 string = msg.text.replace("Allbio:","")
                 if len(string.decode('utf-8')) <= 500:
                     profile = ki.getProfile()
@@ -594,7 +622,7 @@ def bot(op):
                     ki6.updateProfile(profile)
                     ki6.sendText(msg.to,"已改名為:" + string + "~")
 #--------------------------------------------------------
-            elif "Mid:" in msg.text:
+            elif "mid:" in msg.text:
                 mmid = msg.text.replace("Mid:","")
                 msg.contentType = 13
                 msg.contentMetadata = {"mid":mmid}
@@ -709,15 +737,15 @@ def bot(op):
             elif msg.text in ["Protectoff"]:
                 if wait["protect"] == False:
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"hall ini sudah off ô€œ👈")
+                        cl.sendText(msg.to,"保護關閉")
                     else:
-                        cl.sendText(msg.to,"sudah dimatikan ô€œô€„‰👈")
+                        cl.sendText(msg.to,"保護關閉")
                 else:
                     wait["protect"] = False
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"already close")
+                        cl.sendText(msg.to,"保護關閉")
                     else:
-                        cl.sendText(msg.to,"It is already open ô€œ👈")
+                        cl.sendText(msg.to,"保護關閉")
             elif msg.text in ["Urlprotectoff","qrprotect off"]:
                 if wait["linkprotect"] == False:
                     if wait["lang"] == "JP":
@@ -926,9 +954,9 @@ def bot(op):
                     ki5.leaveGroup(i)
                     ki6.leaveGroup(i)
                 if wait["lang"] == "JP":
-                    cl.sendText(msg.to,"Kitsune Bot Sudah Keluar Di semua grup")
+                    cl.sendText(msg.to,"已退出所有群組")
                 else:
-                    cl.sendText(msg.to,"He declined all invitations")
+                    cl.sendText(msg.to,"已退出所有群組")
             elif msg.text in ["Group cancelall"]:
                 gid = cl.getGroupIdsInvited()
                 for i in gid:
@@ -1135,7 +1163,7 @@ def bot(op):
                            cl.kickoutFromGroup(msg.to,[target])
                        except:
                            cl.sendText(msg.to,"Error")
-            elif ("Cek " in msg.text):
+            elif ("Mid:" in msg.text):
                    key = eval(msg.contentMetadata["MENTION"])
                    key1 = key["MENTIONEES"][0]["M"]
                    mi = cl.getContact(key1)
@@ -1299,22 +1327,22 @@ def bot(op):
 #-----------------------------------------------------------
             elif msg.text.lower() == 'respons':
                 profile = ki.getProfile()
-                text = profile.displayName + "􀜁􀅔􏿿"
+                text = profile.displayName + ""
                 ki.sendText(msg.to, text)
                 profile = ki2.getProfile()
-                text = profile.displayName + "􀜁􀅔􏿿"
+                text = profile.displayName + ""
                 ki2.sendText(msg.to, text)
                 profile = ki3.getProfile()
-                text = profile.displayName + "􀜁􀅔􏿿"
+                text = profile.displayName + ""
                 ki3.sendText(msg.to, text)
                 profile = ki4.getProfile()
-                text = profile.displayName + "􀜁􀅔􏿿"
+                text = profile.displayName + ""
                 ki4.sendText(msg.to, text)
                 profile = ki5.getProfile()
-                text = profile.displayName + "􀜁􀅔􏿿"
+                text = profile.displayName + ""
                 ki5.sendText(msg.to, text)
                 profile = ki6.getProfile()
-                text = profile.displayName + "􀜁􀅔􏿿"
+                text = profile.displayName + ""
                 ki6.sendText(msg.to, text)
 
 #-----------------------------------------------------------speed
