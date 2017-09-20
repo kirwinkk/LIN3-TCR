@@ -6,7 +6,7 @@ from datetime import datetime
 import time,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="Ek923X08VeP8WpQdRT7e.WHByzKXoh0n3ljIXSlIvBG.j3uaK+dseihmHN03avV+zLPgoAmISaZMlxmJj7at2o4=")
+cl.login(token="EkGSVZpb9qz3i7JwVhme.WHByzKXoh0n3ljIXSlIvBG.i5T7/I6pdT6pewWMVOwW25mVRiMiZR0p56/jA5s5nsk=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
@@ -198,9 +198,6 @@ def bot(op):
             if msg.toType == 1:
                 if wait["leaveRoom"] == True:
                     cl.leaveRoom(msg.to)
-            if msg.contentType == 16:
-                url = msg.contentMetadata["postEndUrl"]
-                cl.like(url[25:58], url[66:], likeType=1001)
         if op.type == 25:
             msg = op.message
             if msg.contentType == 13:
@@ -2018,23 +2015,6 @@ def nameUpdate():
         except:
             pass
 thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
-
-def autolike():
-     for zx in range(0,50):
-        hasil = cl.activity(limit=100000000000000000000000000000000000000000000000000)
-        if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
-          try:    
-            cl.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1002)
-            cl.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"Auto Like by : Kitsune\n\nhttp://line.me/ti/p/%40ryu7435j\nhttp://line.me/ti/p/~fcimicrosoftaditya")
-            print "Like"
-          except:
-            pass
-        else:
-            print "Already Liked"
-     time.sleep(30)
-thread2 = threading.Thread(target=autolike)
 thread2.daemon = True
 thread2.start()
 
