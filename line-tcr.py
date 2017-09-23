@@ -1514,15 +1514,6 @@ def bot(op):
                             except:
                                 cl.sendText(msg.to,"Error")
 				
-            elif "Bl" in msg.text:
-                if wait["blacklist"] == {}:
-                    cl.sendText(msg.to,"沒有黑單用戶")
-                else:
-                    cl.sendText(msg.to,"黑單讀取中...")
-                    mc = ""
-                    for mi_d in wait["blacklist"]:
-                        mc += "->" +cl.getContact(mi_d).displayName + "\n"
-                    cl.sendText(msg.to,mc)
 
             elif "Ban:" in msg.text:                  
                        nk0 = msg.text.replace("Ban:","")
@@ -1638,7 +1629,7 @@ def bot(op):
             elif msg.text in ["Unban"]:
                 wait["dblacklist"] = True
                 cl.sendText(msg.to,"Send Contact")
-            elif "Bl" in msg.text:
+            elif "Blacklist" in msg.text:
                 if wait["blacklist"] == {}:
                     cl.sendText(msg.to,"黑名單正在讀取...")
                     mc = ""
