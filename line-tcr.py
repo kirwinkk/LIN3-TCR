@@ -1731,41 +1731,42 @@ def bot(op):
                         cl.updateGroup(G)
                         invsend = 0
                         Ticket = cl.reissueGroupTicket(msg.to)
-                        ki.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki2.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki3.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki4.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki5.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki6.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki7.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki8.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki9.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki10.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki11.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki12.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki13.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        ki14.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        time.sleep(0.01)
-                        G = cl.getGroup(msg.to)
-                        ginfo = cl.getGroup(msg.to)
+			  try:
+                        	ki.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki2.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki3.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki4.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki5.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki6.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki7.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki8.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki9.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki10.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki11.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki12.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki13.acceptGroupInvitationByTicket(msg.to,Ticket)
+                          try:
+                        	ki14.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        
+                        G = ki9.getGroup(msg.to)
+                        ginfo = ki9.getGroup(msg.to)
                         G.preventJoinByTicket = True
-                        cl.updateGroup(G)
+                        ki9.updateGroup(G)
                         print "kicker ok"
                         G.preventJoinByTicket(G)
-                        cl.updateGroup(G)
+                        ki9.updateGroup(G)
 #-----------------------------------------------
             elif "Bot1" in msg.text:
                         G = cl.getGroup(msg.to)
