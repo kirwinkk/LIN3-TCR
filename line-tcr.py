@@ -6,11 +6,11 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="EkGSVZpb9qz3i7JwVhme.WHByzKXoh0n3ljIXSlIvBG.i5T7/I6pdT6pewWMVOwW25mVRiMiZR0p56/jA5s5nsk=")
+cl.login(token="Ekz4TgKpeSWkDvNsetY0.3FLXqaAHaqU2vr+bb+uJKa.5/52TwKOUdn8x2wWxkc2sBYihCNVQVO0/L+nx6GKNao=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(token="Ekz4TgKpeSWkDvNsetY0.3FLXqaAHaqU2vr+bb+uJKa.5/52TwKOUdn8x2wWxkc2sBYihCNVQVO0/L+nx6GKNao=")
+ki.login(token="EkFxBRmXkbP3J3mAZPM3.vy5yDd4vkH13GPwq582miW.yquPVYw1Q9FjnJjTEECpQ3AU0xiNsriNsUFWw0B2TVA=")
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
