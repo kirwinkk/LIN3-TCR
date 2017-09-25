@@ -66,6 +66,10 @@ ki14 = LINETCR.LINE()
 ki14.login(token="Ek8lJbO1TdtJ7IU59b9e.anot7ok1CmMlkurtH8BKxG.adpzKav+kBaG/ZR3T3184RjLfRC0LSqAHy8t+ekGDns=")
 ki14.loginResult()
 
+ki15 = LINETCR.LINE()
+ki15.login(token=" El2e4tTG29CjOqKMB0h8.w0WR2OKO/canEpl7cVYAMa.6GMKEhlAD0dzu6xu8x4Wl+fSApjtztJ2saUz+UzRWnc=")
+ki15.loginResult()
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -114,7 +118,7 @@ helpMessage ="""=====[ℬᎶ戦神Bot]=====
 [Time]   現在時間
 部分指令前打[BG1/2/3]可指定kicker動作
 """
-KAC=[cl,ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11,ki12,ki13,ki14]
+KAC=[cl,ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11,ki12,ki13,ki14,ki15]
 mid = cl.getProfile().mid
 kimid = ki.getProfile().mid
 ki2mid = ki2.getProfile().mid
@@ -130,7 +134,8 @@ ki11mid = ki11.getProfile().mid
 ki12mid = ki12.getProfile().mid
 ki13mid = ki13.getProfile().mid
 ki14mid = ki14.getProfile().mid
-Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki10mid,ki11mid,ki12mid,ki13mid,ki14mid]
+ki15mid = ki15.getProfile().mid
+Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki10mid,ki11mid,ki12mid,ki13mid,ki14mid,ki15mid]
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
 
 wait = {
@@ -154,8 +159,8 @@ wait = {
     'wblacklist':False,
     'dblacklist':False,
     'protect':True,
-    'cancelprotect':False,
-    'inviteprotect':False,
+    'cancelprotect':True,
+    'inviteprotect':True,
     'linkprotect':True,
 }
 
@@ -443,9 +448,9 @@ def bot(op):
                     group = cl.getGroup(msg.to)
                     if group.invitee is not None:
                         gInviMids = [contact.mid for contact in group.invitee]
-			ki.cancelGroupInvitation(msg.to, gInviMids)
-                        cl.cancelGroupInvitation(msg.to, gInviMids)
-                        cl.sendText(msg.to,"已取消邀請")
+                        cl.cancelGroupInvitation(op.param1, gInviMids)
+			elapsed_time = time.time() - start
+                        cl.sendText(op.param1,str(len(group.invitee)) + "人 已被戦神取消(´∀｀)♡" + "\n耗費時間:%sseconds" % (elapsed_time))
                     else:
                         if wait["lang"] == "JP":
                             cl.sendText(msg.to,"邀請中沒人><")
@@ -1240,6 +1245,15 @@ def bot(op):
             elif msg.text in ["Com","Comment"]:
                 cl.sendText(msg.to,"Auto komentar saat ini telah ditetapkan sebagai berikut:👈\n\n" + str(wait["comment"]))
 		
+            elif "Mban:" in msg.text:
+                midd = msg.text.replace("Mban:","")
+                wait["blacklist"][midd] = True
+		cl.sendText(msg.to,"已黑單此用戶")
+            elif "Munban:" in msg.text:
+                midd = msg.text.replace("Mban:","")
+                wait["blacklist"][midd] = False
+		cl.sendText(msg.to,"已解除黑單")
+		
             elif "Cleanse" in msg.text:
                 if msg.toType == 2:
                     print "ok"
@@ -1405,7 +1419,13 @@ def bot(op):
                 except Exception as error:
                     print error
 
-            elif ("Bunuh " in msg.text):
+            elif ("Mid:" in msg.text):
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi = cl.getContact(key1)
+                   cl.sendText(msg.to,"" +  key1)
+				
+            elif ("Mk:" in msg.text):
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
                    key["MENTIONEES"][0]["M"]
@@ -1413,39 +1433,41 @@ def bot(op):
                        targets.append(x["M"])
                    for target in targets:
                        try:
-                           cl.kickoutFromGroup(msg.to,[target])
+                           klist=[cl,ki,ki2,ki3]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
                        except:
                            cl.sendText(msg.to,"Error")
-            elif ("Mid:" in msg.text):
-                   key = eval(msg.contentMetadata["MENTION"])
-                   key1 = key["MENTIONEES"][0]["M"]
-                   mi = cl.getContact(key1)
-                   cl.sendText(msg.to,"" +  key1)
 				
-            elif "Mk:@" in msg.text:
-                if msg.toType == 2:
-                       nk0 = msg.text.replace("Mk:@","")
-                       nk1 = nk0.lstrip()
-                       nk2 = nk1.replace("@","")
-                       nk3 = nk2.rstrip()
-                       _name = nk3
-                       gs = cl.getGroup(msg.to)
-                       targets = []
-                       for s in gs.members:
-                           if _name in s.displayName:
-                              targets.append(s.mid)
-                       if targets == []:
-                           sendMessage(msg.to,"找不到用戶")
-                           pass
-                       else:
-                           for target in targets:
-                                try:
-                                   klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11,ki12,ki13,ki14]
-                                   kicker=random.choice(klist)
-                                   kicker.kickoutFromGroup(msg.to,[target])
-                                   print (msg.to,[g.mid])
-                                except:
-					pass
+            elif ("Bl:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                wait["blacklist"][target] = True
+                                f=codecs.open('st2__b.json','w','utf-8')
+                                json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                                cl.sendText(msg.to,"已黑單此用戶")
+                            except:
+                                cl.sendText(msg.to,"此用戶已是黑單")
+				
+            elif ("Ubl:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                del wait["blacklist"][target]
+                                f=codecs.open('st2__b.json','w','utf-8')
+                                json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                                cl.sendText(msg.to,"已解除黑單")
+                            except:
+                                cl.sendText(msg.to,"此用戶並不是黑單")
 				
             elif "Nk:" in msg.text:
                 if msg.toType == 2:
@@ -1471,48 +1493,7 @@ def bot(op):
 #-----------------------------------------------------------
 
 #-----------------------------------------------------------
-            elif "Bl:@" in msg.text:
-                if msg.toType == 2:
-                    print "[Ban]ok"
-                    _name = msg.text.replace("Bl:@","")
-                    _nametarget = _name.rstrip()
-                    gs = cl.getGroup(msg.to)
-                    targets = []
-                    for g in gs.members:
-                        if _nametarget == g.displayName:
-                            targets.append(g.mid)
-                    if targets == []:
-                        cl.sendText(msg.to,"沒有找到用戶")
-                    else:
-                        for target in targets:
-                            try:
-                                wait["blacklist"][target] = True
-                                f=codecs.open('st2__b.json','w','utf-8')
-                                json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-                                cl.sendText(msg.to,"已黑單此用戶")
-                            except:
-                                cl.sendText(msg.to,"Error")
-            elif "Ubl:@" in msg.text:
-                if msg.toType == 2:
-                    print "[Unban]ok"
-                    _name = msg.text.replace("Ubl:@","")
-                    _nametarget = _name.rstrip()
-                    gs = cl.getGroup(msg.to)
-                    targets = []
-                    for g in gs.members:
-                        if _nametarget == g.displayName:
-                            targets.append(g.mid)
-                    if targets == []:
-                        cl.sendText(msg.to,"沒有找到用戶")
-                    else:
-                        for target in targets:
-                            try:
-                                del wait["blacklist"][target]
-                                f=codecs.open('st2__b.json','w','utf-8')
-                                json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-                                cl.sendText(msg.to,"已解除黑單")
-                            except:
-                                cl.sendText(msg.to,"Error")
+
 				
 
             elif "Ban:" in msg.text:                  
@@ -1564,10 +1545,7 @@ def bot(op):
                                     cl.sendText(msg.to,"Error")
 #-----------------------------------------------------------
 #-----------------------------------------------------------
-            elif "Mban:" in msg.text:
-                midd = msg.text.replace("Mban:","")
-                wait["blacklist"][midd] = True
-		cl.sendText(msg.to,"Target Lock")
+
 #-----------------------------------------------------------
             elif "#leave" in msg.text:
                 try:
@@ -1672,26 +1650,7 @@ def bot(op):
                         ki.cancelGroupInvitation(msg.to,[_mid])
 			cl.cancelGroupInvitation(msg.to,[_mid])
                     cl.sendText(msg.to,"已取消邀請")
-            elif "Album" in msg.text:
-                try:
-                    albumtags = msg.text.replace("Album","")
-                    gid = albumtags[:33]
-                    name = albumtags.replace(albumtags[:34],"")
-                    cl.createAlbum(gid,name)
-                    cl.sendText(msg.to,name + "We created an album👈")
-                except:
-                    cl.sendText(msg.to,"Error")
-            elif "fakecâ†’" in msg.text:
-                try:
-                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;./_][!&%$#)(=~^|'
-                    name = "".join([random.choice(source_str) for x in xrange(10)])
-                    amid = msg.text.replace("fakecâ†’","")
-                    cl.sendText(msg.to,str(cl.channel.createAlbumF(msg.to,name,amid)))
-                except Exception as e:
-                    try:
-                        cl.sendText(msg.to,str(e))
-                    except:
-                        pass
+
 
 #-----------------------------------------------
 
@@ -1722,6 +1681,22 @@ def bot(op):
                         print "kicker ok"
                         G.preventJoinByTicket(G)
                         random.choice(KAC).updateGroup(G)
+			
+            elif "Killer" in msg.text:
+                        G = cl.getGroup(msg.to)
+                        ginfo = cl.getGroup(msg.to)
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        invsend = 0
+                        Ticket = cl.reissueGroupTicket(msg.to)
+                        ki15.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        G = ki15.getGroup(msg.to)
+                        ginfo = ki15.getGroup(msg.to)
+                        G.preventJoinByTicket = True
+                        ki15.updateGroup(G)
+                        print "kicker ok"
+                        G.preventJoinByTicket(G)
+                        ki15.updateGroup(G)
                        
 #-----------------------------------------------
             elif "BG2bot" in msg.text:
@@ -1759,13 +1734,13 @@ def bot(op):
                         time.sleep(0.01)
                         ki14.acceptGroupInvitationByTicket(msg.to,Ticket)
                         time.sleep(0.01)
-                        G = cl.getGroup(msg.to)
-                        ginfo = cl.getGroup(msg.to)
+                        G = ki2.getGroup(msg.to)
+                        ginfo = ki2.getGroup(msg.to)
                         G.preventJoinByTicket = True
-                        cl.updateGroup(G)
+                        ki2.updateGroup(G)
                         print "kicker ok"
                         G.preventJoinByTicket(G)
-                        cl.updateGroup(G)
+                        ki2.updateGroup(G)
 #-----------------------------------------------
             elif "Bot1" in msg.text:
                         G = cl.getGroup(msg.to)
@@ -1882,6 +1857,15 @@ def bot(op):
                         ki12.leaveGroup(msg.to)
                         ki13.leaveGroup(msg.to)
                         ki14.leaveGroup(msg.to)
+                    except:
+                        pass
+		
+            elif "Killerbye" in msg.text:
+                if msg.toType == 2:
+                    ginfo = cl.getGroup(msg.to)
+                    try:
+                        cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~")
+                        ki15.leaveGroup(msg.to)
                     except:
                         pass
 #-----------------------------------------------
@@ -2770,6 +2754,29 @@ def bot(op):
                         ki14.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki11.updateGroup(G)
+			
+			
+                elif op.param3 in ki15mid:
+                    if op.param2 in ki13mid:
+                        G = ki13.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        ki13.updateGroup(G)
+                        Ticket = ki13.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki15.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki10.updateGroup(G)
+                    else:
+                        G = ki13.getGroup(op.param1)
+                        ki13.kickoutFromGroup(op.param1,[op.param2])
+			ki4.kickoutFromGroup(op.param1,[op.param2])
+                        G.preventJoinByTicket = False
+                        ki13.updateGroup(G)
+                        Ticket = ki13.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki15.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki11.updateGroup(G)
             except:
                 pass
 	if op.type == 17:
@@ -2777,20 +2784,20 @@ def bot(op):
 		if op.param2 in Bots:
 		    pass
 	    if wait["protect"] == True:
-		if wait["blacklist"][op.param2] == True:
+		if op.param2 in admin + Bots:
 		   try:
-			random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-			G = random.choice(KAC).getGroup(op.param1)
+			ki15.kickoutFromGroup(op.param1,[op.param2])
+			G = ki15.getGroup(op.param1)
 			G.preventJoinByTicket = True
-			ks.updateGroup(G)
+			ki15.updateGroup(G)
 #			random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 		   except:
 #			pass
 			try:
-			    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-			    G = random.choice(KAC).getGroup(op.param1)
+			    ki15.kickoutFromGroup(op.param1,[op.param2])
+			    G = ki15.getGroup(op.param1)
 			    G.preventJoinByTicket = True
-			    random.choice(KAC).updateGroup(G)
+			    ki15.updateGroup(G)
 #			    random.choice(KAK).kickoutFromGroup(op.param1,[op.param2])
 			except:
 			    pass
@@ -2803,19 +2810,17 @@ def bot(op):
 		if op.param2 in Bots:
 		    pass
 		elif wait["protect"] == True:
-		    wait ["blacklist"][op.param2] = True
-		    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+		    ki15.kickoutFromGroup(op.param1,[op.param2])
 		else:
-		    cl.sendText(op.param1,"")
+		    ki15.sendText(op.param1,"")
 	    else:
-		cl.sendText(op.param1,"")
+		ki15.sendText(op.param1,"")
 	if op.type == 13:
 	    if op.param2 not in Bots:
 		if op.param2 in Bots:
 		    pass
 		elif wait["inviteprotect"] == True:
-		    wait ["blacklist"][op.param2] = True
-		    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+		    ki15.kickoutFromGroup(op.param1,[op.param2])
 		else:
 		    cl.sendText(op.param1,"")
 	    else:
@@ -2824,38 +2829,33 @@ def bot(op):
 		if op.param2 in Bots:
 		    pass
 		elif wait["inviteprotect"] == True:
-		    wait ["blacklist"][op.param2] = True
-		    ki3.cancelGroupInvitation(op.param1,[op.param3])
-		    cl.cancelGroupInvitation(op.param1,[op.param3])
+		    ki15.cancelGroupInvitation(op.param1,[op.param3])
 		else:
-		    cl.sendText(op.param1,"")
+		    ki15.sendText(op.param1,"")
 	    else:
-		cl.sendText(op.param1,"")
+		ki15.sendText(op.param1,"")
 	    if op.param2 not in Bots:
 		if op.param2 in Bots:
 		    pass
 		elif wait["cancelprotect"] == True:
-		    wait ["blacklist"][op.param2] = True
-		    ki2.cancelGroupInvitation(op.param1,[op.param3])
-		    cl.cancelGroupInvitation(op.param1,[op.param3])
+		    ki15.cancelGroupInvitation(op.param1,[op.param3])
 		else:
-		    cl.sendText(op.param1,"")
+		    ki15.sendText(op.param1,"")
 	    else:
-		cl.sendText(op.param1,"")
+		ki15.sendText(op.param1,"")
 	if op.type == 11:
 	    if op.param2 not in Bots:
 		if op.param2 in Bots:
 		    pass
 		elif wait["linkprotect"] == True:
-		    wait ["blacklist"][op.param2] = True
-		    G = ki2.getGroup(op.param1)
+		    G = ki15.getGroup(op.param1)
 		    G.preventJoinByTicket = True
 		    ki2.updateGroup(G)
-		    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+		    ki15.kickoutFromGroup(op.param1,[op.param2])
 		else:
-		    cl.sendText(op.param1,"")
+		    ki15.sendText(op.param1,"")
 	    else:
-		cl.sendText(op.param1,"")
+		ki15.sendText(op.param1,"")
         if op.type == 5:
             if wait["autoAdd"] == True:
                 if (wait["message"] in [""," ","\n",None]):
