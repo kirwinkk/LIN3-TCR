@@ -6,11 +6,11 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="EkGSVZpb9qz3i7JwVhme.WHByzKXoh0n3ljIXSlIvBG.i5T7/I6pdT6pewWMVOwW25mVRiMiZR0p56/jA5s5nsk=")
+cl.login(token="Ekz4TgKpeSWkDvNsetY0.3FLXqaAHaqU2vr+bb+uJKa.5/52TwKOUdn8x2wWxkc2sBYihCNVQVO0/L+nx6GKNao=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(token="Ekz4TgKpeSWkDvNsetY0.3FLXqaAHaqU2vr+bb+uJKa.5/52TwKOUdn8x2wWxkc2sBYihCNVQVO0/L+nx6GKNao=")
+ki.login(token="EkFxBRmXkbP3J3mAZPM3.vy5yDd4vkH13GPwq582miW.yquPVYw1Q9FjnJjTEECpQ3AU0xiNsriNsUFWw0B2TVA=")
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
@@ -125,16 +125,12 @@ def bot(op):
             if mid in op.param3:
                 G = cl.getGroup(op.param1)
                 if wait["autoJoin"] == True:
-                    if wait["autoCancel"]["on"] == True:
-                        if len(G.members) <= wait["autoCancel"]["members"]:
-                            cl.rejectGroupInvitation(op.param1)
-                        else:
+                        try:
                             cl.acceptGroupInvitation(op.param1)
-                            G = cl.getGroup(msg.to)
+			    G = cl.getGroup(msg.to)
                             ginfo = cl.getGroup(msg.to)
                             G.preventJoinByTicket = False
                             cl.updateGroup(G)
-                            invsend = 0
                             Ticket = cl.reissueGroupTicket(msg.to)
                             ki.acceptGroupInvitationByTicket(msg.to,Ticket)
                             ki2.acceptGroupInvitationByTicket(msg.to,Ticket)
@@ -146,38 +142,9 @@ def bot(op):
                             print "kicker ok"
                             G.preventJoinByTicket(G)
                             ki.updateGroup(G)
-                    else:
-                            cl.acceptGroupInvitation(op.param1)
-                            G = cl.getGroup(msg.to)
-                            ginfo = cl.getGroup(msg.to)
-                            G.preventJoinByTicket = False
-                            cl.updateGroup(G)
-                            invsend = 0
-                            Ticket = cl.reissueGroupTicket(msg.to)
-                            ki.acceptGroupInvitationByTicket(msg.to,Ticket)
-                            ki2.acceptGroupInvitationByTicket(msg.to,Ticket)
-                            ki3.acceptGroupInvitationByTicket(msg.to,Ticket)
-                            G = ki.getGroup(msg.to)
-                            ginfo = ki.getGroup(msg.to)
-                            G.preventJoinByTicket = True
-                            ki.updateGroup(G)
-                            print "kicker ok"
-                            G.preventJoinByTicket(G)
-                            ki.updateGroup(G)
-			
-                elif wait["autoCancel"]["on"] == True:
-                    if len(G.members) <= wait["autoCancel"]["members"]:
-                        cl.rejectGroupInvitation(op.param1)
-            else:
-                Inviter = op.param3.replace("",',')
-                InviterX = Inviter.split(",")
-                matched_list = []
-                for tag in wait["blacklist"]:
-                    matched_list+=filter(lambda str: str == tag, InviterX)
-                if matched_list == []:
-                    pass
-                else:
-                    cl.cancelGroupInvitation(op.param1, matched_list)
+
+                        except:
+				pass
         if op.type == 19:
             if mid in op.param3:
                 wait["blacklist"][op.param2] = True
@@ -240,7 +207,7 @@ def bot(op):
                     else:
                         wait["dblacklist"] = False
                         cl.sendText(msg.to,"成功")
-               elif wait["contact"] == True:
+                elif wait["contact"] == True:
                   if msg.from_ in staff:
                     msg.contentType = 0
                     cl.sendText(msg.to,msg.contentMetadata["mid"])
@@ -744,8 +711,8 @@ def bot(op):
                    for target in targets:
                        try:
                            klist=[cl,ki,ki2,ki3]
-                                   kicker=random.choice(klist)
-                                   kicker.kickoutFromGroup(msg.to,[target])
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
                        except:
                            cl.sendText(msg.to,"Error")
             elif ("Mid:" in msg.text):
