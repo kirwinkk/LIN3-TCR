@@ -110,26 +110,12 @@ def bot(op):
             if msg.contentType == 13:
                     msg.contentType = 0
                     cl.sendText(msg.to,msg.contentMetadata["mid"])
-                    if 'displayName' in msg.contentMetadata:
-                        contact = cl.getContact(msg.contentMetadata["mid"])
-                        try:
-                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
-                        except:
-                            cu = ""
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n[友資詳情]\n[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu))
-                    else:
-                        contact = cl.getContact(msg.contentMetadata["mid"])
-                        try:
-                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
-                        except:
-                            cu = ""
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n[友資詳情]\n[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu))
             elif msg.contentType == 16:
                     msg.contentType = 0
                     if wait["lang"] == "JP":
-                        msg.text = "戦神Bot[公開実験中]\n[文章網址 URL]\n" + msg.contentMetadata["postEndUrl"]
+                        msg.text = msg.contentMetadata["postEndUrl"]
                     else:
-                        msg.text = "戦神Bot[公開実験中]\n[文章網址 URL]\n" + msg.contentMetadata["postEndUrl"]
+                        msg.text = msg.contentMetadata["postEndUrl"]
                     cl.sendText(msg.to,msg.text)
             elif msg.text is None:
                 return
