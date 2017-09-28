@@ -13,27 +13,12 @@ cl.loginResult()
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""=[ℬᎶ戦神Bot公開実験版]=
+helpMessage ="""請使用新版免費BOT
+取得方式:打[Newbot]
 
-[help]   查看指令
-[Author]   作者顯示
-[gid]   顯示群組
-[Ginfo]   顯示群組詳情
-[Cancel]   取消所有邀請
-[Urloff]   關閉群組網址
-[mid:]   顯示mid友資
-[Mid:@]   顯示被標註者mid
-[Gift]   發送禮物
-[point]   已讀點
-[Read]   顯示已讀
-[Time]   現在時間
-
-追加功能:
-  1.分享文章時 顯示文章網址
-  2.丟友資後 顯示友資詳情
-  
-作者:http://line.me/ti/p/4-ZKcjagH0
-(Made In Taiwan)"""
+紗霧作者:戦神
+http://line.me/ti/p/4-ZKcjagH0
+[Made In Taiwan]"""
 KAC=[cl]
 mid = cl.getProfile().mid
 Bots=[mid]
@@ -145,22 +130,23 @@ def bot(op):
                     if group.invitee is not None:
                         gInviMids = [contact.mid for contact in group.invitee]
                         cl.cancelGroupInvitation(msg.to, gInviMids)
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n戦神已取消邀請~~")
+			cl.sendText(msg.to,"嘿嘿...紗霧取消了 "+ str(len(group.invitee)) + " 個邀請")
+                        cl.sendText(msg.to,"你說 紗霧有沒有好棒(´∀｀)♡")
                     else:
                         if wait["lang"] == "JP":
-                            cl.sendText(msg.to,"戦神Bot[公開実験中]\n邀請中沒人><")
+                            cl.sendText(msg.to,"明明沒有邀請 別騙紗霧啦")
                         else:
-                            cl.sendText(msg.to,"戦神Bot[公開実験中]\n邀請中沒人><")
+                            cl.sendText(msg.to,"明明沒有邀請 別騙紗霧啦")
                 else:
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n邀請中沒人><")
+                        cl.sendText(msg.to,"明明沒有邀請 別騙紗霧啦")
                     else:
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n邀請中沒人><")
+                        cl.sendText(msg.to,"明明沒有邀請 別騙紗霧啦")
             #elif "gurl" == msg.text:
                 #print cl.getGroup(msg.to)
                 ##cl.sendMessage(msg)
             elif msg.text in ["author","Author","作者"]:
-			cl.sendText(msg.to,"戦神Bot[公開実験中]\nBot作者:http://line.me/ti/p/4-ZKcjagH0\n(Made In Taiwan)")
+			cl.sendText(msg.to,"紗霧作者:\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
 			
 
 
@@ -170,64 +156,20 @@ def bot(op):
                     group.preventJoinByTicket = True
                     cl.updateGroup(group)
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n已關閉網址")
+                        cl.sendText(msg.to,"紗霧已關閉網址")
                     else:
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n網址為關閉狀態")
+                        cl.sendText(msg.to,"紗霧已關閉網址")
 
-            elif msg.text == "Ginfo":
-                if msg.toType == 2:
-                    ginfo = cl.getGroup(msg.to)
-                    print "SUKSES -- SEND GINFO"
-                    try:
-                        gCreator = ginfo.creator.displayName
-                    except:
-                        gCreator = "不存在"
-                    if wait["lang"] == "JP":
-                        if ginfo.invitee is None:
-                            sinvitee = "0"
-                        else:
-                            sinvitee = str(len(ginfo.invitee))
-                        if ginfo.preventJoinByTicket == True:
-                            u = "close"
-                        else:
-                            u = "open"
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n[群組詳情]\n[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中")
-                    else:
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n[群組詳情]\n[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中")
-                else:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n請在群中使用此功能")
-                    else:
-                        cl.sendText(msg.to,"戦神Bot[公開実験中]\n請在群中使用此功能")
-                cl.sendTextc
-                cl.sendText(msg)
 		
             elif "Gid" == msg.text:
                 cl.sendText(msg.to,msg.to)
-#--------------------------------------------------------
-            elif "mid:" in msg.text:
-                mmid = msg.text.replace("mid:","")
+		
+            elif "Newbot" in msg.text:
                 msg.contentType = 13
-                msg.contentMetadata = {"mid":mmid}
+                msg.contentMetadata = {"mid":"ued7764f69b285c64c92f59b685cb0371"}
+		cl.sendText(msg.to,"NEW!!公開BOT:")
                 cl.sendMessage(msg)
 
-            elif msg.text == ["mid","Mid","Me","me"]:
-                mid = msg.from_
-                mid2 = msg.from_
-                text = mid
-                cl.sendText(msg.to, text)
-		
-            elif msg.text == ["Now","Time","time","now"]:
-                cl.sendText(msg.to, "戦神Bot[公開実験中]\n現在時刻: " + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + " ﾃﾞｰｽ!")
-
-#-----------------------------------------------------------
-
-		
-            elif ("Mid:" in msg.text):
-                   key = eval(msg.contentMetadata["MENTION"])
-                   key1 = key["MENTIONEES"][0]["M"]
-                   mi = cl.getContact(key1)
-                   cl.sendText(msg.to,"" +  key1)
 				
 
         if op.type == 5:
