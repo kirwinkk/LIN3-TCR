@@ -24,9 +24,6 @@ helpMessage ="""=[ℬᎶ戦神Bot公開実験版]=
 [mid:]   顯示mid友資
 [Mid:@]   顯示被標註者mid
 [Gift]   發送禮物
-[point]   已讀點
-[Read]   顯示已讀
-[Time]   現在時間
 
 追加功能:
   1.分享文章時 顯示文章網址
