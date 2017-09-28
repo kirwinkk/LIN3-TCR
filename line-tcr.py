@@ -6,7 +6,7 @@ from datetime import datetime
 import time,random,sys,json,codecs,threading,glob,re
 
 cl = LINETCR.LINE()
-cl.login(token="ElpyWnrTQQHjnhAqnGN5.uEmdFcf6siszYLOn7RH6zq.h6129jw528y3MELRp9Q2udXmR1WaQRITyaBvyty+QX4=")
+cl.login(token="Elg1A1wnvilMcTE6zn8f.3yULRyNlGvXNUPpAFktaBW.yMAQuIloAt92NnT44Wk9o/H+FE7/ElFMv1pU2XcA1k8=")
 cl.loginResult()
 
 print "login success"
@@ -30,17 +30,19 @@ def bot(op):
                         gInviMids = [contact.mid for contact in group.invitee]
                         cl.cancelGroupInvitation(op.param1, gInviMids)
 			elapsed_time = time.time() - start
-                        cl.sendText(op.param1,str(len(group.invitee)) + "人 已被戦神取消(´∀｀)♡" + "\n耗費時間:%sseconds" % (elapsed_time) + "\n\n戦神BOT作者↓\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+                        cl.sendText(op.param1,"幻已取消 " + str(len(group.invitee)) + " 人")
+			cl.sendText(op.param1,"掛上幻🔥暱稱\n加網址 我邀\n跟韋韋帶你一起飛💋\nhttp://line.naver.jp/ti/p/~mm_9453.")
+			cl.sendText(op.param1,"大家再見嘍")
                     else:
 			elapsed_time = time.time() - start
-                        cl.sendText(op.param1,"戦神發現...邀請中沒人><" + "\n耗費時間:%sseconds" % (elapsed_time) + "\n\n戦神BOT作者↓\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+                        cl.sendText(op.param1,"幻發現...邀請中沒人><")
                     cl.leaveGroup(op.param1)
                 except:
                     pass
             else:
                 pass
         if op.type == 5:
-                    cl.sendText(op.param1,"戦神BOT作者↓\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+                    cl.sendText(op.param1,"戦神代行CancelBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
 
     except Exception as error:
         #print error
