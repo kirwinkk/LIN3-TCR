@@ -255,11 +255,11 @@ def nameUpdate():
         #while a2():
             #pass
             if wait["clock"] == True:
-                nowT = datetime.datetime.today().strftime(" ☆%H:%M☆")
+                nowT = datetime.datetime.today().strftime(" ☆%H:%M:%S☆")
                 profile = cl.getProfile()
                 profile.displayName = "智乃" + nowT
                 cl.updateProfile(profile)
-            time.sleep(60)
+            time.sleep(1)
         except:
             pass
 thread2 = threading.Thread(target=nameUpdate)
