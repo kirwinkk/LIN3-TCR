@@ -6,7 +6,7 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="El9ucNspdK4iUCrYZRl1.7xDK9PSOxgtjl1M2HCSdCq.1NHKnKUg606qJyM3tjavERaL2feKPPLhe2DGs3wddow=")
+cl.login(token="Elwqog7uvMTEiGRQER69.aLZN+GwDwgQS69XUBHE2Aq.w8FhrJeMLp0AbvHMIzIF2FTMfA9nbPP0gEfcDo19k+U=")
 cl.loginResult()
 
 
@@ -207,6 +207,7 @@ def bot(op):
 		
             elif "Gid" == msg.text:
                 cl.sendText(msg.to,msg.to)
+		
 #--------------------------------------------------------
             elif "mid:" in msg.text:
                 mmid = msg.text.replace("mid:","")
