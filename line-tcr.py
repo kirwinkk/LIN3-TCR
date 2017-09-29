@@ -207,6 +207,7 @@ def bot(op):
 		
             elif "Gid" == msg.text:
                 cl.sendText(msg.to,msg.to)
+		
 #--------------------------------------------------------
             elif "mid:" in msg.text:
                 mmid = msg.text.replace("mid:","")
