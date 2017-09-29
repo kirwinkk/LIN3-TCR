@@ -10,6 +10,7 @@ cl.login(token="El9ucNspdK4iUCrYZRl1.7xDK9PSOxgtjl1M2HCSdCq.1NHKnKUg606qJyM3tjav
 cl.loginResult()
 
 
+print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -24,6 +25,7 @@ helpMessage ="""想控制智乃嘛..
 [Mid:@]   顯示被標註者的mid
 [mid:]   顯示mid的友資
 [Gift]   發送禮物
+[Time]   現在時間
 
 追加功能:
   1.分享文章時 顯示文章網址
@@ -55,6 +57,8 @@ wait = {
     'clock':True,
     'cName':"智乃",
 }
+
+d = datetime.datetime.today()
 
 
 def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
@@ -103,6 +107,10 @@ def bot(op):
                     else:
                         msg.text = "智乃給你文章網址哦(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"]
                     cl.sendText(msg.to,msg.text)
+		
+            if msg.contentType == 16:
+                url = msg.contentMetadata("line://home/post?userMid="+mid+"&postId="+"new_post")
+                cl.like(url[25:58], url[66:], likeType=1001)
             elif msg.text is None:
                 return
             if msg.text == "help":
@@ -165,6 +173,9 @@ def bot(op):
                         cl.sendText(msg.to,"智乃幫你關閉網址了≧∇≦")
                     else:
                         cl.sendText(msg.to,"姆...網址本來就是關的咩ヽ(｀⌒´)ノ")
+			
+            elif msg.text in ["Time","時刻","time","Now","now"]:
+                cl.sendText(msg.to, "智乃報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S'))
 
             elif msg.text == "Ginfo":
                 if msg.toType == 2:
@@ -213,13 +224,14 @@ def bot(op):
                    cl.sendText(msg.to,"" +  key1)
 				
 
+#------------------------------------------------------------------------------------
+
         if op.type == 5:
             if wait["autoAdd"] == True:
                 if (wait["message"] in [""," ","\n",None]):
                     pass
                 else:
                     cl.sendText(op.param1,str(wait["message"]))
-#------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------
         if op.type == 59:
@@ -238,12 +250,14 @@ def a2():
     else:
         return True
 def nameUpdate():
+    while True:
         try:
+        #while a2():
+            #pass
             if wait["clock"] == True:
-                now2 = datetime.now()
-                nowT = datetime.strftime(now2,"(%H:%M)")
+                nowT = datetime.datetime.today().strftime(" ☆%H:%M☆")
                 profile = cl.getProfile()
-                profile.displayName = wait["cName"] + nowT
+                profile.displayName = "智乃" + nowT
                 cl.updateProfile(profile)
             time.sleep(60)
         except:
