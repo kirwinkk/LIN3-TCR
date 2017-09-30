@@ -457,7 +457,7 @@ def bot(op):
                     if group.invitee is not None:
                         gInviMids = [contact.mid for contact in group.invitee]
                         cl.cancelGroupInvitation(msg.to, gInviMids)
-                        cl.sendText(msg.to,"已取消邀請")
+                        cl.sendText(msg.to,"取消了 "+ str(len(group.invitee)) + " 個邀請")
                     else:
                         if wait["lang"] == "JP":
                             cl.sendText(msg.to,"邀請中沒人><")
@@ -928,6 +928,10 @@ def bot(op):
                         cl.sendText(msg.to,"already close")
                     else:
                         cl.sendText(msg.to,"It is already open ô€œ👈")
+			
+			
+            elif msg.text in ["Time","時刻","time","Now","now"]:
+                cl.sendText(msg.to, "報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S'))
             elif msg.text in ["Protectoff"]:
                 if wait["protect"] == False:
                     if wait["lang"] == "JP":
@@ -1356,34 +1360,22 @@ def bot(op):
                     for mi_d in wait["commentBlack"]:
                         mc += "ãƒ»" +cl.getContact(mi_d).displayName + "\n"
                     cl.sendText(msg.to,mc)
-            elif msg.text.lower() == 'jam on':
-                if wait["clock"] == True:
-                    cl.sendText(msg.to,"Sudah On")
+
+		
+            elif msg.text in ["Bl"]:
+                if wait["blacklist"] == {}:
+                    cl.sendText(msg.to,"沒人在黑單中0.0")
                 else:
-                    wait["clock"] = True
-                    now2 = datetime.now()
-                    nowT = datetime.strftime(now2,"(%H:%M)")
-                    profile = cl.getProfile()
-                    profile.displayName = wait["cName"] + nowT
-                    cl.updateProfile(profile)
-                    cl.sendText(msg.to,"👉Jam on👈")
-            elif msg.text.lower() == 'jam off':
-                if wait["clock"] == False:
-                    cl.sendText(msg.to,"Hal ini sudah off🛡")
-                else:
-                    wait["clock"] = False
-                    cl.sendText(msg.to,"Adalah Off")
-            elif "Jam say:" in msg.text:
-                n = msg.text.replace("Jam say:","")
-                if len(n.decode("utf-8")) > 30:
-                    cl.sendText(msg.to,"terlalu lama")
-                else:
-                    wait["cName"] = n
-                    cl.sendText(msg.to,"Ini telah diubah🛡\n\n" + n)
+                    cl.sendText(msg.to,"黑單讀取中...")
+                    mc = ""
+                    for mi_d in wait["blacklist"]:
+                        mc += "-»" +cl.getContact(mi_d).displayName + "\n"
+                    cl.sendText(msg.to,mc)
+	
             elif "Up" in msg.text:
                 if wait["clock"] == True:
                     now2 = datetime.now()
-                    nowT = datetime.strftime(now2,"(%H:%M)")
+                    nowT = datetime.strftime(now2,"☆%H:%M☆")
                     profile = cl.getProfile()
                     profile.displayName = wait["cName"] + nowT
                     cl.updateProfile(profile)
@@ -1614,13 +1606,7 @@ def bot(op):
             elif msg.text in ["Unban"]:
                 wait["dblacklist"] = True
                 cl.sendText(msg.to,"Send Contact")
-            elif "Blacklist" in msg.text:
-                if wait["blacklist"] == {}:
-                    cl.sendText(msg.to,"黑名單正在讀取...")
-                    mc = ""
-                    for tag in wait["blacklist"]:
-                        mc += "->" +cl.getContact(mm).displayName + "\n"
-                    cl.sendText(msg.to,mc)
+
             elif "Banlist" in msg.text:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
@@ -1649,14 +1635,6 @@ def bot(op):
                             kicker.kickoutFromGroup(msg.to,[jj])
                         except:
                             pass
-            elif "cancel" in msg.text:
-                if msg.toType == 2:
-                    group = cl.getGroup(msg.to)
-                    gMembMids = [contact.mid for contact in group.invitee]
-                    for _mid in gMembMids:
-                        ki.cancelGroupInvitation(msg.to,[_mid])
-			cl.cancelGroupInvitation(msg.to,[_mid])
-                    cl.sendText(msg.to,"已取消邀請")
 
 
 #-----------------------------------------------
@@ -2904,10 +2882,9 @@ def nameUpdate():
         #while a2():
             #pass
             if wait["clock"] == True:
-                now2 = datetime.now()
-                nowT = datetime.strftime(now2,"(%H:%M)")
+                nowT = datetime.datetime.today().strftime("☆%H:%M☆")
                 profile = cl.getProfile()
-                profile.displayName = wait["cName"] + nowT
+                profile.displayName = "台湾の戦神" + nowT
                 cl.updateProfile(profile)
             time.sleep(60)
         except:
