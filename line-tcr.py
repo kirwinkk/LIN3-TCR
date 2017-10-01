@@ -1552,7 +1552,7 @@ def bot(op):
                                     cl.sendText(msg.to,"Error")
 #-----------------------------------------------------------
 #-----------------------------------------------------------
-            elif msg.text in ["Tagall"]:
+            elif msg.text in ["tagall"]:
 
 			    group = cl.getGroup(msg.to)
 			    nama = [contact.mid for contact in group.members]
