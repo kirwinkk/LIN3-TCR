@@ -26,6 +26,7 @@ helpMessage ="""想控制智乃嘛..
 [mid:]   顯示mid的友資
 [Gift]   發送禮物
 [Time]   現在時間
+[/botbye]   智乃退出
 
 追加功能:
   1.分享文章時 顯示文章網址
@@ -208,6 +209,15 @@ def bot(op):
             elif "Gid" == msg.text:
                 cl.sendText(msg.to,msg.to)
 		
+            elif msg.text in ["/botbye","/Botbye"]:
+                if msg.toType == 2:
+                    ginfo = cl.getGroup(msg.to)
+                    try:
+                        cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~")
+                        cl.leaveGroup(msg.to)
+                    except:
+                        pass
+		
 #--------------------------------------------------------
             elif "mid:" in msg.text:
                 mmid = msg.text.replace("mid:","")
@@ -244,8 +254,7 @@ def bot(op):
 
 
 def a2():
-    now2 = datetime.now()
-    nowT = datetime.strftime(now2,"%M")
+    nowT = datetime.datetime.today().strftime("%M")
     if nowT[14:] in ["10","20","30","40","50","00"]:
         return False
     else:
@@ -256,7 +265,7 @@ def nameUpdate():
         #while a2():
             #pass
             if wait["clock"] == True:
-                nowT = datetime.datetime.today().strftime(" ☆%H:%M☆")
+                nowT = datetime.datetime.today().strftime("☆%H:%M☆")
                 profile = cl.getProfile()
                 profile.displayName = "智乃" + nowT
                 cl.updateProfile(profile)
