@@ -177,33 +177,29 @@ def bot(op):
             elif msg.text in ["author","Author","作者"]:
 			cl.sendText(msg.to,"智奶的創造者是戦神唷><\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
 			
-            elif msg.text in ["tagall"]:
-
-			    group = cl.getGroup(msg.to)
-			    nama = [contact.mid for contact in group.members]
-
-			    cb = ""
-			    cb2 = ""
-			    strt = int(0)
-			    akh = int(0)
-			    for md in nama:
-			        akh = akh + int(6)
-
-			        cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(md)+"},"""
-
-			        strt = strt + int(7)
-			        akh = akh + 1
-			        cb2 += "@nrik \n"
-
-			    cb = (cb[:int(len(cb)-1)])
-			    msg.contentType = 0
-			    msg.text = cb2
-			    msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
-
-			    try:
-			        cl.sendMessage(msg)
-			    except Exception as error:
-			        print error
+            elif msg.text in ["tagall","Tag all"]:
+                group = cl.getGroup(msg.to)
+                jw = [contact.mid for contact in group.members]
+                cb = ""
+	        cb2 = ""
+                strt = int(0)
+                akh = int(0)
+                for rs in jw:
+                    xname = cl.getContact(rs).displayName
+                    xlen = int(len('x')+1)
+                    akh = akh + xlen
+                    cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(rs)+"},"""
+                    strt = strt + int(len('x')+3)
+		    akh = akh + 2
+		    cb2 += "@x \n"
+                cb = (cb[:int(len(cb)-1)])
+                msg.contentType = 0
+                msg.text = cb2
+                msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
+                try:
+                    cl.sendMessage(msg)
+                except Exception as error:
+                    print error
 
             elif msg.text in ["Urloff"]:
                 if msg.toType == 2:
