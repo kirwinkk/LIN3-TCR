@@ -26,10 +26,12 @@ helpMessage ="""想控制智乃嘛..
 [mid:]   顯示mid的友資
 [Gift]   發送禮物
 [Time]   現在時間
+[/botbye]   智乃退出
 
 追加功能:
   1.分享文章時 顯示文章網址
   2.丟友資後 顯示友資詳情
+  3.自動關閉網址
 
 智乃作者:戦神
 http://line.me/ti/p/4-ZKcjagH0
@@ -49,13 +51,14 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"智奶的創造者是戦神唷><\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
+    'message':"智奶的創造者是戦神唷><\n邀我進群打  /help  查看ㄉ查看指令唷\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
     'lang':"JP",
-    'comment':"智奶的創造者是戦神唷><\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
+    'comment':"智奶的創造者是戦神唷><\n邀我進群打  v  查看ㄉ查看指令唷\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
     'commentOn':True,
     'commentBlack':{},
     'clock':True,
     'cName':"智乃",
+    'linkprotect':True,
 }
 
 d = datetime.datetime.today()
@@ -120,6 +123,18 @@ def bot(op):
                     cl.sendText(msg.to,helpMessage)
 		
             if msg.text == "Help":
+                if wait["lang"] == "JP":
+                    cl.sendText(msg.to,helpMessage)
+                else:
+                    cl.sendText(msg.to,helpMessage)
+		
+            if msg.text == "/Help":
+                if wait["lang"] == "JP":
+                    cl.sendText(msg.to,helpMessage)
+                else:
+                    cl.sendText(msg.to,helpMessage)
+		
+            if msg.text == "/help":
                 if wait["lang"] == "JP":
                     cl.sendText(msg.to,helpMessage)
                 else:
@@ -208,6 +223,15 @@ def bot(op):
             elif "Gid" == msg.text:
                 cl.sendText(msg.to,msg.to)
 		
+            elif msg.text in ["/botbye","/Botbye"]:
+                if msg.toType == 2:
+                    ginfo = cl.getGroup(msg.to)
+                    try:
+                        cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~")
+                        cl.leaveGroup(msg.to)
+                    except:
+                        pass
+		
 #--------------------------------------------------------
             elif "mid:" in msg.text:
                 mmid = msg.text.replace("mid:","")
@@ -235,6 +259,15 @@ def bot(op):
                     cl.sendText(op.param1,str(wait["message"]))
 
 #------------------------------------------------------------------------------------
+
+	if op.type == 11:
+	    if op.param2 not in Bots:
+		    G = cl.getGroup(op.param1)
+		    G.preventJoinByTicket = True
+		    cl.updateGroup(G)
+	    else:
+		pass
+
         if op.type == 59:
             print op
 
@@ -244,8 +277,7 @@ def bot(op):
 
 
 def a2():
-    now2 = datetime.now()
-    nowT = datetime.strftime(now2,"%M")
+    nowT = datetime.datetime.today().strftime("%M")
     if nowT[14:] in ["10","20","30","40","50","00"]:
         return False
     else:
@@ -256,7 +288,7 @@ def nameUpdate():
         #while a2():
             #pass
             if wait["clock"] == True:
-                nowT = datetime.datetime.today().strftime(" ☆%H:%M☆")
+                nowT = datetime.datetime.today().strftime("☆%H:%M☆")
                 profile = cl.getProfile()
                 profile.displayName = "智乃" + nowT
                 cl.updateProfile(profile)
