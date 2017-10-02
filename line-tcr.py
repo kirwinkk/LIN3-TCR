@@ -6,7 +6,7 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="Ell3XqkDylRuNJLIuc72.FuHSDWnvHL6kqFqAS8ZXeG.NxvJBa/eY2BcLiG63brcKzlhjFZAMhr6iXCndivRpCg=")
+cl.login(token="ElUeYuvbcDPqlN1778o7.N/lEy9niIqJAKv4qiDI4XW.a+/IGxj7XqQgea97Gc9JXy/g198RZfSqIU3OPoC+Hxo=")
 cl.loginResult()
 
 reload(sys)
@@ -457,7 +457,7 @@ def bot(op):
                         if _name in g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        ki.sendText(msg.to,"找不到用戶")
+                        cl.sendText(msg.to,"找不到用戶")
                     else:
                         for target in targets:
                             try:
@@ -484,7 +484,7 @@ def bot(op):
                            if _name in s.displayName:
                               targets.append(s.mid)
                        if targets == []:
-                           sendMessage(msg.to,"user does not exist")
+                           cl.sendText(msg.to,"找不到用戶")
                            pass
                        else:
                            for target in targets:
@@ -492,9 +492,9 @@ def bot(op):
 									wait["blacklist"][target] = True
 									f=codecs.open('st2__b.json','w','utf-8')
 									json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-									cl.sendText(msg.to,"Target Locked")
+									cl.sendText(msg.to,"已黑單此用戶")
                                 except:
-                                    cl.sendText(msg.to,"Error")
+                                    cl.sendText(msg.to,"此用戶並不是黑單")
 
             elif "Unban:" in msg.text:                  
                        nk0 = msg.text.replace("Unban:","")
@@ -508,7 +508,7 @@ def bot(op):
                            if _name in s.displayName:
                               targets.append(s.mid)
                        if targets == []:
-                           sendMessage(msg.to,"user does not exist")
+                           cl.sendText(msg.to,"找不到用戶")
                            pass
                        else:
                            for target in targets:
@@ -516,9 +516,9 @@ def bot(op):
 									del wait["blacklist"][target]
 									f=codecs.open('st2__b.json','w','utf-8')
 									json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-									cl.sendText(msg.to,"Target Unlocked")
+									cl.sendText(msg.to,"已解除黑單")
                                 except:
-                                    cl.sendText(msg.to,"Error")
+                                    cl.sendText(msg.to,"此用戶並不是黑單")
 #-----------------------------------------------------------
 #-----------------------------------------------------------
 
@@ -584,6 +584,19 @@ def bot(op):
 #-----------------------------------------------
 
 #-----------------------------------------------
+            elif "tagall" in msg.text:
+                group = cl.getGroup(msg.to)
+                mem = [contact.mid for contact in group.members]
+                for mm in mem:
+                    xname = cl.getGroup(mm).displayName
+                    xlen = str(len(xname)+1)
+                    msg.contentType = 0
+                    msg.text = "@"+xname+" "
+                    msg.contentMetadata ={'MENTION':'{"MENTIONEES":[{"S":"0","E":'+json.dumps(xlen)+',"M":'+json.dumps(mm)+'}]}','EMTVER':'4'}
+                try:
+                    cl.sendMessage(msg)
+                except Exception as error:
+                    print error
                        
 #-----------------------------------------------
 
