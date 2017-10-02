@@ -16,17 +16,18 @@ sys.setdefaultencoding('utf-8')
 
 helpMessage ="""想控制智乃嘛..
 
-[help]   查看指令
-[Author]   作者顯示
-[gid]   顯示群組gid
-[Ginfo]   顯示群組詳情
-[Cancel]   取消所有邀請
-[Urloff]   關閉群組網址
-[Mid:@]   顯示被標註者的mid
-[mid:]   顯示mid的友資
-[Gift]   發送禮物
-[Time]   現在時間
-[/botbye]   智乃退出
+[help]...查看指令
+[Author]...作者顯示
+[gid]...顯示群組gid
+[Ginfo]...顯示群組詳情
+[Cancel]...取消所有邀請
+[Urloff]...關閉群組網址
+[Mid:@]...顯示被標註者的mid
+[mid:]...顯示mid的友資
+[Gift]...發送禮物
+[Time]...現在時間
+[Gc]...查看群長
+[/botbye]...智乃退出
 
 追加功能:
   1.分享文章時 顯示文章網址
@@ -77,11 +78,13 @@ def bot(op):
         if op.type == 0:
             return
         if op.type == 13:
-	  try:
-            print op.param1
-            G = cl.getGroup(op.param1)
+          try:
             cl.acceptGroupInvitation(op.param1)
-	  except:
+            if cl.acceptGroupInvitation(op.param1):
+                cl.sendText(op.param1, "お")
+            else:
+		pass
+          except:
                 pass
 
         if op.type == 26:
@@ -177,29 +180,6 @@ def bot(op):
             elif msg.text in ["author","Author","作者"]:
 			cl.sendText(msg.to,"智奶的創造者是戦神唷><\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
 			
-            elif msg.text in ["tagall","Tag all"]:
-                group = cl.getGroup(msg.to)
-                jw = [contact.mid for contact in group.members]
-                cb = ""
-	        cb2 = ""
-                strt = int(0)
-                akh = int(0)
-                for rs in jw:
-                    xname = cl.getContact(rs).displayName
-                    xlen = int(len('x')+1)
-                    akh = akh + xlen
-                    cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(rs)+"},"""
-                    strt = strt + int(len('x')+3)
-		    akh = akh + 2
-		    cb2 += "@x \n"
-                cb = (cb[:int(len(cb)-1)])
-                msg.contentType = 0
-                msg.text = cb2
-                msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
-                try:
-                    cl.sendMessage(msg)
-                except Exception as error:
-                    print error
 
             elif msg.text in ["Urloff"]:
                 if msg.toType == 2:
@@ -213,9 +193,26 @@ def bot(op):
 			
             elif msg.text in ["Time","時刻","time","Now","now"]:
                 cl.sendText(msg.to, "智乃報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S'))
+		
+		
+            elif cms(msg.text, ["Groupcreator","群長","Gc","gc","groupcreator"]):
+		if msg.toType == 2:
+                  ginfo = cl.getGroup(msg.to)
+                  try:
+                        gCreator = ginfo.creator.displayName
+                  except:
+                        gCreator = "不存在><"
+		  cl.sendText(msg.to,"[創立群組者]\n\n" + gCreator)
+		
+			
+            elif "Newbot" in msg.text:
+                msg.contentType = 13
+                msg.contentMetadata = {"mid":"ued7764f69b285c64c92f59b685cb0371"}
+		cl.sendText(msg.to,"NEW!!公開BOT:")
+                cl.sendMessage(msg)
 
             elif msg.text == "Ginfo":
-                if msg.toType == 2:
+		if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     print "SUKSES -- SEND GINFO"
                     try:
