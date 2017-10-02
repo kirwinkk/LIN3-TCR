@@ -213,6 +213,22 @@ def bot(op):
 			
             elif msg.text in ["Time","時刻","time","Now","now"]:
                 cl.sendText(msg.to, "智乃報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S'))
+		
+		
+            elif cms(msg.text, ["Groupcreator","群長"]):
+                try:
+                    group = kongou.getGroup(msg.to)
+                    ms = group.creator.mid
+                    cl.sendText(msg.to,"創群者☆")
+                    cl.sendText(msg.to,ms)
+                except Exception as e:
+                    cl.sendText(msg.to,"創群者不再唷~下方是最早入群之人☆")
+                    W = group.members[0].mid
+                    M = Message()
+                    M.to = msg.to
+                    M.contentType = 13
+                    M.contentMetadata = {'mid': W}
+                    cl.sendText(M)
 
             elif msg.text == "Ginfo":
                 if msg.toType == 2:
