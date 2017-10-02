@@ -183,7 +183,12 @@ def bot(op):
                 #print cl.getGroup(msg.to)
                 ##cl.sendMessage(msg)
             elif msg.text in ["author","Author","作者"]:
-			cl.sendText(msg.to,"智奶的創造者是戦神唷><\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+		msg.contentType = 13
+                msg.contentMetadata = {"mid":"uc216d8664c4e1f43772c98b1b0b8956e"}
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;./_][!&%$#)(=~^|'
+		name = "".join([random.choice(source_str) for x in xrange(6)])
+		cl.sendMessage(msg)
+		cl.sendText(msg.to,"智奶的創造者是戦神唷><👆\n" + datetime.datetime.today().strftime('%H:%M:%S') + name)
 			
 
             elif msg.text in ["Urloff"]:
@@ -209,12 +214,7 @@ def bot(op):
                         gCreator = "不存在><"
 		  cl.sendText(msg.to,"[創立群組者]\n\n" + gCreator)
 		
-			
-            elif "Newbot" in msg.text:
-                msg.contentType = 13
-                msg.contentMetadata = {"mid":"ued7764f69b285c64c92f59b685cb0371"}
-		cl.sendText(msg.to,"NEW!!公開BOT:")
-                cl.sendMessage(msg)
+
 
             elif msg.text == "Ginfo":
 		if msg.toType == 2:
