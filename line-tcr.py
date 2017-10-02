@@ -34,9 +34,9 @@ helpMessage ="""想控制智乃嘛..
   2.丟友資後 顯示友資詳情
   3.自動關閉網址
 
-智乃作者:戦神
+智乃作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
-[Made In Taiwan]"""
+"""
 KAC=[cl]
 mid = cl.getProfile().mid
 Bots=[mid]
@@ -96,6 +96,8 @@ def bot(op):
             msg = op.message
             if msg.contentType == 13:
                     msg.contentType = 0
+		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     cl.sendText(msg.to,msg.contentMetadata["mid"])
                     if 'displayName' in msg.contentMetadata:
                         contact = cl.getContact(msg.contentMetadata["mid"])
@@ -103,20 +105,22 @@ def bot(op):
                             cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-                        cl.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu))
+                        cl.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu)) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
                     else:
                         contact = cl.getContact(msg.contentMetadata["mid"])
                         try:
                             cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-                        cl.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu))
+                        cl.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu)) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
             elif msg.contentType == 16:
                     msg.contentType = 0
+                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     if wait["lang"] == "JP":
-                        msg.text = "智乃給你文章網址哦(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"]
+                        msg.text = "智乃給你文章網址哦(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
                     else:
-                        msg.text = "智乃給你文章網址哦(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"]
+                        msg.text = "智乃給你文章網址哦(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
                     cl.sendText(msg.to,msg.text)
 		
             if msg.contentType == 16:
@@ -125,32 +129,44 @@ def bot(op):
             elif msg.text is None:
                 return
             if msg.text == "help":
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
                 if wait["lang"] == "JP":
-                    cl.sendText(msg.to,helpMessage)
+                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                 else:
-                    cl.sendText(msg.to,helpMessage)
+                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
             if msg.text == "Help":
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
                 if wait["lang"] == "JP":
-                    cl.sendText(msg.to,helpMessage)
+                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                 else:
-                    cl.sendText(msg.to,helpMessage)
+                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
             if msg.text == "/Help":
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
                 if wait["lang"] == "JP":
-                    cl.sendText(msg.to,helpMessage)
+                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                 else:
-                    cl.sendText(msg.to,helpMessage)
+                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
             if msg.text == "/help":
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
                 if wait["lang"] == "JP":
-                    cl.sendText(msg.to,helpMessage)
+                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                 else:
-                    cl.sendText(msg.to,helpMessage)
+                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 
             if msg.text == "gid":
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
                 cl.sendText(msg.to, msg.to)
             if msg.text == "Gid":
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
                 cl.sendText(msg.to, msg.to)
 
             elif msg.text in ["Gift","i gift"]:
@@ -164,37 +180,46 @@ def bot(op):
 
             elif msg.text in ["Cancel","cancel"]:
                 if msg.toType == 2:
+		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     group = cl.getGroup(msg.to)
                     if group.invitee is not None:
                         gInviMids = [contact.mid for contact in group.invitee]
                         cl.cancelGroupInvitation(msg.to, gInviMids)
-                        cl.sendText(msg.to,"姆...智乃取消了 "+ str(len(group.invitee)) + " 個邀請\n(´∀｀)♡")
+                        cl.sendText(msg.to,"姆...智乃取消了 "+ str(len(group.invitee)) + " 個邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
                         if wait["lang"] == "JP":
-                            cl.sendText(msg.to,"智乃找不到能取消的邀請吶(ノﾟДﾟ)")
+                            cl.sendText(msg.to,"智乃找不到能取消的邀請吶(ノﾟДﾟ)\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                         else:
-                            cl.sendText(msg.to,"智乃找不到能取消的邀請吶(ノﾟДﾟ)")
+                            cl.sendText(msg.to,"智乃找不到能取消的邀請吶(ノﾟДﾟ)\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                 else:
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"智乃找不到能取消的邀請吶(ノﾟДﾟ)")
+                        cl.sendText(msg.to,"智乃找不到能取消的邀請吶(ノﾟДﾟ)\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        cl.sendText(msg.to,"智乃找不到能取消的邀請吶(ノﾟДﾟ)")
+                        cl.sendText(msg.to,"智乃找不到能取消的邀請吶(ノﾟДﾟ)\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
             #elif "gurl" == msg.text:
                 #print cl.getGroup(msg.to)
                 ##cl.sendMessage(msg)
             elif msg.text in ["author","Author","作者"]:
-			cl.sendText(msg.to,"智奶的創造者是戦神唷><\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+		msg.contentType = 13
+                msg.contentMetadata = {"mid":"uc216d8664c4e1f43772c98b1b0b8956e"}
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
+		cl.sendMessage(msg)
+		cl.sendText(msg.to,"智奶的創造者是戦神唷><👆\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 			
 
             elif msg.text in ["Urloff"]:
                 if msg.toType == 2:
+                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     group = cl.getGroup(msg.to)
                     group.preventJoinByTicket = True
                     cl.updateGroup(group)
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"智乃幫你關閉網址了≧∇≦")
+                        cl.sendText(msg.to,"智乃幫你關閉網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        cl.sendText(msg.to,"姆...網址本來就是關的咩ヽ(｀⌒´)ノ")
+                        cl.sendText(msg.to,"姆...網址本來就是關的咩ヽ(｀⌒´)ノ\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 			
             elif msg.text in ["Time","時刻","time","Now","now"]:
                 cl.sendText(msg.to, "智乃報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S'))
@@ -202,28 +227,27 @@ def bot(op):
 		
             elif cms(msg.text, ["Groupcreator","群長","Gc","gc","groupcreator"]):
 		if msg.toType == 2:
-                  ginfo = cl.getGroup(msg.to)
-                  try:
+		 source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		 name = "".join([random.choice(source_str) for x in xrange(9)])
+                 ginfo = cl.getGroup(msg.to)
+                 try:
                         gCreator = ginfo.creator.displayName
-                  except:
-                        gCreator = "不存在><"
-		  cl.sendText(msg.to,"[創立群組者]\n\n" + gCreator)
+                 except:
+                        gCreator = "Error"
+		 cl.sendText(msg.to,"[創立群組者]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
-			
-            elif "Newbot" in msg.text:
-                msg.contentType = 13
-                msg.contentMetadata = {"mid":"ued7764f69b285c64c92f59b685cb0371"}
-		cl.sendText(msg.to,"NEW!!公開BOT:")
-                cl.sendMessage(msg)
+
 
             elif msg.text == "Ginfo":
 		if msg.toType == 2:
+		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
                     print "SUKSES -- SEND GINFO"
                     try:
                         gCreator = ginfo.creator.displayName
                     except:
-                        gCreator = "不存在"
+                        gCreator = "Error"
                     if wait["lang"] == "JP":
                         if ginfo.invitee is None:
                             sinvitee = "0"
@@ -233,14 +257,14 @@ def bot(op):
                             u = "close"
                         else:
                             u = "open"
-                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中")
+                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中")
+                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                 else:
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"請在群中使用此功能")
+                        cl.sendText(msg.to,"請在群中使用此功能\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        cl.sendText(msg.to,"請在群中使用此功能")
+                        cl.sendText(msg.to,"請在群中使用此功能\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                 cl.sendTextc
                 cl.sendText(msg)
 		
@@ -249,9 +273,11 @@ def bot(op):
 		
             elif msg.text in ["/botbye","/Botbye"]:
                 if msg.toType == 2:
+		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
                     try:
-                        cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~")
+                        cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                         cl.leaveGroup(msg.to)
                     except:
                         pass
@@ -280,7 +306,9 @@ def bot(op):
                 if (wait["message"] in [""," ","\n",None]):
                     pass
                 else:
-                    cl.sendText(op.param1,str(wait["message"]))
+		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
+                    cl.sendText(op.param1,str(wait["message"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 
 #------------------------------------------------------------------------------------
 
