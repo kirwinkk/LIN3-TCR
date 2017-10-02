@@ -6,7 +6,7 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="ElUeYuvbcDPqlN1778o7.N/lEy9niIqJAKv4qiDI4XW.a+/IGxj7XqQgea97Gc9JXy/g198RZfSqIU3OPoC+Hxo=")
+cl.login(token="Eld3JdSAbfwXwurdP4R4.knEb/JUPEd+vfeoqnsSmja.o82lxxv1HNt7YMRUol8pKorRtgX5nrhRf8A23gkDmqc=")
 cl.loginResult()
 
 reload(sys)
@@ -51,8 +51,8 @@ http://line.me/ti/p/4-ZKcjagH0
 KAC=[cl]
 mid = cl.getProfile().mid
 Bots=[mid]
-admsa = "u7d486c770355865e8a41f41ab3ccf112"
-admin = "u7d486c770355865e8a41f41ab3ccf112"
+admsa = "u28d781fa3ba9783fd5144390352b0c24"
+admin = "u28d781fa3ba9783fd5144390352b0c24"
 
 wait = {
     'contact':True,
