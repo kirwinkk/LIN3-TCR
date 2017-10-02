@@ -213,6 +213,28 @@ def bot(op):
 			
             elif msg.text in ["Time","時刻","time","Now","now"]:
                 cl.sendText(msg.to, "智乃報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S'))
+		
+		
+            elif cms(msg.text, ["Groupcreator","群長"]):
+                try:
+                    group = cl.getGroup(msg.to)
+                    ms = ginfo.creator.mid
+		    msg.contentMetadata = {"mid": ms}
+                    cl.sendText(msg.to,"創群者☆")
+                    cl.sendText(ms)
+                except Exception as e:
+                    W = group.members[0].mid
+                    msg.contentType = 13
+                    msg.contentMetadata = {"mid": W}
+		    cl.sendText(msg.to,"創群者不再唷~下方是最早入群之人☆")
+                    cl.sendText(msg)
+		
+			
+            elif "Newbot" in msg.text:
+                msg.contentType = 13
+                msg.contentMetadata = {"mid":"ued7764f69b285c64c92f59b685cb0371"}
+		cl.sendText(msg.to,"NEW!!公開BOT:")
+                cl.sendMessage(msg)
 
             elif msg.text == "Ginfo":
                 if msg.toType == 2:
