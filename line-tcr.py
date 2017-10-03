@@ -208,14 +208,7 @@ def bot(op):
                     pass
                 else:
                     cl.cancelGroupInvitation(op.param1, matched_list)
-		
-        if op.type == 13:
-		group = ki15.getGroup(msg.to)
-                if group.invitee is not None:
-                        gInviMids = [contact.mid for contact in group.invitee]
-                        ki15.cancelGroupInvitation(msg.to, gInviMids)
-		else:
-			pass
+
         if op.type == 19:
             if mid in op.param3:
                 wait["blacklist"][op.param2] = True
@@ -225,7 +218,7 @@ def bot(op):
         if op.type == 24:
             if wait["leaveRoom"] == True:
                 cl.leaveRoom(op.param1)
-        if msg.contentType == 16:
+        if op.type == 16:
                 url = msg.contentMetadata["postEndUrl"]
                 cl.like(url[25:58], url[66:], likeType=1001)
 		ki.like(url[25:58], url[66:], likeType=1001)
@@ -1481,7 +1474,6 @@ def bot(op):
                            klist=[cl]
                            kicker=random.choice(klist)
                            kicker.kickoutFromGroup(msg.to,[target])
-			   cl.cancelGroupInvitation(msg.to,[target])
                        except:
                            cl.sendText(msg.to,"Error")
 				
@@ -1496,7 +1488,6 @@ def bot(op):
                            klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11,ki12,ki13,ki14]
                            kicker=random.choice(klist)
                            kicker.kickoutFromGroup(msg.to,[target])
-			   cl.cancelGroupInvitation(msg.to,[target])
                        except:
                            cl.sendText(msg.to,"Error")
 				
@@ -1547,7 +1538,6 @@ def bot(op):
                                 klist=[cl]
                                 kicker=random.choice(klist)
                                 kicker.kickoutFromGroup(msg.to,[target])
-				cl.cancelGroupInvitation(msg.to,[target])
                                 print (msg.to,[g.mid])
                             except:
                                 cl.sendText(msg.to,"錯誤!!!!!!!!")
@@ -1570,7 +1560,6 @@ def bot(op):
                                 klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11,ki12,ki13,ki14]
                                 kicker=random.choice(klist)
                                 kicker.kickoutFromGroup(msg.to,[target])
-				cl.cancelGroupInvitation(msg.to,[target])
                                 print (msg.to,[g.mid])
                             except:
                                 cl.sendText(msg.to,"錯誤!!!!!!!!")
@@ -1666,6 +1655,10 @@ def bot(op):
                 except:
                     pass
 #-----------------------------------------------------------
+            elif "機器更新" in msg.text:
+                     profile = ki16.getProfile()
+                     profile.displayName = "*惡魔*"
+                     ki16.updateProfile(profile)
 
 #-----------------------------------------------------------
             elif "Test" in msg.text:
@@ -1756,14 +1749,7 @@ def bot(op):
                             kicker.kickoutFromGroup(msg.to,[jj])
                         except:
                             pass
-            elif "cancel" in msg.text:
-                if msg.toType == 2:
-                    group = cl.getGroup(msg.to)
-                    gMembMids = [contact.mid for contact in group.invitee]
-                    for _mid in gMembMids:
-                        ki.cancelGroupInvitation(msg.to,[_mid])
-			cl.cancelGroupInvitation(msg.to,[_mid])
-                    cl.sendText(msg.to,"已取消邀請")
+
 
 
 #-----------------------------------------------
@@ -1788,9 +1774,13 @@ def bot(op):
                         time.sleep(0.01)
                         ki6.acceptGroupInvitationByTicket(msg.to,Ticket)
                         time.sleep(0.01)
+                        G = ki2.getGroup(msg.to)
+                        ginfo = ki2.getGroup(msg.to)
+                        G.preventJoinByTicket = True
+                        ki2.updateGroup(G)
                         print "kicker ok"
                         G.preventJoinByTicket(G)
-                        cl.updateGroup(G)
+                        ki2.updateGroup(G)
 			
                        
 #-----------------------------------------------
@@ -1815,9 +1805,13 @@ def bot(op):
                         ki12.acceptGroupInvitationByTicket(msg.to,Ticket)
                         ki13.acceptGroupInvitationByTicket(msg.to,Ticket)
                         ki14.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        G = ki2.getGroup(msg.to)
+                        ginfo = ki2.getGroup(msg.to)
+                        G.preventJoinByTicket = True
+                        ki2.updateGroup(G)
                         print "kicker ok"
                         G.preventJoinByTicket(G)
-                        cl.updateGroup(G)
+                        ki2.updateGroup(G)
 #-----------------------------------------------
             elif msg.text in ["死神","死神bot"]:
                         G = cl.getGroup(msg.to)
@@ -1828,6 +1822,10 @@ def bot(op):
                         Ticket = cl.reissueGroupTicket(msg.to)
                         ki15.acceptGroupInvitationByTicket(msg.to,Ticket)
                         ki15.sendText(msg.to,"[" + str(ginfo.name) + "]\n死神参加成功!")
+                        G = ki15.getGroup(msg.to)
+                        ginfo = ki15.getGroup(msg.to)
+                        G.preventJoinByTicket = True
+                        ki15.updateGroup(G)
                         print "kicker ok"
                         G.preventJoinByTicket(G)
                         ki15.updateGroup(G)
@@ -1840,7 +1838,11 @@ def bot(op):
                         invsend = 0
                         Ticket = cl.reissueGroupTicket(msg.to)
                         ki16.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        ki16.sendText(msg.to,"[" + str(ginfo.name) + "]\n死神参加成功!")
+                        ki16.sendText(msg.to,"[" + str(ginfo.name) + "]\n惡魔参加成功!")
+                        G = ki16.getGroup(msg.to)
+                        ginfo = ki16.getGroup(msg.to)
+                        G.preventJoinByTicket = True
+                        ki16.updateGroup(G)
                         print "kicker ok"
                         G.preventJoinByTicket(G)
                         ki16.updateGroup(G)
@@ -2923,6 +2925,14 @@ def bot(op):
 		    ki15.sendText(op.param1,"")
 	    else:
 		ki15.sendText(op.param1,"別在死神面前做壞事^^")
+		
+        if op.type == 13:
+		group = ki15.getGroup(msg.to)
+                if group.invitee is not None:
+                        gInviMids = [contact.mid for contact in group.invitee]
+                        ki15.cancelGroupInvitation(op.param1, gInviMids)
+		else:
+			pass
 	if op.type == 13:
 	    if op.param2 not in Bots:
 		if op.param2 in Bots:
@@ -3005,6 +3015,10 @@ def nameUpdate():
 thread2 = threading.Thread(target=nameUpdate)
 thread2.daemon = True
 thread2.start()
+
+
+
+
 
 
 while True:
