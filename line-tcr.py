@@ -225,7 +225,7 @@ def bot(op):
         if op.type == 24:
             if wait["leaveRoom"] == True:
                 cl.leaveRoom(op.param1)
-        if msg.contentType == 16:
+        if op.type == 16:
                 url = msg.contentMetadata["postEndUrl"]
                 cl.like(url[25:58], url[66:], likeType=1001)
 		ki.like(url[25:58], url[66:], likeType=1001)
