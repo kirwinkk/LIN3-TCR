@@ -263,9 +263,8 @@ def bot(op):
                     else:
                         print "No Action"
 
-            elif msg.text == "/Ginfo":
-		if msg.toType == 2:
-		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+            if msg.text == "/ginfo":
+                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
                     print "SUKSES -- SEND GINFO"
@@ -285,14 +284,30 @@ def bot(op):
                         cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
                         cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                else:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"請在群中使用此功能\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                    else:
-                        cl.sendText(msg.to,"請在群中使用此功能\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                cl.sendTextc
-                cl.sendText(msg)
+                    cl.sendText(msg)
 		
+            if msg.text == "/Ginfo":
+                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
+                    ginfo = cl.getGroup(msg.to)
+                    print "SUKSES -- SEND GINFO"
+                    try:
+                        gCreator = ginfo.creator.displayName
+                    except:
+                        gCreator = "Error"
+                    if wait["lang"] == "JP":
+                        if ginfo.invitee is None:
+                            sinvitee = "0"
+                        else:
+                            sinvitee = str(len(ginfo.invitee))
+                        if ginfo.preventJoinByTicket == True:
+                            u = "close"
+                        else:
+                            u = "open"
+                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                    else:
+                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                    cl.sendText(msg)
 		
             elif msg.text in ["/botbye","/Botbye","/智乃bye","智乃退出"]:
                 if msg.toType == 2:
