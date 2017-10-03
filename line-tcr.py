@@ -242,26 +242,8 @@ def bot(op):
                  except:
                         gCreator = "Error"
 		 cl.sendText(msg.to,"[創立群組者]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-		
-            elif "/Img" in msg.text:
-              if msg.from_ in admin:
-                path = "a.png"
-                try:
-                    cl.sendImage(msg.to, path)
-                except:
-                    cl.sendText(msg.to, "錯誤><")        
+		 
 
-            else:
-                if cl.getGroup(msg.to).preventJoinByTicket == False:
-                    cl.reissueGroupTicket(msg.to)
-                    X = cl.getGroup(msg.to)
-                    X.preventJoinByTicket = True
-                    random.choice(KAC).updateGroup(X)
-                else:
-                    if msg.from_ in Bots:
-                        pass
-                    else:
-                        print "No Action"
 
             if msg.text == "/ginfo":
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
