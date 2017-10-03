@@ -16,17 +16,17 @@ sys.setdefaultencoding('utf-8')
 
 helpMessage ="""想控制智乃嘛..
 
-[help]...查看指令
-[Author]...作者顯示
-[gid]...顯示群組gid
-[Ginfo]...顯示群組詳情
-[Cancel]...取消所有邀請
-[Urloff]...關閉群組網址
-[Mid:@]...顯示被標註者的mid
-[mid:]...顯示mid的友資
-[Gift]...發送禮物
-[Time]...現在時間
-[Gc]...查看群長
+[/help]...查看指令
+[/Author]...作者顯示
+[/gid]...顯示群組gid
+[/Ginfo]...顯示群組詳情
+[/Cancel]...取消所有邀請
+[/Urloff]...關閉群組網址
+[/Mid:@]...顯示被標註者的mid
+[/mid:]...顯示mid的友資
+[/Gift]...發送禮物
+[/Time]...現在時間
+[/Gc]...查看群長
 [/botbye]...智乃退出
 
 追加功能:
@@ -39,7 +39,8 @@ http://line.me/ti/p/4-ZKcjagH0
 """
 KAC=[cl]
 mid = cl.getProfile().mid
-Bots=[mid]
+mid1 = "uc216d8664c4e1f43772c98b1b0b8956e"
+Bots=[mid,mid1]
 admin = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 staff = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 adminMID = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
@@ -52,9 +53,9 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"智奶的創造者是戦神唷><\n邀我進群打  /help  查看ㄉ查看指令唷\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
+    'message':"智乃的創造者是戦神唷><\n邀我進群打 /help 查看指令唷\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'lang':"JP",
-    'comment':"智奶的創造者是戦神唷><\n邀我進群打  v  查看ㄉ查看指令唷\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
+    'comment':"智乃的創造者是戦神唷><\n邀我進群打 /help 查看指令唷\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'commentOn':True,
     'commentBlack':{},
     'clock':True,
@@ -74,11 +75,6 @@ def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
     return False
 
 
-def ACCEPT_GROUP_INVITATION(op):
-	try:
-            cl.sendText(op.param1,"ss")
-	except:
-                pass
 
 def bot(op):
     try:
@@ -91,6 +87,9 @@ def bot(op):
             cl.acceptGroupInvitation(op.param1)
           except:
                 pass
+        if op.type == 16:
+                url = msg.contentMetadata["postEndUrl"]
+                cl.like(url[25:58], url[66:], likeType=1001)
 
         if op.type == 26:
             msg = op.message
@@ -98,21 +97,20 @@ def bot(op):
                     msg.contentType = 0
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
-                    cl.sendText(msg.to,msg.contentMetadata["mid"])
                     if 'displayName' in msg.contentMetadata:
                         contact = cl.getContact(msg.contentMetadata["mid"])
                         try:
                             cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-                        cl.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu)) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
+                        cl.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
                         contact = cl.getContact(msg.contentMetadata["mid"])
                         try:
                             cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-                        cl.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu)) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
+                        cl.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
             elif msg.contentType == 16:
                     msg.contentType = 0
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
@@ -128,23 +126,16 @@ def bot(op):
                 cl.like(url[25:58], url[66:], likeType=1001)
             elif msg.text is None:
                 return
-            if msg.text == "help":
-		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
-		name = "".join([random.choice(source_str) for x in xrange(9)])
-                if wait["lang"] == "JP":
-                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                else:
-                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-		
-            if msg.text == "Help":
-		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
-		name = "".join([random.choice(source_str) for x in xrange(9)])
-                if wait["lang"] == "JP":
-                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                else:
-                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
             if msg.text == "/Help":
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
+                if wait["lang"] == "JP":
+                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                else:
+                    cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		
+            if msg.text == "智乃指令":
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
                 if wait["lang"] == "JP":
@@ -160,25 +151,33 @@ def bot(op):
                 else:
                     cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 
-            if msg.text == "gid":
+            if msg.text == "/gid":
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
                 cl.sendText(msg.to, msg.to)
-            if msg.text == "Gid":
+            if msg.text == "/Gid":
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
                 cl.sendText(msg.to, msg.to)
 
-            elif msg.text in ["Gift","i gift"]:
+            elif msg.text in ["/Gift","/gift"]:
                 msg.contentType = 9
                 msg.contentMetadata={'PRDID': '3b92ccf5-54d3-4765-848f-c9ffdc1da020',
                                     'PRDTYPE': 'THEME',
                                     'MSGTPL': '3'}
                 msg.text = None
                 cl.sendMessage(msg)
+		
+            elif msg.text in ["智乃禮物","愛的禮物"]:
+                msg.contentType = 9
+                msg.contentMetadata={'PRDID': '3b92ccf5-54d3-4765-848f-c9ffdc1da020',
+                                    'PRDTYPE': 'THEME',
+                                    'MSGTPL': '5'}
+                msg.text = None
+                cl.sendMessage(msg)
 
 
-            elif msg.text in ["Cancel","cancel"]:
+            elif msg.text in ["/Cancel","/cancel"]:
                 if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -200,16 +199,16 @@ def bot(op):
             #elif "gurl" == msg.text:
                 #print cl.getGroup(msg.to)
                 ##cl.sendMessage(msg)
-            elif msg.text in ["author","Author","作者"]:
+            elif msg.text in ["/author","/Author","/作者"]:
 		msg.contentType = 13
                 msg.contentMetadata = {"mid":"uc216d8664c4e1f43772c98b1b0b8956e"}
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
 		cl.sendMessage(msg)
-		cl.sendText(msg.to,"智奶的創造者是戦神唷><👆\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		cl.sendText(msg.to,"智乃的創造者是戦神唷><👆\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 			
 
-            elif msg.text in ["Urloff"]:
+            elif msg.text in ["/Urloff"]:
                 if msg.toType == 2:
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -221,13 +220,19 @@ def bot(op):
                     else:
                         cl.sendText(msg.to,"姆...網址本來就是關的咩ヽ(｀⌒´)ノ\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 			
-            elif msg.text in ["Time","時刻","time","Now","now"]:
+            elif msg.text in ["/Time","/時刻","/time","/Now","/now"]:
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
                 cl.sendText(msg.to, "智乃報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
 		
-            elif cms(msg.text, ["Groupcreator","群長","Gc","gc","groupcreator"]):
+            elif msg.text in ["/Url","/url"]:
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
+                gurl = cl.reissueGroupTicket(msg.to)
+                cl.sendText(msg.to,"智乃找到的群組網址...\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		
+            elif cms(msg.text, ["/Groupcreator","/群長","/Gc","/gc","/groupcreator"]):
 		if msg.toType == 2:
 		 source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		 name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -238,9 +243,27 @@ def bot(op):
                         gCreator = "Error"
 		 cl.sendText(msg.to,"[創立群組者]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
+            elif "/Img" in msg.text:
+              if msg.from_ in admin:
+                path = "a.png"
+                try:
+                    cl.sendImage(msg.to, path)
+                except:
+                    cl.sendText(msg.to, "錯誤><")        
 
+            else:
+                if cl.getGroup(msg.to).preventJoinByTicket == False:
+                    cl.reissueGroupTicket(msg.to)
+                    X = cl.getGroup(msg.to)
+                    X.preventJoinByTicket = True
+                    random.choice(KAC).updateGroup(X)
+                else:
+                    if msg.from_ in Bots:
+                        pass
+                    else:
+                        print "No Action"
 
-            elif msg.text == "Ginfo":
+            elif msg.text == "/Ginfo":
 		if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -270,10 +293,8 @@ def bot(op):
                 cl.sendTextc
                 cl.sendText(msg)
 		
-            elif "Gid" == msg.text:
-                cl.sendText(msg.to,msg.to)
 		
-            elif msg.text in ["/botbye","/Botbye"]:
+            elif msg.text in ["/botbye","/Botbye","/智乃bye","智乃退出"]:
                 if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -285,8 +306,8 @@ def bot(op):
                         pass
 		
 #--------------------------------------------------------
-            elif "mid:" in msg.text:
-                mmid = msg.text.replace("mid:","")
+            elif "/mid:" in msg.text:
+                mmid = msg.text.replace("/mid:","")
                 msg.contentType = 13
                 msg.contentMetadata = {"mid":mmid}
                 cl.sendMessage(msg)
@@ -294,7 +315,7 @@ def bot(op):
 #-----------------------------------------------------------
 
 		
-            elif ("Mid:" in msg.text):
+            elif ("/Mid:" in msg.text):
                    key = eval(msg.contentMetadata["MENTION"])
                    key1 = key["MENTIONEES"][0]["M"]
                    mi = cl.getContact(key1)
@@ -339,14 +360,10 @@ def a2():
 def nameUpdate():
     while True:
         try:
-        #while a2():
-            #pass
-            if wait["clock"] == True:
-                nowT = datetime.datetime.today().strftime("☆%H:%M☆")
                 profile = cl.getProfile()
-                profile.displayName = "智乃" + nowT
+                profile.displayName = "智乃"
                 cl.updateProfile(profile)
-            time.sleep(60)
+            time.sleep(6000)
         except:
             pass
 thread2 = threading.Thread(target=nameUpdate)
