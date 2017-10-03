@@ -6,23 +6,23 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="ElHHZZFocQdGYP9Kj2y5.H0+Vu19ZbsagnGjHWM6J9q.xSX00glNGzrydX1K61KrHv2NJpoUb95gyNWeSW/yNjY=")
+cl.login(token="ElvJqjfwVQT1P12h09P5.vjK9i9SI0hH9FLHbDxJMnq.Ftmfjj/in+RHEEp2gryQKxxdMtE+tCta49z8omLl8xQ=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(token="EloqoG8RufL4yf8ceSja.7qF30VuLgSVdl8WnunRKAG.qo4n+//oGIEYlBkCuEU2yqbBVwKdjegEr0P5eBUO75g=")
+ki.login(token=" ElLaFSKErpBjApDD9zN2.wjYm0VOIqBxbzkvP8voDCG./EMm3rVgnrAxBx3RY/iyrKYoEgy7qgQXnqAJuvk2KKs=")
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
-ki2.login(token="EltsTuX77qZ8rM4Veei0.YC76R2hi/3FCN+Ghuq01ma.zBhI/tbkspzj8JiikGmu3ZlWZlgZ2/vJ5g1Dl6A2vkQ=")
+ki2.login(token=" ElFqI9NbbTWGpQmvjS46.zSIyldIqDpBgHFpGHfIcvG.Eekbp7V7BYb/g5F6nwyjKfgY/nuTcbquf22O9mQvWok=")
 ki2.loginResult()
 
 ki3 = LINETCR.LINE()
-ki3.login(token="ElyenzDxdhNU2ILUHhoe.R8tSCgOU2Ofvb4MYoxEBdG.LN3xGFCWHqckjrtlvfMSBWyPTnZysSBBDcXKLHZ2en4=")
+ki3.login(token="Elhj0vCR7R0pAnou6wd0.WwqPm0ukL9ODJ0m39TY4Sa.nk50VusD6f68qJUkipn1Ly1Evk6JBeY2amLpQhlWARE=")
 ki3.loginResult()
 
 ki16 = LINETCR.LINE()
-ki16.login(token="ElxeooS1JbuTVwcfGNyf.ZmPhYHCsPb0sjSYluTp3JW.VBVu9hlxoKTWzDBs5OzHej0QGnRmhKwbv/B31PPeKz0=")
+ki16.login(token="ElbkOgQKx1hXMr5roFy4.bOTjwJ4IY6/M4ng+aUJmLa.dN4xvFyXKKAODlTFhQanytJlGRBvQaUNYcNbTaua3Lo=")
 ki16.loginResult()
 
 reload(sys)
@@ -979,6 +979,7 @@ def bot(op):
                         invsend = 0
                         Ticket = cl.reissueGroupTicket(msg.to)
 			ki16.acceptGroupInvitationByTicket(msg.to,Ticket)
+			ki16.sendText(msg.to,"[" + str(ginfo.name) + "]\n死神参加成功!")
                         G = cl.getGroup(msg.to)
                         ginfo = ki16.getGroup(msg.to)
                         G.preventJoinByTicket = True
@@ -1004,7 +1005,8 @@ def bot(op):
                 if msg.toType == 2:
                     ginfo = ki16.getGroup(msg.to)
                     try:
-			ki16.leaveGroup(msg.to)
+			ki16.sendText(msg.to,"死神退出")
+                        ki16.leaveGroup(msg.to)
                     except:
                         pass
 #-----------------------------------------------
