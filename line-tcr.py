@@ -263,7 +263,7 @@ def bot(op):
                     else:
                         print "No Action"
 
-            elif msg.text == "/Ginfo":
+            elif msg.text in ["/Ginfo","/ginfo"]:
 		if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
