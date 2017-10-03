@@ -21,6 +21,7 @@ helpMessage ="""想控制智乃嘛..
 [/gid]...顯示群組gid
 [/Ginfo]...顯示群組詳情
 [/Cancel]...取消所有邀請
+[/Url]...取得群組網址
 [/Urloff]...關閉群組網址
 [/Mid:@]...顯示被標註者的mid
 [/mid:]...顯示mid的友資
@@ -177,7 +178,7 @@ def bot(op):
                 cl.sendMessage(msg)
 
 
-            elif msg.text in ["/Cancel","/cancel"]:
+            elif msg.text in ["/Cancel","/cancel","智乃取消","智乃cancel","智乃Cancel"]:
                 if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -232,7 +233,7 @@ def bot(op):
                 gurl = cl.reissueGroupTicket(msg.to)
                 cl.sendText(msg.to,"智乃找到的群組網址...\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
-            elif cms(msg.text, ["/Groupcreator","/群長","/Gc","/gc","/groupcreator"]):
+            elif cms(msg.text, ["/Groupcreator","/群長","/Gc","/gc","/groupcreator","群長"]):
 		if msg.toType == 2:
 		 source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		 name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -242,26 +243,8 @@ def bot(op):
                  except:
                         gCreator = "Error"
 		 cl.sendText(msg.to,"[創立群組者]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-		
-            elif "/Img" in msg.text:
-              if msg.from_ in admin:
-                path = "a.png"
-                try:
-                    cl.sendImage(msg.to, path)
-                except:
-                    cl.sendText(msg.to, "錯誤><")        
+		 
 
-            else:
-                if cl.getGroup(msg.to).preventJoinByTicket == False:
-                    cl.reissueGroupTicket(msg.to)
-                    X = cl.getGroup(msg.to)
-                    X.preventJoinByTicket = True
-                    random.choice(KAC).updateGroup(X)
-                else:
-                    if msg.from_ in Bots:
-                        pass
-                    else:
-                        print "No Action"
 
             if msg.text == "/ginfo":
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
@@ -309,7 +292,7 @@ def bot(op):
                         cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     cl.sendText(msg)
 		
-            elif msg.text in ["/botbye","/Botbye","/智乃bye","智乃退出"]:
+            elif msg.text in ["/botbye","/Botbye","/智乃bye","智乃退出","智乃bye"]:
                 if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
