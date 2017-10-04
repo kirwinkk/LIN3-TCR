@@ -14,6 +14,10 @@ print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+joinedgroups = cl.getGroupIdsJoined()
+cl.GroupIdsJoined.append(op.param1)
+
+
 helpMessage ="""想控制智乃嘛..
 
 [/help]...查看指令
@@ -75,7 +79,15 @@ def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
                 return True
     return False
 
-
+def INVITE_INTO_GROUP(op):
+    #print op
+  if op.param1 not in joinedgroups:
+    try:
+        cl.sendText(op.param1,"Test")
+    except:
+	pass
+  else:
+        pass
 
 def bot(op):
     try:
@@ -86,6 +98,7 @@ def bot(op):
             print op.param1
             G = cl.getGroup(op.param1)
             cl.acceptGroupInvitation(op.param1)
+	    cl.joinedgroup.append(op.param1)
           except:
                 pass
         if op.type == 16:
@@ -250,6 +263,7 @@ def bot(op):
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
+                    gurl = cl.reissueGroupTicket(msg.to)
                     print "SUKSES -- SEND GINFO"
                     try:
                         gCreator = ginfo.creator.displayName
@@ -264,9 +278,9 @@ def bot(op):
                             u = "close"
                         else:
                             u = "open"
-                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     cl.sendText(msg)
 		
             if msg.text == "/Ginfo":
@@ -287,9 +301,9 @@ def bot(op):
                             u = "close"
                         else:
                             u = "open"
-                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     cl.sendText(msg)
 		
             elif msg.text in ["/botbye","/Botbye","/智乃bye","智乃退出","智乃bye"]:
@@ -299,7 +313,8 @@ def bot(op):
                     ginfo = cl.getGroup(msg.to)
                     try:
                         cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                        cl.leaveGroup(msg.to)
+                        cl.joinedgroup.remove(op.param1)
+			cl.leaveGroup(msg.to)
                     except:
                         pass
 		
