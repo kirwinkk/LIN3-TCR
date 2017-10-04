@@ -86,19 +86,14 @@ def bot(op):
             return
         if op.type == 13:
 		  if op.param1 not in jgs:
-                       cl.acceptGroupInvitation(op.param1)
-		       try:
-				source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
-				name = "".join([random.choice(source_str) for x in xrange(9)])
-				ginfo = cl.getGroup(msg.to)
-				try:
+                        cl.acceptGroupInvitation(op.param1)
+                        ginfo = cl.getGroup(op.param1)
+			try:
                                    gCreator = ginfo.creator.displayName
-                                except:
+                        except:
                                    gCreator = "Error"
-                                cl.sendText(op.param1,"姆...把智乃找來了嘛≧∇≦\n[群組名稱]\n" + str(ginfo.name) + "\n[此群管理員]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-		       except:
-			 pass
-                       jgs.append(op.param1)
+                        cl.sendText(op.param1,"姆...把智乃找來了嘛≧∇≦\n[群組名稱]\n" + str(ginfo.name) + "\n[此群管理員]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        jgs.append(op.param1)
 	          else:
                        pass
 
