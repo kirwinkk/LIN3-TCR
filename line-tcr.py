@@ -6,7 +6,7 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="Eld3JdSAbfwXwurdP4R4.knEb/JUPEd+vfeoqnsSmja.o82lxxv1HNt7YMRUol8pKorRtgX5nrhRf8A23gkDmqc=")
+cl.login(token="ElYBhXII1vax1SyFBK51.KUEsqzJEw3WvrKmct9A2Oq.KKwErfLS9NWiMg7S0OF2x2l+QI+eRBBg5H/nqz5MQMg=")
 cl.loginResult()
 
 reload(sys)
@@ -16,7 +16,7 @@ helpMessage ="""=====[ℬᎶ戦神無料Bot]=====
 
 [help]   查看指令
 [Author]   作者顯示
-[Mid]   顯示早就mid
+[Mid]   顯示自己mid
 [gid]   顯示群組
 [Me]   顯示自己友資
 [封鎖名單]   確認已封鎖用戶
@@ -451,7 +451,7 @@ def bot(op):
                 if msg.toType == 2:
                     print "ok"
                     _name = msg.text.replace("Nk:","")
-                    gs = ki.getGroup(msg.to)
+                    gs = cl.getGroup(msg.to)
                     targets = []
                     for g in gs.members:
                         if _name in g.displayName:
@@ -566,13 +566,13 @@ def bot(op):
                     cl.sendText(msg.to,cocoa + "以上為在本群的黑單用戶")
             elif "Kill" in msg.text:
                 if msg.toType == 2:
-                    group = ki.getGroup(msg.to)
+                    group = cl.getGroup(msg.to)
                     gMembMids = [contact.mid for contact in group.members]
                     matched_list = []
                     for tag in wait["blacklist"]:
                         matched_list+=filter(lambda str: str == tag, gMembMids)
                     if matched_list == []:
-                        ki.sendText(msg.to,"0.0")
+                        cl.sendText(msg.to,"0.0")
                         return
                     for jj in matched_list:
                         try:
