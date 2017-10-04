@@ -90,7 +90,7 @@ def bot(op):
 		       try:
 				source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 				name = "".join([random.choice(source_str) for x in xrange(9)])
-				ginfo = cl.getGroup(msg.to)
+				ginfo = cl.getGroup(op.param1)
 				try:
                                    gCreator = ginfo.creator.displayName
                                 except:
