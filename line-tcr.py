@@ -306,9 +306,9 @@ def bot(op):
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
                     try:
+			jgs.remove(msg.to)
                         cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 			cl.leaveGroup(msg.to)
-			jgs.remove(op.param1)
                     except:
                         pass
 		
