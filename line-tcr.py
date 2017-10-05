@@ -6,8 +6,20 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="Elwqog7uvMTEiGRQER69.aLZN+GwDwgQS69XUBHE2Aq.w8FhrJeMLp0AbvHMIzIF2FTMfA9nbPP0gEfcDo19k+U=")
+cl.login(token="ElLfLh1FoJej5kJLCi1d.VSu/lwQt0BfHIYFV2IIO3q.eX3RwkxpP60a7VWGhmmlylbXj2IcYgR5yPWNXXQnuzw=")
 cl.loginResult()
+
+ki = LINETCR.LINE()
+ki.login(token="ElCkxC0ty8IIFHi5J5Wc.u6kB6lCxZNreCdd3sRm+ha.zyXY0IRL81SYWuDaSGbAo7Jc4YyQfbPQuvAF5XBuQiA=")
+ki.loginResult()
+
+ki2 = LINETCR.LINE()
+ki2.login(token="ElpfCEBttwuXeMEshcA2.e4ZI31Q97N5EAzwpc+/hSG.UMLvXWR3dooUPYPaLvehECVCNZpIaami2ylznkRBFe8=")
+ki2.loginResult()
+
+ki3 = LINETCR.LINE()
+ki3.login(token="ElhhqMHKmadxMyLVdsle.iT+8/7l878DR2aicLAjOFG.bAEl2O+0GPOLFG2MozptfmieGgYaoBVkIpPqNLAY564=")
+ki3.loginResult()
 
 
 print "login success"
@@ -86,18 +98,34 @@ def bot(op):
             return
         if op.type == 13:
 		  if op.param1 not in jgs:
-                       cl.acceptGroupInvitation(op.param1)
-		       try:
-                         cl.sendText(op.param1,"姆..找智乃來群組嘛≧∇≦\n打 /help 查看指令唷")
-		       except:
-			 cl.sendText(op.param1,"姆..找智乃來群組嘛≧∇≦\n打 /help 查看指令唷")
-                       jgs.append(op.param1)
+                        cl.acceptGroupInvitation(op.param1)
+
+			G = cl.getGroup(op.param1)
+                        ginfo = cl.getGroup(op.param1)
+			G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+			invsend = 0
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+			G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+		        try:
+                            ginfo = cl.getGroup(op.param1)
+			    try:
+                                gCreator = ginfo.creator.displayName
+                            except:
+                                gCreator = ginfo.members[0].displayName
+                            cl.sendText(op.param1,"[群組名稱]\n" + str(ginfo.name) + "\n\n[此群首位入群者]\n->" + gCreator)
+		        except:
+			    cl.sendText(op.param1,"OK")
+                        jgs.append(op.param1)
+			print "jgs.append"
+			
 	          else:
                        pass
 
-        if op.type == 16:
-                url = msg.contentMetadata["postEndUrl"]
-                cl.like(url[25:58], url[66:], likeType=1001)
 
         if op.type == 26:
             msg = op.message
@@ -300,15 +328,19 @@ def bot(op):
                         cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     cl.sendText(msg)
 		
-            elif msg.text in ["/botbye","/Botbye","/智乃bye","智乃退出","智乃bye"]:
+            elif msg.text in ["/bgbye","/BGbye","/Bgbye"]:
                 if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
                     try:
 			jgs.remove(msg.to)
+			print "jgs.remove"
                         cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 			cl.leaveGroup(msg.to)
+			ki.leaveGroup(msg.to)
+			ki2.leaveGroup(msg.to)
+			ki3.leaveGroup(msg.to)
                     except:
                         pass
 		
@@ -318,6 +350,24 @@ def bot(op):
                 msg.contentType = 13
                 msg.contentMetadata = {"mid":mmid}
                 cl.sendMessage(msg)
+		
+            elif msg.text in ["/bgbot","/BGbot","/Bgbot"]:
+                        G = cl.getGroup(msg.to)
+                        ginfo = cl.getGroup(msg.to)
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        invsend = 0
+                        Ticket = cl.reissueGroupTicket(msg.to)
+			ki.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        ki2.acceptGroupInvitationByTicket(msg.to,Ticket)
+			ki3.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        G = cl.getGroup(msg.to)
+                        ginfo = cl.getGroup(msg.to)
+                        G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+                        print "kicker ok"
+                        G.preventJoinByTicket(G)
+                        cl.updateGroup(G)
 
 #-----------------------------------------------------------
 
@@ -368,7 +418,7 @@ def nameUpdate():
     while True:
         try:
                 profile = cl.getProfile()
-                profile.displayName = "智乃"
+                profile.displayName = "hsdfhulihgeljwl"
                 cl.updateProfile(profile)
                 time.sleep(6000)
         except:
