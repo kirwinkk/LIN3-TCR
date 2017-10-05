@@ -6,8 +6,20 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="Elwqog7uvMTEiGRQER69.aLZN+GwDwgQS69XUBHE2Aq.w8FhrJeMLp0AbvHMIzIF2FTMfA9nbPP0gEfcDo19k+U=")
+cl.login(token="ElhhqMHKmadxMyLVdsle.iT+8/7l878DR2aicLAjOFG.bAEl2O+0GPOLFG2MozptfmieGgYaoBVkIpPqNLAY564=")
 cl.loginResult()
+
+ki = LINETCR.LINE()
+ki.login(token="ElCkxC0ty8IIFHi5J5Wc.u6kB6lCxZNreCdd3sRm+ha.zyXY0IRL81SYWuDaSGbAo7Jc4YyQfbPQuvAF5XBuQiA=")
+ki.loginResult()
+
+ki2 = LINETCR.LINE()
+ki2.login(token="ElpfCEBttwuXeMEshcA2.e4ZI31Q97N5EAzwpc+/hSG.UMLvXWR3dooUPYPaLvehECVCNZpIaami2ylznkRBFe8=")
+ki2.loginResult()
+
+ki3 = LINETCR.LINE()
+ki3.login(token="ElLfLh1FoJej5kJLCi1d.VSu/lwQt0BfHIYFV2IIO3q.eX3RwkxpP60a7VWGhmmlylbXj2IcYgR5yPWNXXQnuzw=")
+ki3.loginResult()
 
 
 print "login success"
@@ -15,6 +27,8 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 jgs = cl.getGroupIdsJoined()
+print "getGroupIdsJoined success"
+
 
 
 helpMessage ="""想控制智乃嘛..
@@ -41,10 +55,15 @@ helpMessage ="""想控制智乃嘛..
 智乃作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
 """
-KAC=[cl]
+KAC=[cl,ki,ki2,ki3]
 mid = cl.getProfile().mid
+kimid = ki.getProfile().mid
+ki2mid = ki2.getProfile().mid
+ki3mid = ki3.getProfile().mid
 mid1 = "uc216d8664c4e1f43772c98b1b0b8956e"
-Bots=[mid,mid1]
+mid2 = "ubecd98a04cbf74a830b6c95b67bd6b74"
+Bots=[mid,mid1,kimid,ki2mid,ki3mid,mid2]
+Botss=[kimid,ki2mid,ki3mid]
 admin = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 staff = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 adminMID = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
@@ -57,9 +76,10 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"智乃的創造者是戦神唷><\n邀我進群打 /help 查看指令唷\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message':"ℬᎶ戦神Bot\n邀我進群打 /help 查看指令唷\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message1':"ℬᎶ戦神Bot\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'lang':"JP",
-    'comment':"智乃的創造者是戦神唷><\n邀我進群打 /help 查看指令唷\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'comment':"ℬᎶ戦神Bot\n邀我進群打 /help 查看指令唷\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'commentOn':True,
     'commentBlack':{},
     'clock':True,
@@ -84,14 +104,42 @@ def bot(op):
     try:
         if op.type == 0:
             return
+
+        if op.type == 19:
+            try:
+                if op.param3 in mid:
+			jgs.remove(op.param1)
+			print "jgs.remove"
+		else:
+                       pass
+            except:
+                       pass
         if op.type == 13:
 		  if op.param1 not in jgs:
-                       cl.acceptGroupInvitation(op.param1)
-		       try:
-                         cl.sendText(op.param1,"姆..找智乃來群組嘛≧∇≦\n打 /help 查看指令唷")
-		       except:
-			 cl.sendText(op.param1,"姆..找智乃來群組嘛≧∇≦\n打 /help 查看指令唷")
-                       jgs.append(op.param1)
+                        cl.acceptGroupInvitation(op.param1)
+
+			G = cl.getGroup(op.param1)
+                        ginfo = cl.getGroup(op.param1)
+			G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+			invsend = 0
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+			G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+		        try:
+			    ginfo = cl.getGroup(op.param1)
+			    try:
+                                gCreator = ginfo.creator.displayName
+                            except:
+                                gCreator = "Error"
+                            cl.sendText(op.param1,"[群組名稱]\n" + str(ginfo.name) + "[群組創立者]\n->" + gCreator)
+		        except:
+			    cl.sendText(op.param1,"OK")
+                        jgs.append(op.param1)
+			
 	          else:
                        pass
 
@@ -160,12 +208,8 @@ def bot(op):
                     cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 
             if msg.text == "/gid":
-		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
-		name = "".join([random.choice(source_str) for x in xrange(9)])
                 cl.sendText(msg.to, msg.to)
             if msg.text == "/Gid":
-		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
-		name = "".join([random.choice(source_str) for x in xrange(9)])
                 cl.sendText(msg.to, msg.to)
 
             elif msg.text in ["/Gift","/gift"]:
@@ -175,6 +219,24 @@ def bot(op):
                                     'MSGTPL': '3'}
                 msg.text = None
                 cl.sendMessage(msg)
+            elif msg.text in ["/Allgroup","/allgroup"]:
+                if msg.from_ in admin:
+                    All = cl.getGroupIdsJoined()
+                    MemIn,MemInv = 0, 0
+                    for var in range(0, len(All)):
+                        try:
+                            Gid = random.choice(All)
+                            All.remove(Gid)
+                            group = cl.getGroup(Gid)
+                            MemIn = (MemIn) + (len(group.members))
+                            if group.invitee is not None:
+                                MemInv = MemInv + (len(group.invitee))
+                            else:
+                                pass
+                        except:
+                            print "e"
+                            pass
+                    cl.sendText(msg.to, "現在参加しているグループ数: " + str(len(cl.getGroupIdsJoined())) + "\n招待されているグループ数: " + str(len(kongou.getGroupIdsInvited())) + "\n参加中のグループにいるメンバーは総計" + str(MemIn) + "人\n招待中の人数は" + str(MemInv) + "人ﾃﾞｰｽ！")
 		
             elif msg.text in ["智乃禮物","愛的禮物"]:
                 msg.contentType = 9
@@ -300,7 +362,7 @@ def bot(op):
                         cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     cl.sendText(msg)
 		
-            elif msg.text in ["/botbye","/Botbye","/智乃bye","智乃退出","智乃bye"]:
+            elif msg.text in ["/bgbye","/BGbye","/Bgbye"]:
                 if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -309,9 +371,33 @@ def bot(op):
 			jgs.remove(msg.to)
                         cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 			cl.leaveGroup(msg.to)
+			ki.leaveGroup(msg.to)
+			ki2.leaveGroup(msg.to)
+			ki3.leaveGroup(msg.to)
                     except:
                         pass
 		
+            elif msg.text in ["/bgbot","/BGbot","/Bgbot"]:
+                        G = cl.getGroup(msg.to)
+                        ginfo = cl.getGroup(msg.to)
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        invsend = 0
+                        Ticket = cl.reissueGroupTicket(msg.to)
+			ki.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        ki2.acceptGroupInvitationByTicket(msg.to,Ticket)
+			ki3.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        G = cl.getGroup(msg.to)
+                        ginfo = cl.getGroup(msg.to)
+                        G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+                        print "kicker ok"
+                        G.preventJoinByTicket(G)
+                        cl.updateGroup(G)
+			try:
+                            cl.sendText(op.param1,"TESTOK")
+		        except:
+			    cl.sendText(op.param1,"TESTOK")
 #--------------------------------------------------------
             elif "/mid:" in msg.text:
                 mmid = msg.text.replace("/mid:","")
@@ -339,6 +425,10 @@ def bot(op):
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     cl.sendText(op.param1,str(wait["message"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		    ki.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		    ki.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		    ki.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		
 
 #------------------------------------------------------------------------------------
 
@@ -368,8 +458,48 @@ def nameUpdate():
     while True:
         try:
                 profile = cl.getProfile()
-                profile.displayName = "智乃"
+                profile.displayName = "TEST001"
                 cl.updateProfile(profile)
+                time.sleep(6000)
+        except:
+            pass
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
+
+def nameUpdate():
+    while True:
+        try:
+		profile = ki.getProfile()
+		profile.displayName = "TEST002"
+		ki.updateProfile(profile)
+		time.sleep(6000)
+        except:
+            pass
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
+
+def nameUpdate():
+    while True:
+        try:
+		profile = ki2.getProfile()
+		profile.displayName = "TEST003"
+		ki2.updateProfile(profile)
+                time.sleep(6000)
+        except:
+            pass
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
+
+
+def nameUpdate():
+    while True:
+        try:
+		profile = ki3.getProfile()
+		profile.displayName = "TEST004"
+		ki3.updateProfile(profile)
                 time.sleep(6000)
         except:
             pass
