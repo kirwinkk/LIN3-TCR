@@ -436,7 +436,7 @@ def bot(op):
 	    else:
 		pass
 	
-        if op.type == 19:
+
         if op.type == 19:
             try:
                 if op.param3 in mid:
