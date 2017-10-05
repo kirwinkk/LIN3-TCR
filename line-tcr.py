@@ -274,8 +274,9 @@ def bot(op):
                 gurl = cl.reissueGroupTicket(msg.to)
                 cl.sendText(msg.to,"智乃找到的群組網址...\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
-            elif cms(msg.text, ["/Groupcreator","/群長","/Gc","/gc","/groupcreator","群長"]):
-		if msg.toType == 2:
+		
+            elif msg.text in ["/Groupcreator","/群長","/Gc","/gc","/groupcreator","群長"]:
+              if msg.toType == 2:
 		 source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		 name = "".join([random.choice(source_str) for x in xrange(9)])
                  ginfo = cl.getGroup(msg.to)
@@ -284,7 +285,8 @@ def bot(op):
                  except:
                         gCreator = ginfo.members[0].displayName
 		 cl.sendText(msg.to,"[此群首位入群者]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-		 
+              else:
+		pass
 
 
             if msg.text == "/ginfo":
