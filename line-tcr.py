@@ -18,7 +18,7 @@ ki2.login(token="ElpfCEBttwuXeMEshcA2.e4ZI31Q97N5EAzwpc+/hSG.UMLvXWR3dooUPYPaLve
 ki2.loginResult()
 
 ki3 = LINETCR.LINE()
-ki3.login(token="EkeIbgnKT7pYht2uGX68.iarQyHUgknIRni5Recj+Ea.LLGh4VA86sDoXEZO4LPKEPFcFSTUlmF1kvmk3+KsibA=")
+ki3.login(token="ElhhqMHKmadxMyLVdsle.iT+8/7l878DR2aicLAjOFG.bAEl2O+0GPOLFG2MozptfmieGgYaoBVkIpPqNLAY564=")
 ki3.loginResult()
 
 print "login success"
@@ -60,7 +60,6 @@ ki3mid = ki3.getProfile().mid
 mid1 = "uc216d8664c4e1f43772c98b1b0b8956e"
 mid2 = "ubecd98a04cbf74a830b6c95b67bd6b74"
 Bots=[mid,mid1,kimid,ki2mid,ki3mid,mid2]
-Botss=[kimid,ki2mid,ki3mid]
 admin = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 staff = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 adminMID = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
@@ -76,22 +75,20 @@ wait = {
     'message':"ℬᎶ戦神Bot\n邀我進群打 /help 查看指令唷\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'message1':"ℬᎶ戦神Bot\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'lang':"JP",
-    'comment':"ℬᎶ戦神Bot\n邀我進群打 /help 查看指令唷\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
-    'commentOn':True,
-    'commentBlack':{},
-    'clock':True,
-    'cName':"智乃",
     'linkprotect':True,
 }
-
-d = datetime.datetime.today()
 
 
 def bot(op):
     try:
         if op.type == 0:
             return
-
+        if op.type == 22:
+            if wait["leaveRoom"] == True:
+                cl.leaveRoom(op.param1)
+        if op.type == 24:
+            if wait["leaveRoom"] == True:
+                cl.leaveRoom(op.param1)
         if op.type == 19:
             try:
                 if op.param3 in mid:
