@@ -21,7 +21,6 @@ ki3 = LINETCR.LINE()
 ki3.login(token="ElLfLh1FoJej5kJLCi1d.VSu/lwQt0BfHIYFV2IIO3q.eX3RwkxpP60a7VWGhmmlylbXj2IcYgR5yPWNXXQnuzw=")
 ki3.loginResult()
 
-
 print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -88,16 +87,6 @@ wait = {
 d = datetime.datetime.today()
 
 
-def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
-    tex = ["+","@","/",">",";","^","%","$","＾","サテラ:","サテラ:","サテラ：","サテラ："]
-    for texX in tex:
-        for command in commands:
-            if string ==command:
-                return True
-    return False
-
-
-
 def bot(op):
     try:
         if op.type == 0:
@@ -142,9 +131,7 @@ def bot(op):
 	          else:
                        pass
 
-        if op.type == 16:
-                url = msg.contentMetadata["postEndUrl"]
-                cl.like(url[25:58], url[66:], likeType=1001)
+
 
         if op.type == 26:
             msg = op.message
@@ -567,64 +554,6 @@ def bot(op):
         print error
 
 
-def a2():
-    nowT = datetime.datetime.today().strftime("%M")
-    if nowT[14:] in ["10","20","30","40","50","00"]:
-        return False
-    else:
-        return True
-def nameUpdate():
-    while True:
-        try:
-                profile = cl.getProfile()
-                profile.displayName = "TEST001"
-                cl.updateProfile(profile)
-                time.sleep(6000)
-        except:
-            pass
-thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
-
-def nameUpdate():
-    while True:
-        try:
-		profile = ki.getProfile()
-		profile.displayName = "TEST002"
-		ki.updateProfile(profile)
-		time.sleep(6000)
-        except:
-            pass
-thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
-
-def nameUpdate():
-    while True:
-        try:
-		profile = ki2.getProfile()
-		profile.displayName = "TEST003"
-		ki2.updateProfile(profile)
-                time.sleep(6000)
-        except:
-            pass
-thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
-
-
-def nameUpdate():
-    while True:
-        try:
-		profile = ki3.getProfile()
-		profile.displayName = "TEST004"
-		ki3.updateProfile(profile)
-                time.sleep(6000)
-        except:
-            pass
-thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
 
 
 while True:
