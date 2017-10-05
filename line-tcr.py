@@ -6,19 +6,19 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="ElvJqjfwVQT1P12h09P5.vjK9i9SI0hH9FLHbDxJMnq.Ftmfjj/in+RHEEp2gryQKxxdMtE+tCta49z8omLl8xQ=")
+cl.login(token="ElhhqMHKmadxMyLVdsle.iT+8/7l878DR2aicLAjOFG.bAEl2O+0GPOLFG2MozptfmieGgYaoBVkIpPqNLAY564=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(token=" ElLaFSKErpBjApDD9zN2.wjYm0VOIqBxbzkvP8voDCG./EMm3rVgnrAxBx3RY/iyrKYoEgy7qgQXnqAJuvk2KKs=")
+ki.login(token="ElCkxC0ty8IIFHi5J5Wc.u6kB6lCxZNreCdd3sRm+ha.zyXY0IRL81SYWuDaSGbAo7Jc4YyQfbPQuvAF5XBuQiA=")
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
-ki2.login(token=" ElFqI9NbbTWGpQmvjS46.zSIyldIqDpBgHFpGHfIcvG.Eekbp7V7BYb/g5F6nwyjKfgY/nuTcbquf22O9mQvWok=")
+ki2.login(token="ElpfCEBttwuXeMEshcA2.e4ZI31Q97N5EAzwpc+/hSG.UMLvXWR3dooUPYPaLvehECVCNZpIaami2ylznkRBFe8=")
 ki2.loginResult()
 
 ki3 = LINETCR.LINE()
-ki3.login(token="Elhj0vCR7R0pAnou6wd0.WwqPm0ukL9ODJ0m39TY4Sa.nk50VusD6f68qJUkipn1Ly1Evk6JBeY2amLpQhlWARE=")
+ki3.login(token="EkeIbgnKT7pYht2uGX68.iarQyHUgknIRni5Recj+Ea.LLGh4VA86sDoXEZO4LPKEPFcFSTUlmF1kvmk3+KsibA=")
 ki3.loginResult()
 
 ki16 = LINETCR.LINE()
@@ -27,6 +27,8 @@ ki16.loginResult()
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
+
+jgs = cl.getGroupIdsJoined()
 
 helpMessage ="""=====[ℬᎶ戦神無料Bot]=====
 --以下指令為基本功能--
@@ -99,7 +101,7 @@ wait = {
     'contact':True,
     'autoJoin':True,
     'autoCancel':{"on":True,"members":1},
-    'leaveRoom':False,
+    'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
     'message':"戦神代行SelfBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
@@ -133,29 +135,33 @@ def bot(op):
         if op.type == 0:
             return
         if op.type == 13:
-            if mid in op.param3:
-                G = cl.getGroup(op.param1)
-                if wait["autoJoin"] == True:
-                    if wait["autoCancel"]["on"] == True:
-                        if len(G.members) <= wait["autoCancel"]["members"]:
-                            cl.rejectGroupInvitation(op.param1)
-                        else:
-                            cl.acceptGroupInvitation(op.param1)
-                    else:
+		  if op.param1 not in jgs:
                         cl.acceptGroupInvitation(op.param1)
-                elif wait["autoCancel"]["on"] == True:
-                    if len(G.members) <= wait["autoCancel"]["members"]:
-                        cl.rejectGroupInvitation(op.param1)
-            else:
-                Inviter = op.param3.replace("",',')
-                InviterX = Inviter.split(",")
-                matched_list = []
-                for tag in wait["blacklist"]:
-                    matched_list+=filter(lambda str: str == tag, InviterX)
-                if matched_list == []:
-                    pass
-                else:
-                    cl.cancelGroupInvitation(op.param1, matched_list)
+			G = cl.getGroup(op.param1)
+                        ginfo = cl.getGroup(op.param1)
+			G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+			invsend = 0
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+			G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+		        try:
+                            ginfo = cl.getGroup(op.param1)
+			    try:
+                                gCreator = ginfo.creator.displayName
+                            except:
+                                gCreator = ginfo.members[0].displayName
+                            cl.sendText(op.param1,"[群組名稱]\n" + str(ginfo.name) + "\n\n[此群首位入群者]\n->" + gCreator)
+		        except:
+			    cl.sendText(op.param1,"OK")
+                        jgs.append(op.param1)
+			print "jgs.append"
+			
+	          else:
+                       pass
         if op.type == 19:
             if mid in op.param3:
                 wait["blacklist"][op.param2] = True
@@ -182,7 +188,7 @@ def bot(op):
             if msg.toType == 1:
                 if wait["leaveRoom"] == True:
                     cl.leaveRoom(msg.to)
-        if op.type == 25:
+        if op.type == 26:
             msg = op.message
             if msg.contentType == 13:
                 if wait["wblack"] == True:
@@ -918,23 +924,23 @@ def bot(op):
 #-----------------------------------------------
                        
 #-----------------------------------------------
-            elif "BGbot" in msg.text:
+            elif msg.text in ["/bgbot","/BGbot","/Bgbot"]:
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = False
                         cl.updateGroup(G)
                         invsend = 0
                         Ticket = cl.reissueGroupTicket(msg.to)
-                        ki.acceptGroupInvitationByTicket(msg.to,Ticket)
+			ki.acceptGroupInvitationByTicket(msg.to,Ticket)
                         ki2.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        ki3.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        G = ki2.getGroup(msg.to)
-                        ginfo = ki2.getGroup(msg.to)
+			ki3.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        G = cl.getGroup(msg.to)
+                        ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = True
-                        ki2.updateGroup(G)
+                        cl.updateGroup(G)
                         print "kicker ok"
                         G.preventJoinByTicket(G)
-                        ki2.updateGroup(G)
+                        cl.updateGroup(G)
 #-----------------------------------------------
 #-----------------------------------------------
             elif "Bot2" in msg.text:
@@ -988,15 +994,19 @@ def bot(op):
                         G.preventJoinByTicket(G)
                         ki16.updateGroup(G)
 #-----------------------------------------------
-            elif "BGbye" in msg.text:
+            elif msg.text in ["/bgbye","/BGbye","/Bgbye"]:
                 if msg.toType == 2:
+		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
                     try:
-                        cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~")
-                        ki.leaveGroup(msg.to)
-                        ki2.leaveGroup(msg.to)
-                        ki3.leaveGroup(msg.to)
-			ki16.leaveGroup(msg.to)
+			jgs.remove(msg.to)
+			print "jgs.remove"
+                        cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+			cl.leaveGroup(msg.to)
+			ki.leaveGroup(msg.to)
+			ki2.leaveGroup(msg.to)
+			ki3.leaveGroup(msg.to)
                     except:
                         pass
 		
@@ -1276,6 +1286,16 @@ def bot(op):
                     ki2.sendText(op.param1,str(wait["message"]))
                     ki3.sendText(op.param1,str(wait["message"]))
                     ki16.sendText(op.param1,str(wait["message"]))
+		
+        if op.type == 19:
+            try:
+                if op.param3 in mid:
+			jgs.remove(op.param1)
+			print "jgs.remove"
+		else:
+                       pass
+            except:
+                       pass
 
 
 #------------------------------------------------------------------------------------
@@ -1296,53 +1316,6 @@ def a2():
         return False
     else:
         return True
-def nameUpdate():
-    while True:
-        try:
-        #while a2():
-            #pass
-            if wait["clock"] == True:
-                profile = ki.getProfile()
-                profile.displayName = "戦神の統治"
-                ki.updateProfile(profile)
-            time.sleep(6000)
-        except:
-            pass
-thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
-
-def nameUpdate():
-    while True:
-        try:
-        #while a2():
-            #pass
-            if wait["clock"] == True:
-                profile = ki2.getProfile()
-                profile.displayName = "BATTLE GOD"
-                ki2.updateProfile(profile)
-            time.sleep(6000)
-        except:
-            pass
-thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
-
-def nameUpdate():
-    while True:
-        try:
-        #while a2():
-            #pass
-            if wait["clock"] == True:
-                profile = ki3.getProfile()
-                profile.displayName = "ℬᎶ無料代行"
-                ki3.updateProfile(profile)
-            time.sleep(6000)
-        except:
-            pass
-thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
 
 def nameUpdate():
     while True:
