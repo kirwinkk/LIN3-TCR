@@ -6,8 +6,20 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="Elwqog7uvMTEiGRQER69.aLZN+GwDwgQS69XUBHE2Aq.w8FhrJeMLp0AbvHMIzIF2FTMfA9nbPP0gEfcDo19k+U=")
+cl.login(token="ElhhqMHKmadxMyLVdsle.iT+8/7l878DR2aicLAjOFG.bAEl2O+0GPOLFG2MozptfmieGgYaoBVkIpPqNLAY564=")
 cl.loginResult()
+
+ki = LINETCR.LINE()
+ki.login(token="ElCkxC0ty8IIFHi5J5Wc.u6kB6lCxZNreCdd3sRm+ha.zyXY0IRL81SYWuDaSGbAo7Jc4YyQfbPQuvAF5XBuQiA=")
+ki.loginResult()
+
+ki2 = LINETCR.LINE()
+ki2.login(token="ElpfCEBttwuXeMEshcA2.e4ZI31Q97N5EAzwpc+/hSG.UMLvXWR3dooUPYPaLvehECVCNZpIaami2ylznkRBFe8=")
+ki2.loginResult()
+
+ki3 = LINETCR.LINE()
+ki3.login(token="ElLfLh1FoJej5kJLCi1d.VSu/lwQt0BfHIYFV2IIO3q.eX3RwkxpP60a7VWGhmmlylbXj2IcYgR5yPWNXXQnuzw=")
+ki3.loginResult()
 
 
 print "login success"
@@ -15,6 +27,8 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 jgs = cl.getGroupIdsJoined()
+print "getGroupIdsJoined success"
+
 
 
 helpMessage ="""想控制智乃嘛..
@@ -41,10 +55,14 @@ helpMessage ="""想控制智乃嘛..
 智乃作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
 """
-KAC=[cl]
+KAC=[cl,ki,ki2,ki3]
 mid = cl.getProfile().mid
+kimid = ki.getProfile().mid
+ki2mid = ki2.getProfile().mid
+ki3mid = ki3.getProfile().mid
 mid1 = "uc216d8664c4e1f43772c98b1b0b8956e"
-Bots=[mid,mid1]
+mid2 = "ubecd98a04cbf74a830b6c95b67bd6b74"
+Bots=[mid,mid1,kimid,ki2mid,ki3mid,mid2]
 admin = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 staff = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
 adminMID = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74"]
@@ -86,12 +104,24 @@ def bot(op):
             return
         if op.type == 13:
 		  if op.param1 not in jgs:
-                       cl.acceptGroupInvitation(op.param1)
-		       try:
-                         cl.sendText(op.param1,"姆..找智乃來群組嘛≧∇≦\n打 /help 查看指令唷")
-		       except:
-			 cl.sendText(op.param1,"姆..找智乃來群組嘛≧∇≦\n打 /help 查看指令唷")
-                       jgs.append(op.param1)
+                        cl.acceptGroupInvitation(op.param1)
+			G = cl.getGroup(op.param1)
+                        ginfo = cl.getGroup(op.param1)
+			G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+			invsend = 0
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+			G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+		        try:
+                            cl.sendText(op.param1,"TEST")
+		        except:
+			    cl.sendText(op.param1,"TEST")
+                        jgs.append(op.param1)
+			
 	          else:
                        pass
 
@@ -308,6 +338,9 @@ def bot(op):
                     try:
 			jgs.remove(msg.to)
                         cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+			ki.leaveGroup(msg.to)
+			ki2.leaveGroup(msg.to)
+			ki3.leaveGroup(msg.to)
 			cl.leaveGroup(msg.to)
                     except:
                         pass
