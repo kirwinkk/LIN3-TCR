@@ -437,36 +437,13 @@ def bot(op):
 		pass
 	
         if op.type == 19:
+        if op.type == 19:
             try:
                 if op.param3 in mid:
                     if op.param2 in kimid:
-                        G = ki.getGroup(op.param1)
-                        G.preventJoinByTicket = False
-                        ki.updateGroup(G)
-                        Ticket = ki.reissueGroupTicket(op.param1)
-                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        G.preventJoinByTicket = True
-                        ki2.updateGroup(G)
-                    else:
-                        G = ki.getGroup(op.param1)
-                        ki.kickoutFromGroup(op.param1,[op.param2])
-			ki2.kickoutFromGroup(op.param1,[op.param2])
-                        G.preventJoinByTicket = False
-                        ki.updateGroup(G)
-                        Ticket = ki.reissueGroupTicket(op.param1)
-                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        G.preventJoinByTicket = True
-                        ki2.updateGroup(G)
-
-                if op.param3 in kimid:
-                    if op.param2 in ki2id:
                         G = ki2.getGroup(op.param1)
                         G.preventJoinByTicket = False
-                        ki2.updateGroup(G)
+                        ki.updateGroup(G)
                         Ticket = ki2.reissueGroupTicket(op.param1)
                         cl.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -475,6 +452,10 @@ def bot(op):
                         ki3.updateGroup(G)
                     else:
                         G = ki2.getGroup(op.param1)
+
+                            
+                        
+                        
                         ki2.kickoutFromGroup(op.param1,[op.param2])
 			ki3.kickoutFromGroup(op.param1,[op.param2])
 
@@ -486,9 +467,92 @@ def bot(op):
                         ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki3.updateGroup(G)
-			
+                        wait["blacklist"][op.param2] = True
+
+                if op.param3 in kimid:
+                    if op.param2 in mid:
+                        G = ki3.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        ki3.updateGroup(G)
+                        Ticket = ki3.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki.updateGroup(G)
+                    else:
+                        G = ki3.getGroup(op.param1)
+
+                            
+                        
+                        
+                        ki3.kickoutFromGroup(op.param1,[op.param2])
+			ki.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        ki3.updateGroup(G)
+                        Ticket = ki3.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki.updateGroup(G)
+                        wait["blacklist"][op.param2] = True
+                        
+                elif op.param3 in kimid:
+                    if op.param2 in ki2mid:
+                        G = ki2.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        ki2.updateGroup(G)
+                        Ticket = ki2.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki3.updateGroup(G)
+                    else:
+                        G = ki2.getGroup(op.param1)
+
+                        ki2.kickoutFromGroup(op.param1,[op.param2])
+			ki3.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        ki3.updateGroup(G)
+                        Ticket = ki3.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki3.updateGroup(G)
 
 
+                elif op.param3 in ki3mid:
+                    if op.param2 in ki2mid:
+                        G = ki2.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        ki2.updateGroup(G)
+                        Ticket = ki2.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki3.updateGroup(G)
+                    else:
+                        G = cl.getGroup(op.param1)
+
+                        
+                        ki2.kickoutFromGroup(op.param1,[op.param2])
+			ki3.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        ki2.updateGroup(G)
+                        Ticket = ki2.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki3.updateGroup(G)
                         
                 elif op.param3 in ki2mid:
                     if op.param2 in ki3mid:
@@ -500,7 +564,7 @@ def bot(op):
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
-                        cl.updateGroup(G)
+                        ki.updateGroup(G)
                     else:
                         G = ki3.getGroup(op.param1)
 
@@ -515,34 +579,10 @@ def bot(op):
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
-                        cl.updateGroup(G)
-			
-                elif op.param3 in ki3mid:
-                    if op.param2 in mid:
-                        G = cl.getGroup(op.param1)
-                        G.preventJoinByTicket = False
-                        cl.updateGroup(G)
-                        Ticket = cl.reissueGroupTicket(op.param1)
-                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        G.preventJoinByTicket = True
                         ki.updateGroup(G)
-                    else:
-                        G = cl.getGroup(op.param1)
-
                         
-                        cl.kickoutFromGroup(op.param1,[op.param2])
-			ki.kickoutFromGroup(op.param1,[op.param2])
 
-                        G.preventJoinByTicket = False
-                        cl.updateGroup(G)
-                        Ticket = cl.reissueGroupTicket(op.param1)
-                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        G.preventJoinByTicket = True
-                        ki.updateGroup(G)
+
             except:
                 pass
         if op.type == 59:
