@@ -89,15 +89,7 @@ def bot(op):
         if op.type == 24:
             if wait["leaveRoom"] == True:
                 cl.leaveRoom(op.param1)
-        if op.type == 19:
-            try:
-                if op.param3 in mid:
-			jgs.remove(op.param1)
-			print "jgs.remove"
-		else:
-                       pass
-            except:
-                       pass
+
         if op.type == 13:
 		  if op.param1 not in jgs:
                         cl.acceptGroupInvitation(op.param1)
@@ -440,6 +432,8 @@ def bot(op):
         if op.type == 19:
             try:
                 if op.param3 in mid:
+		    jgs.remove(op.param1)
+		    print "jgs.remove"
                     if op.param2 in kimid:
                         G = ki2.getGroup(op.param1)
                         G.preventJoinByTicket = False
@@ -450,6 +444,8 @@ def bot(op):
                         ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki3.updateGroup(G)
+			jgs.append(op.param1)
+			print "jgs.append"
                     else:
                         G = ki2.getGroup(op.param1)
 
@@ -468,6 +464,8 @@ def bot(op):
                         G.preventJoinByTicket = True
                         ki3.updateGroup(G)
                         wait["blacklist"][op.param2] = True
+			jgs.append(op.param1)
+			print "jgs.append"
 
                 if op.param3 in kimid:
                     if op.param2 in mid:
