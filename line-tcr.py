@@ -353,6 +353,7 @@ def bot(op):
 			ki.acceptGroupInvitationByTicket(msg.to,Ticket)
                         ki2.acceptGroupInvitationByTicket(msg.to,Ticket)
 			ki3.acceptGroupInvitationByTicket(msg.to,Ticket)
+			cl.sendText(msg.to,"天線寶寶們到齊囉")
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = True
@@ -360,10 +361,6 @@ def bot(op):
                         print "kicker ok"
                         G.preventJoinByTicket(G)
                         cl.updateGroup(G)
-			try:
-                            cl.sendText(msg.to,"天線寶寶們到齊囉")
-		        except:
-			    cl.sendText(msg.to,"天線寶寶們到齊囉")
 #--------------------------------------------------------
             elif "/mid:" in msg.text:
                 mmid = msg.text.replace("/mid:","")
