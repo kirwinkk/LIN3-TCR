@@ -72,8 +72,8 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"ℬᎶ戦神Bot\n邀我進群打 /help 查看指令唷\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
-    'message1':"ℬᎶ戦神Bot\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message':"ℬᎶ戦神Bot*天線寶寶系列*\n此為權限機\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message1':"ℬᎶ戦神Bot*天線寶寶系列*\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'lang':"JP",
     'linkprotect':True,
 }
@@ -91,6 +91,7 @@ def bot(op):
                 cl.leaveRoom(op.param1)
 
         if op.type == 13:
+		if op.param2 in staff:
 		  if op.param1 not in jgs:
                         cl.acceptGroupInvitation(op.param1)
 
@@ -111,7 +112,7 @@ def bot(op):
                                 gCreator = ginfo.creator.displayName
                             except:
                                 gCreator = ginfo.members[0].displayName
-                            cl.sendText(op.param1,"[群組名稱]\n" + str(ginfo.name) + "\n\n[群長]\n->" + gCreator)
+                            cl.sendText(op.param1,"跟天線寶寶說你好^^\n[群組名稱]\n" + str(ginfo.name) + "\n\n[群長]\n->" + gCreator)
 		        except:
 			    cl.sendText(op.param1,"OK")
                         jgs.append(op.param1)
@@ -119,6 +120,9 @@ def bot(op):
 			
 	          else:
                        pass
+		else:
+			cl.acceptGroupInvitation(op.param1)
+			cl.leaveGroup(op.param1)
 
 
 
@@ -147,9 +151,9 @@ def bot(op):
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     if wait["lang"] == "JP":
-                        msg.text = "文章網址(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
+                        msg.text = msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
                     else:
-                        msg.text = "文章網址(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
+                        msg.text = msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
                     cl.sendText(msg.to,msg.text)
 		
             if msg.contentType == 16:
@@ -201,7 +205,13 @@ def bot(op):
                 omikujilist = [a1,a2,a3,a4,a5,a6,a7,b1,b2,b3,b4,b5]
                 cl.sendText(msg.to, random.choice(omikujilist) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
-		
+            elif msg.text in ["天線寶寶你好"]:
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
+                cl.sendText(msg.to,"丁丁跟你說你好\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		ki.sendText(msg.to,"迪西跟你說你好\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		ki2.sendText(msg.to,"拉拉跟你說你好\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		ki3.sendText(msg.to,"小波跟你說你好\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
             elif msg.text in ["智乃禮物","愛的禮物"]:
                 msg.contentType = 9
@@ -389,8 +399,8 @@ def bot(op):
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     cl.sendText(op.param1,str(wait["message"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		    ki.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-		    ki.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-		    ki.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		    ki2.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		    ki3.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
 
 #------------------------------------------------------------------------------------
