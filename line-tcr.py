@@ -435,26 +435,26 @@ def bot(op):
 		    jgs.remove(op.param1)
 		    print "jgs.remove"
                     if op.param2 in Bots:
-                        G = ki2.getGroup(op.param1)
+                        G = ki.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki.updateGroup(G)
-                        Ticket = ki2.reissueGroupTicket(op.param1)
+                        Ticket = ki.reissueGroupTicket(op.param1)
                         cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki3.updateGroup(G)
 			jgs.append(op.param1)
 			print "jgs.append"
                     else:
-                        G = ki2.getGroup(op.param1)
-                        ki2.kickoutFromGroup(op.param1,[op.param2])
-			ki3.kickoutFromGroup(op.param1,[op.param2])
+                        G = ki.getGroup(op.param1)
+                        ki.kickoutFromGroup(op.param1,[op.param2])
+			ki2.kickoutFromGroup(op.param1,[op.param2])
                         G.preventJoinByTicket = False
-                        ki2.updateGroup(G)
-                        Ticket = ki2.reissueGroupTicket(op.param1)
+                        ki.updateGroup(G)
+                        Ticket = ki.reissueGroupTicket(op.param1)
                         cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki3.updateGroup(G)
@@ -464,34 +464,6 @@ def bot(op):
 
                 if op.param3 in kimid:
                     if op.param2 in Bots:
-                        G = ki3.getGroup(op.param1)
-                        G.preventJoinByTicket = False
-                        ki3.updateGroup(G)
-                        Ticket = ki3.reissueGroupTicket(op.param1)
-                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        G.preventJoinByTicket = True
-                        ki.updateGroup(G)
-                    else:
-                        G = ki3.getGroup(op.param1)
-                        ki3.kickoutFromGroup(op.param1,[op.param2])
-			ki.kickoutFromGroup(op.param1,[op.param2])
-                        G.preventJoinByTicket = False
-                        ki3.updateGroup(G)
-                        Ticket = ki3.reissueGroupTicket(op.param1)
-                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        G.preventJoinByTicket = True
-                        ki.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
-                        
-
-
-                elif op.param3 in ki3mid:
-                    if op.param2 in Bots:
                         G = ki2.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki2.updateGroup(G)
@@ -500,9 +472,9 @@ def bot(op):
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
-                        ki3.updateGroup(G)
+                        ki.updateGroup(G)
                     else:
-                        G = cl.getGroup(op.param1)
+                        G = ki2.getGroup(op.param1)
                         ki2.kickoutFromGroup(op.param1,[op.param2])
 			ki3.kickoutFromGroup(op.param1,[op.param2])
                         G.preventJoinByTicket = False
@@ -510,6 +482,33 @@ def bot(op):
                         Ticket = ki2.reissueGroupTicket(op.param1)
                         cl.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki.updateGroup(G)
+                        wait["blacklist"][op.param2] = True
+                        
+
+
+                elif op.param3 in ki3mid:
+                    if op.param2 in Bots:
+                        G = cl.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki3.updateGroup(G)
+                    else:
+                        G = cl.getGroup(op.param1)
+                        cl.kickoutFromGroup(op.param1,[op.param2])
+			ki.kickoutFromGroup(op.param1,[op.param2])
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki3.updateGroup(G)
@@ -549,7 +548,27 @@ def bot(op):
     except Exception as error:
         print error
 
-
+def nameUpdate():
+    while True:
+        try:
+                profile = cl.getProfile()
+                profile.displayName = "丁丁"
+                cl.updateProfile(profile)
+		profile1 = ki.getProfile()
+                profile1.displayName = "迪西"
+                ki.updateProfile(profile1)
+		profile2 = ki2.getProfile()
+                profile2.displayName = "拉拉"
+                ki2.updateProfile(profile2)
+		profile3 = ki3.getProfile()
+                profile3.displayName = "小波"
+                ki3.updateProfile(profile3)
+                time.sleep(6000)
+        except:
+            pass
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
 
 
 while True:
