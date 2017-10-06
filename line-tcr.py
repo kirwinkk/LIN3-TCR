@@ -6,7 +6,7 @@ from datetime import datetime
 import time,random,sys,json,codecs,threading,glob,re
 
 cl = LINETCR.LINE()
-cl.login(token="ElpyWnrTQQHjnhAqnGN5.uEmdFcf6siszYLOn7RH6zq.h6129jw528y3MELRp9Q2udXmR1WaQRITyaBvyty+QX4=")
+cl.login(token="ElFnLZwWDCTv74XirMZ2.wjYm0VOIqBxbzkvP8voDCG.aN2lK5sPdiSmazGSVPI3QMKxFhjSELEjhijvNsbSNyk=")
 cl.loginResult()
 
 print "login success"
@@ -23,29 +23,49 @@ def bot(op):
         if op.type == 13:
             if mid in op.param3:
                 try:
+		
                     cl.acceptGroupInvitation(op.param1)
-                    start = time.time()
                     group = cl.getGroup(op.param1)
+                    op.contentType = 13
+                    op.contentMetadata = {"mid":"uc216d8664c4e1f43772c98b1b0b8956e"}
                     if group.invitee is not None:
                         gInviMids = [contact.mid for contact in group.invitee]
                         cl.cancelGroupInvitation(op.param1, gInviMids)
-			elapsed_time = time.time() - start
-                        cl.sendText(op.param1,str(len(group.invitee)) + "人 已被戦神取消(´∀｀)♡" + "\n耗費時間:%sseconds" % (elapsed_time) + "\n\n戦神BOT作者↓\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+                        cl.sendText(op.param1,str(len(group.invitee)) + "人 已被取消\nBOT作者:戦神↓")
+			cl.sendMessage(msg)
+			cl.sendText(op.param1,str(len(group.invitee)) + "九条騎士団∆...降臨☆")
                     else:
 			elapsed_time = time.time() - start
-                        cl.sendText(op.param1,"戦神發現...邀請中沒人><" + "\n耗費時間:%sseconds" % (elapsed_time) + "\n\n戦神BOT作者↓\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+                        cl.sendText(op.param1,"邀請中沒人><\nBOT作者:戦神↓")
+			cl.sendMessage(msg)
+			cl.sendText(op.param1,str(len(group.invitee)) + "九条騎士団∆...降臨☆")
                     cl.leaveGroup(op.param1)
                 except:
                     pass
             else:
                 pass
         if op.type == 5:
-                    cl.sendText(op.param1,"戦神BOT作者↓\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+		op.contentType = 13
+                op.contentMetadata = {"mid":"uc216d8664c4e1f43772c98b1b0b8956e"}
+                cl.sendText(op.param1,"戦神BOT作者↓\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+		cl.sendMessage(msg)
+		
 
     except Exception as error:
         #print error
         pass
-
+def nameUpdate():
+    while True:
+        try:
+                profile = cl.getProfile()
+                profile.displayName = "台湾九条騎士団∆Cancel"
+                cl.updateProfile(profile)
+                time.sleep(6000)
+        except:
+            pass
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
 
 while True:
     try:
