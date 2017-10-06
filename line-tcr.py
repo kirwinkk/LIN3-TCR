@@ -30,7 +30,7 @@ print "getGroupIdsJoined success"
 
 
 
-helpMessage ="""[/help]...查看指令
+helpMessage ="""[天線寶寶指令]...查看指令
 [/Author]...作者顯示
 [/gid]...顯示群組gid
 [/Ginfo]...顯示群組詳情
@@ -42,12 +42,8 @@ helpMessage ="""[/help]...查看指令
 [/Gift]...發送禮物
 [/Time]...現在時間
 [/Gc]...查看群長
-[/botbye]...智乃退出
-
-追加功能:
-  1.分享文章時 顯示文章網址
-  2.丟友資後 顯示友資詳情
-  3.自動關閉網址
+[天線寶寶加入]...BOT退出
+[天線寶寶退出]...BOT退出
 
 作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
@@ -72,8 +68,8 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"ℬᎶ戦神Bot\n邀我進群打 /help 查看指令唷\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
-    'message1':"ℬᎶ戦神Bot\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message':"ℬᎶ戦神Bot*天線寶寶系列*\n此為權限機\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message1':"ℬᎶ戦神Bot*天線寶寶系列*\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'lang':"JP",
     'linkprotect':True,
 }
@@ -91,6 +87,7 @@ def bot(op):
                 cl.leaveRoom(op.param1)
 
         if op.type == 13:
+		if op.param2 in staff:
 		  if op.param1 not in jgs:
                         cl.acceptGroupInvitation(op.param1)
 
@@ -111,7 +108,7 @@ def bot(op):
                                 gCreator = ginfo.creator.displayName
                             except:
                                 gCreator = ginfo.members[0].displayName
-                            cl.sendText(op.param1,"[群組名稱]\n" + str(ginfo.name) + "\n\n[群長]\n->" + gCreator)
+                            cl.sendText(op.param1,"跟天線寶寶說你好^^\n[群組名稱]\n" + str(ginfo.name) + "\n\n[群長]\n->" + gCreator)
 		        except:
 			    cl.sendText(op.param1,"OK")
                         jgs.append(op.param1)
@@ -119,6 +116,9 @@ def bot(op):
 			
 	          else:
                        pass
+		else:
+			cl.acceptGroupInvitation(op.param1)
+			cl.leaveGroup(op.param1)
 
 
 
@@ -147,9 +147,9 @@ def bot(op):
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     if wait["lang"] == "JP":
-                        msg.text = "文章網址(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
+                        msg.text = msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
                     else:
-                        msg.text = "文章網址(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
+                        msg.text = msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
                     cl.sendText(msg.to,msg.text)
 		
             if msg.contentType == 16:
@@ -166,7 +166,7 @@ def bot(op):
                 else:
                     cl.sendText(msg.to,helpMessage + "\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
-            if msg.text == "智乃指令":
+            if msg.text == "天線寶寶指令":
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
                 if wait["lang"] == "JP":
@@ -201,7 +201,16 @@ def bot(op):
                 omikujilist = [a1,a2,a3,a4,a5,a6,a7,b1,b2,b3,b4,b5]
                 cl.sendText(msg.to, random.choice(omikujilist) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
-		
+            elif msg.text in ["天線寶寶你好"]:
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
+		name2 = "".join([random.choice(source_str) for x in xrange(9)])
+		name3 = "".join([random.choice(source_str) for x in xrange(9)])
+		name4 = "".join([random.choice(source_str) for x in xrange(9)])
+                cl.sendText(msg.to,"丁丁跟你說你好\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		ki.sendText(msg.to,"迪西跟你說你好\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name2)
+		ki2.sendText(msg.to,"拉拉跟你說你好\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name3)
+		ki3.sendText(msg.to,"小波跟你說你好\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name4)
 		
             elif msg.text in ["智乃禮物","愛的禮物"]:
                 msg.contentType = 9
@@ -212,7 +221,7 @@ def bot(op):
                 cl.sendMessage(msg)
 
 
-            elif msg.text in ["/Cancel","/cancel","智乃取消","智乃cancel","智乃Cancel"]:
+            elif msg.text in ["/Cancel","/cancel","天線寶寶取消","天線寶寶cancel","天線寶寶Cancel"]:
                 if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -251,8 +260,22 @@ def bot(op):
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"關閉網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        cl.sendText(msg.to,"姆...網址本來就是關的咩ヽ(｀⌒´)ノ\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-			
+                        cl.sendText(msg.to,"關閉網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		
+		
+            elif msg.text in ["/Urlon"]:
+                if msg.from_ in staff:
+                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
+                    group = cl.getGroup(msg.to)
+                    group.preventJoinByTicket = False
+                    cl.updateGroup(group)
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"開啟網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                    else:
+                        cl.sendText(msg.to,"開啟網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		else:
+		   pass
             elif msg.text in ["/Time","/時刻","/time","/Now","/now"]:
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -327,7 +350,7 @@ def bot(op):
                         cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     cl.sendText(msg)
 		
-            elif msg.text in ["/bgbye","/BGbye","/Bgbye"]:
+            elif msg.text in ["/bgbye","/BGbye","天線寶寶再見","天線寶寶bye","天線寶寶退出"]:
                 if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -343,7 +366,98 @@ def bot(op):
                     except:
                         pass
 		
-            elif msg.text in ["/bgbot","/BGbot","/Bgbot"]:
+            elif ("Oa:" in msg.text):
+                if msg.from_ in admin:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff.append(target)
+                                cl.sendText(msg.to,"已將此用戶加入權限名單")
+                            except:
+                                pass
+                    print "[Command]Staff add executed"
+                else:
+                    pass
+	
+            elif ("Da:" in msg.text):
+                if msg.from_ in admin:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff.append(target)
+                                cl.sendText(msg.to,"已將此用戶解除權限")
+                            except:
+                                pass
+                    print "[Command]Staff add executed"
+                else:
+                    pass
+	
+	
+            elif msg.text in ["Owner","權限","權限名單","權限者"]:
+              if msg.from_ in staff:
+                if staff == []:
+                    cl.sendText(msg.to,"沒有權限用戶")
+                else:
+                    cl.sendText(msg.to,"權限名單讀取中...")
+                    mc = ""
+                    for mi_d in staff:
+                        mc += "->" +cl.getContact(mi_d).displayName + "\n"
+                    cl.sendText(msg.to,"權限者:\n" + mc)
+                    print "[Command]Stafflist executed"
+              else:
+                    pass
+			
+            elif ("Mk:" in msg.text):
+		if msg.from_ in staff:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[cl,ki,ki2,ki3]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           pass
+		else:
+                    pass
+			
+            elif "Nk:" in msg.text:
+	      if msg.from_ in staff:
+                if msg.toType == 2:
+		  if msg.from_ in staff:
+                    print "ok"
+                    _name = msg.text.replace("Nk:","")
+                    gs = ki.getGroup(msg.to)
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        cl.sendText(msg.to,"找不到用戶")
+                    else:
+                        for target in targets:
+                            try:
+                                klist=[cl,ki,ki2,ki3]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                            except:
+                                pass
+	      else:
+                    pass
+		
+            elif msg.text in ["/bgbot","/BGbot","天線寶寶bot","天線寶寶加入"]:
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = False
@@ -389,8 +503,8 @@ def bot(op):
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     cl.sendText(op.param1,str(wait["message"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		    ki.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-		    ki.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-		    ki.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		    ki2.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		    ki3.sendText(op.param1,str(wait["message1"]) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
 
 #------------------------------------------------------------------------------------
