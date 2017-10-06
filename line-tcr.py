@@ -111,7 +111,7 @@ def bot(op):
                                 gCreator = ginfo.creator.displayName
                             except:
                                 gCreator = ginfo.members[0].displayName
-                            cl.sendText(op.param1,"[群組名稱]\n" + str(ginfo.name) + "\n\n[此群首位入群者]\n->" + gCreator)
+                            cl.sendText(op.param1,"[群組名稱]\n" + str(ginfo.name) + "\n\n[群長]\n->" + gCreator)
 		        except:
 			    cl.sendText(op.param1,"OK")
                         jgs.append(op.param1)
@@ -147,9 +147,9 @@ def bot(op):
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     if wait["lang"] == "JP":
-                        msg.text = "智乃給你文章網址哦(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
+                        msg.text = "文章網址(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
                     else:
-                        msg.text = "智乃給你文章網址哦(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
+                        msg.text = "文章網址(๑ơ ₃ ơ)\n" + msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
                     cl.sendText(msg.to,msg.text)
 		
             if msg.contentType == 16:
@@ -195,9 +195,11 @@ def bot(op):
                 msg.text = None
                 cl.sendMessage(msg)
             elif msg.text in ["/運勢"]:
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
                 a1, a2, a3, a4, a5, a6, a7, b1, b2, b3, b4, b5 = "大吉！", "中吉！", "小吉！", "吉！", "末凶！", "凶！", "大吉！", "中吉！", "小吉！", "吉！", "末凶！", "凶！"
                 omikujilist = [a1,a2,a3,a4,a5,a6,a7,b1,b2,b3,b4,b5]
-                cl.sendText(msg.to, random.choice(omikujilist))
+                cl.sendText(msg.to, random.choice(omikujilist) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
 		
 		
@@ -218,12 +220,12 @@ def bot(op):
                     if group.invitee is not None:
                         gInviMids = [contact.mid for contact in group.invitee]
                         cl.cancelGroupInvitation(msg.to, gInviMids)
-                        cl.sendText(msg.to,"姆...智乃取消了 "+ str(len(group.invitee)) + " 個邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        cl.sendText(msg.to,"取消了 "+ str(len(group.invitee)) + " 個邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
                         if wait["lang"] == "JP":
-                            cl.sendText(msg.to,"智乃找不到能取消的邀請吶(ノﾟДﾟ)\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                            cl.sendText(msg.to,"找不到能取消的邀請吶(ノﾟДﾟ)\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                         else:
-                            cl.sendText(msg.to,"智乃找不到能取消的邀請吶(ノﾟДﾟ)\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                            cl.sendText(msg.to,"找不到能取消的邀請吶(ノﾟДﾟ)\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                 else:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"(ノﾟДﾟ)\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
@@ -236,7 +238,7 @@ def bot(op):
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
 		cl.sendMessage(msg)
-		cl.sendText(msg.to,"智乃的創造者是戦神唷><👆\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		cl.sendText(msg.to,"創造者是戦神唷><👆\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 			
 
             elif msg.text in ["/Urloff"]:
@@ -247,21 +249,21 @@ def bot(op):
                     group.preventJoinByTicket = True
                     cl.updateGroup(group)
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"智乃幫你關閉網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        cl.sendText(msg.to,"關閉網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
                         cl.sendText(msg.to,"姆...網址本來就是關的咩ヽ(｀⌒´)ノ\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 			
             elif msg.text in ["/Time","/時刻","/time","/Now","/now"]:
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
-                cl.sendText(msg.to, "智乃報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                cl.sendText(msg.to, "報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
 		
             elif msg.text in ["/Url","/url"]:
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
                 gurl = cl.reissueGroupTicket(msg.to)
-                cl.sendText(msg.to,"智乃找到的群組網址...\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                cl.sendText(msg.to,"群組網址...\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
 		
             elif msg.text in ["/Groupcreator","/群長","/Gc","/gc","/groupcreator","群長"]:
@@ -273,7 +275,7 @@ def bot(op):
                         gCreator = ginfo.members[0].displayName
                  except:
                         gCreator = ginfo.members[0].displayName
-		 cl.sendText(msg.to,"[此群首位入群者]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		 cl.sendText(msg.to,"[群長]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
               else:
 		pass
 
@@ -359,9 +361,9 @@ def bot(op):
                         G.preventJoinByTicket(G)
                         cl.updateGroup(G)
 			try:
-                            cl.sendText(op.param1,"TESTOK")
+                            cl.sendText(msg.to,"天線寶寶們到齊囉")
 		        except:
-			    cl.sendText(op.param1,"TESTOK")
+			    cl.sendText(msg.to,"天線寶寶們到齊囉")
 #--------------------------------------------------------
             elif "/mid:" in msg.text:
                 mmid = msg.text.replace("/mid:","")
