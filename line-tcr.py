@@ -115,7 +115,7 @@ def bot(op):
 		        except:
 			    cl.sendText(op.param1,"OK")
                         jgs.append(op.param1)
-			print "jgs.append"
+			print "jgs.append13"
 			
 	          else:
                        pass
@@ -433,7 +433,7 @@ def bot(op):
             try:
                 if op.param3 in mid:
 		    jgs.remove(op.param1)
-		    print "jgs.remove"
+		    print "jgs.remove19"
                     if op.param2 in Bots:
                         G = ki.getGroup(op.param1)
                         G.preventJoinByTicket = False
@@ -445,7 +445,7 @@ def bot(op):
                         G.preventJoinByTicket = True
                         ki3.updateGroup(G)
 			jgs.append(op.param1)
-			print "jgs.append"
+			print "jgs.append19"
                     else:
                         G = ki.getGroup(op.param1)
                         ki.kickoutFromGroup(op.param1,[op.param2])
@@ -460,7 +460,7 @@ def bot(op):
                         ki3.updateGroup(G)
                         wait["blacklist"][op.param2] = True
 			jgs.append(op.param1)
-			print "jgs.append"
+			print "jgs.append19"
 
                 if op.param3 in kimid:
                     if op.param2 in Bots:
