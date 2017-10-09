@@ -120,7 +120,7 @@ def bot(op):
 			print "jgs.append13"
 			
 	          else:
-                       pass
+                       cl.acceptGroupInvitation(op.param1)
 		else:
 		  pass
 			
