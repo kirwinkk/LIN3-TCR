@@ -167,13 +167,13 @@ def bot(op):
                                 gCreator = ginfo.creator.displayName
                             except:
                                 gCreator = ginfo.members[0].displayName
-                            cl.sendText(op.param1,"77軍團來瞜~~\n[群長]\n->" + gCreator)
+                            cl.sendText(op.param1,"77軍團來瞜~~")
 		        except:
 			    cl.sendText(op.param1,"OK")
 			print "jgs.append13"
 			
 	          else:
-                       pass
+                       cl.acceptGroupInvitation(op.param1)
 		else:
 		  pass
 			
@@ -958,7 +958,7 @@ def bot(op):
                         ki7.acceptGroupInvitationByTicket(msg.to,Ticket)
                         ki8.acceptGroupInvitationByTicket(msg.to,Ticket)
 			ki9.acceptGroupInvitationByTicket(msg.to,Ticket)
-			cl.sendText(msg.to,"77大軍全員到齊!!")
+			cl.sendText(msg.to,"77軍團全員到齊!!")
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = True
