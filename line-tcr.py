@@ -38,7 +38,7 @@ ki7.login(token="ElbhnySShZMghp3k6XG8.P9FyIUrUbeAmcjZnfpjX6a.METG+Pqt/AnOOfK8Mua
 ki7.loginResult()
 
 ki8 = LINETCR.LINE()
-ki8.login(token="El3K6C9QyHVdhFoAyIa7.jvd7T5r6TSHa3VMqwSkOfW.us5C1DGhPj7r01duuameWYe3Y0YTOItCMnau7nv8FXk=")
+ki8.login(token=" ElnO5bNG0LdWHM1lcVS0.Sz0l2hUZyDHZIRqY1ReQea.zGHUhmqxqPgy+U6lrJvRltytsZdmE2DUbEvQ0O4FIgM=")
 ki8.loginResult()
 
 
@@ -167,13 +167,13 @@ def bot(op):
                                 gCreator = ginfo.creator.displayName
                             except:
                                 gCreator = ginfo.members[0].displayName
-                            cl.sendText(op.param1,"77軍團來瞜~~\n[群長]\n->" + gCreator)
+                            cl.sendText(op.param1,"77軍團來瞜~~")
 		        except:
 			    cl.sendText(op.param1,"OK")
 			print "jgs.append13"
 			
 	          else:
-                       pass
+                       cl.acceptGroupInvitation(op.param1)
 		else:
 		  pass
 			
@@ -958,7 +958,7 @@ def bot(op):
                         ki7.acceptGroupInvitationByTicket(msg.to,Ticket)
                         ki8.acceptGroupInvitationByTicket(msg.to,Ticket)
 			ki9.acceptGroupInvitationByTicket(msg.to,Ticket)
-			cl.sendText(msg.to,"77大軍全員到齊!!")
+			cl.sendText(msg.to,"77軍團全員到齊!!")
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = True
