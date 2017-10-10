@@ -33,6 +33,7 @@ print "getGroupIdsJoined success"
 helpMessage ="""[天線寶寶指令]...查看指令
 [/Author]...作者顯示
 [/mid]...顯示自己mid
+[/me]...顯示自己的友資
 [/gid]...顯示群組gid
 [/Ginfo]...顯示群組詳情
 [/Cancel]...取消所有邀請
@@ -43,7 +44,26 @@ helpMessage ="""[天線寶寶指令]...查看指令
 [/Gift]...發送禮物
 [/Time]...現在時間
 [/Gc]...查看群長
-
+[/運勢]...看看今日運勢
+-以下指令權限者使用-
+[Gn:]...更改群名
+[/Urlon]...開啟群組網址
+[Nk:]...名字踢人
+[Mk:@]...標註踢人
+[Bl:@]...標註黑單
+[Ban]...友資黑單
+[Unban]...友資解除黑單
+[Mban]...mid黑單
+[Munban]...mid解除黑單
+[Bl]...查看黑單
+[/blk]...踢出黑單用戶
+[權限者]...查看權限名單
+[天線加入]...增加防翻
+[天線退出]...防翻退出
+[天線寶寶你好]...確認防翻狀態
+-以下指令作者使用-
+[Oa:@]→ 標註增加權限
+[Od:@]→ 標註刪除權限
 
 作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
@@ -296,6 +316,9 @@ def bot(op):
                 msg.contentMetadata = {"mid": X }
 		cl.sendMessage(msg)
                 cl.sendText(msg.to,msg.from_)
+		
+		
+
 		
 		
             elif msg.text in ["/tagall","/Tagall"]:
@@ -789,7 +812,7 @@ def bot(op):
 #------------------------------------------------------------------------------------
 
 	if op.type == 11:
-	    if op.param2 not in Bots:
+	    if op.param3 in staff + Bots:
 		    G = cl.getGroup(op.param1)
 		    G.preventJoinByTicket = True
 		    cl.updateGroup(G)
@@ -797,7 +820,7 @@ def bot(op):
 		pass
 	
 	if op.type == 11:
-	    if op.param2 not in Bots:
+	    if op.param3 in staff + Bots:
 		    G = ki.getGroup(op.param1)
 		    G.preventJoinByTicket = True
 		    ki.updateGroup(G)
@@ -805,7 +828,7 @@ def bot(op):
 		pass
 	
 	if op.type == 11:
-	    if op.param2 not in Bots:
+	    if op.param3 in staff + Bots:
 		    G = ki2.getGroup(op.param1)
 		    G.preventJoinByTicket = True
 		    ki2.updateGroup(G)
@@ -813,7 +836,7 @@ def bot(op):
 		pass
 	
 	if op.type == 11:
-	    if op.param2 not in Bots:
+	    if op.param3 in staff + Bots:
 		    G = ki3.getGroup(op.param1)
 		    G.preventJoinByTicket = True
 		    ki3.updateGroup(G)
