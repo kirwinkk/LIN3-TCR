@@ -30,9 +30,11 @@ print "getGroupIdsJoined success"
 
 
 
-helpMessage ="""[天線寶寶指令]...查看指令
+helpMessage ="""-以下指令權限者使用-
+[天線寶寶指令]...查看指令
 [/Author]...作者顯示
 [/mid]...顯示自己mid
+[/me]...顯示自己的友資
 [/gid]...顯示群組gid
 [/Ginfo]...顯示群組詳情
 [/Cancel]...取消所有邀請
@@ -43,7 +45,28 @@ helpMessage ="""[天線寶寶指令]...查看指令
 [/Gift]...發送禮物
 [/Time]...現在時間
 [/Gc]...查看群長
+[/運勢]...看看今日運勢
 
+-以下指令權限者使用-
+[Gn:]...更改群名
+[/Urlon]...開啟群組網址
+[Nk:]...名字踢人
+[Mk:@]...標註踢人
+[Bl:@]...標註黑單
+[Ban]...友資黑單
+[Unban]...友資解除黑單
+[Mban]...mid黑單
+[Munban]...mid解除黑單
+[Bl]...查看黑單
+[/blk]...踢出黑單用戶
+[Owner]...查看權限名單
+[天線加入]...增加防翻
+[天線退出]...防翻退出
+[天線寶寶你好]...確認防翻狀態
+
+-以下指令作者使用-
+[Oa:@]→ 標註增加權限
+[Od:@]→ 標註刪除權限
 
 作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
@@ -68,7 +91,7 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"ℬᎶ戦神Bot*天線寶寶系列*\n此為權限機\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message':"ℬᎶ戦神Bot*天線寶寶系列*\n此為公開權限機\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'message1':"ℬᎶ戦神Bot*天線寶寶系列*\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'lang':"JP",
     'linkprotect':True,
@@ -120,7 +143,7 @@ def bot(op):
 			print "jgs.append13"
 			
 	          else:
-                       pass
+                       cl.acceptGroupInvitation(op.param1)
 		else:
 		  pass
 			
@@ -213,14 +236,14 @@ def bot(op):
                             cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-                        cl.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        random.choice(KAC).sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
                         contact = cl.getContact(msg.contentMetadata["mid"])
                         try:
                             cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-                        cl.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        random.choice(KAC).sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
             elif msg.contentType == 16:
                     msg.contentType = 0
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
@@ -229,7 +252,7 @@ def bot(op):
                         msg.text = msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
                     else:
                         msg.text = msg.contentMetadata["postEndUrl"] + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name
-                    cl.sendText(msg.to,msg.text)
+                    random.choice(KAC).sendText(msg.to,msg.text)
 		
             if msg.contentType == 16:
                 url = msg.contentMetadata("line://home/post?userMid="+mid+"&postId="+"new_post")
@@ -281,7 +304,7 @@ def bot(op):
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
                     group.name = msg.text.replace("Gn:","")
-                    ki.updateGroup(group)
+                    random.choice(KAC).updateGroup(group)
                 else:
                     cl.sendText(msg.to,"><")
               else:
@@ -295,7 +318,25 @@ def bot(op):
 		X = msg.from_
                 msg.contentMetadata = {"mid": X }
 		cl.sendMessage(msg)
-                cl.sendText(msg.to,msg.from_)
+                random.choice(KAC).sendText(msg.to,msg.from_)
+		
+		
+            elif "Mban:" in msg.text:
+                midd = msg.text.replace("Mban:","")
+                wait["blacklist"][midd] = True
+		cl.sendText(msg.to,"已黑單此用戶")
+            elif "Munban:" in msg.text:
+                midd = msg.text.replace("Mban:","")
+                wait["blacklist"][midd] = False
+		cl.sendText(msg.to,"已解除黑單")
+		
+            elif "Kick:" in msg.text:
+                midd = msg.text.replace("Kick:","")
+                random.choice(KAC).kickoutFromGroup(msg.to,[midd])
+            elif "Invite:" in msg.text:
+                midd = msg.text.replace("Invite:","")
+                ki3.findAndAddContactsByMid(midd)
+                ki3.inviteIntoGroup(msg.to,[midd])
 		
 		
             elif msg.text in ["/tagall","/Tagall"]:
@@ -339,7 +380,7 @@ def bot(op):
 		name = "".join([random.choice(source_str) for x in xrange(9)])
                 a1, a2, a3, a4, a5, a6, a7, b1, b2, b3, b4, b5 = "大吉！", "中吉！", "小吉！", "吉！", "末凶！", "凶！", "大吉！", "中吉！", "小吉！", "吉！", "末凶！", "凶！"
                 omikujilist = [a1,a2,a3,a4,a5,a6,a7,b1,b2,b3,b4,b5]
-                cl.sendText(msg.to, random.choice(omikujilist) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                random.choice(KAC).sendText(msg.to, random.choice(omikujilist) + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
             elif msg.text in ["天線寶寶你好"]:
 	       if msg.from_ in staff:
@@ -361,7 +402,7 @@ def bot(op):
                                     'PRDTYPE': 'THEME',
                                     'MSGTPL': '5'}
                 msg.text = None
-                cl.sendMessage(msg)
+                random.choice(KAC).sendMessage(msg)
 
 
             elif msg.text in ["/Cancel","/cancel","天線取消","天線寶ancel","天線Cancel"]:
@@ -399,11 +440,11 @@ def bot(op):
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     group = cl.getGroup(msg.to)
                     group.preventJoinByTicket = True
-                    cl.updateGroup(group)
+                    random.choice(KAC).updateGroup(group)
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"關閉網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        random.choice(KAC).sendText(msg.to,"關閉網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        cl.sendText(msg.to,"關閉網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        random.choice(KAC).sendText(msg.to,"關閉網址了≧∇≦\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
 		
             elif msg.text in ["/Urlon","/urlon"]:
@@ -413,24 +454,24 @@ def bot(op):
                     group = cl.getGroup(msg.to)
                     group.preventJoinByTicket = False
                     gurl = cl.reissueGroupTicket(msg.to)
-                    cl.updateGroup(group)
+                    random.choice(KAC).updateGroup(group)
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"開啟網址了≧∇≦\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        random.choice(KAC).sendText(msg.to,"開啟網址了≧∇≦\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        cl.sendText(msg.to,"開啟網址了≧∇≦\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        random.choice(KAC).sendText(msg.to,"開啟網址了≧∇≦\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		else:
 		   pass
             elif msg.text in ["/Time","/時刻","/time","/Now","/now"]:
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
-                cl.sendText(msg.to, "報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                random.choice(KAC).sendText(msg.to, "報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
 		
             elif msg.text in ["/Url","/url"]:
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
                 gurl = cl.reissueGroupTicket(msg.to)
-                cl.sendText(msg.to,"群組網址...\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                random.choice(KAC).sendText(msg.to,"群組網址...\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
 		
             elif msg.text in ["/Groupcreator","/群長","/Gc","/gc","/groupcreator","群長"]:
@@ -442,7 +483,7 @@ def bot(op):
                         gCreator = ginfo.members[0].displayName
                  except:
                         gCreator = ginfo.members[0].displayName
-		 cl.sendText(msg.to,"[群長]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		 random.choice(KAC).sendText(msg.to,"[群長]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
               else:
 		pass
 
@@ -548,7 +589,7 @@ def bot(op):
                     pass
 	
 	
-            elif msg.text in ["Owner","權限","權限名單","權限者"]:
+            elif msg.text in ["Owner"]:
               if msg.from_ in staff:
                 if staff == []:
                     cl.sendText(msg.to,"沒有權限用戶")
@@ -644,6 +685,16 @@ def bot(op):
                                 cl.sendText(msg.to,"已解除黑單")
                             except:
                                 cl.sendText(msg.to,"此用戶並不是黑單")
+				
+            elif msg.text in ["Bl","BL","bl"]:
+                if wait["blacklist"] == {}:
+                    cl.sendText(msg.to,"沒有黑名單")
+                else:
+                    cl.sendText(msg.to,"海綿寶寶黑名單用戶讀取中...")
+                    mc = ""
+                    for mi_d in wait["blacklist"]:
+                        mc += "->" +cl.getContact(mi_d).displayName + "\n"
+                    cl.sendText(msg.to,"海綿寶寶黑名單用戶:\n\n" + mc)
 		
             elif "Banlist" in msg.text:
                 if msg.from_ in staff:
@@ -789,7 +840,7 @@ def bot(op):
 #------------------------------------------------------------------------------------
 
 	if op.type == 11:
-	    if op.param2 not in Bots:
+	    if op.param3 in staff + Bots:
 		    G = cl.getGroup(op.param1)
 		    G.preventJoinByTicket = True
 		    cl.updateGroup(G)
@@ -797,7 +848,7 @@ def bot(op):
 		pass
 	
 	if op.type == 11:
-	    if op.param2 not in Bots:
+	    if op.param3 in staff + Bots:
 		    G = ki.getGroup(op.param1)
 		    G.preventJoinByTicket = True
 		    ki.updateGroup(G)
@@ -805,7 +856,7 @@ def bot(op):
 		pass
 	
 	if op.type == 11:
-	    if op.param2 not in Bots:
+	    if op.param3 in staff + Bots:
 		    G = ki2.getGroup(op.param1)
 		    G.preventJoinByTicket = True
 		    ki2.updateGroup(G)
@@ -813,7 +864,7 @@ def bot(op):
 		pass
 	
 	if op.type == 11:
-	    if op.param2 not in Bots:
+	    if op.param3 in staff + Bots:
 		    G = ki3.getGroup(op.param1)
 		    G.preventJoinByTicket = True
 		    ki3.updateGroup(G)
