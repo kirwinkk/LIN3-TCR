@@ -34,7 +34,6 @@ def bot(op):
                         cl.sendText(op.param1,str(len(group.invitee)) + "人已被取消 BOT作者:戦神↓\nhttp://line.me/ti/p/4-ZKcjagH0")
 			cl.sendText(op.param1,"九条騎士団∆...降臨☆")
                     else:
-			elapsed_time = time.time() - start
                         cl.sendText(op.param1,"邀請中沒人>< BOT作者:戦神↓\nhttp://line.me/ti/p/4-ZKcjagH0")
 			cl.sendText(op.param1,"九条騎士団∆...降臨☆")
                     cl.leaveGroup(op.param1)
