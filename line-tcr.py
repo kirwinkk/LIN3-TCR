@@ -14,7 +14,7 @@ ki.login(token="ElnO5bNG0LdWHM1lcVS0.Sz0l2hUZyDHZIRqY1ReQea.zGHUhmqxqPgy+U6lrJvR
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
-ki2.login(token="ElYMDwkqVW0giX8RQgGd.mew1MBAIrWGw8qqBqZsK+q.sL+Fzb1z9mhTc6edShDEsdHNt9rQGnIasF8luku6LTE=")
+ki2.login(token="Ekz4TgKpeSWkDvNsetY0.3FLXqaAHaqU2vr+bb+uJKa.5/52TwKOUdn8x2wWxkc2sBYihCNVQVO0/L+nx6GKNao=")
 ki2.loginResult()
 
 ki3 = LINETCR.LINE()
@@ -67,11 +67,11 @@ ki9mid = ki9.getProfile().mid
 ki15mid = ki15.getProfile().mid
 Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid]
 admin = [mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,"uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51","uef3dc2c514c550e1935b5b679dac38f6","u7a1c4338e6342bbbc33d9fa3c295b7d4","uad3b11a07372a5955ba75dc1caadeed8","u4ab4047d824385456811a2fe93c95382","u40c17f320e101b9f1abc9edaace6ed51","u8a627a2ff2ed54bcdd6c3b52f2b9691b","u96fd5925ecab120ea325511f4b53db11","ua0c6c9175efd94a9551338c72d6a7d17","u3d860a1bb50f8a536653b4940aa41bbf","u8be7a9504b9185ba75234f2f8110697b"]
-staff = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51"]
-staff2 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51"]
-staff3 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51"]
-staff4 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51"]
-staff5 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51"]
+staff = ["uc216d8664c4e1f43772c98b1b0b8956e"]
+staff2 = ["uc216d8664c4e1f43772c98b1b0b8956e"]
+staff3 = ["uc216d8664c4e1f43772c98b1b0b8956e"]
+staff4 = ["uc216d8664c4e1f43772c98b1b0b8956e"]
+staff5 = ["uc216d8664c4e1f43772c98b1b0b8956e"]
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
 admin2 = "ubecd98a04cbf74a830b6c95b67bd6b74"
 
@@ -82,7 +82,7 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"戦神公開保護V.8\n[使用方式]:\n邀請此機器進入群組,此機器為公開防翻。群內有機器,丟友資可查看是否黑單。\n\n[禁止事項]:\n\n$[不會]被黑單[不會]被踢:\n1.禁止開啟網址\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message':"戦神公開保護V.9\n[使用方式]:\n邀請此機器進入群組,此機器為公開防翻。群內有機器,丟友資可查看是否黑單。\n\n[禁止事項]:\n\n$[不會]被黑單[不會]被踢:\n1.禁止開啟網址\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'message1':"戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'lang':"JP",
     'linkprotect':True,
@@ -113,7 +113,7 @@ def bot(op):
 
         if op.type == 13:
            if mid in op.param3:
-		if op.param2 in staff2 + staff3 + staff4 + staff5 + admin:
+		if op.param2 in admin:
                         cl.acceptGroupInvitation(op.param1)
 			G = cl.getGroup(op.param1)
                         ginfo = cl.getGroup(op.param1)
@@ -134,7 +134,7 @@ def bot(op):
 			G.preventJoinByTicket = True
                         cl.updateGroup(G)
 		        try:
-                            cl.sendText(op.param1,"戦神公開保護V.8\n\n[禁止事項]:\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n3.禁止開啟網址\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n***注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
+                            cl.sendText(op.param1,"戦神公開保護V.9\n\n[禁止事項]:\n\n$[不會]被黑單[不會]被踢:\n1.禁止開啟網址\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
 		        except:
 			    pass
 		else:
@@ -164,7 +164,7 @@ def bot(op):
                     random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
 
         if op.type == 13:
-            if op.param2 not in Bots + staff + admin:
+            if op.param2 not in wait["stafflist2"] + wait["stafflist3"] + wait["stafflist4"] + wait["stafflist5"] + admin:
 		Inviter = op.param3.replace("",',')
                 InviterX = Inviter.split(",")
                 matched_list = []
@@ -200,7 +200,7 @@ def bot(op):
 		    random.choice(KAC).updateGroup(G)
 		
         if op.type == 13:
-            if op.param2 not in Bots + staff + admin:
+            if op.param2 not in wait["stafflist2"] + wait["stafflist3"] + wait["stafflist4"] + wait["stafflist5"] + admin:
 		Inviter = op.param3.replace("",',')
                 InviterX = Inviter.split(",")
                 matched_list = []
@@ -233,23 +233,12 @@ def bot(op):
 			
             else:
 		pass
-
-        if op.type == 13:
-           if ki15mid in op.param3:
-                        ki15.acceptGroupInvitation(op.param1)
-		        try:
-                            ginfo = cl.getGroup(op.param1)
-			    try:
-                                gCreator = ginfo.creator.displayName
-                            except:
-                                gCreator = ginfo.members[0].displayName
-                            cl.sendText(op.param1,"戦神來了,能愛愛嗎?")
-		        except:
-			    cl.sendText(op.param1,"戦神來了,能愛愛嗎?")
-			
-           else:
-		pass
 	
+
+	
+
+
+
 	
 				    
         if op.type == 26:
@@ -625,18 +614,19 @@ def bot(op):
                         pass
 	       else:
                     pass
-		
-            elif ("Oa1:" in msg.text):
+            elif ("Lv1:" in msg.text):
                 if msg.from_ in admin:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
                    key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += cl.getContact(key1).displayName
                    for x in key["MENTIONEES"]:
                        targets.append(x["M"])
                    for target in targets:
                             try:
                                 staff.append(target)
-                                ki.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,mi + " 已提升權限至Lv.1")
                             except:
                                 pass
                    print "[Command]Staff1 add executed"
@@ -645,18 +635,19 @@ def bot(op):
 	
 
 	
-            elif ("Oa2:" in msg.text):
+            elif ("Lv2:" in msg.text):
                 if msg.from_ in admin:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
                    key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += cl.getContact(key1).displayName
                    for x in key["MENTIONEES"]:
                        targets.append(x["M"])
                    for target in targets:
                             try:
                                 staff2.append(target)
-				staff.remove(target)
-                                ki.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,mi + " 已提升權限至Lv.1")
                             except:
                                 pass
                    print "[Command]Staff2 add executed"
@@ -664,81 +655,77 @@ def bot(op):
                     pass
 	
 
-            elif ("Oa3:" in msg.text):
+            elif ("Lv3:" in msg.text):
                 if msg.from_ in admin:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
                    key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += cl.getContact(key1).displayName
                    for x in key["MENTIONEES"]:
                        targets.append(x["M"])
                    for target in targets:
                             try:
                                 staff3.append(target)
-				staff2.remove(target)
-				staff.remove(target)
-                                ki.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,mi + " 已提升權限至Lv.1")
                             except:
                                 pass
                    print "[Command]Staff3 add executed"
                 else:
                     pass
 	
-            elif ("Oa4:" in msg.text):
+            elif ("Lv4:" in msg.text):
                 if msg.from_ in admin:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
                    key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += cl.getContact(key1).displayName
                    for x in key["MENTIONEES"]:
                        targets.append(x["M"])
                    for target in targets:
                             try:
                                 staff4.append(target)
-				staff2.remove(target)
-				staff.remove(target)
-				staff3.remove(target)
-                                ki.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,mi + " 已提升權限至Lv.1")
                             except:
                                 pass
                    print "[Command]Staff4 add executed"
                 else:
                     pass
 	
-            elif ("Oa5:" in msg.text):
+            elif ("Lv5:" in msg.text):
                 if msg.from_ in admin:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
                    key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += cl.getContact(key1).displayName
                    for x in key["MENTIONEES"]:
                        targets.append(x["M"])
                    for target in targets:
                             try:
                                 staff5.append(target)
-				staff2.remove(target)
-				staff.remove(target)
-				staff3.remove(target)
-				staff4.remove(target)
-                                ki.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,mi + " 已提升權限至Lv.1")
                             except:
                                 pass
                    print "[Command]Staff5 add executed"
                 else:
                     pass
+
 	
 
-            elif ("Od:" in msg.text):
+            elif ("Lvd1:" in msg.text):
                 if msg.from_ in admin:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
                    key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += cl.getContact(key1).displayName
                    for x in key["MENTIONEES"]:
                        targets.append(x["M"])
                    for target in targets:
                             try:
                                 staff.remove(target)
-				staff2.remove(target)
-				staff3.remove(target)
-				staff4.remove(target)
-				staff5.remove(target)
                                 ki.sendText(msg.to,contentMetadata["displayName"] + " 已被解除權限")
                             except:
                                 pass
@@ -753,21 +740,21 @@ def bot(op):
                 else:
                     ki4.sendText(msg.to,"權限名單讀取中...")
                     mc = ""
+		    mc2 = ""
+		    mc3 = ""
+		    mc4 = ""
+		    mc5 = ""
                     for mi_d in staff:
                         mc += "->" +cl.getContact(mi_d).displayName + "\n"
-                    mc2 = ""
                     for mi_d in staff2:
                         mc2 += "->" +cl.getContact(mi_d).displayName + "\n"
-                    mc3 = ""
                     for mi_d in staff3:
                         mc3 += "->" +cl.getContact(mi_d).displayName + "\n"
-                    mc4 = ""
                     for mi_d in staff4:
                         mc4 += "->" +cl.getContact(mi_d).displayName + "\n"
-                    mc5 = ""
                     for mi_d in staff5:
                         mc5 += "->" +cl.getContact(mi_d).displayName + "\n"
-                    ki4.sendText(msg.to,"權限用戶:\n\n€權限Lv.1\n" + mc + "\n€權限Lv.2\n" + mc2 +  + "\n€權限Lv.3\n" + mc3 + "\n€權限Lv.4\n" + mc4 + "\n€權限Lv.5\n" + mc5)
+                    ki4.sendText(msg.to,"權限用戶:\n\n€權限Lv.1\n" + mc + "\n€權限Lv.2\n" + mc2 + "\n€權限Lv.3\n" + mc3 + "\n€權限Lv.4\n" + mc4 + "\n€權限Lv.5\n" + mc5)
                     print "[Command]Stafflist executed"
               else:
                     pass
@@ -1148,7 +1135,7 @@ def bot(op):
         if op.type == 19:
             try:
                 if op.param3 in mid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki.updateGroup(G)
@@ -1188,7 +1175,7 @@ def bot(op):
                         ki7.updateGroup(G)
                         
                 elif op.param3 in kimid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki2.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki2.updateGroup(G)
@@ -1229,7 +1216,7 @@ def bot(op):
 
 
                 elif op.param3 in ki3mid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki4.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki4.updateGroup(G)
@@ -1270,7 +1257,7 @@ def bot(op):
                         ki9.updateGroup(G)
                         
                 elif op.param3 in ki2mid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki3.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki3.updateGroup(G)
@@ -1311,7 +1298,7 @@ def bot(op):
                         ki7.updateGroup(G)
                         
                 elif op.param3 in ki4mid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki5.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki5.updateGroup(G)
@@ -1352,7 +1339,7 @@ def bot(op):
                         ki8.updateGroup(G)
 
                 elif op.param3 in ki5mid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki6.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki6.updateGroup(G)
@@ -1393,7 +1380,7 @@ def bot(op):
                         ki6.updateGroup(G)
 
                 elif op.param3 in ki6mid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki7.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki7.updateGroup(G)
@@ -1434,7 +1421,7 @@ def bot(op):
                         ki5.updateGroup(G)
 
                 elif op.param3 in ki7mid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki8.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki8.updateGroup(G)
@@ -1475,7 +1462,7 @@ def bot(op):
                         ki7.updateGroup(G)
 
                 elif op.param3 in ki8mid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki9.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki9.updateGroup(G)
@@ -1516,7 +1503,7 @@ def bot(op):
                         ki9.updateGroup(G)
 
                 elif op.param3 in ki9mid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = cl.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         cl.updateGroup(G)
@@ -1558,7 +1545,7 @@ def bot(op):
                         ki8.updateGroup(G)
 
                 elif op.param3 in ki15mid:
-                    if op.param2 in Bots + staff + admin:
+                    if op.param2 in Bots + staff + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki8.getGroup(op.param1)
                         G.preventJoinByTicket = False
                         ki8.updateGroup(G)
@@ -1599,7 +1586,7 @@ def bot(op):
 def nameUpdate():
     while True:
                 profile = cl.getProfile()
-		profile.displayName = "戦神公開保護V.8.3.01"
+		profile.displayName = "戦神公開保護V.9.3.01"
 		cl.updateProfile(profile)
 		profile = ki.getProfile()
 		profile.displayName = "Helper"
@@ -1629,7 +1616,7 @@ def nameUpdate():
 		profile.displayName = "Protection[L]"
 		ki9.updateProfile(profile)
 		profile = ki15.getProfile()
-		profile.displayName = "規制垢8"
+		profile.displayName = "戦神☆"
 		ki15.updateProfile(profile)
                 
                 time.sleep(600000)
