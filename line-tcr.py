@@ -6,47 +6,47 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="EkyeKl3OcvOKJE3uZeV4.7RWlONtZ1Buiu1pRYoIM5a.xS4I9MgobgkkvFk2rmCNlcfyPMmkYy0wjAOESdjZqbI=")
+cl.login(token="ElDu2YnXzcSCGW9IJL47.1kyf4+QsP7krNDEVhERE5W.G2C9vbhttcWNvJp1mi7Zc4tRsrGXdPRrK0FxFahvpZQ=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(token="EkukzJ7gWt0PnbcWKv33.MG8BtWFbb+oGXed0Fa9qWW.qZYhkFJC8pm3HM8aHJkga4YQot2OfFpBIrx7PydTNxk=")
+ki.login(token="ElnO5bNG0LdWHM1lcVS0.Sz0l2hUZyDHZIRqY1ReQea.zGHUhmqxqPgy+U6lrJvRltytsZdmE2DUbEvQ0O4FIgM=")
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
-ki2.login(token="Ekz3ZKEdUZe7qOuBiyTc.SeZ4ifzYZu4HyhgP47tpha.MNA2ssYmaL52m1EKgvAlkwyg0KXC66bvsfiGMPh9IRE=")
+ki2.login(token="ElYMDwkqVW0giX8RQgGd.mew1MBAIrWGw8qqBqZsK+q.sL+Fzb1z9mhTc6edShDEsdHNt9rQGnIasF8luku6LTE=")
 ki2.loginResult()
 
 ki3 = LINETCR.LINE()
-ki3.login(token="Ekx78FlZHpDRydU5A5W0.bUWp6DHUJ5cshMkl5m0Aia.w9MLieeRDl2xBIa1ZbLI9F05sv7V3xdDA0PX6BaR8u0=")
+ki3.login(token="ElJXRXnXPNAjmOvNBxv7.hOpNr4wbx5KMeFmQXBc5TW./pl87Q/Wr+UOKYNfGHGhQNnpZ3EWqWc6njo2bgr4A3g=")
 ki3.loginResult()
 
 ki4 = LINETCR.LINE()
-ki4.login(token="El01F4qbxoO70DNpcG0a.qpniTLV/BQUc95lDYqkpkG.osH06b0WEjeUUjBLD74oytIEGQ/BzunpLf/z5O0FapI=")
+ki4.login(token="Ela4iQjLMmWhXL3aIWf5.1UlbJo7AaQIIh43vnZEmvq.pPK1IbCzUe6KWMspgg8Lpn2nuaIupiMbhT9ES/ak5JM=")
 ki4.loginResult()
 
 ki5 = LINETCR.LINE()
-ki5.login(token="EkFxBRmXkbP3J3mAZPM3.vy5yDd4vkH13GPwq582miW.yquPVYw1Q9FjnJjTEECpQ3AU0xiNsriNsUFWw0B2TVA=")
+ki5.login(token="ElJ8cXYFHheAy0yrvnzd.YKlYXsmUlktiA3+RX2h/Fq.EjU7baAXqyyTz04qiJf5AkiIMnoMIG5WPVjzTxW57Go=")
 ki5.loginResult()
 
 ki6 = LINETCR.LINE()
-ki6.login(token="El2e4tTG29CjOqKMB0h8.w0WR2OKO/canEpl7cVYAMa.6GMKEhlAD0dzu6xu8x4Wl+fSApjtztJ2saUz+UzRWnc=")
+ki6.login(token="El3K6C9QyHVdhFoAyIa7.jvd7T5r6TSHa3VMqwSkOfW.us5C1DGhPj7r01duuameWYe3Y0YTOItCMnau7nv8FXk=")
 ki6.loginResult()
 
 ki7 = LINETCR.LINE()
-ki7.login(token="Ek5wMqt6tyVsBgaXIMJ4.WjRz5oW1/nfIsExC/cMSza.LojIUZZ9d/VRceEWCYtOUkfPxYIJm9/WQoWb+IftcQg=")
+ki7.login(token="ElSx7EZx0N5f57VCYFo8.TzpFZMXsDV4G9tO87QsIsa.c6FLvd/TFOlEL6DC9J2AF/kLkoXbbDIoDOr3cxHv7dk=")
 ki7.loginResult()
 
 ki8 = LINETCR.LINE()
-ki8.login(token=" EkzWgfXlPZ6rRiJIry3d.eem+p7zyhJGXULW/YtGNpq.fpm/Lku3gUiMX+HhQCGBe4L3mniaRP0WeaKjohRju7o=")
+ki8.login(token="ElZsHsDUkvalYyW5nW17.Vd2UsBs90DtISMtyDR7IzW.d4WGeSUy2YMb4DqGXlqMl+SMIKueRrzunTQZS+520AI=")
 ki8.loginResult()
 
 ki9 = LINETCR.LINE()
-ki9.login(token="Ek4voHXMJwNsenvYwJc0.EATCF6MzZ/kW4LEHLIslea.RPzK3aMIbgipRHrHLqpJ1yRWxWOUfiBEwRqI1xmtdmk=")
+ki9.login(token="ElbhnySShZMghp3k6XG8.P9FyIUrUbeAmcjZnfpjX6a.METG+Pqt/AnOOfK8MuawG8yBnMbrDmi6dhcBj/LzeA4=")
 ki9.loginResult()
 
 ki15 = LINETCR.LINE()
-ki15.login(token="Elwqog7uvMTEiGRQER69.aLZN+GwDwgQS69XUBHE2Aq.w8FhrJeMLp0AbvHMIzIF2FTMfA9nbPP0gEfcDo19k+U=")
+ki15.login(token="ElDQ92ox8Ph7M0JYqQze.WHByzKXoh0n3ljIXSlIvBG.TjNkCixA8QYX8onbku8Obw1Ij+QEhpV+cQacCxomqr8=")
 ki15.loginResult()
 
 reload(sys)
@@ -68,6 +68,10 @@ ki15mid = ki15.getProfile().mid
 Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid]
 admin = [mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,"uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51","uef3dc2c514c550e1935b5b679dac38f6","u7a1c4338e6342bbbc33d9fa3c295b7d4","uad3b11a07372a5955ba75dc1caadeed8","u4ab4047d824385456811a2fe93c95382","u40c17f320e101b9f1abc9edaace6ed51","u8a627a2ff2ed54bcdd6c3b52f2b9691b","u96fd5925ecab120ea325511f4b53db11","ua0c6c9175efd94a9551338c72d6a7d17","u3d860a1bb50f8a536653b4940aa41bbf","u8be7a9504b9185ba75234f2f8110697b"]
 staff = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51"]
+staff2 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51"]
+staff3 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51"]
+staff4 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51"]
+staff5 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51"]
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
 admin2 = "ubecd98a04cbf74a830b6c95b67bd6b74"
 
@@ -109,6 +113,7 @@ def bot(op):
 
         if op.type == 13:
            if mid in op.param3:
+		if op.param2 in staff2 + staff3 + staff4 + staff5 + admin:
                         cl.acceptGroupInvitation(op.param1)
 			G = cl.getGroup(op.param1)
                         ginfo = cl.getGroup(op.param1)
@@ -129,10 +134,11 @@ def bot(op):
 			G.preventJoinByTicket = True
                         cl.updateGroup(G)
 		        try:
-                            ginfo = cl.getGroup(op.param1)
-                            cl.sendText(op.param1,"戦神公開保護V.8\n\n[禁止事項]:\n\n$[不會]被黑單[不會]被踢:\n1.禁止開啟網址\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
+                            cl.sendText(op.param1,"戦神公開保護V.8\n\n[禁止事項]:\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n3.禁止開啟網址\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n***注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
 		        except:
-			    cl.sendText(op.param1,"戦神公開保護V.8\n\n[禁止事項]:\n\n$[不會]被黑單[不會]被踢:\n1.禁止開啟網址\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
+			    pass
+		else:
+		  pass
            else:
 		pass
         if op.type == 13:
@@ -245,53 +251,6 @@ def bot(op):
 		pass
 	
 	
-        if op.type == 26:
-            msg = op.message
-            if msg.text in ["/Kicker","/kicker","kicker","Kicker"]:
-		if msg.from_ in ki15mid:
-                        G = ki15.getGroup(msg.to)
-                        ginfo = ki15.getGroup(msg.to)
-                        G.preventJoinByTicket = False
-                        ki15.updateGroup(G)
-                        invsend = 0
-                        Ticket = ki15.reissueGroupTicket(msg.to)
-			cl.acceptGroupInvitationByTicket(msg.to,Ticket)
-			ki.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        ki2.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        ki3.acceptGroupInvitationByTicket(msg.to,Ticket)
-			ki4.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        ki5.acceptGroupInvitationByTicket(msg.to,Ticket)
-			ki6.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        ki7.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        ki8.acceptGroupInvitationByTicket(msg.to,Ticket)
-			ki9.acceptGroupInvitationByTicket(msg.to,Ticket)
-			cl.sendText(msg.to,"戦神公開保護V.8\n\n[禁止事項]:\n\n$[不會]被黑單[不會]被踢:\n1.禁止開啟網址\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
-                        G = ki8.getGroup(msg.to)
-                        ginfo = ki8.getGroup(msg.to)
-                        G.preventJoinByTicket = True
-                        ki8.updateGroup(G)
-                        print "kicker ok"
-                        G.preventJoinByTicket(G)
-                        ki8.updateGroup(G)
-				    
-            elif msg.text in ["Cancel","cancel"]:
-	      if msg.from_ in ki15mid:
-                if msg.toType == 2:
-                    group = ki15.getGroup(msg.to)
-                    if group.invitee is not None:
-                        gInviMids = [contact.mid for contact in group.invitee]
-                        ki15.cancelGroupInvitation(msg.to, gInviMids)
-                        ki15.sendText(msg.to,"取消了 "+ str(len(group.invitee)) + " 個邀請")
-                    else:
-                        if wait["lang"] == "JP":
-                            ki15.sendText(msg.to,"找不到能取消的邀請")
-                        else:
-                            ki15.sendText(msg.to,"找不到能取消的邀請")
-                else:
-                    pass	    
-				    
-            else:
-		pass		    
 				    
         if op.type == 26:
             msg = op.message
@@ -667,7 +626,7 @@ def bot(op):
 	       else:
                     pass
 		
-            elif ("Oa:" in msg.text):
+            elif ("Oa1:" in msg.text):
                 if msg.from_ in admin:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
@@ -677,13 +636,95 @@ def bot(op):
                    for target in targets:
                             try:
                                 staff.append(target)
-                                ki3.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,"已加入權限名單")
                             except:
                                 pass
-                   print "[Command]Staff add executed"
+                   print "[Command]Staff1 add executed"
                 else:
                     pass
 	
+
+	
+            elif ("Oa2:" in msg.text):
+                if msg.from_ in admin:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff2.append(target)
+				staff.remove(target)
+                                ki.sendText(msg.to,"已加入權限名單")
+                            except:
+                                pass
+                   print "[Command]Staff2 add executed"
+                else:
+                    pass
+	
+
+            elif ("Oa3:" in msg.text):
+                if msg.from_ in admin:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff3.append(target)
+				staff2.remove(target)
+				staff.remove(target)
+                                ki.sendText(msg.to,"已加入權限名單")
+                            except:
+                                pass
+                   print "[Command]Staff3 add executed"
+                else:
+                    pass
+	
+            elif ("Oa4:" in msg.text):
+                if msg.from_ in admin:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff4.append(target)
+				staff2.remove(target)
+				staff.remove(target)
+				staff3.remove(target)
+                                ki.sendText(msg.to,"已加入權限名單")
+                            except:
+                                pass
+                   print "[Command]Staff4 add executed"
+                else:
+                    pass
+	
+            elif ("Oa5:" in msg.text):
+                if msg.from_ in admin:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff5.append(target)
+				staff2.remove(target)
+				staff.remove(target)
+				staff3.remove(target)
+				staff4.remove(target)
+                                ki.sendText(msg.to,"已加入權限名單")
+                            except:
+                                pass
+                   print "[Command]Staff5 add executed"
+                else:
+                    pass
+	
+
             elif ("Od:" in msg.text):
                 if msg.from_ in admin:
                    targets = []
@@ -694,13 +735,16 @@ def bot(op):
                    for target in targets:
                             try:
                                 staff.remove(target)
-                                ki4.sendText(msg.to,"已解除權限")
+				staff2.remove(target)
+				staff3.remove(target)
+				staff4.remove(target)
+				staff5.remove(target)
+                                ki.sendText(msg.to,contentMetadata["displayName"] + " 已被解除權限")
                             except:
                                 pass
-                   print "[Command]Staff add executed"
+                   print "[Command]Staff remove executed"
                 else:
                     pass
-	
 	
             elif msg.text in ["Owner"]:
               if msg.from_ in staff:
@@ -711,7 +755,19 @@ def bot(op):
                     mc = ""
                     for mi_d in staff:
                         mc += "->" +cl.getContact(mi_d).displayName + "\n"
-                    ki4.sendText(msg.to,"權限用戶:\n\n" + mc)
+                    mc2 = ""
+                    for mi_d in staff2:
+                        mc2 += "->" +cl.getContact(mi_d).displayName + "\n"
+                    mc3 = ""
+                    for mi_d in staff3:
+                        mc3 += "->" +cl.getContact(mi_d).displayName + "\n"
+                    mc4 = ""
+                    for mi_d in staff4:
+                        mc4 += "->" +cl.getContact(mi_d).displayName + "\n"
+                    mc5 = ""
+                    for mi_d in staff5:
+                        mc5 += "->" +cl.getContact(mi_d).displayName + "\n"
+                    ki4.sendText(msg.to,"權限用戶:\n\n€權限Lv.1\n" + mc + "\n€權限Lv.2\n" + mc2 +  + "\n€權限Lv.3\n" + mc3 + "\n€權限Lv.4\n" + mc4 + "\n€權限Lv.5\n" + mc5)
                     print "[Command]Stafflist executed"
               else:
                     pass
@@ -1549,13 +1605,13 @@ def nameUpdate():
 		profile.displayName = "Helper"
 		ki.updateProfile(profile)
 		profile = ki2.getProfile()
-		profile.displayName = "Helper"
+		profile.displayName = "Checker[A]"
 		ki2.updateProfile(profile)
 		profile = ki3.getProfile()
-		profile.displayName = "Checker[A]"
+		profile.displayName = "Protection[F]"
 		ki3.updateProfile(profile)
 		profile = ki4.getProfile()
-		profile.displayName = "Checker[B]"
+		profile.displayName = "Protection[G]"
 		ki4.updateProfile(profile)
 		profile = ki5.getProfile()
 		profile.displayName = "Protection[H]"
