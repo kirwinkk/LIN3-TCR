@@ -103,8 +103,9 @@ helpMessage ="""※指令Lv.1以上使用
 [Lv1:@]...標註增加Lv0權限至Lv1
 [Lvd1:@]...標註刪除Lv1權限至Lv0
 [/test]...查看防翻狀態
+[Allsay:]...群發訊息
 
-※盡量少用指令,避免盪,謝謝※
+※盡量少用指令,謝謝※
 作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
 """
@@ -933,6 +934,12 @@ def bot(op):
 		else:
                     pass
 
+            elif "Allsay:" in msg.text: 
+                if msg.from_ in admin + staff6: 
+                  bctxt = msg.text.replace("Allsay:","") 
+                  gid = cl.getGroupIdsJoined()
+                  for i in gid: 
+                    cl.sendText(i,(bctxt))
 			
             elif "Nk:" in msg.text:
 	      if msg.from_ in admin + staff4 + staff5 + staff6:
