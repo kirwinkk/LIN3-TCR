@@ -14,7 +14,7 @@ ki.login(token="ElnO5bNG0LdWHM1lcVS0.Sz0l2hUZyDHZIRqY1ReQea.zGHUhmqxqPgy+U6lrJvR
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
-ki2.login(token="ElYMDwkqVW0giX8RQgGd.mew1MBAIrWGw8qqBqZsK+q.sL+Fzb1z9mhTc6edShDEsdHNt9rQGnIasF8luku6LTE=")
+ki2.login(token="Ekz4TgKpeSWkDvNsetY0.3FLXqaAHaqU2vr+bb+uJKa.5/52TwKOUdn8x2wWxkc2sBYihCNVQVO0/L+nx6GKNao=")
 ki2.loginResult()
 
 ki3 = LINETCR.LINE()
@@ -636,7 +636,7 @@ def bot(op):
                    for target in targets:
                             try:
                                 staff.append(target)
-                                ki.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,"權限Lv.1")
                             except:
                                 pass
                    print "[Command]Staff1 add executed"
@@ -654,9 +654,10 @@ def bot(op):
                        targets.append(x["M"])
                    for target in targets:
                             try:
+				staff.append(target)
                                 staff2.append(target)
 				staff.remove(target)
-                                ki.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,"權限Lv.2")
                             except:
                                 pass
                    print "[Command]Staff2 add executed"
@@ -673,10 +674,12 @@ def bot(op):
                        targets.append(x["M"])
                    for target in targets:
                             try:
+				staff.append(target)
+				staff2.append(target)
                                 staff3.append(target)
 				staff2.remove(target)
 				staff.remove(target)
-                                ki.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,"權限Lv.3")
                             except:
                                 pass
                    print "[Command]Staff3 add executed"
@@ -692,11 +695,14 @@ def bot(op):
                        targets.append(x["M"])
                    for target in targets:
                             try:
+				staff.append(target)
+				staff2.append(target)
+				staff3.append(target)
                                 staff4.append(target)
 				staff2.remove(target)
 				staff.remove(target)
 				staff3.remove(target)
-                                ki.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,"權限Lv.4")
                             except:
                                 pass
                    print "[Command]Staff4 add executed"
@@ -712,12 +718,16 @@ def bot(op):
                        targets.append(x["M"])
                    for target in targets:
                             try:
+				staff.append(target)
+				staff2.append(target)
+				staff3.append(target)
+				staff4.append(target)
                                 staff5.append(target)
 				staff2.remove(target)
 				staff.remove(target)
 				staff3.remove(target)
 				staff4.remove(target)
-                                ki.sendText(msg.to,"已加入權限名單")
+                                ki.sendText(msg.to,"權限Lv.5")
                             except:
                                 pass
                    print "[Command]Staff5 add executed"
@@ -753,21 +763,21 @@ def bot(op):
                 else:
                     ki4.sendText(msg.to,"權限名單讀取中...")
                     mc = ""
+		    mc2 = ""
+		    mc3 = ""
+		    mc4 = ""
+		    mc5 = ""
                     for mi_d in staff:
                         mc += "->" +cl.getContact(mi_d).displayName + "\n"
-                    mc2 = ""
                     for mi_d in staff2:
                         mc2 += "->" +cl.getContact(mi_d).displayName + "\n"
-                    mc3 = ""
                     for mi_d in staff3:
                         mc3 += "->" +cl.getContact(mi_d).displayName + "\n"
-                    mc4 = ""
                     for mi_d in staff4:
                         mc4 += "->" +cl.getContact(mi_d).displayName + "\n"
-                    mc5 = ""
                     for mi_d in staff5:
                         mc5 += "->" +cl.getContact(mi_d).displayName + "\n"
-                    ki4.sendText(msg.to,"權限用戶:\n\n€權限Lv.1\n" + mc + "\n€權限Lv.2\n" + mc2 +  + "\n€權限Lv.3\n" + mc3 + "\n€權限Lv.4\n" + mc4 + "\n€權限Lv.5\n" + mc5)
+                    ki4.sendText(msg.to,"權限用戶:\n\n€權限Lv.1\n" + mc + "\n€權限Lv.2\n" + mc2 + "\n€權限Lv.3\n" + mc3 + "\n€權限Lv.4\n" + mc4 + "\n€權限Lv.5\n" + mc5)
                     print "[Command]Stafflist executed"
               else:
                     pass
