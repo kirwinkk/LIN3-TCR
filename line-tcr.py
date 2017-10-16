@@ -235,7 +235,7 @@ a17mid = a17.getProfile().mid
 a18mid = a18.getProfile().mid
 a19mid = a19.getProfile().mid
 a20mid = a20.getProfile().mid
-Bots=[mid1,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,a1mid,a2mid,a3mid,a4mid,a5mid,a6mid,a7mid,a8mid,a9mid,a10mid,a11mid,a12mid,a13mid,a14mid,a15mid,a16mid,a17mid,a18mid,a19mid,a20mid]
+Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,a1mid,a2mid,a3mid,a4mid,a5mid,a6mid,a7mid,a8mid,a9mid,a10mid,a11mid,a12mid,a13mid,a14mid,a15mid,a16mid,a17mid,a18mid,a19mid,a20mid]
 admin = [mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,"uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51","uef3dc2c514c550e1935b5b679dac38f6","u7a1c4338e6342bbbc33d9fa3c295b7d4","uad3b11a07372a5955ba75dc1caadeed8","u4ab4047d824385456811a2fe93c95382","u40c17f320e101b9f1abc9edaace6ed51","u8a627a2ff2ed54bcdd6c3b52f2b9691b","u96fd5925ecab120ea325511f4b53db11","ua0c6c9175efd94a9551338c72d6a7d17","u3d860a1bb50f8a536653b4940aa41bbf","u8be7a9504b9185ba75234f2f8110697b"]
 staff = []
 staff2 = []
@@ -345,6 +345,9 @@ def bot(op):
                 if matched_list == []:
                     pass
                 else:
+		   try:
+		        kicker.kickoutFromGroup(op.param1,[op.param2])
+		   except:
 			G = cl.getGroup(op.param1)
 			G.preventJoinByTicket = False
 			random.choice(KAC).updateGroup(G)
@@ -388,10 +391,13 @@ def bot(op):
                 if matched_list == []:
                     pass
                 else:
+		   try:
+		        kicker.kickoutFromGroup(op.param1,[op.param2])
+		   except:
 			G = cl.getGroup(op.param1)
 			G.preventJoinByTicket = False
 			random.choice(KAC).updateGroup(G)
-			Ticket = ki5.reissueGroupTicket(op.param1)
+			Ticket = ki2.reissueGroupTicket(op.param1)
 			kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
 			random.choice(KAC).updateGroup(G)
 			kicker.kickoutFromGroup(op.param1,[op.param2])
@@ -815,6 +821,38 @@ def bot(op):
                         pass
 	       else:
                     pass
+		
+            elif msg.text in ["/kicker9bye","/Kicker9bye"]:
+	       if msg.from_ in admin + staff3 + staff4 + staff5 + staff6:
+                if msg.toType == 2:
+                    ginfo = cl.getGroup(msg.to)
+                    try:
+			cl.sendText(msg.to,"作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
+			a1.leaveGroup(msg.to)
+			a2.leaveGroup(msg.to)
+			a3.leaveGroup(msg.to)
+			a4.leaveGroup(msg.to)
+			a5.leaveGroup(msg.to)
+			a6.leaveGroup(msg.to)
+			a7.leaveGroup(msg.to)
+			a8.leaveGroup(msg.to)
+			a9.leaveGroup(msg.to)
+			a11.leaveGroup(msg.to)
+			a12.leaveGroup(msg.to)
+			a13.leaveGroup(msg.to)
+			a14.leaveGroup(msg.to)
+			a15.leaveGroup(msg.to)
+			a16.leaveGroup(msg.to)
+			a17.leaveGroup(msg.to)
+			a18.leaveGroup(msg.to)
+			a19.leaveGroup(msg.to)
+			a10.leaveGroup(msg.to)
+			a20.leaveGroup(msg.to)
+                    except:
+                        pass
+	       else:
+                    pass
+
             elif ("Lv1:" in msg.text):
                 if msg.from_ in admin:
                    targets = []
@@ -1318,6 +1356,43 @@ def bot(op):
                         G.preventJoinByTicket(G)
                         ki.updateGroup(G)
 			
+            elif msg.text in ["/Kicker9bot","/kicker9bot","/kicker9"]:
+		if msg.from_ in admin + staff3 + staff4 + staff5 + staff6:
+                        G = cl.getGroup(msg.to)
+                        ginfo = cl.getGroup(msg.to)
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        invsend = 0
+                        Ticket = cl.reissueGroupTicket(msg.to)
+			a1.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        a2.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        a3.acceptGroupInvitationByTicket(msg.to,Ticket)
+			a4.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        a5.acceptGroupInvitationByTicket(msg.to,Ticket)
+			a6.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        a7.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        a8.acceptGroupInvitationByTicket(msg.to,Ticket)
+			a9.acceptGroupInvitationByTicket(msg.to,Ticket)
+			a10.acceptGroupInvitationByTicket(msg.to,Ticket)
+			a11.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        a12.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        a13.acceptGroupInvitationByTicket(msg.to,Ticket)
+			a14.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        a15.acceptGroupInvitationByTicket(msg.to,Ticket)
+			a16.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        a17.acceptGroupInvitationByTicket(msg.to,Ticket)
+                        a18.acceptGroupInvitationByTicket(msg.to,Ticket)
+			a19.acceptGroupInvitationByTicket(msg.to,Ticket)
+			a20.acceptGroupInvitationByTicket(msg.to,Ticket)
+			cl.sendText(msg.to,"保護追加完成")
+                        G = a20.getGroup(msg.to)
+                        ginfo = a20.getGroup(msg.to)
+                        G.preventJoinByTicket = True
+                        a20.updateGroup(G)
+                        print "kicker ok"
+                        G.preventJoinByTicket(G)
+                        a20.updateGroup(G)
+			
 
 #--------------------------------------------------------
             elif "/mid:" in msg.text:
@@ -1363,6 +1438,12 @@ def bot(op):
 	
 	if op.type == 11:
 	    if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
+		try:
+			kicker.kickoutFromGroup(op.param1,[op.param2])
+			G.preventJoinByTicket = True
+			random.choice(KAC2).updateGroup(G)
+
+		except:
 		    G = ki9.getGroup(op.param1)
 		    Ticket = ki6.reissueGroupTicket(op.param1)
 		    kicker = random.choice(KAC2)
@@ -1381,16 +1462,17 @@ def bot(op):
             print "someone was kicked"
 	    kicker = random.choice(KAC2)
             try:
+                        kicker.kickoutFromGroup(op.param1,[op.param2])
+            except:
 			G = cl.getGroup(op.param1)
 			G.preventJoinByTicket = False
 			random.choice(KAC).updateGroup(G)
 			Ticket = ki5.reissueGroupTicket(op.param1)
 			kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
-			random.choice(KAC).updateGroup(G)
 			kicker.kickoutFromGroup(op.param1,[op.param2])
+			G.preventJoinByTicket = True
+			random.choice(KAC).updateGroup(G)
 			kicker.leaveGroup(op.param1)
-            except:
-		random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 	
 
 				
