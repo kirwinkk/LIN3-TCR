@@ -12,7 +12,7 @@ cl.loginResult()
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""=====[ℬᎶ戦神無料Bot]=====
+helpMessage ="""[戦神無料代行]
 
 [help]   查看指令
 [Author]   作者顯示
@@ -138,9 +138,22 @@ def bot(op):
                             cl.updateGroup(G)
                         except:
                             cl.sendText(msg.to,"error")
-            if msg.toType == 1:
-                if wait["leaveRoom"] == True:
-                    cl.leaveRoom(msg.to)
+        if op.type == 26:
+            msg = op.message
+            if msg.contentType == 13:
+                    msg.contentType = 0
+                    if 'displayName' in msg.contentMetadata:
+                        contact = cl.getContact(msg.contentMetadata["mid"])
+                        try:
+                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
+                        except:
+                            cu = ""
+			if msg.contentMetadata["mid"] in wait["blacklist"]:
+                             cl.sendText(msg.to,"[戦神無料代行]\n" + msg.contentMetadata["mid"])
+                        else:
+			     cl.sendText(msg.to,"[戦神無料代行]\n" + msg.contentMetadata["mid"])
+		
+
         if op.type == 25:
             msg = op.message
             if msg.contentType == 13:
