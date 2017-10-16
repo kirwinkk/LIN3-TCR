@@ -49,6 +49,98 @@ ki15 = LINETCR.LINE()
 ki15.login(token="ElDQ92ox8Ph7M0JYqQze.WHByzKXoh0n3ljIXSlIvBG.TjNkCixA8QYX8onbku8Obw1Ij+QEhpV+cQacCxomqr8=")
 ki15.loginResult()
 
+a1 = LINETCR.LINE()
+a1.login(token="El6RJVvEot5RhvbgX7z6.7Z3cXrtfuogtw1TNNAW49G.g3i1XUW57muA5og3v9YU9KriZ5fzIABYUR9CcgSSMAs=")
+a1.loginResult()
+#海綿
+
+a2 = LINETCR.LINE()
+a2.login(token="EljdBhjIpyymNQ2iMdU4.EHXdooy0k7Vdpz/JWPw31a.RJ+ND/knQqmufOobx17Ayy4be3hkmgII8UU8IeQU8fw=")
+a2.loginResult()
+#派大
+
+a3 = LINETCR.LINE()
+a3.login(token="Eli6mQsqZLJIa0EwiVU8.RtSrOhnYPzvBP13bYQ3U2a.KuFRaSQhQorY0YCTT5HafXsJ2RhQfHu8JVKiE2ZMx4g=")
+a3.loginResult()
+#章魚
+
+a4 = LINETCR.LINE()
+a4.login(token="ElVveSrReW1r3M1fgFe2.sRqeFyjdHuvOeAl/K8LtGG.OvOPQBx5l+agUJi0RDXjZORdoYWJusY04Q0gVQnFP9E=")
+a4.loginResult()
+#蟹老闆
+
+a5 = LINETCR.LINE()
+a5.login(token="EkUTvGSfGiJl7neSSY01.qmf+mG4qg58AVj7ARoBTuq.7zaTkwOMZslGg9hUAq+F6joM8+2gxN/GkA8FFhZm8U0=")
+a5.loginResult()
+#
+
+a6 = LINETCR.LINE()
+a6.login(token="El3KdJJCZOqb7mghrRdb.IMj6l+lTvlZDBdTs8RLPgW.bXvLPScmdtmgHcxashs30mfxrjoTSnQ7YtyGs0b9Vug=")
+a6.loginResult()
+#皮
+
+a7 = LINETCR.LINE()
+a7.login(token="ElitY4szw2pp5a58exS1.LV1zjEYReG6JjveFs1pBeq.Zo1o5IeEvF+Y5azZBOyznGhXCpKJhBTCZXQIxeaKJ7g=")
+a7.loginResult()
+#泡芙
+
+a8 = LINETCR.LINE()
+a8.login(token="Elqogkd0Qgc1jWQGdcG7.OmBjf179LkLveZJhlwP9fW./QufjNTidU38rkqyStIwLUjku87wmEpaDQHJchrz298=")
+a8.loginResult()
+#飛行
+
+a9 = LINETCR.LINE()
+a9.login(token="ElRv4rztCf0A5XjUrXSb.I/EPueUrHBP1i08VGrbPEW.PYqqYElEpJerTUhOl889jOSeflkwbHS8rMZOirCAXGY=")
+a9.loginResult()
+#小蝸
+
+a10 = LINETCR.LINE()
+a10.login(token="El7SEgsY1dmlCTIrqFJf.pyykg7upILnMu7sucQqBVW.eF9xLrkT+ozFZZDjcUExp8OEqgPnRA7bPpzxRd6OrqU=")
+a10.loginResult()
+#水母
+
+a11 = LINETCR.LINE()
+a11.login(token="ElLfLh1FoJej5kJLCi1d.VSu/lwQt0BfHIYFV2IIO3q.eX3RwkxpP60a7VWGhmmlylbXj2IcYgR5yPWNXXQnuzw=")
+a11.loginResult()
+
+a12 = LINETCR.LINE()
+a12.login(token="ElCkxC0ty8IIFHi5J5Wc.u6kB6lCxZNreCdd3sRm+ha.zyXY0IRL81SYWuDaSGbAo7Jc4YyQfbPQuvAF5XBuQiA=")
+a12.loginResult()
+
+a13 = LINETCR.LINE()
+a13.login(token="ElpfCEBttwuXeMEshcA2.e4ZI31Q97N5EAzwpc+/hSG.UMLvXWR3dooUPYPaLvehECVCNZpIaami2ylznkRBFe8=")
+a13.loginResult()
+
+a14 = LINETCR.LINE()
+a14.login(token="ElhhqMHKmadxMyLVdsle.iT+8/7l878DR2aicLAjOFG.bAEl2O+0GPOLFG2MozptfmieGgYaoBVkIpPqNLAY564=")
+a14.loginResult()
+
+a15 = LINETCR.LINE()
+a15.login(token="Elibg5HYUBwvBJOPYNz7.K8FC8OdgCWbu6m4pI99ALW.G5kAer/FLiiI4PKiZ+7jxHvV260hIMIV04zgiDxmSIg=")
+a15.loginResult()
+
+a16 = LINETCR.LINE()
+a16.login(token="ElJXRXnXPNAjmOvNBxv7.hOpNr4wbx5KMeFmQXBc5TW./pl87Q/Wr+UOKYNfGHGhQNnpZ3EWqWc6njo2bgr4A3g=")
+a16.loginResult()
+
+a17 = LINETCR.LINE()
+a17.login(token="Ela4iQjLMmWhXL3aIWf5.1UlbJo7AaQIIh43vnZEmvq.pPK1IbCzUe6KWMspgg8Lpn2nuaIupiMbhT9ES/ak5JM=")
+a17.loginResult()
+
+a18 = LINETCR.LINE()
+a18.login(token="ElJ8cXYFHheAy0yrvnzd.YKlYXsmUlktiA3+RX2h/Fq.EjU7baAXqyyTz04qiJf5AkiIMnoMIG5WPVjzTxW57Go=")
+a18.loginResult()
+
+a19 = LINETCR.LINE()
+a19.login(token="El3K6C9QyHVdhFoAyIa7.jvd7T5r6TSHa3VMqwSkOfW.us5C1DGhPj7r01duuameWYe3Y0YTOItCMnau7nv8FXk=")
+a19.loginResult()
+
+a20 = LINETCR.LINE()
+a20.login(token="ElSx7EZx0N5f57VCYFo8.TzpFZMXsDV4G9tO87QsIsa.c6FLvd/TFOlEL6DC9J2AF/kLkoXbbDIoDOr3cxHv7dk=")
+a20.loginResult()
+
+
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -110,6 +202,7 @@ http://line.me/ti/p/4-ZKcjagH0
 """
 
 KAC=[cl,ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9]
+KAC2=[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20]
 mid = cl.getProfile().mid
 kimid = ki.getProfile().mid
 ki2mid = ki2.getProfile().mid
@@ -121,7 +214,27 @@ ki7mid = ki7.getProfile().mid
 ki8mid = ki8.getProfile().mid
 ki9mid = ki9.getProfile().mid
 ki15mid = ki15.getProfile().mid
-Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid]
+a1mid = a1.getProfile().mid
+a2mid = a2.getProfile().mid
+a3mid = a3.getProfile().mid
+a4mid = a4.getProfile().mid
+a5mid = a5.getProfile().mid
+a6mid = a6.getProfile().mid
+a7mid = a7.getProfile().mid
+a8mid = a8.getProfile().mid
+a9mid = a9.getProfile().mid
+a10mid = a10.getProfile().mid
+a11mid = a11.getProfile().mid
+a12mid = a12.getProfile().mid
+a13mid = a13.getProfile().mid
+a14mid = a14.getProfile().mid
+a15mid = a15.getProfile().mid
+a16mid = a16.getProfile().mid
+a17mid = a17.getProfile().mid
+a18mid = a18.getProfile().mid
+a19mid = a19.getProfile().mid
+a20mid = a20.getProfile().mid
+Bots=[mid1,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,a1mid,a2mid,a3mid,a4mid,a5mid,a6mid,a7mid,a8mid,a9mid,a10mid,a11mid,a12mid,a13mid,a14mid,a15mid,a16mid,a17mid,a18mid,a19mid,a20mid]
 admin = [mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,"uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51","uef3dc2c514c550e1935b5b679dac38f6","u7a1c4338e6342bbbc33d9fa3c295b7d4","uad3b11a07372a5955ba75dc1caadeed8","u4ab4047d824385456811a2fe93c95382","u40c17f320e101b9f1abc9edaace6ed51","u8a627a2ff2ed54bcdd6c3b52f2b9691b","u96fd5925ecab120ea325511f4b53db11","ua0c6c9175efd94a9551338c72d6a7d17","u3d860a1bb50f8a536653b4940aa41bbf","u8be7a9504b9185ba75234f2f8110697b"]
 staff = []
 staff2 = []
@@ -139,7 +252,7 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"戦神公開保護V.9\n[使用方式]:\n邀請此機器進入群組,此機器為公開防翻。群內有機器,丟友資可查看是否黑單。\n\n[禁止事項]:\n\n$[不會]被黑單[不會]被踢:\n1.禁止開啟網址\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message':"戦神公開保護V.9\n[使用方式]:\n邀請此機器進入群組,此機器為公開防翻。群內有機器,丟友資可查看是否黑單。\n\n[禁止事項]:\n\n$[不會]被黑單[會]被踢:\n1.禁止開啟網址\n2.禁止邀請黑單用戶\n3.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'message1':"戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'lang':"JP",
     'linkprotect':True,
@@ -224,13 +337,21 @@ def bot(op):
             if op.param2 not in admin + staff2 + staff3 + staff4 + staff5 + staff6:
 		Inviter = op.param3.replace("",',')
                 InviterX = Inviter.split(",")
+		kicker = random.choice(KAC2)
                 matched_list = []
                 for tag in wait["blacklist"]:
                     matched_list+=filter(lambda str: str == tag, InviterX)
                 if matched_list == []:
                     pass
                 else:
-		    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+			G = cl.getGroup(op.param1)
+			G.preventJoinByTicket = False
+			random.choice(KAC).updateGroup(G)
+			Ticket = ki2.reissueGroupTicket(op.param1)
+			kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
+			random.choice(KAC).updateGroup(G)
+			kicker.kickoutFromGroup(op.param1,[op.param2])
+			kicker.leaveGroup(op.param1)
 			
         if op.type == 13:
 		Inviter = op.param3.replace("",',')
@@ -266,7 +387,14 @@ def bot(op):
                 if matched_list == []:
                     pass
                 else:
-		    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+			G = cl.getGroup(op.param1)
+			G.preventJoinByTicket = False
+			random.choice(KAC).updateGroup(G)
+			Ticket = ki5.reissueGroupTicket(op.param1)
+			kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
+			random.choice(KAC).updateGroup(G)
+			kicker.kickoutFromGroup(op.param1,[op.param2])
+			kicker.leaveGroup(op.param1)
 
         if op.type == 26:
             msg = op.message
@@ -1235,64 +1363,33 @@ def bot(op):
 	if op.type == 11:
 	    if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
 		    G = ki9.getGroup(op.param1)
+		    Ticket = ki6.reissueGroupTicket(op.param1)
+		    kicker = random.choice(KAC2)
+		    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
 		    G.preventJoinByTicket = True
-		    ki9.updateGroup(G)
+		    random.choice(KAC).updateGroup(G)
+		    kicker.kickoutFromGroup(op.param1,[op.param2])
+		    kicker.leaveGroup(op.param1)
 	    else:
 		pass
 	
-	if op.type == 11:
-	    if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
-		    G = ki8.getGroup(op.param1)
-		    G.preventJoinByTicket = True
-		    ki8.updateGroup(G)
-	    else:
-		pass
-	
-	if op.type == 11:
-	    if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
-		    G = ki7.getGroup(op.param1)
-		    G.preventJoinByTicket = True
-		    ki7.updateGroup(G)
-	    else:
-		pass
-	
-	if op.type == 11:
-	    if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
-		    G = ki.getGroup(op.param1)
-		    G.preventJoinByTicket = True
-		    ki.updateGroup(G)
-	    else:
-		pass
-	if op.type == 11:
-	    if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
-		    G = cl.getGroup(op.param1)
-		    G.preventJoinByTicket = True
-		    cl.updateGroup(G)
-	    else:
-		pass
-	
-	if op.type == 11:
-	    if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
-		    G = ki5.getGroup(op.param1)
-		    G.preventJoinByTicket = True
-		    ki5.updateGroup(G)
-	    else:
-		pass
-	
-	if op.type == 11:
-	    if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
-		    G = ki3.getGroup(op.param1)
-		    G.preventJoinByTicket = True
-		    ki3.updateGroup(G)
-	    else:
-		pass
+
 	
 	if op.type == 19:
           if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
             print "someone was kicked"
-            random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-          else:
-		pass
+	    kicker = random.choice(KAC2)
+            try:
+			G = cl.getGroup(op.param1)
+			G.preventJoinByTicket = False
+			random.choice(KAC).updateGroup(G)
+			Ticket = ki5.reissueGroupTicket(op.param1)
+			kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
+			random.choice(KAC).updateGroup(G)
+			kicker.kickoutFromGroup(op.param1,[op.param2])
+			kicker.leaveGroup(op.param1)
+            except:
+		random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 	
 
 				
@@ -1751,39 +1848,66 @@ def bot(op):
 
 def nameUpdate():
     while True:
-                profile = cl.getProfile()
-		profile.displayName = "戦神權限保護V.9.4.02"
-		cl.updateProfile(profile)
-		profile = ki.getProfile()
-		profile.displayName = "戦神Helper"
-		ki.updateProfile(profile)
-		profile = ki2.getProfile()
-		profile.displayName = "戦神Checker[A]"
-		ki2.updateProfile(profile)
-		profile = ki3.getProfile()
-		profile.displayName = "Protection[F]"
-		ki3.updateProfile(profile)
-		profile = ki4.getProfile()
-		profile.displayName = "Protection[G]"
-		ki4.updateProfile(profile)
-		profile = ki5.getProfile()
-		profile.displayName = "Protection[H]"
-		ki5.updateProfile(profile)
-		profile = ki6.getProfile()
-		profile.displayName = "Protection[I]"
-		ki6.updateProfile(profile)
-		profile = ki7.getProfile()
-		profile.displayName = "Protection[J]"
-		ki7.updateProfile(profile)
-		profile = ki8.getProfile()
-		profile.displayName = "Protection[K]"
-		ki8.updateProfile(profile)
-		profile = ki9.getProfile()
-		profile.displayName = "Protection[L]"
-		ki9.updateProfile(profile)
-		profile = ki15.getProfile()
-		profile.displayName = "戦神☆"
-		ki15.updateProfile(profile)
+                profile = a1.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a1.updateProfile(profile)
+		profile = a2.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a2.updateProfile(profile)
+		profile = a3.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a3.updateProfile(profile)
+		profile = a4.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a4.updateProfile(profile)
+		profile = a5.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a5.updateProfile(profile)
+		profile = a6.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a6.updateProfile(profile)
+		profile = a7.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a7.updateProfile(profile)
+		profile = a8.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a8.updateProfile(profile)
+		profile = a9.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a9.updateProfile(profile)
+		profile = a10.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a10.updateProfile(profile)
+                profile = a11.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a11.updateProfile(profile)
+		profile = a12.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a12.updateProfile(profile)
+		profile = a13.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a13.updateProfile(profile)
+		profile = a14.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a14.updateProfile(profile)
+		profile = a15.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a15.updateProfile(profile)
+		profile = a16.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a16.updateProfile(profile)
+		profile = a17.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a17.updateProfile(profile)
+		profile = a18.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a18.updateProfile(profile)
+		profile = a19.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a19.updateProfile(profile)
+		profile = a20.getProfile()
+		profile.displayName = "戦神☆KICKER"
+		a20.updateProfile(profile)
                 
                 time.sleep(600000)
 thread2 = threading.Thread(target=nameUpdate)
