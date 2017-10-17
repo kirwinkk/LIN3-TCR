@@ -335,7 +335,6 @@ def bot(op):
                         cl.sendText(msg.to,"網址為關閉狀態")
 
             elif msg.text in ["Ginfo","ginfo"]:
-              if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
