@@ -1462,22 +1462,20 @@ def bot(op):
 		pass
 	
 
-        if op.type == 19:
+
+
+                       
+
+        elif op.type == 19:
             try:
-                if op.param3 in mid:
+		if op.param3 in Bots:
                     if op.param2 in Bots + staff2 + staff3 + staff4 + staff5 + admin:
 			pass
                     else:
 			wait["blacklist"][op.param2] = True
-                        G = ki.getGroup(op.param1)
+                        G = cl.getGroup(op.param1)
 			kicker.kickoutFromGroup(op.param1,[op.param2])
-
-                       
-#----------------------------------------------- 
-#-----------------------------------------------
-        if op.type == 19:
-            try:
-                if op.param3 in mid:
+                elif op.param3 in mid:
                     if op.param2 in Bots + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki.getGroup(op.param1)
                         G.preventJoinByTicket = False
