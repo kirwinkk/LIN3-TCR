@@ -1473,9 +1473,8 @@ def bot(op):
 			kicker.kickoutFromGroup(op.param1,[op.param2])
 
                        
-#----------------------------------------------- 
-#-----------------------------------------------
-        if op.type == 19:
+
+        elif op.type == 19:
             try:
                 if op.param3 in mid:
                     if op.param2 in Bots + staff2 + staff3 + staff4 + staff5 + admin:
