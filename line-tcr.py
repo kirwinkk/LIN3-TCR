@@ -513,7 +513,6 @@ def bot(op):
 		gid = ki7.getGroupIdsJoined()
 		gid = ki8.getGroupIdsJoined()
 		gid = ki9.getGroupIdsJoined()
-		gid = ki15.getGroupIdsJoined()
                 for i in gid:
                     cl.leaveGroup(i)
                     ki.leaveGroup(i)
@@ -525,7 +524,6 @@ def bot(op):
                     ki7.leaveGroup(i)
                     ki8.leaveGroup(i)
                     ki9.leaveGroup(i)
-                    ki15.leaveGroup(i)
                 if wait["lang"] == "JP":
                     cl.sendText(msg.to,"已退出所有群組")
                 else:
@@ -1444,9 +1442,10 @@ def bot(op):
           if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
             print "someone was kicked"
 	    kicker = random.choice(KAC2)
-            try:
+	    if op.param3 not in Bots:
+              try:
                         kicker.kickoutFromGroup(op.param1,[op.param2])
-            except:
+              except:
 			G = cl.getGroup(op.param1)
 			G.preventJoinByTicket = False
 			random.choice(KAC).updateGroup(G)
@@ -1456,9 +1455,21 @@ def bot(op):
 			G.preventJoinByTicket = True
 			random.choice(KAC).updateGroup(G)
 			kicker.leaveGroup(op.param1)
+	    else:
+		pass
 	
 
-				
+        if op.type == 19:
+            try:
+                if op.param3 in mid:
+                    if op.param2 in Bots + staff2 + staff3 + staff4 + staff5 + admin:
+			pass
+                    else:
+			wait["blacklist"][op.param2] = True
+                        G = ki.getGroup(op.param1)
+			kicker.kickoutFromGroup(op.param1,[op.param2])
+
+                       
 #----------------------------------------------- 
 #-----------------------------------------------
         if op.type == 19:
