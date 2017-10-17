@@ -22,6 +22,8 @@ helpMessage ="""[戦神無料代行]
 [封鎖名單]   確認已封鎖用戶
 [Ginfo]   顯示群組詳情
 [cancel]   取消所有邀請
+[Kick:]   mid踢人
+[Invite:]   mid邀人
 [Nk:]   名字踢人
 [Mk:@]   標註踢人
 [Bl:@]   標註黑單
@@ -30,16 +32,13 @@ helpMessage ="""[戦神無料代行]
 [Mban:]   mid黑單
 [Munban:]   mid解除黑單
 [Banlist]   查看此群黑單
-[Kill]   踢出黑單
-[Sp]   反應速度
+[Blk]   踢出黑單
 [Url]   取得群組網址
 [Urlon]   開啟群組網址
 [Urloff]   關閉群組網址
 [Groupid]   目前加入的所有群組
 [Mid:]   顯示被標註者的mid
 [mid:]   顯示mid的友資
-[kick:]   踢出mid
-[Invite:]   邀請mid
 [Gift]   發送禮物
 [TL:]   Po文
 [Time]   現在時間
@@ -100,8 +99,13 @@ def bot(op):
                             cl.rejectGroupInvitation(op.param1)
                         else:
                             cl.acceptGroupInvitation(op.param1)
+                            try:
+                               cl.sendText(op.param1,"戦神代行SelfBOT[自動入群]\n作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+                            except:
+			       pass
                     else:
                         cl.acceptGroupInvitation(op.param1)
+			cl.sendText(op.param1,"戦神代行SelfBOT[自動入群]\n作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
                 elif wait["autoCancel"]["on"] == True:
                     if len(G.members) <= wait["autoCancel"]["members"]:
                         cl.rejectGroupInvitation(op.param1)
@@ -115,6 +119,18 @@ def bot(op):
                     pass
                 else:
                     cl.cancelGroupInvitation(op.param1, matched_list)
+
+		
+        if op.type == 13:
+		Inviter = op.param3.replace("",',')
+                InviterX = Inviter.split(",")
+                matched_list = []
+                for tag in wait["blacklist"]:
+                    matched_list+=filter(lambda str: str == tag, InviterX)
+                if matched_list == []:
+                    pass
+                else:
+                    cl.kickoutFromGroup(op.param1, matched_list)
         if op.type == 19:
             if mid in op.param3:
                 wait["blacklist"][op.param2] = True
@@ -124,20 +140,7 @@ def bot(op):
         if op.type == 24:
             if wait["leaveRoom"] == True:
                 cl.leaveRoom(op.param1)
-        if op.type == 26:
-            msg = op.message
-            if msg.toType == 0:
-                msg.to = msg.from_
-                if msg.from_ == "uc216d8664c4e1f43772c98b1b0b8956e":
-                    if "join:" in msg.text:
-                        list_ = msg.text.split(":")
-                        try:
-                            cl.acceptGroupInvitationByTicket(list_[1],list_[2])
-                            G = cl.getGroup(list_[1])
-                            G.preventJoinByTicket = True
-                            cl.updateGroup(G)
-                        except:
-                            cl.sendText(msg.to,"error")
+
         if op.type == 26:
             msg = op.message
             if msg.contentType == 13:
@@ -149,9 +152,17 @@ def bot(op):
                         except:
                             cu = ""
 			if msg.contentMetadata["mid"] in wait["blacklist"]:
-                             cl.sendText(msg.to,"[戦神無料代行]\n" + msg.contentMetadata["mid"])
+                             cl.sendText(msg.to,"[戦神SelfBOT代行]\n" + msg.contentMetadata["mid"])
                         else:
-			     cl.sendText(msg.to,"[戦神無料代行]\n" + msg.contentMetadata["mid"])
+			     cl.sendText(msg.to,"[戦神SelfBOT代行]\n" + msg.contentMetadata["mid"])
+            elif msg.contentType == 16:
+                if wait["timeline"] == True:
+                    msg.contentType = 0
+                    if wait["lang"] == "JP":
+                        msg.text = "[戦神SelfBOT代行]\n" + msg.contentMetadata["postEndUrl"]
+                    else:
+                        msg.text = "[戦神SelfBOT代行]\n" + msg.contentMetadata["postEndUrl"]
+                    cl.sendText(msg.to,msg.text)
 		
 
         if op.type == 25:
@@ -175,20 +186,20 @@ def bot(op):
                         cl.sendText(msg.to,"成功")
                 elif wait["wblacklist"] == True:
                     if msg.contentMetadata["mid"] in wait["blacklist"]:
-                        cl.sendText(msg.to,"成功")
+                        cl.sendText(msg.to,msg.contentMetadata["displayName"] + " 已加入黑單")
                         wait["wblacklist"] = False
                     else:
                         wait["blacklist"][msg.contentMetadata["mid"]] = True
                         wait["wblacklist"] = False
-                        cl.sendText(msg.to,"成功")
+                        cl.sendText(msg.to,msg.contentMetadata["displayName"] + " 已加入黑單")
                 elif wait["dblacklist"] == True:
                     if msg.contentMetadata["mid"] in wait["blacklist"]:
                         del wait["blacklist"][msg.contentMetadata["mid"]]
-                        cl.sendText(msg.to,"成功")
+                        cl.sendText(msg.to,msg.contentMetadata["displayName"] + " 已解除黑單")
                         wait["dblacklist"] = False
                     else:
                         wait["dblacklist"] = False
-                        cl.sendText(msg.to,"成功")
+                        cl.sendText(msg.to,msg.contentMetadata["displayName"] + " 已解除黑單")
                 elif wait["contact"] == True:
                     msg.contentType = 0
                     cl.sendText(msg.to,msg.contentMetadata["mid"])
@@ -198,21 +209,21 @@ def bot(op):
                             cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-                        cl.sendText(msg.to,"ℬᎶ戦神Bot-友資詳情\n[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[個性簽名]:\n" + contact.statusMessage + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu))
+                        cl.sendText(msg.to,"[戦神SelfBOT代行]\n[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[個性簽名]:\n" + contact.statusMessage + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu))
                     else:
                         contact = cl.getContact(msg.contentMetadata["mid"])
                         try:
                             cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-                        cl.sendText(msg.to,"ℬᎶ戦神Bot-友資詳情\n[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[個性簽名]:\n" + contact.statusMessage + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu))
+                        cl.sendText(msg.to,"[戦神SelfBOT代行]\n[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[個性簽名]:\n" + contact.statusMessage + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu))
             elif msg.contentType == 16:
                 if wait["timeline"] == True:
                     msg.contentType = 0
                     if wait["lang"] == "JP":
-                        msg.text = "文章網址 URL\n" + msg.contentMetadata["postEndUrl"]
+                        msg.text = "[戦神SelfBOT代行]\n" + msg.contentMetadata["postEndUrl"]
                     else:
-                        msg.text = "文章網址 URL\n" + msg.contentMetadata["postEndUrl"]
+                        msg.text = "[戦神SelfBOT代行]\n" + msg.contentMetadata["postEndUrl"]
                     cl.sendText(msg.to,msg.text)
 
             elif msg.text is None:
@@ -229,12 +240,11 @@ def bot(op):
                 else:
                     cl.sendText(msg.to,helpMessage)
             elif ("Gn:" in msg.text):
-                if msg.toType == 2:
                     group = cl.getGroup(msg.to)
                     group.name = msg.text.replace("Gn:","")
-                    ki.updateGroup(group)
-                else:
-                    cl.sendText(msg.to,"><")
+                    cl.updateGroup(group)
+		    cl.sendText(msg.to,"群名:" + group.name)
+
 
             elif "Kick:" in msg.text:
                 midd = msg.text.replace("Kick:","")
@@ -249,11 +259,11 @@ def bot(op):
 
 
 
-            elif msg.text in ["Gift","i gift"]:
+            elif msg.text in ["Gift","gift"]:
                 msg.contentType = 9
                 msg.contentMetadata={'PRDID': '3b92ccf5-54d3-4765-848f-c9ffdc1da020',
                                     'PRDTYPE': 'THEME',
-                                    'MSGTPL': '3'}
+                                    'MSGTPL': '1'}
                 msg.text = None
                 cl.sendMessage(msg)
 
@@ -265,7 +275,7 @@ def bot(op):
                     if group.invitee is not None:
                         gInviMids = [contact.mid for contact in group.invitee]
                         cl.cancelGroupInvitation(msg.to, gInviMids)
-                        cl.sendText(msg.to,"取消了 "+ str(len(group.invitee)) + " 個邀請\n(´∀｀)♡")
+                        cl.sendText(msg.to,"[戦神SelfBOT代行]\n取消了 "+ str(len(group.invitee)) + " 個邀請\n(´∀｀)♡")
                     else:
                         if wait["lang"] == "JP":
                             cl.sendText(msg.to,"邀請中沒人><")
@@ -290,19 +300,18 @@ def bot(op):
                 h = ""
                 for i in gid:
                     h += "[%s]:%s\n" % (cl.getGroup(i).name,i)
-                cl.sendText(msg.to,h)
+                cl.sendText(msg.to,"[戦神SelfBOT代行]\n" + h)
 		
-            elif msg.text in ["Urlon"]:
+            elif msg.text in ["Urlon","urlon"]:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
                     group.preventJoinByTicket = False
                     cl.updateGroup(group)
-                    if wait["lang"] == "JP":
-                        sendText(msg.to,"已開啟網址")
-                    else:
-                        kk.sendText(msg.to,"網址為開啟狀態")
+                    gurl = cl.reissueGroupTicket(msg.to)
+                    cl.sendText(msg.to,"line://ti/g/" + gurl)
 
-            elif msg.text in ["Urloff"]:
+
+            elif msg.text in ["Urloff","urloff"]:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
                     group.preventJoinByTicket = True
@@ -312,14 +321,17 @@ def bot(op):
                     else:
                         cl.sendText(msg.to,"網址為關閉狀態")
 
-            elif msg.text == "Ginfo":
-                if msg.toType == 2:
+            elif msg.text in ["Ginfo","ginfo"]:
+              if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
+                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
+                    gurl = cl.reissueGroupTicket(msg.to)
                     print "SUKSES -- SEND GINFO"
                     try:
                         gCreator = ginfo.creator.displayName
                     except:
-                        gCreator = "不存在"
+                        gCreator = "Error"
                     if wait["lang"] == "JP":
                         if ginfo.invitee is None:
                             sinvitee = "0"
@@ -329,20 +341,14 @@ def bot(op):
                             u = "close"
                         else:
                             u = "open"
-                        cl.sendText(msg.to,"ℬᎶ戦神Bot-群組詳情\n[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中")
+                        cl.sendText(msg.to,"[戦神SelfBOT代行]\n[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        cl.sendText(msg.to,"ℬᎶ戦神Bot-群組詳情\n[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中")
-                else:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"請在群中使用此功能")
-                    else:
-                        cl.sendText(msg.to,"請在群中使用此功能")
-                cl.sendTextc
-                cl.sendText(msg)
+                        cl.sendText(msg.to,"[戦神SelfBOT代行]\n[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                    cl.sendText(msg)
 
             elif "TL:" in msg.text:
                 tl_text = msg.text.replace("TL:","")
-                cl.sendText(msg.to,"line://home/post?userMid="+mid+"&postId="+cl.new_post(tl_text)["result"]["post"]["postInfo"]["postId"])
+                cl.sendText(msg.to,"[戦神SelfBOT代行]\nline://home/post?userMid=" + mid + "&postId=" + cl.new_post(tl_text)["result"]["post"]["postInfo"]["postId"])
 
 
 #--------------------------------------------------------
@@ -362,7 +368,7 @@ def bot(op):
                     msgs+="\n%i. %s" % (num, ids.displayName)
                     num=(num+1)
                 msgs+="\n\n總共 %i 位被我封鎖" % len(kontak)
-                cl.sendText(msg.to, msgs)
+                cl.sendText(msg.to,"[戦神SelfBOT代行]\n" + msgs)
 
             elif msg.text.lower() == 'me':
                 msg.contentType = 13
@@ -382,9 +388,8 @@ def bot(op):
             elif msg.text in ["url","Url"]:
                 if msg.toType == 2:
                     g = cl.getGroup(msg.to)
-                    if g.preventJoinByTicket == True:
-                        g.preventJoinByTicket = False
-                        cl.updateGroup(g)
+                    g.preventJoinByTicket = False
+                    cl.updateGroup(g)
                     gurl = cl.reissueGroupTicket(msg.to)
                     cl.sendText(msg.to,"line://ti/g/" + gurl)
                 else:
@@ -401,15 +406,11 @@ def bot(op):
                     mc = ""
                     for mi_d in wait["blacklist"]:
                         mc += "->" +cl.getContact(mi_d).displayName + "\n"
-                    cl.sendText(msg.to,"黑名單用戶:\n\n" + mc)
+                    cl.sendText(msg.to,"[戦神SelfBOT代行]\n黑名單用戶:\n\n" + mc)
 
 #-----------------------------------------------------------
 
-            elif msg.text in ["Sp","Speed","speed"]:
-                start = time.time()
-                cl.sendText(msg.to, "BG戦神Bot讀取中...")
-                elapsed_time = time.time() - start
-                cl.sendText(msg.to, "%sseconds" % (elapsed_time))
+
 
 
             elif ("Mid:" in msg.text):
@@ -545,18 +546,6 @@ def bot(op):
 #-----------------------------------------------------------
 
 #-----------------------------------------------------------
-            elif "Test" in msg.text:
-                profile = ki.getProfile()
-                text = profile.displayName + ""
-                ki.sendText(msg.to, text)
-                profile = ki2.getProfile()
-                text = profile.displayName + ""
-                ki2.sendText(msg.to, text)
-                profile = ki3.getProfile()
-                text = profile.displayName + ""
-                ki3.sendText(msg.to, text)
-                profile = ki4.getProfile()
-                text = profile.displayName + ""
 
 #-----------------------------------------------------------speed
             elif msg.text in ["Ban"]:
@@ -577,7 +566,7 @@ def bot(op):
                     for mm in matched_list:
                         cocoa += "->" +cl.getContact(mm).displayName + "\n"
                     cl.sendText(msg.to,cocoa + "以上為在本群的黑單用戶")
-            elif "Kill" in msg.text:
+            elif "Blk" in msg.text:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
                     gMembMids = [contact.mid for contact in group.members]
@@ -585,31 +574,47 @@ def bot(op):
                     for tag in wait["blacklist"]:
                         matched_list+=filter(lambda str: str == tag, gMembMids)
                     if matched_list == []:
-                        cl.sendText(msg.to,"0.0")
+                        cl.sendText(msg.to,"群內沒有黑單用戶")
                         return
                     for jj in matched_list:
                         try:
-                            cl.kickoutFromGroup(msg.to,[jj])
+                            klist=[cl]
+                            kicker=random.choice(klist)
+                            kicker.kickoutFromGroup(msg.to,[jj])
                         except:
-                            pass
+                            cl.sendText(msg.to,"因所踢規制無法踢人")
 
 
 #-----------------------------------------------
 
 #-----------------------------------------------
-            elif "tagall" in msg.text:
-                group = cl.getGroup(msg.to)
-                mem = [contact.mid for contact in group.members]
-                for mm in mem:
-                    xname = cl.getGroup(mm).displayName
-                    xlen = str(len(xname)+1)
-                    msg.contentType = 0
-                    msg.text = "@"+xname+" "
-                    msg.contentMetadata ={'MENTION':'{"MENTIONEES":[{"S":"0","E":'+json.dumps(xlen)+',"M":'+json.dumps(mm)+'}]}','EMTVER':'4'}
-                try:
-                    cl.sendMessage(msg)
-                except Exception as error:
-                    print error
+            elif msg.text in ["tagall","Tagall"]:
+			    group = cl.getGroup(msg.to)
+			    nama = [contact.mid for contact in group.members]
+
+			    cb = ""
+			    cb2 = ""
+			    strt = int(0)
+			    akh = int(0)
+			    for md in nama:
+			        akh = akh + int(6)
+
+			        cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(md)+"},"""
+
+			        strt = strt + int(7)
+			        akh = akh + 1
+			        cb2 += "@nrik \n"
+
+			    cb = (cb[:int(len(cb)-1)])
+			    msg.contentType = 0
+			    msg.text = cb2
+			    msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
+
+			    try:
+			        cl.sendMessage(msg)
+			    except Exception as error:
+			        print error
+
                        
 #-----------------------------------------------
 
@@ -623,10 +628,7 @@ def bot(op):
                     pass
                 else:
                     cl.sendText(op.param1,str(wait["message"]))
-                    ki.sendText(op.param1,str(wait["message"]))
-                    ki2.sendText(op.param1,str(wait["message"]))
-                    ki3.sendText(op.param1,str(wait["message"]))
-                    ki16.sendText(op.param1,str(wait["message"]))
+
 
 
 #------------------------------------------------------------------------------------
