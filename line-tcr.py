@@ -39,7 +39,7 @@ ki7.login(token="El1XEUBmYDuAzDTYBMke.jDxhAGROvQjm1IFQHi4uxG.u+ngeXvfqRsoRLN0oqS
 ki7.loginResult()
 
 ki8 = LINETCR.LINE()
-ki8.login(token="Ekz4TgKpeSWkDvNsetY0.3FLXqaAHaqU2vr+bb+uJKa.5/52TwKOUdn8x2wWxkc2sBYihCNVQVO0/L+nx6GKNao=")
+ki8.login(token="El0BVjh5bVypVqugfhn0.3FLXqaAHaqU2vr+bb+uJKa.u/7QzS/nYzXmQvo/Ut9gs3ZsGPuO953jK7ZYRdgCv0U=")
 ki8.loginResult()
 
 ki9 = LINETCR.LINE()
@@ -71,7 +71,7 @@ a4.loginResult()
 #蟹老闆
 
 a5 = LINETCR.LINE()
-a5.login(token="EkUTvGSfGiJl7neSSY01.qmf+mG4qg58AVj7ARoBTuq.7zaTkwOMZslGg9hUAq+F6joM8+2gxN/GkA8FFhZm8U0=")
+a5.login(token="ElSx7EZx0N5f57VCYFo8.TzpFZMXsDV4G9tO87QsIsa.c6FLvd/TFOlEL6DC9J2AF/kLkoXbbDIoDOr3cxHv7dk=")
 a5.loginResult()
 #
 
@@ -137,7 +137,7 @@ a19.login(token="El3K6C9QyHVdhFoAyIa7.jvd7T5r6TSHa3VMqwSkOfW.us5C1DGhPj7r01duuam
 a19.loginResult()
 
 a20 = LINETCR.LINE()
-a20.login(token="ElSx7EZx0N5f57VCYFo8.TzpFZMXsDV4G9tO87QsIsa.c6FLvd/TFOlEL6DC9J2AF/kLkoXbbDIoDOr3cxHv7dk=")
+a20.login(token="ElJXymyicerPSoQ2Yhx1.qmf+mG4qg58AVj7ARoBTuq.y+8LgyO6H+XpChmRoOtk69YYXLTV9TX4WRrpDEMFNqI=")
 a20.loginResult()
 
 
@@ -1462,20 +1462,11 @@ def bot(op):
 		pass
 	
 
-
-
                        
 
         elif op.type == 19:
             try:
-		if op.param3 in Bots:
-                    if op.param2 in Bots + staff2 + staff3 + staff4 + staff5 + admin:
-			pass
-                    else:
-			wait["blacklist"][op.param2] = True
-                        G = cl.getGroup(op.param1)
-			kicker.kickoutFromGroup(op.param1,[op.param2])
-                elif op.param3 in mid:
+                if op.param3 in mid:
                     if op.param2 in Bots + staff2 + staff3 + staff4 + staff5 + admin:
                         G = ki.getGroup(op.param1)
                         G.preventJoinByTicket = False
@@ -1957,7 +1948,12 @@ def bot(op):
 
 		
 		
-
+        elif op.type == 19:
+		if op.param3 in Bots:
+		    wait["blacklist"][op.param2] = True
+                    kicker.kickoutFromGroup(op.param1,[op.param2])
+                else:
+			kicker.kickoutFromGroup(op.param1,[op.param2])
 #------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------
