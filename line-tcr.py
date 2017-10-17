@@ -148,8 +148,8 @@ sys.setdefaultencoding('utf-8')
 helpMessage ="""※指令Lv.1以上使用
 [/help]...查看指令
 [/Author]...作者顯示
-[/mid]...顯示自己mid
 [/me]...顯示友資,mid,權限狀況
+[/mid]...顯示自己mid
 [/gid]...顯示群組gid
 [/Ginfo]...顯示群組詳情
 [/cancel]...取消所有邀請
@@ -179,13 +179,15 @@ helpMessage ="""※指令Lv.1以上使用
 [Mk:@]...標註踢人
 [/kick:]...用mid踢人
 [Ubl:@]...標註解除黑單
-[Unban:]...友資解除黑單
+[Unban]...友資解除黑單
+[Unban:]...名字解除黑單
 [Munban:]...mid解除黑單
 [Banlist]...查看本群黑單
 
 ※指令Lv.5以上使用
 [Bl:@]...標註黑單
 [Ban]...友資黑單
+[Ban:]...名字黑單
 [Mban]...mid黑單
 [/blk]...踢出黑單用戶
 [/tagall]...標註所有人
@@ -197,7 +199,7 @@ helpMessage ="""※指令Lv.1以上使用
 [Lvd1:@]...標註刪除Lv1權限至Lv0
 [/test]...查看防翻狀態
 
-※盡量少用指令,避免盪,謝謝※
+※盡量少用指令,謝謝※
 作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
 """
@@ -309,7 +311,8 @@ def bot(op):
 		        except:
 			    pass
 		else:
-		  pass
+		  cl.acceptGroupInvitation(op.param1)
+                  cl.leaveGroup(op.param1)
            else:
 		pass
         if op.type == 13:
@@ -513,7 +516,6 @@ def bot(op):
 		gid = ki7.getGroupIdsJoined()
 		gid = ki8.getGroupIdsJoined()
 		gid = ki9.getGroupIdsJoined()
-		gid = ki15.getGroupIdsJoined()
                 for i in gid:
                     cl.leaveGroup(i)
                     ki.leaveGroup(i)
@@ -525,7 +527,6 @@ def bot(op):
                     ki7.leaveGroup(i)
                     ki8.leaveGroup(i)
                     ki9.leaveGroup(i)
-                    ki15.leaveGroup(i)
                 if wait["lang"] == "JP":
                     cl.sendText(msg.to,"已退出所有群組")
                 else:
@@ -1444,9 +1445,10 @@ def bot(op):
           if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
             print "someone was kicked"
 	    kicker = random.choice(KAC2)
-            try:
+	    if op.param3 not in Bots:
+              try:
                         kicker.kickoutFromGroup(op.param1,[op.param2])
-            except:
+              except:
 			G = cl.getGroup(op.param1)
 			G.preventJoinByTicket = False
 			random.choice(KAC).updateGroup(G)
@@ -1456,9 +1458,21 @@ def bot(op):
 			G.preventJoinByTicket = True
 			random.choice(KAC).updateGroup(G)
 			kicker.leaveGroup(op.param1)
+	    else:
+		pass
 	
 
-				
+        if op.type == 19:
+            try:
+                if op.param3 in mid:
+                    if op.param2 in Bots + staff2 + staff3 + staff4 + staff5 + admin:
+			pass
+                    else:
+			wait["blacklist"][op.param2] = True
+                        G = ki.getGroup(op.param1)
+			kicker.kickoutFromGroup(op.param1,[op.param2])
+
+                       
 #----------------------------------------------- 
 #-----------------------------------------------
         if op.type == 19:
