@@ -1473,8 +1473,7 @@ def bot(op):
 			kicker.kickoutFromGroup(op.param1,[op.param2])
 
                        
-#----------------------------------------------- 
-#-----------------------------------------------
+
         if op.type == 19:
             try:
                 if op.param3 in mid:
