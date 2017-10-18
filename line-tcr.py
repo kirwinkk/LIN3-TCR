@@ -47,7 +47,7 @@ ki9.login(token="EljrYo9So6Khmhdmt790.3d81No0uyJfmd61BOYIYCa.fXe+2O+h/CuP6/MDyk1
 ki9.loginResult()
 
 ki15 = LINETCR.LINE()
-ki15.login(token="ElDQ92ox8Ph7M0JYqQze.WHByzKXoh0n3ljIXSlIvBG.TjNkCixA8QYX8onbku8Obw1Ij+QEhpV+cQacCxomqr8=")
+ki15.login(token="EllH4TrW9b5WLGC1C6ce.WHByzKXoh0n3ljIXSlIvBG.lcNynhimCDzpiJ0pO7M5df1sNLDSd/lK8f0G6nbANQY=")
 ki15.loginResult()
 
 a1 = LINETCR.LINE()
@@ -1426,6 +1426,7 @@ def bot(op):
 			kicker.kickoutFromGroup(op.param1,[op.param2])
 			G.preventJoinByTicket = True
 			kicker.updateGroup(G)
+			random.choice(KAC).updateGroup(G)
 
 		except:
 		    G = ki9.getGroup(op.param1)
@@ -1435,14 +1436,27 @@ def bot(op):
 		    G.preventJoinByTicket = True
 		    random.choice(KAC).updateGroup(G)
 		    kicker.kickoutFromGroup(op.param1,[op.param2])
+		    random.choice(KAC).updateGroup(G)
 		    kicker.leaveGroup(op.param1)
 	    else:
 		pass
 	
 
 	
-
-	
+	if op.type == 19:
+          if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
+            print "someone was kicked"
+	    kicker = random.choice(KAC2)
+            try:
+			G = cl.getGroup(op.param1)
+                        kicker.kickoutFromGroup(op.param1,[op.param2])
+			G.preventJoinByTicket = True
+	                random.choice(KAC).updateGroup(G)
+            except:
+			G = cl.getGroup(op.param1)
+			random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+			G.preventJoinByTicket = True
+	                random.choice(KAC).updateGroup(G)
 
                        
 
