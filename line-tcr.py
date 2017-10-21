@@ -44,7 +44,7 @@ ki8.loginResult()
 
 ki9 = LINETCR.LINE()
 ki9.login(token="EljrYo9So6Khmhdmt790.3d81No0uyJfmd61BOYIYCa.fXe+2O+h/CuP6/MDyk1NnG4kYsKkNM7EVquzc6qfN9U=")
-ki9.loginResult()
+ki9.loginResult() 
 
 ki15 = LINETCR.LINE()
 ki15.login(token="EllH4TrW9b5WLGC1C6ce.WHByzKXoh0n3ljIXSlIvBG.lcNynhimCDzpiJ0pO7M5df1sNLDSd/lK8f0G6nbANQY=")
@@ -199,7 +199,6 @@ helpMessage ="""※指令Lv.1以上使用
 [Lvd1:@]...標註刪除Lv1權限至Lv0
 [/test]...查看防翻狀態
 
-※盡量少用指令,謝謝※
 作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
 """
@@ -255,7 +254,7 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"戦神公開保護V.9\n[使用方式]:\n邀請此機器進入群組,此機器為公開防翻。群內有機器,丟友資可查看是否黑單。\n\n[禁止事項]:\n\n$[不會]被黑單[會]被踢:\n1.禁止開啟網址\n2.禁止邀請黑單用戶\n3.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message':"[權限取得方式]:\nLv3.  300$\nLv4.  400$\nLv5.  500$\n\n[半垢  暫定價]:\n本帳+1保鏢  800$\n本帳+2保鏢  900$[推薦]\n本帳+4保鏢  1200$\n本帳+11保鏢  2500$\n皆月付\\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'message1':"戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'lang':"JP",
     'linkprotect':True,
@@ -307,7 +306,7 @@ def bot(op):
 			G.preventJoinByTicket = True
                         cl.updateGroup(G)
 		        try:
-                            cl.sendText(op.param1,"戦神權限保護V.9\n\n[禁止事項]:\n\n$[不會]被黑單[會]被踢:\n1.禁止開啟網址\n2.禁止邀請黑單用戶\n3.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n權限者才可使用指令,不過盡量少用指令,避免盪,謝謝\n\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
+                            cl.sendText(op.param1,"戦神權限保護V.9\n\n[禁止事項]:\n\n$[不會]被黑單[不會]被踢:\n1.禁止開啟網址\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n權限者才可使用指令,不過盡量少用指令,避免盪,謝謝\nLv3.  300$\nLv4.  400$\nLv5.  500$\n\n半垢  暫定價\n本帳+1保鏢  800$\n本帳+2保鏢  900$[推薦]\n本帳+4保鏢  1200$\n本帳+11保鏢  2500$\n皆月付\\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
 		        except:
 			    pass
 		else:
@@ -336,6 +335,29 @@ def bot(op):
                     pass
                 else:
                     random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
+		
+        if op.type == 17:
+		Inviter = op.param3.replace("",',')
+                InviterX = Inviter.split(",")
+                matched_list = []
+		kicker = random.choice(KAC2)
+                for tag in wait["blacklist"]:
+                    matched_list+=filter(lambda str: str == tag, InviterX)
+                if matched_list == []:
+                    pass
+                else:
+			try:
+                              kicker.kickoutFromGroup(op.param1, matched_list)
+			      G = cl.getGroup(op.param1)
+			      G.preventJoinByTicket = True
+			      kicker2 = random.choice(KAC2)
+			      kicker2.updateGroup(G)
+			except:
+		              random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
+			      G = cl.getGroup(op.param1)
+			      G.preventJoinByTicket = True
+			      random.choice(KAC)
+
 
         if op.type == 13:
             if op.param2 not in admin + staff2 + staff3 + staff4 + staff5 + staff6:
@@ -1445,7 +1467,6 @@ def bot(op):
 			G.preventJoinByTicket = True
 			kicker.updateGroup(G)
 			random.choice(KAC).updateGroup(G)
-			ki9.sendText(op.param1,"請勿開啟網址^^")
 
 		except:
 		    G = ki9.getGroup(op.param1)
@@ -1457,7 +1478,6 @@ def bot(op):
 		    kicker.kickoutFromGroup(op.param1,[op.param2])
 		    random.choice(KAC).updateGroup(G)
 		    kicker.leaveGroup(op.param1)
-                    ki9.sendText(op.param1,"請勿開啟網址^^")
 	    else:
 		pass
 	
@@ -1478,10 +1498,7 @@ def bot(op):
 			G.preventJoinByTicket = True
 	                random.choice(KAC).updateGroup(G)
 
-	if op.type == 19:
-                if op.param3 not in Bots:
-			if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
-				ki9.sendText(op.param1,"請勿踢出成員^^")
+
         if op.type == 19:
             try:
                 if op.param3 in mid:
