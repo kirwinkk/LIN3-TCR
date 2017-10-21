@@ -532,7 +532,12 @@ def bot(op):
                 else:
                     cl.sendText(msg.to,"已退出所有群組")
 		
-		
+            elif msg.text in ["/Sp","/Speed","/speed"]:
+               if msg.from_ in admin:
+                start = time.time()
+                cl.sendText(msg.to, "BG戦神Bot讀取中...")
+                elapsed_time = time.time() - start
+                cl.sendText(msg.to, "%sseconds" % (elapsed_time))
             elif msg.text in ["/mid","/Mid"]:
               if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
                 ki2.sendText(msg.to,msg.from_)
@@ -876,7 +881,20 @@ def bot(op):
                    print "[Command]Staff2 add executed"
                 else:
                     pass
-	
+
+            elif "Kickerinvite:" in msg.text:
+               if msg.from_ in admin:
+                midd = msg.text.replace("Kickerinvite:","")
+		kicker = random.choice(KAC2)
+                kicker.findAndAddContactsByMid(midd)
+                kicker.inviteIntoGroup(msg.to,[midd])
+		
+            elif "Botinvite:" in msg.text:
+               if msg.from_ in admin:
+                midd = msg.text.replace("Botinvite:","")
+		kicker = random.choice(KAC)
+                kicker.findAndAddContactsByMid(midd)
+                kicker.inviteIntoGroup(msg.to,[midd])
 
             elif ("Lv3:" in msg.text):
                 if msg.from_ in admin:
@@ -1421,12 +1439,13 @@ def bot(op):
 	if op.type == 11:
 	    if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
 		try:
-			G = ki9.getGroup(op.param1)
+			G = cl.getGroup(op.param1)
 			kicker = random.choice(KAC2)
 			kicker.kickoutFromGroup(op.param1,[op.param2])
 			G.preventJoinByTicket = True
 			kicker.updateGroup(G)
 			random.choice(KAC).updateGroup(G)
+			ki9.sendText(op.param1,"請勿開啟網址^^")
 
 		except:
 		    G = ki9.getGroup(op.param1)
@@ -1438,6 +1457,7 @@ def bot(op):
 		    kicker.kickoutFromGroup(op.param1,[op.param2])
 		    random.choice(KAC).updateGroup(G)
 		    kicker.leaveGroup(op.param1)
+                    ki9.sendText(op.param1,"請勿開啟網址^^")
 	    else:
 		pass
 	
@@ -1449,11 +1469,13 @@ def bot(op):
 	    kicker = random.choice(KAC2)
             try:
 			G = cl.getGroup(op.param1)
+			ki9.sendText(op.param1,"請勿踢出成員^^")
                         kicker.kickoutFromGroup(op.param1,[op.param2])
 			G.preventJoinByTicket = True
 	                random.choice(KAC).updateGroup(G)
             except:
 			G = cl.getGroup(op.param1)
+			ki9.sendText(op.param1,"請勿踢出成員^^")
 			random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			G.preventJoinByTicket = True
 	                random.choice(KAC).updateGroup(G)
@@ -1954,7 +1976,73 @@ def bot(op):
     except Exception as error:
         print error
 
-
+def nameUpdate():
+    while True:
+                profile = a1.getProfile()
+		profile.displayName = "戦神☆追加保護01"
+		a1.updateProfile(profile)
+		profile = a2.getProfile()
+		profile.displayName = "戦神☆追加保護02"
+		a2.updateProfile(profile)
+		profile = a3.getProfile()
+		profile.displayName = "戦神☆追加保護03"
+		a3.updateProfile(profile)
+		profile = a4.getProfile()
+		profile.displayName = "戦神☆追加保護04"
+		a4.updateProfile(profile)
+		profile = a5.getProfile()
+		profile.displayName = "戦神☆追加保護05"
+		a5.updateProfile(profile)
+		profile = a6.getProfile()
+		profile.displayName = "戦神☆追加保護06"
+		a6.updateProfile(profile)
+		profile = a7.getProfile()
+		profile.displayName = "戦神☆追加保護07"
+		a7.updateProfile(profile)
+		profile = a8.getProfile()
+		profile.displayName = "戦神☆追加保護08"
+		a8.updateProfile(profile)
+		profile = a9.getProfile()
+		profile.displayName = "戦神☆追加保護09"
+		a9.updateProfile(profile)
+		profile = a10.getProfile()
+		profile.displayName = "戦神☆追加保護10"
+		a10.updateProfile(profile)
+                profile = a11.getProfile()
+		profile.displayName = "戦神☆追加保護11"
+		a11.updateProfile(profile)
+		profile = a12.getProfile()
+		profile.displayName = "戦神☆追加保護12"
+		a12.updateProfile(profile)
+		profile = a13.getProfile()
+		profile.displayName = "戦神☆追加保護13"
+		a13.updateProfile(profile)
+		profile = a14.getProfile()
+		profile.displayName = "戦神☆追加保護14"
+		a14.updateProfile(profile)
+		profile = a15.getProfile()
+		profile.displayName = "戦神☆追加保護15"
+		a15.updateProfile(profile)
+		profile = a16.getProfile()
+		profile.displayName = "戦神☆追加保護16"
+		a16.updateProfile(profile)
+		profile = a17.getProfile()
+		profile.displayName = "戦神☆追加保護17"
+		a17.updateProfile(profile)
+		profile = a18.getProfile()
+		profile.displayName = "戦神☆追加保護18"
+		a18.updateProfile(profile)
+		profile = a19.getProfile()
+		profile.displayName = "戦神☆追加保護19"
+		a19.updateProfile(profile)
+		profile = a20.getProfile()
+		profile.displayName = "戦神☆追加保護20"
+		a20.updateProfile(profile)
+                
+                time.sleep(600000)
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
 
 while True:
     try:
