@@ -124,7 +124,7 @@ def bot(op):
 			G.preventJoinByTicket = True
                         cl.updateGroup(G)
 		        try:
-                            cl.sendText(op.param1,"戦神SelfBOT\n作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]")
+                            cl.sendText(op.param1,"戦神SelfBOT[Made In Taiwan]\n作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0")
 		        except:
 			    pass
             else:
@@ -184,9 +184,9 @@ def bot(op):
                         except:
                             cu = ""
 			if msg.contentMetadata["mid"] in wait["blacklist"]:
-                             cl.sendText(msg.to,"[戦神SelfBOT]\n" + msg.contentMetadata["mid"])
+                             ki.sendText(msg.to,msg.contentMetadata["mid"])
                         else:
-			     cl.sendText(msg.to,"[戦神SelfBOT]\n" + msg.contentMetadata["mid"])
+			     ki.sendText(msg.to,msg.contentMetadata["mid"])
 		
 
         if op.type == 25:
@@ -885,7 +885,18 @@ def bot(op):
     except Exception as error:
         print error
 
-
+def nameUpdate():
+    while True:
+		profile = ki.getProfile()
+		profile.displayName = "戦神☆kicker01"
+		ki.updateProfile(profile)
+		profile = ki2.getProfile()
+		profile.displayName = "戦神☆kicker02"
+		ki2.updateProfile(profile)
+                time.sleep(600000)
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
 
 
 
