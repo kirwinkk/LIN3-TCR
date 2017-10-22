@@ -47,6 +47,14 @@ helpMessage ="""[戦神無料代行]
 [TL:]→Po文
 [Time]→現在時間
 [Tagall]→標註所有人
+[Sp]→反應速度
+
+☆以下動作對所有群組都有反應
+[Contocton/off]→友資詳情開關
+[Urlprotecton/off]→網址保護開關
+[Leaveon/off]→自動退出副本開關
+[Inviteprotecton/off]→招待保護開關
+[set]→確認設定
 
 作者:戦神
 http://line.me/ti/p/4-ZKcjagH0
@@ -75,10 +83,10 @@ wait = {
     'blacklist':{},
     'wblacklist':False,
     'dblacklist':False,
-    'protect':True,
-    'cancelprotect':True,
-    'inviteprotect':True,
-    'linkprotect':True,
+    'protect':False,
+    'cancelprotect':False,
+    'inviteprotect':False,
+    'linkprotect':False,
 }
 
 
@@ -135,6 +143,38 @@ def bot(op):
                     pass
                 else:
                     cl.kickoutFromGroup(op.param1, matched_list)
+		
+        if op.type == 22:
+            if wait["leaveRoom"] == True:
+                cl.leaveRoom(op.param1)
+        if op.type == 24:
+            if wait["leaveRoom"] == True:
+                cl.leaveRoom(op.param1)
+		
+        if op.type == 13:
+	  if op.param2 not in Bots:
+	    if wait["inviteprotect"] == True:
+              group = cl.getGroup(op.param1)
+              gInviMids = [contact.mid for contact in group.invitee]
+              cl.cancelGroupInvitation(op.param1, gInviMids)
+	  else:
+		    pass
+		
+	if op.type == 11:
+	    if op.param2 not in Bots:
+		if op.param2 in Bots:
+		    pass
+		elif wait["linkprotect"] == True:
+		    G = cl.getGroup(op.param1)
+		    G.preventJoinByTicket = True
+		    cl.updateGroup(G)
+		else:
+		    pass
+	    else:
+		pass
+		
+		
+		
         if op.type == 19:
             if mid in op.param3:
                 wait["blacklist"][op.param2] = True
@@ -156,17 +196,10 @@ def bot(op):
                         except:
                             cu = ""
 			if msg.contentMetadata["mid"] in wait["blacklist"]:
-                             cl.sendText(msg.to,"[戦神SelfBOT代行]\n" + msg.contentMetadata["mid"])
+                             cl.sendText(msg.to,msg.contentMetadata["displayName"] + "\n" + msg.contentMetadata["mid"])
                         else:
-			     cl.sendText(msg.to,"[戦神SelfBOT代行]\n" + msg.contentMetadata["mid"])
-            elif msg.contentType == 16:
-                if wait["timeline"] == True:
-                    msg.contentType = 0
-                    if wait["lang"] == "JP":
-                        msg.text = "[戦神SelfBOT代行]\n" + msg.contentMetadata["postEndUrl"]
-                    else:
-                        msg.text = "[戦神SelfBOT代行]\n" + msg.contentMetadata["postEndUrl"]
-                    cl.sendText(msg.to,msg.text)
+			     cl.sendText(msg.to,msg.contentMetadata["displayName"] + "\n" + msg.contentMetadata["mid"])
+
 		
 
         if op.type == 25:
@@ -280,7 +313,11 @@ def bot(op):
                 msg.text = None
                 cl.sendMessage(msg)
 
-
+            elif msg.text in ["Sp","Speed","speed"]:
+                start = time.time()
+                cl.sendText(msg.to, "BG戦神Bot讀取中...")
+                elapsed_time = time.time() - start
+                cl.sendText(msg.to, "%sseconds" % (elapsed_time))
 
             elif msg.text in ["Cancel","cancel"]:
                 if msg.toType == 2:
@@ -386,7 +423,120 @@ def bot(op):
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': mid}
                 cl.sendMessage(msg)
+            elif msg.text in ["Urlprotectoff","urlprotectoff"]:
+                if wait["linkprotect"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"網址保護關閉")
+                    else:
+                        cl.sendText(msg.to,"網址保護關閉")
+                else:
+                    wait["linkprotect"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"網址保護關閉")
+                    else:
+                        cl.sendText(msg.to,"網址保護關閉")
+			
+            elif msg.text in ["Urlprotecton","urlprotecton"]:
+                if wait["linkprotect"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"網址保護開啟")
+                    else:
+                        cl.sendText(msg.to,"網址保護開啟")
+                else:
+                    wait["linkprotect"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"網址保護開啟")
+                    else:
+                        cl.sendText(msg.to,"網址保護開啟")
+			
+            elif msg.text in ["Contacton","contacton"]:
+                if wait["contact"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"友資詳情開啟")
+                    else:
+                        cl.sendText(msg.to,"友資詳情開啟")
+                else:
+                    wait["contact"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"友資詳情開啟")
+                    else:
+                        cl.sendText(msg.to,"友資詳情開啟")
+			
+            elif msg.text in ["Contactoff","contactoff"]:
+                if wait["contact"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"友資詳情關閉")
+                    else:
+                        cl.sendText(msg.to,"友資詳情關閉")
+                else:
+                    wait["contact"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"友資詳情關閉")
+                    else:
+                        cl.sendText(msg.to,"友資詳情關閉")
+			
+            elif msg.text in ["Inviteprotecton","Inviteprotect on"]:
+                if wait["inviteprotect"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"招待保護開啟")
+                    else:
+                        cl.sendText(msg.to,"招待保護開啟")
+                else:
+                    wait["inviteprotect"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"招待保護開啟")
+                    else:
+                        cl.sendText(msg.to,"招待保護開啟")
+			
+            elif msg.text in ["Inviteprotectoff"]:
+                if wait["inviteprotect"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"招待保護關閉")
+                    else:
+                        cl.sendText(msg.to,"招待保護關閉")
+                else:
+                    wait["inviteprotect"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"招待保護關閉")
+                    else:
+                        cl.sendText(msg.to,"招待保護關閉")
+			
+            elif msg.text in ["leaveon","Leaveon"]:
+                if wait["leaveRoom"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動退出副本開啟")
+                    else:
+                        cl.sendText(msg.to,"自動退出副本開啟")
+                else:
+                    wait["leaveRoom"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動退出副本開啟")
+                    else:
+                        cl.sendText(msg.to,"自動退出副本開啟")
+            elif msg.text in ["leaveoff","Leaveoff"]:
+                if wait["leaveRoom"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動退出副本關閉")
+                    else:
+                        cl.sendText(msg.to,"自動退出副本關閉")
+                else:
+                    wait["leaveRoom"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動退出副本關閉")
+                    else:
+                        cl.sendText(msg.to,"自動退出副本關閉")
 
+            elif msg.text.lower() == 'set':
+                md = ""
+                if wait["contact"] == True: md+="友資情報:開啟\n"
+                else: md+="友資情報:關閉\n"
+                if wait["leaveRoom"] == True: md+="自動離開副本:開啟\n"
+                else: md+="自動離開副本:關閉\n"
+                if wait["linkprotect"] == True: md+="網址保護:開啟\n"
+                else:md+="網址保護:關閉\n"
+                if wait["inviteprotect"] == True: md+="招待保護:開啟"
+                else:md+="招待保護:關閉"
+                cl.sendText(msg.to,"[戦神SelfBOT]\n\n" + md)
 		
             elif "Mban:" in msg.text:
                 midd = msg.text.replace("Mban:","")
