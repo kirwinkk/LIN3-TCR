@@ -168,13 +168,17 @@ helpMessage ="""※指令Lv.1以上使用
 ☆Lv.2以上才有被機器白單
 
 ※指令Lv.3以上使用
-[/bg9bot]...增加防翻
-[/bg9bye]...防翻退出
 [/helper]...helper入群
 [/checker]...helper入群
+[/bg9bot]...增加防翻
+
 ☆Lv.3以上才可邀請機器入群
 
 ※指令Lv.4以上使用
+[/bg9bye]...防翻退出
+[Banlist]...查看本群黑單
+
+※指令Lv.5以上使用
 [Nk:]...名字踢人
 [Mk:@]...標註踢人
 [/kick:]...用mid踢人
@@ -182,17 +186,14 @@ helpMessage ="""※指令Lv.1以上使用
 [Unban]...友資解除黑單
 [Unban:]...名字解除黑單
 [Munban:]...mid解除黑單
-[Banlist]...查看本群黑單
 
-※指令Lv.5以上使用
+※指令Lv.6使用
 [Bl:@]...標註黑單
 [Ban]...友資黑單
 [Ban:]...名字黑單
 [Mban]...mid黑單
 [/blk]...踢出黑單用戶
 [/tagall]...標註所有人
-
-※指令Lv.6使用
 [Bl]...查看黑單
 [/Level]...查看權限名單
 [Lv1:@]...標註增加Lv0權限至Lv1
@@ -587,7 +588,7 @@ def bot(op):
 		
 		
             elif msg.text in ["/tagall","/Tagall"]:
-                if msg.from_ in admin + staff5 + staff6:
+                if msg.from_ in admin + staff6:
 			    group = cl.getGroup(msg.to)
 			    nama = [contact.mid for contact in group.members]
 
@@ -811,7 +812,7 @@ def bot(op):
                     ki.sendText(msg)
 		
             elif msg.text in ["/bg9bye","/BG9bye"]:
-	       if msg.from_ in admin + staff3 + staff4 + staff5 + staff6:
+	       if msg.from_ in admin + staff4 + staff5 + staff6:
                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
@@ -905,14 +906,14 @@ def bot(op):
                     pass
 
             elif "Kickerinvite:" in msg.text:
-               if msg.from_ in admin:
+               if msg.from_ in admin + staff6:
                 midd = msg.text.replace("Kickerinvite:","")
 		kicker = random.choice(KAC2)
                 kicker.findAndAddContactsByMid(midd)
                 kicker.inviteIntoGroup(msg.to,[midd])
 		
             elif "Botinvite:" in msg.text:
-               if msg.from_ in admin:
+               if msg.from_ in admin + staff6:
                 midd = msg.text.replace("Botinvite:","")
 		kicker = random.choice(KAC)
                 kicker.findAndAddContactsByMid(midd)
@@ -1108,7 +1109,7 @@ def bot(op):
                     pass
 			
             elif ("Mk:" in msg.text):
-		if msg.from_ in admin + staff4 + staff5 + staff6:
+		if msg.from_ in admin + staff5 + staff6:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
                    key["MENTIONEES"][0]["M"]
@@ -1124,7 +1125,7 @@ def bot(op):
 
 			
             elif "Nk:" in msg.text:
-	      if msg.from_ in admin + staff4 + staff5 + staff6:
+	      if msg.from_ in admin + staff5 + staff6:
                     _name = msg.text.replace("Nk:","")
                     gs = ki.getGroup(msg.to)
                     targets = []
@@ -1144,18 +1145,18 @@ def bot(op):
                     pass
 		
             elif "Mban:" in msg.text:
-	      if msg.from_ in admin + staff5 + staff6:
+	      if msg.from_ in admin + staff6:
                 midd = msg.text.replace("Mban:","")
                 wait["blacklist"][midd] = True
 		ki2.sendText(msg.to,"已加入黑單")
             elif "Munban:" in msg.text:
-	      if msg.from_ in admin + staff4 + staff5 + staff6:
+	      if msg.from_ in admin + staff5 + staff6:
                 midd = msg.text.replace("Munban:","")
                 wait["blacklist"][midd] = False
 		ki2.sendText(msg.to,"已解除黑單")
 		
             elif "/kick:" in msg.text:
-	      if msg.from_ in admin + staff4 + staff5 + staff6:
+	      if msg.from_ in admin + staff5 + staff6:
                 midd = msg.text.replace("Kick:","")
                 random.choice(KAC).kickoutFromGroup(msg.to,[midd])
 
@@ -1181,11 +1182,11 @@ def bot(op):
 		    cl.sendText(msg.to,"[白單說明]\n\n€白單用戶特權:\n1.開啟網址不會被關\n2.踢人不會被機器踢\n3.邀請黑單用戶不會被踢只會被取消\n4.踢機器不會被踢也不會被黑(別去踢機器^^)\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
             elif msg.text in ["Ban"]:
-	      if msg.from_ in admin + staff5 + staff6:
+	      if msg.from_ in admin + staff6:
                 wait["wblacklist"] = True
                 ki2.sendText(msg.to,"請傳送友資黑單")
             elif msg.text in ["Unban"]:
-	      if msg.from_ in admin + staff4 + staff5 + staff6:
+	      if msg.from_ in admin + staff5 + staff6:
                 wait["dblacklist"] = True
                 ki2.sendText(msg.to,"請傳送友資解除黑單")
 		
@@ -1201,7 +1202,7 @@ def bot(op):
                     ki.sendText(msg.to,"黑名單用戶:\n\n" + mc)
 		
             elif ("Bl:" in msg.text):
-		if msg.from_ in admin + staff5 + staff6:
+		if msg.from_ in admin + staff6:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
                    key["MENTIONEES"][0]["M"]
@@ -1217,7 +1218,7 @@ def bot(op):
                                 ki2.sendText(msg.to,"已是黑單")
 				
             elif ("Ubl:" in msg.text):
-		if msg.from_ in admin + staff4 + staff5 + staff6:
+		if msg.from_ in admin + staff5 + staff6:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
                    key["MENTIONEES"][0]["M"]
@@ -1233,7 +1234,7 @@ def bot(op):
                                 ki2.sendText(msg.to,"已不是黑單")
 		
             elif "Banlist" in msg.text:
-                if msg.from_ in admin + staff4 + staff5 + staff6:
+                if msg.from_ in admin + staff5 + staff6:
                     group = cl.getGroup(msg.to)
                     gMembMids = [contact.mid for contact in group.members]
                     matched_list = []
@@ -1245,7 +1246,7 @@ def bot(op):
                     ki2.sendText(msg.to,cocoa + "以上為在本群的黑單用戶")
 		
             elif "Ban:" in msg.text:  
-		if msg.from_ in admin + staff5 + staff6:
+		if msg.from_ in admin + staff6:
                        nk0 = msg.text.replace("Ban:","")
                        nk1 = nk0.lstrip()
                        nk2 = nk1.replace("","")
@@ -1270,7 +1271,7 @@ def bot(op):
                                     ki2.sendText(msg.to,"錯誤")
 
             elif "Unban:" in msg.text:        
-		if msg.from_ in admin + staff4 + staff5 + staff6:
+		if msg.from_ in admin + staff5 + staff6:
                        nk0 = msg.text.replace("Unban","")
                        nk1 = nk0.lstrip()
                        nk2 = nk1.replace("","")
@@ -1295,7 +1296,7 @@ def bot(op):
                                     ki2.sendText(msg.to,"錯誤")
 		
             elif "/blk" in msg.text:
-              if msg.from_ in admin + staff5 + staff6:
+              if msg.from_ in admin + staff6:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
                     gMembMids = [contact.mid for contact in group.members]
