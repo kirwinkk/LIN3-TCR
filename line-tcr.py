@@ -9,49 +9,49 @@ cl = LINETCR.LINE()
 cl.login(token="EllH4TrW9b5WLGC1C6ce.WHByzKXoh0n3ljIXSlIvBG.lcNynhimCDzpiJ0pO7M5df1sNLDSd/lK8f0G6nbANQY=")
 cl.loginResult()
 
-ki2 = LINETCR.LINE()
-ki2.login(token="ElJXymyicerPSoQ2Yhx1.qmf+mG4qg58AVj7ARoBTuq.y+8LgyO6H+XpChmRoOtk69YYXLTV9TX4WRrpDEMFNqI=")
-ki2.loginResult()
-
-ki = LINETCR.LINE()
-ki.login(token="Ekx78FlZHpDRydU5A5W0.bUWp6DHUJ5cshMkl5m0Aia.w9MLieeRDl2xBIa1ZbLI9F05sv7V3xdDA0PX6BaR8u0=")
-ki.loginResult()
-
-ki3 = LINETCR.LINE()
-ki3.login(token="EkyeKl3OcvOKJE3uZeV4.7RWlONtZ1Buiu1pRYoIM5a.xS4I9MgobgkkvFk2rmCNlcfyPMmkYy0wjAOESdjZqbI=")
-ki3.loginResult()
-
-ki4 = LINETCR.LINE()
-ki4.login(token="El3K6C9QyHVdhFoAyIa7.jvd7T5r6TSHa3VMqwSkOfW.us5C1DGhPj7r01duuameWYe3Y0YTOItCMnau7nv8FXk=")
-ki4.loginResult()
-
 ki5 = LINETCR.LINE()
-ki5.login(token="ElJ8cXYFHheAy0yrvnzd.YKlYXsmUlktiA3+RX2h/Fq.EjU7baAXqyyTz04qiJf5AkiIMnoMIG5WPVjzTxW57Go=")
+ki5.login(token="Emi7Bh5uVET0oeLIyQtd.PLWd/iKoGdd5H7Uk0vpvZq.gyrlAYcB9qaTjSNs6UPgDYK9mzeNth6m/sirkZZj9zk=")
 ki5.loginResult()
 
+ki11 = LINETCR.LINE()
+ki11.login(token="EmYyyhZ4jWuC4LrRrfJ0.w55in2AEezWiymICrLUZma.+IAXsaVEVsU2SvKi4bJzbTtLWiXAyxLU8F/f4qERTuw=")
+ki11.loginResult()
+
+ki10 = LINETCR.LINE()
+ki10.login(token="Eme7bKzIJ4nW6eVbdfg0.kIMDvBkCjT82nZ1U2VKHya.kexlNi/WNPvT36QZftinMekzL1EmDAkObJP2h/f5+9g=")
+ki10.loginResult()
+
+ki4 = LINETCR.LINE()
+ki4.login(token="Em50OshQOp3ilp0bGTj1.KxJMDhbg9yiNABeJyFugyq.b08XxKkqRHAJQ7ENEydAL91tcWESGfghy6KHz3X2pKo=")
+ki4.loginResult()
+
+ki3 = LINETCR.LINE()
+ki3.login(token="EmKwelK4VFx0E38UgLOc.+Yyf/hv8cOXPAziycD3Npa.ShCGeQVnfDNO+oMQHShKrCwIoWPD1j8jveqt0K1z/qM=")
+ki3.loginResult()
+
 ki6 = LINETCR.LINE()
-ki6.login(token="Ela4iQjLMmWhXL3aIWf5.1UlbJo7AaQIIh43vnZEmvq.pPK1IbCzUe6KWMspgg8Lpn2nuaIupiMbhT9ES/ak5JM=")
+ki6.login(token="Emay0DRtrYaaOrSwDX62.cBe5pKvojYKvF/KAFJ2DmG.MHhmrebemJwYKB3aq7Xflu4aB/k1ThNtAJOOSWiSrfs=")
 ki6.loginResult()
 
 ki7 = LINETCR.LINE()
-ki7.login(token="ElJXRXnXPNAjmOvNBxv7.hOpNr4wbx5KMeFmQXBc5TW./pl87Q/Wr+UOKYNfGHGhQNnpZ3EWqWc6njo2bgr4A3g=")
+ki7.login(token="EmEQfrjgSRCEGMCue0o3.34zweF4xcWy/GLIrRVolmW.3lpXpC1PEj+fkA43mcNoX3CELuT22iDszxljPGKr2/0=")
 ki7.loginResult()
 
 ki8 = LINETCR.LINE()
-ki8.login(token="Elibg5HYUBwvBJOPYNz7.K8FC8OdgCWbu6m4pI99ALW.G5kAer/FLiiI4PKiZ+7jxHvV260hIMIV04zgiDxmSIg=")
+ki8.login(token="Em4QKDp4s72jnfTxHGm8.z0+dEUhzyVIe7HpSctNAca.wTUlvJcny5IDQqBoOqCN365DvnHY70N8f6/FFStpaLc=")
 ki8.loginResult()
 
 ki9 = LINETCR.LINE()
-ki9.login(token="ElhhqMHKmadxMyLVdsle.iT+8/7l878DR2aicLAjOFG.bAEl2O+0GPOLFG2MozptfmieGgYaoBVkIpPqNLAY564=")
+ki9.login(token="EmCnULLKsBmRiVu3pBXe.0OQnT1Czi60mmjq6Ucfq+G.Eif+8HoaAbkpyb8dfHMHy1ngrzl2mJeBuSFLj4iqRz8=")
 ki9.loginResult()
 
-ki10 = LINETCR.LINE()
-ki10.login(token="ElJXymyicerPSoQ2Yhx1.qmf+mG4qg58AVj7ARoBTuq.y+8LgyO6H+XpChmRoOtk69YYXLTV9TX4WRrpDEMFNqI=")
-ki10.loginResult()
+ki2 = LINETCR.LINE()
+ki2.login(token="EmU49UMSMfRxdnnvQhIc.NVtTPQgB4kl/eeX4PYzb3a.s5Jlv6oTzujJpPnZh2YotgJBAAoIJL2oFh5G1SOD")
+ki2.loginResult()
 
-ki11 = LINETCR.LINE()
-ki11.login(token="ElGYaFC35VmWXRE6Phk6.QchB2dR6MW1R/GwBDLzYjG.8MWsEGSlUJfgXG4EZU8G4yV6YrwjTrAo9Riw+pn3HxI=")
-ki11.loginResult()
+ki = LINETCR.LINE()
+ki.login(token="EmXUoCCyqSKij4dzgzzd.ZofRhui6zRvhw7jIhFQQ7q.m5SDZ/nxS4ZVoM1TIEeHj+q7kS7NH/Aa48SJxw3zpbU=")
+ki.loginResult()
 
 
 reload(sys)
@@ -95,8 +95,15 @@ helpMessage ="""[戦神SelfBOT]
 [Say:]→保鑣講話
 [BGbot]→追加kicker
 [BGbye]→kicker退出
-[Botmid]→查看Kicker友資
+[Botcontact]→查看Kicker友資
+[Botmid]→查看Kicker的mid
 [Sp]→反應速度
+[Joinon/off]→自動入群開關
+[Contocton/off]→友資詳情開關
+[Urlprotecton/off]→網址保護開關
+[Leaveon/off]→自動退出副本開關
+[Inviteprotecton/off]→招待保護開關
+[set]→確認設定
 
 作者:戦神
 http://line.me/ti/p/4-ZKcjagH0"""
@@ -135,10 +142,10 @@ wait = {
     'blacklist':{},
     'wblacklist':False,
     'dblacklist':False,
-    'protect':True,
-    'cancelprotect':True,
-    'inviteprotect':True,
-    'linkprotect':True,
+    'protect':False,
+    'cancelprotect':False,
+    'inviteprotect':False,
+    'linkprotect':False,
 }
 
 
@@ -179,7 +186,7 @@ def bot(op):
 			G.preventJoinByTicket = True
                         ki4.updateGroup(G)
 		        try:
-                            cl.sendText(op.param1,"安安我是戦神^^\n......可以愛愛嗎?")
+                            cl.sendText(op.param1,"安安我是戦神^^")
 		        except:
 			    pass
             if kimid in op.param3:
@@ -227,7 +234,28 @@ def bot(op):
                     ki11.acceptGroupInvitation(op.param1)
             else:
 		pass
-			
+	
+	
+	if op.type == 11:
+	    if op.param2 not in Bots:
+		if op.param2 in Bots:
+		    pass
+		elif wait["linkprotect"] == True:
+		    G = cl.getGroup(op.param1)
+		    G.preventJoinByTicket = True
+		    cl.updateGroup(G)
+		else:
+		    pass
+	    else:
+		pass
+        if op.type == 13:
+	  if op.param2 not in Bots:
+	    if wait["inviteprotect"] == True:
+              group = cl.getGroup(op.param1)
+              gInviMids = [contact.mid for contact in group.invitee]
+              cl.cancelGroupInvitation(op.param1, gInviMids)
+	  else:
+		    pass		
 			
 			
 			
@@ -282,16 +310,16 @@ def bot(op):
             if msg.contentType == 13:
                     msg.contentType = 0
                     if 'displayName' in msg.contentMetadata:
-                        contact = cl.getContact(msg.contentMetadata["mid"])
+                        contact = ki.getContact(msg.contentMetadata["mid"])
                         try:
-                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
+                            cu = ki.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
 			if msg.contentMetadata["mid"] in wait["blacklist"]:
                              ki.sendText(msg.to,msg.contentMetadata["mid"])
                         else:
 			     ki.sendText(msg.to,msg.contentMetadata["mid"])
-		
+	
 
         if op.type == 25:
             msg = op.message
@@ -385,8 +413,46 @@ def bot(op):
                 ki3.findAndAddContactsByMid(midd)
                 ki3.inviteIntoGroup(msg.to,[midd])
 		
-
-            elif "Botmid" == msg.text:
+            elif "BG4invite:" in msg.text:
+                midd = msg.text.replace("BG4invite:","")
+                ki4.findAndAddContactsByMid(midd)
+                ki4.inviteIntoGroup(msg.to,[midd])
+		
+            elif "BG5invite:" in msg.text:
+                midd = msg.text.replace("BG5invite:","")
+                ki5.findAndAddContactsByMid(midd)
+                ki5.inviteIntoGroup(msg.to,[midd])
+		
+            elif "BG6invite:" in msg.text:
+                midd = msg.text.replace("BG6invite:","")
+                ki6.findAndAddContactsByMid(midd)
+                ki6.inviteIntoGroup(msg.to,[midd])
+		
+            elif "BG7invite:" in msg.text:
+                midd = msg.text.replace("BG7invite:","")
+                ki7.findAndAddContactsByMid(midd)
+                ki7.inviteIntoGroup(msg.to,[midd])
+		
+            elif "BG8invite:" in msg.text:
+                midd = msg.text.replace("BG8invite:","")
+                ki8.findAndAddContactsByMid(midd)
+                ki8.inviteIntoGroup(msg.to,[midd])
+		
+            elif "BG9invite:" in msg.text:
+                midd = msg.text.replace("BG9invite:","")
+                ki9.findAndAddContactsByMid(midd)
+                ki9.inviteIntoGroup(msg.to,[midd])
+		
+            elif "BG10invite:" in msg.text:
+                midd = msg.text.replace("BG10invite:","")
+                ki10.findAndAddContactsByMid(midd)
+                ki10.inviteIntoGroup(msg.to,[midd])
+		
+            elif "BG11invite:" in msg.text:
+                midd = msg.text.replace("BG11invite:","")
+                ki11.findAndAddContactsByMid(midd)
+                ki11.inviteIntoGroup(msg.to,[midd])
+            elif "Botcontact" == msg.text:
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': kimid}
                 cl.sendMessage(msg) 
@@ -444,8 +510,149 @@ def bot(op):
                 msg.text = None
                 ki2.sendMessage(msg)
 
-           
-            
+
+            elif msg.text in ["Urlprotectoff","urlprotectoff"]:
+                if wait["linkprotect"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"網址保護關閉")
+                    else:
+                        cl.sendText(msg.to,"網址保護關閉")
+                else:
+                    wait["linkprotect"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"網址保護關閉")
+                    else:
+                        cl.sendText(msg.to,"網址保護關閉")
+			
+            elif msg.text in ["Urlprotecton","urlprotecton"]:
+                if wait["linkprotect"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"網址保護開啟")
+                    else:
+                        cl.sendText(msg.to,"網址保護開啟")
+                else:
+                    wait["linkprotect"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"網址保護開啟")
+                    else:
+                        cl.sendText(msg.to,"網址保護開啟")
+			
+            elif msg.text in ["Contacton","contacton"]:
+                if wait["contact"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"友資詳情開啟")
+                    else:
+                        cl.sendText(msg.to,"友資詳情開啟")
+                else:
+                    wait["contact"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"友資詳情開啟")
+                    else:
+                        cl.sendText(msg.to,"友資詳情開啟")
+			
+            elif msg.text in ["Contactoff","contactoff"]:
+                if wait["contact"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"友資詳情關閉")
+                    else:
+                        cl.sendText(msg.to,"友資詳情關閉")
+                else:
+                    wait["contact"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"友資詳情關閉")
+                    else:
+                        cl.sendText(msg.to,"友資詳情關閉")
+			
+            elif msg.text in ["Inviteprotecton","inviteprotecton"]:
+                if wait["inviteprotect"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"招待保護開啟")
+                    else:
+                        cl.sendText(msg.to,"招待保護開啟")
+                else:
+                    wait["inviteprotect"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"招待保護開啟")
+                    else:
+                        cl.sendText(msg.to,"招待保護開啟")
+			
+            elif msg.text in ["Inviteprotectoff","inviteprotectoff"]:
+                if wait["inviteprotect"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"招待保護關閉")
+                    else:
+                        cl.sendText(msg.to,"招待保護關閉")
+                else:
+                    wait["inviteprotect"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"招待保護關閉")
+                    else:
+                        cl.sendText(msg.to,"招待保護關閉")
+			
+            elif msg.text in ["leaveon","Leaveon"]:
+                if wait["leaveRoom"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動退出副本開啟")
+                    else:
+                        cl.sendText(msg.to,"自動退出副本開啟")
+                else:
+                    wait["leaveRoom"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動退出副本開啟")
+                    else:
+                        cl.sendText(msg.to,"自動退出副本開啟")
+            elif msg.text in ["leaveoff","Leaveoff"]:
+                if wait["leaveRoom"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動退出副本關閉")
+                    else:
+                        cl.sendText(msg.to,"自動退出副本關閉")
+                else:
+                    wait["leaveRoom"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動退出副本關閉")
+                    else:
+                        cl.sendText(msg.to,"自動退出副本關閉")
+			
+            elif msg.text in ["Joinon","joinon"]:
+                if wait["autoJoin"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動入群開啟")
+                    else:
+                        cl.sendText(msg.to,"自動入群開啟")
+                else:
+                    wait["autoJoin"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動入群開啟")
+                    else:
+                        cl.sendText(msg.to,"自動入群開啟")
+			
+            elif msg.text in ["Joinoff","joinoff"]:
+                if wait["autoJoin"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動入群關閉")
+                    else:
+                        cl.sendText(msg.to,"自動入群關閉")
+                else:
+                    wait["autoJoin"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動入群關閉")
+                    else:
+                        cl.sendText(msg.to,"自動入群關閉")
+
+            elif msg.text.lower() == 'set':
+                md = ""
+		if wait["autoJoin"] == True: md+="自動入群:開啟\n"
+                else: md +="自動入群:關閉\n"
+                if wait["contact"] == True: md+="友資情報:開啟\n"
+                else: md+="友資情報:關閉\n"
+                if wait["leaveRoom"] == True: md+="自動離開副本:開啟\n"
+                else: md+="自動離開副本:關閉\n"
+                if wait["linkprotect"] == True: md+="網址保護:開啟\n"
+                else:md+="網址保護:關閉\n"
+                if wait["inviteprotect"] == True: md+="招待保護:開啟"
+                else:md+="招待保護:關閉"
+                cl.sendText(msg.to,"[戦神SelfBOT]\n\n" + md)
 
             elif msg.text in ["Cancel","cancel"]:
                 if msg.toType == 2:
@@ -1234,6 +1441,7 @@ def bot(op):
                         G.preventJoinByTicket = True
                         ki2.updateGroup(G)
                     else:
+			wait["blacklist"][op.param2] = True
                         G = ki.getGroup(op.param1)
                         ki.kickoutFromGroup(op.param1,[op.param2])
                         G.preventJoinByTicket = False
@@ -1252,7 +1460,7 @@ def bot(op):
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki2.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
+                        
 
 
                         
