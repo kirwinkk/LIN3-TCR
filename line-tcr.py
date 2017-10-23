@@ -40,8 +40,12 @@ helpMessage ="""[戦神SelfBOT]
 [Cancel]→取消所有邀請
 [Kick:]→mid踢人
 [Invite:]→mid邀人
-[Nk:]→名字踢人
-[Mk:@]→標註踢人
+[BG1invite:]→指定kicker邀人
+[Nk:]→名字本帳踢人
+[Nkk:]→名字kicker踢人
+[Mk:@]→標註本帳踢人
+[Mkk:@]→標註kicker踢人
+[M1k:@]→標註指定kicker踢人
 [Bl:@]→標註黑單
 [Ubl:@]→標註解除黑單
 [Ban:]→名字黑單
@@ -65,10 +69,12 @@ helpMessage ="""[戦神SelfBOT]
 [Tagall]→標註所有人
 [Say:]→保鑣講話
 [BGbot]→追加kicker
+[Bot1]→追加指定kicker
 [BGbye]→kicker退出
+[Bot1bye]→追加指定kicker
 [Botmid]→查看Kicker友資
 [Sp]→反應速度
-[Contocton/off]→友資詳情開關
+[Joinon/off]→自動入群開關
 [Urlprotecton/off]→網址保護開關
 [Leaveon/off]→自動退出副本開關
 [Inviteprotecton/off]→招待保護開關
@@ -104,9 +110,9 @@ wait = {
     'blacklist':{},
     'wblacklist':False,
     'dblacklist':False,
-    'protect':True,
-    'cancelprotect':True,
-    'inviteprotect':True,
+    'protect':False,
+    'cancelprotect':False,
+    'inviteprotect':False,
     'linkprotect':False,
 }
 
@@ -216,30 +222,17 @@ def bot(op):
             if msg.contentType == 13:
                     msg.contentType = 0
                     if 'displayName' in msg.contentMetadata:
-                        contact = cl.getContact(msg.contentMetadata["mid"])
+                        contact = ki.getContact(msg.contentMetadata["mid"])
                         try:
-                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
+                            cu = ki.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
 			if msg.contentMetadata["mid"] in wait["blacklist"]:
                              cl.sendText(msg.to,msg.contentMetadata["mid"])
                         else:
 			     cl.sendText(msg.to,msg.contentMetadata["mid"])
-		
-        if op.type == 26:
-            msg = op.message
-            if msg.contentType == 13:
-                    msg.contentType = 0
-                    if 'displayName' in msg.contentMetadata:
-                        contact = cl.getContact(msg.contentMetadata["mid"])
-                        try:
-                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
-                        except:
-                            cu = ""
-			if msg.contentMetadata["mid"] in wait["blacklist"]:
-                             ki.sendText(msg.to,msg.contentMetadata["mid"])
-                        else:
-			     ki.sendText(msg.to,msg.contentMetadata["mid"])
+			
+
         if op.type == 25:
             msg = op.message
             if msg.contentType == 13:
@@ -501,33 +494,8 @@ def bot(op):
                     else:
                         cl.sendText(msg.to,"網址保護開啟")
 			
-            elif msg.text in ["Contacton","contacton"]:
-                if wait["contact"] == True:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情開啟")
-                    else:
-                        cl.sendText(msg.to,"友資詳情開啟")
-                else:
-                    wait["contact"] = True
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情開啟")
-                    else:
-                        cl.sendText(msg.to,"友資詳情開啟")
 			
-            elif msg.text in ["Contactoff","contactoff"]:
-                if wait["contact"] == False:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情關閉")
-                    else:
-                        cl.sendText(msg.to,"友資詳情關閉")
-                else:
-                    wait["contact"] = False
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情關閉")
-                    else:
-                        cl.sendText(msg.to,"友資詳情關閉")
-			
-            elif msg.text in ["Inviteprotecton","Inviteprotect on"]:
+            elif msg.text in ["Inviteprotecton","inviteprotecton"]:
                 if wait["inviteprotect"] == True:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"招待保護開啟")
@@ -540,7 +508,7 @@ def bot(op):
                     else:
                         cl.sendText(msg.to,"招待保護開啟")
 			
-            elif msg.text in ["Inviteprotectoff"]:
+            elif msg.text in ["Inviteprotectoff","inviteprotectoff"]:
                 if wait["inviteprotect"] == False:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"招待保護關閉")
@@ -577,11 +545,37 @@ def bot(op):
                         cl.sendText(msg.to,"自動退出副本關閉")
                     else:
                         cl.sendText(msg.to,"自動退出副本關閉")
+			
+            elif msg.text in ["Joinon","joinon"]:
+                if wait["autoJoin"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動入群開啟")
+                    else:
+                        cl.sendText(msg.to,"自動入群開啟")
+                else:
+                    wait["autoJoin"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動入群開啟")
+                    else:
+                        cl.sendText(msg.to,"自動入群開啟")
+			
+            elif msg.text in ["Joinoff","joinoff"]:
+                if wait["autoJoin"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動入群關閉")
+                    else:
+                        cl.sendText(msg.to,"自動入群關閉")
+                else:
+                    wait["autoJoin"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"自動入群關閉")
+                    else:
+                        cl.sendText(msg.to,"自動入群關閉")
 
             elif msg.text.lower() == 'set':
                 md = ""
-                if wait["contact"] == True: md+="友資情報:開啟\n"
-                else: md+="友資情報:關閉\n"
+		if wait["autoJoin"] == True: md+="自動入群:開啟\n"
+                else: md +="自動入群:關閉\n"
                 if wait["leaveRoom"] == True: md+="自動離開副本:開啟\n"
                 else: md+="自動離開副本:關閉\n"
                 if wait["linkprotect"] == True: md+="網址保護:開啟\n"
@@ -695,11 +689,130 @@ def bot(op):
                        targets.append(x["M"])
                    for target in targets:
                        try:
-                           klist=[cl,ki,ki2,ki3,ki4]
+                           klist=[cl]
                            kicker=random.choice(klist)
                            kicker.kickoutFromGroup(msg.to,[target])
                        except:
-                           cl.sendText(msg.to,"因規制或是kicker不再群內,無法踢出!")
+                           cl.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M1k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M2k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki2]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki2.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M3k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki3]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki3.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M4k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki4]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki4.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("Mkk:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki,ki2,ki3,ki4]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           klist=[ki,ki2,ki3,ki4]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+				
+            elif "Nk:" in msg.text:
+                if msg.toType == 2:
+                    print "ok"
+                    _name = msg.text.replace("Nk:","")
+                    gs = cl.getGroup(msg.to)
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        cl.sendText(msg.to,"找不到用戶")
+                    else:
+                        for target in targets:
+                            try:
+                                klist=[cl]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                            except:
+                                cl.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif "Nkk:" in msg.text:
+                if msg.toType == 2:
+                    print "ok"
+                    _name = msg.text.replace("Nkk:","")
+                    gs = cl.getGroup(msg.to)
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        ki.sendText(msg.to,"找不到用戶")
+                    else:
+                        for target in targets:
+                            try:
+                                klist=[ki,ki2,ki3,ki4]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                            except:
+                                klist=[ki,ki2,ki3,ki4]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+				
+
 				
             elif ("Bl:" in msg.text):
                    targets = []
@@ -714,7 +827,7 @@ def bot(op):
                                 json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
                                 cl.sendText(msg.to,"已黑單此用戶")
                             except:
-                                cl.sendText(msg.to,"此用戶已是黑單")
+                                cl.sendText(msg.to,"已黑單此用戶")
 				
             elif ("Ubl:" in msg.text):
                    targets = []
@@ -729,28 +842,9 @@ def bot(op):
                                 json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
                                 cl.sendText(msg.to,"已解除黑單")
                             except:
-                                cl.sendText(msg.to,"此用戶並不是黑單")
+                                cl.sendText(msg.to,"已解除黑單")
 				
-            elif "Nk:" in msg.text:
-                if msg.toType == 2:
-                    print "ok"
-                    _name = msg.text.replace("Nk:","")
-                    gs = ki.getGroup(msg.to)
-                    targets = []
-                    for g in gs.members:
-                        if _name in g.displayName:
-                            targets.append(g.mid)
-                    if targets == []:
-                        ki.sendText(msg.to,"找不到用戶")
-                    else:
-                        for target in targets:
-                            try:
-                                klist=[cl,ki,ki2,ki3,ki4]
-                                kicker=random.choice(klist)
-                                kicker.kickoutFromGroup(msg.to,[target])
-                                print (msg.to,[g.mid])
-                            except:
-                                cl.sendText(msg.to,"因規制或是kicker不再群內,無法踢出!")
+
 				
 #-----------------------------------------------------------
 
@@ -1071,7 +1165,10 @@ def bot(op):
                     else:
 			wait["blacklist"][op.param2] = True
                         G = ki.getGroup(op.param1)
-                        ki.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki.updateGroup(G)
                         Ticket = ki.reissueGroupTicket(op.param1)
@@ -1100,7 +1197,10 @@ def bot(op):
                     else:
 			wait["blacklist"][op.param2] = True
                         G = ki2.getGroup(op.param1)
-			ki2.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki2.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki2.updateGroup(G)
                         Ticket = ki2.reissueGroupTicket(op.param1)
@@ -1127,7 +1227,10 @@ def bot(op):
                         ki4.updateGroup(G)
                     else:
                         G = ki3.getGroup(op.param1)
-                        ki3.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki3.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki3.updateGroup(G)
                         Ticket = ki3.reissueGroupTicket(op.param1)
@@ -1179,7 +1282,10 @@ def bot(op):
                         ki.updateGroup(G)
                     else:
                         G = cl.getGroup(op.param1)
-                        cl.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             cl.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         cl.updateGroup(G)
                         Ticket = cl.reissueGroupTicket(op.param1)
