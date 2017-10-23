@@ -69,8 +69,11 @@ helpMessage ="""[戦神SelfBOT]
 [Cancel]→取消所有邀請
 [Kick:]→mid踢人
 [Invite:]→mid邀人
-[Nk:]→名字踢人
-[Mk:@]→標註踢人
+[Nk:]→名字本帳踢人
+[Nkk:]→名字kicker踢人
+[Mk:@]→標註本帳踢人
+[Mkk:@]→標註kicker踢人
+[M1k:@]→標註指定kicker踢人
 [Bl:@]→標註黑單
 [Ubl:@]→標註解除黑單
 [Ban:]→名字黑單
@@ -99,7 +102,6 @@ helpMessage ="""[戦神SelfBOT]
 [Botmid]→查看Kicker的mid
 [Sp]→反應速度
 [Joinon/off]→自動入群開關
-[Contocton/off]→友資詳情開關
 [Urlprotecton/off]→網址保護開關
 [Leaveon/off]→自動退出副本開關
 [Inviteprotecton/off]→招待保護開關
@@ -272,9 +274,9 @@ def bot(op):
                         except:
                             cu = ""
 			if msg.contentMetadata["mid"] in wait["blacklist"]:
-                             ki.sendText(msg.to,msg.contentMetadata["mid"])
+                             ki11.sendText(msg.to,msg.contentMetadata["mid"])
                         else:
-			     ki.sendText(msg.to,msg.contentMetadata["mid"])
+			     ki11.sendText(msg.to,msg.contentMetadata["mid"])
 	
 
         if op.type == 25:
@@ -493,31 +495,6 @@ def bot(op):
                     else:
                         cl.sendText(msg.to,"網址保護開啟")
 			
-            elif msg.text in ["Contacton","contacton"]:
-                if wait["contact"] == True:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情開啟")
-                    else:
-                        cl.sendText(msg.to,"友資詳情開啟")
-                else:
-                    wait["contact"] = True
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情開啟")
-                    else:
-                        cl.sendText(msg.to,"友資詳情開啟")
-			
-            elif msg.text in ["Contactoff","contactoff"]:
-                if wait["contact"] == False:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情關閉")
-                    else:
-                        cl.sendText(msg.to,"友資詳情關閉")
-                else:
-                    wait["contact"] = False
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情關閉")
-                    else:
-                        cl.sendText(msg.to,"友資詳情關閉")
 			
             elif msg.text in ["Inviteprotecton","inviteprotecton"]:
                 if wait["inviteprotect"] == True:
@@ -600,8 +577,6 @@ def bot(op):
                 md = ""
 		if wait["autoJoin"] == True: md+="自動入群:開啟\n"
                 else: md +="自動入群:關閉\n"
-                if wait["contact"] == True: md+="友資情報:開啟\n"
-                else: md+="友資情報:關閉\n"
                 if wait["leaveRoom"] == True: md+="自動離開副本:開啟\n"
                 else: md+="自動離開副本:關閉\n"
                 if wait["linkprotect"] == True: md+="網址保護:開啟\n"
@@ -746,7 +721,7 @@ def bot(op):
                 wait["blacklist"][midd] = True
 		cl.sendText(msg.to,"已黑單此用戶")
             elif "Munban:" in msg.text:
-                midd = msg.text.replace("Mban:","")
+                midd = msg.text.replace("Munban:","")
                 wait["blacklist"][midd] = False
 		cl.sendText(msg.to,"已解除黑單")
 		
@@ -807,6 +782,160 @@ def bot(op):
                        except:
                            cl.sendText(msg.to,"因規制,無法踢出!")
 				
+            elif ("M1k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M2k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki2]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki2.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M3k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki3]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki3.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M4k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki4]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki4.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M5k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki5]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki5.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M6k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki6]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki6.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M7k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki7]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki7.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M8k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki8]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki8.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M9k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki9]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki9.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M10k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki10]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki10.sendText(msg.to,"因規制,無法踢出!")
+				
+            elif ("M11k:" in msg.text):
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                       try:
+                           klist=[ki11]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           ki11.sendText(msg.to,"因規制,無法踢出!")
+				
             elif ("Mkk:" in msg.text):
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
@@ -819,7 +948,9 @@ def bot(op):
                            kicker=random.choice(klist)
                            kicker.kickoutFromGroup(msg.to,[target])
                        except:
-                           cl.sendText(msg.to,"因規制,無法踢出!")
+                           klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
 				
             elif ("Bl:" in msg.text):
                    targets = []
@@ -891,7 +1022,10 @@ def bot(op):
                                 kicker.kickoutFromGroup(msg.to,[target])
                                 print (msg.to,[g.mid])
                             except:
-                                cl.sendText(msg.to,"因規制,無法踢出!")
+                                klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
 #-----------------------------------------------------------
 
 #-----------------------------------------------------------
@@ -1399,7 +1533,10 @@ def bot(op):
                     else:
 			wait["blacklist"][op.param2] = True
                         G = ki.getGroup(op.param1)
-                        ki.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki.updateGroup(G)
                         Ticket = ki.reissueGroupTicket(op.param1)
@@ -1442,7 +1579,10 @@ def bot(op):
                     else:
 			wait["blacklist"][op.param2] = True
                         G = ki2.getGroup(op.param1)
-			ki2.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki2.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki2.updateGroup(G)
                         Ticket = ki2.reissueGroupTicket(op.param1)
@@ -1483,7 +1623,10 @@ def bot(op):
                         ki4.updateGroup(G)
                     else:
                         G = ki3.getGroup(op.param1)
-                        ki3.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki3.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki3.updateGroup(G)
                         Ticket = ki3.reissueGroupTicket(op.param1)
@@ -1523,7 +1666,10 @@ def bot(op):
                         cl.updateGroup(G)
                     else:
                         G = ki4.getGroup(op.param1)
-                        ki4.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki4.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki4.updateGroup(G)
                         Ticket = ki4.reissueGroupTicket(op.param1)
@@ -1563,7 +1709,10 @@ def bot(op):
                         ki.updateGroup(G)
                     else:
                         G = ki5.getGroup(op.param1)
-                        ki5.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki5.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki5.updateGroup(G)
                         Ticket = ki5.reissueGroupTicket(op.param1)
@@ -1603,7 +1752,10 @@ def bot(op):
                         ki.updateGroup(G)
                     else:
                         G = ki6.getGroup(op.param1)
-                        ki6.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki6.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki6.updateGroup(G)
                         Ticket = ki6.reissueGroupTicket(op.param1)
@@ -1643,7 +1795,10 @@ def bot(op):
                         ki.updateGroup(G)
                     else:
                         G = ki7.getGroup(op.param1)
-                        ki7.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki7.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki7.updateGroup(G)
                         Ticket = ki7.reissueGroupTicket(op.param1)
@@ -1683,7 +1838,10 @@ def bot(op):
                         ki.updateGroup(G)
                     else:
                         G = ki8.getGroup(op.param1)
-                        ki8.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki8.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki8.updateGroup(G)
                         Ticket = ki8.reissueGroupTicket(op.param1)
@@ -1723,7 +1881,10 @@ def bot(op):
                         ki.updateGroup(G)
                     else:
                         G = ki9.getGroup(op.param1)
-                        ki9.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki9.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki9.updateGroup(G)
                         Ticket = ki9.reissueGroupTicket(op.param1)
@@ -1763,7 +1924,10 @@ def bot(op):
                         ki.updateGroup(G)
                     else:
                         G = ki10.getGroup(op.param1)
-                        ki10.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki10.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki10.updateGroup(G)
                         Ticket = ki10.reissueGroupTicket(op.param1)
@@ -1803,7 +1967,10 @@ def bot(op):
                         ki.updateGroup(G)
                     else:
                         G = ki11.getGroup(op.param1)
-                        ki11.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             ki11.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         ki11.updateGroup(G)
                         Ticket = ki11.reissueGroupTicket(op.param1)
@@ -1844,7 +2011,10 @@ def bot(op):
                         ki.updateGroup(G)
                     else:
                         G = cl.getGroup(op.param1)
-                        cl.kickoutFromGroup(op.param1,[op.param2])
+			try:
+                             cl.kickoutFromGroup(op.param1,[op.param2])
+			except:
+			     print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
                         cl.updateGroup(G)
                         Ticket = cl.reissueGroupTicket(op.param1)
@@ -1916,6 +2086,9 @@ def nameUpdate():
 		profile = ki10.getProfile()
 		profile.displayName = "戦神☆10"
 		ki10.updateProfile(profile)
+		profile = ki11.getProfile()
+		profile.displayName = "戦神かふう☆ちの"
+		ki11.updateProfile(profile)
                 
                 time.sleep(600000)
 thread2 = threading.Thread(target=nameUpdate)
