@@ -29,7 +29,7 @@ helpMessage ="""[/help]...查看指令
 [/Gift]...發送禮物
 [/Time]...現在時間
 [/Gc]...查看群長
-[/botbye]...智乃退出
+[/botbye]...紗霧退出
 
 紗霧作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
