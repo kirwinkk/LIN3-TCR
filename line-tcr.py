@@ -50,7 +50,6 @@ helpMessage ="""[戦神無料代行]
 [Sp]→反應速度
 
 ☆以下動作對所有群組都有反應
-[Contocton/off]→友資詳情開關
 [Urlprotecton/off]→網址保護開關
 [Leaveon/off]→自動退出副本開關
 [Inviteprotecton/off]→招待保護開關
@@ -449,31 +448,7 @@ def bot(op):
                     else:
                         cl.sendText(msg.to,"網址保護開啟")
 			
-            elif msg.text in ["Contacton","contacton"]:
-                if wait["contact"] == True:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情開啟")
-                    else:
-                        cl.sendText(msg.to,"友資詳情開啟")
-                else:
-                    wait["contact"] = True
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情開啟")
-                    else:
-                        cl.sendText(msg.to,"友資詳情開啟")
-			
-            elif msg.text in ["Contactoff","contactoff"]:
-                if wait["contact"] == False:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情關閉")
-                    else:
-                        cl.sendText(msg.to,"友資詳情關閉")
-                else:
-                    wait["contact"] = False
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"友資詳情關閉")
-                    else:
-                        cl.sendText(msg.to,"友資詳情關閉")
+
 			
             elif msg.text in ["Inviteprotecton","Inviteprotect on"]:
                 if wait["inviteprotect"] == True:
@@ -528,8 +503,6 @@ def bot(op):
 
             elif msg.text.lower() == 'set':
                 md = ""
-                if wait["contact"] == True: md+="友資情報:開啟\n"
-                else: md+="友資情報:關閉\n"
                 if wait["leaveRoom"] == True: md+="自動離開副本:開啟\n"
                 else: md+="自動離開副本:關閉\n"
                 if wait["linkprotect"] == True: md+="網址保護:開啟\n"
