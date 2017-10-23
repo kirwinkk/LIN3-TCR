@@ -29,7 +29,7 @@ helpMessage ="""[/help]...查看指令
 [/Gift]...發送禮物
 [/Time]...現在時間
 [/Gc]...查看群長
-[/botbye]...智乃退出
+[/botbye]...紗霧退出
 
 紗霧作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
@@ -102,15 +102,12 @@ def bot(op):
             if msg.contentType == 13:
                     msg.contentType = 0
                     if 'displayName' in msg.contentMetadata:
-                        contact = ki.getContact(msg.contentMetadata["mid"])
+                        contact = cl.getContact(msg.contentMetadata["mid"])
                         try:
-                            cu = ki.channel.getCover(msg.contentMetadata["mid"])
+                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-			if msg.contentMetadata["mid"] in wait["blacklist"]:
-                             cl.sendText(msg.to,msg.contentMetadata["displayName"] + "\n" + msg.contentMetadata["mid"])
-                        else:
-			     cl.sendText(msg.to,msg.contentMetadata["displayName"] + "\n" + msg.contentMetadata["mid"])
+                        cl.sendText(msg.to,msg.contentMetadata["displayName"] + "\n" + msg.contentMetadata["mid"])
 		
             if msg.contentType == 16:
                 url = msg.contentMetadata("line://home/post?userMid="+mid+"&postId="+"new_post")
