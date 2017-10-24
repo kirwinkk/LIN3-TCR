@@ -369,20 +369,7 @@ def bot(op):
 			     cl.sendText(msg.to,msg.contentMetadata["mid"])
 			     ki.sendText(msg.to,msg.contentMetadata["mid"])
 		
-        if op.type == 26:
-            msg = op.message
-            if msg.contentType == 13:
-                    msg.contentType = 0
-                    if 'displayName' in msg.contentMetadata:
-                        contact = cl.getContact(msg.contentMetadata["mid"])
-                        try:
-                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
-                        except:
-                            cu = ""
-			if msg.contentMetadata["mid"] in wait["blacklist"]:
-                             ki.sendText(msg.to,msg.contentMetadata["mid"])
-                        else:
-			     ki.sendText(msg.to,msg.contentMetadata["mid"])
+
 			
 
         if op.type == 25:
