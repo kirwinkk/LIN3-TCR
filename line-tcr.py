@@ -14,7 +14,6 @@ print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-jgs = cl.getGroupIdsJoined()
 
 
 helpMessage ="""[/help]...查看指令
@@ -47,17 +46,46 @@ wait = {
     'contact':True,
     'autoJoin':True,
     'autoCancel':{"on":True,"members":1},
-    'leaveRoom':True,
+    'leaveRoom':False,
     'timeline':True,
     'autoAdd':True,
-    'message':"紗霧☆Sagiri\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message':"戦神SelfBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
     'lang':"JP",
-    'comment':"紗霧☆Sagiri\n作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'comment':"戦神☆style",
     'commentOn':True,
     'commentBlack':{},
-    'clock':True,
-    'cName':"紗霧☆Sagiri",
-    'linkprotect':True,
+    'wblack':False,
+    'dblack':False,
+    'likeOn':True,
+    'blacklist':{},
+    'wblacklist':False,
+    'dblacklist':False,
+    'protect':False,
+    'cancelprotect':False,
+    'inviteprotect':False,
+    'linkprotect':False,
+    'pnharfbot':{},
+    'pname':{},
+    'pro_name':{},  
+    'pinvite':{},
+    'pkick':{},  
+    'purl':{},  
+}
+
+wait2 = {
+	'readMember':{},
+	'readPoint':{},
+	'ROM':{},
+	'setTime':{}
+    }
+	
+setTime = {}
+setTime = wait2["setTime"]
+
+res = {
+    'num':{},
+    'us':{},
+    'au':{},
 }
 
 d = datetime.datetime.today()
@@ -71,6 +99,14 @@ def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
                 return True
     return False
 
+def sendMessage(to, text, contentMetadata={}, contentType=0):
+    mes = Message()
+    mes.to, mes.from_ = to, profile.mid
+    mes.text = text
+    mes.contentType, mes.contentMetadata = contentType, contentMetadata
+    if to not in messageReq:
+        messageReq[to] = -1
+    messageReq[to] += 1
 
 
 def bot(op):
@@ -87,8 +123,10 @@ def bot(op):
                             except:
                                 gCreator = ginfo.members[0].displayName
                             cl.sendText(op.param1,"安安我是紗霧^^\n\n[群長]\n->" + gCreator)
+                            cl.sendText(op.param1,"作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0")
 		        except:
 			    cl.sendText(op.param1,"安安我是紗霧^^\n\n[群長]\n->" + gCreator)
+                            cl.sendText(op.param1,"作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0")
 			
             else:
 		  pass
@@ -96,6 +134,21 @@ def bot(op):
         if op.type == 16:
                 url = msg.contentMetadata["postEndUrl"]
                 cl.like(url[25:58], url[66:], likeType=1001)
+		
+        if op.type == 55:
+            try:
+                if op.param1 in wait2['readPoint']:
+                    Name = cl.getContact(op.param2).displayName
+                    if Name in wait2['readMember'][op.param1]:
+                        pass
+                    else:
+                        wait2['readMember'][op.param1] += "\n->" + Name
+                        wait2['ROM'][op.param1][op.param2] = "->" + Name
+                else:
+                    cl.sendText
+            except:
+                  pass
+
 
         if op.type == 26:
             msg = op.message
@@ -156,16 +209,41 @@ def bot(op):
                 msg.text = None
                 cl.sendMessage(msg)
 		
-            elif msg.text in ["智乃禮物","愛的禮物"]:
+            elif msg.text in ["紗霧禮物","愛的禮物"]:
                 msg.contentType = 9
                 msg.contentMetadata={'PRDID': '3b92ccf5-54d3-4765-848f-c9ffdc1da020',
                                     'PRDTYPE': 'THEME',
                                     'MSGTPL': '5'}
                 msg.text = None
                 cl.sendMessage(msg)
+            elif msg.text == "/point":
+                try:
+                  del wait2['readPoint'][msg.to]
+                  del wait2['readMember'][msg.to]
+                except:
+	            pass
+                wait2['readPoint'][msg.to] = msg.id
+                wait2['readMember'][msg.to] = ""
+                wait2['setTime'][msg.to] = datetime.datetime.today().strftime("%H:%M")
+                wait2['ROM'][msg.to] = {}
+		cl.sendText(msg.to, "已讀設定OK")
+		print wait2
 
+            elif msg.text == "/read":
+		  if msg.to in wait2['readPoint']:
+	            if wait2["ROM"][msg.to].items() == []:
+	              chiya = ""
+	            else:
+	              chiya = ""
+	              for rom in wait2["ROM"][msg.to].items():
+	                print rom
+	                chiya += rom[1] + "\n"
 
-            elif msg.text in ["/Cancel","/cancel","智乃取消","智乃cancel","智乃Cancel"]:
+	            cl.sendText(msg.to,"已讀者(｀・ω・´)\n%s"  % (wait2['readMember'][msg.to]))
+	          else:
+	            cl.sendText(msg.to, "請先設定已讀點")
+
+            elif msg.text in ["/Cancel","/cancel","紗霧取消","紗霧cancel","紗霧Cancel"]:
                 if msg.toType == 2:
 		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
@@ -268,7 +346,6 @@ def bot(op):
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
                     try:
-			jgs.remove(msg.to)
                         cl.sendText(msg.to,""  +  str(ginfo.name)  + " 掰掰~\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 			cl.leaveGroup(msg.to)
                     except:
@@ -304,13 +381,7 @@ def bot(op):
 
 #------------------------------------------------------------------------------------
 
-	if op.type == 11:
-	    if op.param2 not in Bots:
-		    G = cl.getGroup(op.param1)
-		    G.preventJoinByTicket = True
-		    cl.updateGroup(G)
-	    else:
-		pass
+
 
         if op.type == 59:
             print op
@@ -320,25 +391,37 @@ def bot(op):
         print error
 
 
+
+
+def autoSta():
+    count = 1
+    while True:
+        try:
+           for posts in cl.activity(1)["result"]["posts"]:
+             if posts["postInfo"]["liked"] is False:
+                if wait["likeOn"] == True:
+                   cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+                   if wait["commentOn"] == True:
+                      if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
+                         pass
+                      else:
+                          cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
+        except:
+            count += 1
+            if(count == 50):
+                sys.exit(0)
+            else:
+                pass
+thread1 = threading.Thread(target=autoSta)
+thread1.daemon = True
+thread1.start()
 def a2():
-    nowT = datetime.datetime.today().strftime("%M")
+    now2 = datetime.now()
+    nowT = datetime.strftime(now2,"%M")
     if nowT[14:] in ["10","20","30","40","50","00"]:
         return False
     else:
         return True
-def nameUpdate():
-    while True:
-        try:
-                profile = cl.getProfile()
-                profile.displayName = "紗霧☆Sagiri"
-                cl.updateProfile(profile)
-                time.sleep(6000)
-        except:
-            pass
-thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
-
 
 while True:
     try:
@@ -350,3 +433,4 @@ while True:
         if (Op.type != OpType.END_OF_OPERATION):
             cl.Poll.rev = max(cl.Poll.rev, Op.revision)
             bot(Op)
+
