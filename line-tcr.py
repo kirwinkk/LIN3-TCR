@@ -232,7 +232,7 @@ def bot(op):
 					except:
 						pass
 					random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-					ki11.sendText(op.param1,"URL保護測試中1")
+					ki11.sendText(op.param1,"URL保護測試1")
 				else:
 					pass
 	
@@ -256,10 +256,8 @@ def bot(op):
                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
                         except:
                             pass
-                    ki11.sendText(op.param1,"群名保護測試中1")
-                    c = Message(to=op.param1, from_=None, text=None, contentType=13)
-                    c.contentMetadata={'mid':op.param2}
-                    ki11.sendMessage(c)
+                    ki11.sendText(op.param1,"群名保護測試1")
+
         if op.type == 13:
                 if op.param1 in wait['pinvite']:
 			OWN = Bots
@@ -275,7 +273,7 @@ def bot(op):
 				    cl.cancelGroupInvitation(op.param1,InviterX)
 				try:
 				    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				    ki11.sendText(op.param1,"邀請保護測試中1")
+				    ki11.sendText(op.param1,"邀請保護測試1")
 				except:
                                     pass	
         if op.type == 19:
@@ -287,10 +285,10 @@ def bot(op):
                         G = cl.getGroup(op.param1)
                         try:
 				random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				ki11.sendText(op.param1,"踢人保護測試中1")
+				ki11.sendText(op.param1,"踢人保護測試1")
                         except:
                                 random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				ki11.sendText(op.param1,"踢人保護測試中2")
+				ki11.sendText(op.param1,"踢人保護測試2")
                         G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
              else:
@@ -312,6 +310,8 @@ def bot(op):
                     cl.sendText
             except:
                   pass
+		
+		
         if op.type == 26:
             msg = op.message
             if msg.toType == 0:
@@ -454,7 +454,7 @@ def bot(op):
 				if msg.to in wait['pkick']:
 					cl.sendText(msg.to,"already on")
 				else:
-					wait['pname'][msg.to] = True
+					wait['pkick'][msg.to] = True
 					cl.sendText(msg.to,"turned on")
             elif "Protectoff" == msg.text:
 				try:
@@ -493,12 +493,35 @@ def bot(op):
 					del wait['purl'][msg.to]
 					cl.sendText(msg.to,"Protect url Off")
 				except:
-					cl.sendText(msg.to,"Already Off")       
+					cl.sendText(msg.to,"Already Off")    
+					
+            elif msg.text.lower() == 'Gset':
+		Group = msg.to
+                md = ""
+		if Group in wait["pkick"]: md+="踢人保護:開啟\n"
+                else: md +="踢人保護:關閉\n"
+                if Group in wait["purl"]: md+="網址保護:開啟\n"
+                else: md +="網址保護:關閉\n"
+                if Group in wait["pname"]: md+="群名保護:開啟\n"
+                else: md +="群名保護:關閉\n"
+                if Group in wait["pinvite"]: md+="禁邀保護:開啟"
+                else: md +="禁邀保護:關閉"
+                cl.sendText(msg.to,"[戦神群組設定]\n\n" + md)
+					
+					
+					
+					
             elif msg.text == "Help":
                 if wait["lang"] == "JP":
                     cl.sendText(msg.to,helpMessage)
                 else:
                     cl.sendText(msg.to,helpMessage)
+		
+		
+		
+		
+		
+		
             elif ("Gn:" in msg.text):
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
@@ -697,7 +720,6 @@ def bot(op):
                 cl.sendText(msg.to,"[戦神SelfBOT]\n\n" + md)
 		
             elif msg.text == "Point":
-              if msg.from_ in admin:
                 cl.sendText(msg.to, "設定OK0.0")
                 try:
                   del wait2['readPoint'][msg.to]
@@ -711,7 +733,6 @@ def bot(op):
                 wait2['ROM'][msg.to] = {}
 
             elif msg.text == "Read":
-              if msg.from_ in admin:
 		  if msg.to in wait2['readPoint']:
 	            if wait2["ROM"][msg.to].items() == []:
 	              chiya = ""
