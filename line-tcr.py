@@ -347,10 +347,7 @@ def bot(op):
                         cl.kickoutFromGroup(msg.to,[jj])
                     cl.sendText(msg.to,"黑單踢出成功")
 		
-		
-        if msg.toType == 1:
-                if wait["leaveRoom"] == True:
-                    cl.leaveRoom(msg.to)
+
 		
         if op.type == 26:
             msg = op.message
