@@ -102,12 +102,13 @@ helpMessage ="""[戦神SelfBOT]
 [Botmid]→查看Kicker的mid
 [Sp]→反應速度
 [Joinon/off]→自動入群開關
-[Protecton/off]→踢人保護開關
-[Namelockon/off]→群名保護開關
-[Urlprotecton/off]→網址保護開關
-[Inviteon/off]→招待保護開關
 [Leaveon/off]→自動退出副本開關
-[set]→確認設定
+[set]→設定確認
+[Pkickon/off]→踢人保護開關
+[Pnameon/off]→群名保護開關
+[Purlon/off]→網址保護開關
+[Pinviteon/off]→招待保護開關
+[Gset]→群組設定確認
 
 作者:戦神
 http://line.me/ti/p/4-ZKcjagH0"""
@@ -143,12 +144,12 @@ wait = {
     'autoAdd':True,
     'message':"戦神SelfBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
     'lang':"JP",
-    'comment':"戦神SelfBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
+    'comment':"戦神☆style",
     'commentOn':True,
     'commentBlack':{},
     'wblack':False,
     'dblack':False,
-    'clock':True,
+    'likeOn':True,
     'blacklist':{},
     'wblacklist':False,
     'dblacklist':False,
@@ -188,6 +189,15 @@ def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
             if string ==command:
                 return True
     return False
+
+def sendMessage(to, text, contentMetadata={}, contentType=0):
+    mes = Message()
+    mes.to, mes.from_ = to, profile.mid
+    mes.text = text
+    mes.contentType, mes.contentMetadata = contentType, contentMetadata
+    if to not in messageReq:
+        messageReq[to] = -1
+    messageReq[to] += 1
 
 def bot(op):
     try:
@@ -232,7 +242,7 @@ def bot(op):
 					except:
 						pass
 					random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-					ki11.sendText(op.param1,"URL保護測試中1")
+					ki11.sendText(op.param1,"URL保護開啟中,請勿變更網址!")
 				else:
 					pass
 	
@@ -254,12 +264,11 @@ def bot(op):
                     else:
                         try:
                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+                            ki11.sendText(op.param1,"群名保護開啟中,請勿變更群名!")
                         except:
-                            pass
-                    ki11.sendText(op.param1,"群名保護測試中1")
-                    c = Message(to=op.param1, from_=None, text=None, contentType=13)
-                    c.contentMetadata={'mid':op.param2}
-                    ki11.sendMessage(c)
+                            ki11.sendText(op.param1,"群名保護開啟中,請勿變更群名!")
+                    
+
         if op.type == 13:
                 if op.param1 in wait['pinvite']:
 			OWN = Bots
@@ -275,22 +284,22 @@ def bot(op):
 				    cl.cancelGroupInvitation(op.param1,InviterX)
 				try:
 				    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				    ki11.sendText(op.param1,"邀請保護測試中1")
+				    ki11.sendText(op.param1,"邀請保護開啟中,請勿邀請任何用戶!")
 				except:
                                     pass	
         if op.type == 19:
              if op.param1 in wait['pkick']:
-                    OWN = Bots
-                    if op.param2 in OWN:
+                    if op.param2 in Bots:
                         pass
                     else:
+                      if op.param3 not in Bots:
                         G = cl.getGroup(op.param1)
                         try:
 				random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				ki11.sendText(op.param1,"踢人保護測試中1")
+				ki11.sendText(op.param1,"踢人保護開啟中,請勿踢出成員!")
                         except:
                                 random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				ki11.sendText(op.param1,"踢人保護測試中2")
+				ki11.sendText(op.param1,"踢人保護開啟中,請勿踢出成員!")
                         G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
              else:
@@ -312,6 +321,8 @@ def bot(op):
                     cl.sendText
             except:
                   pass
+		
+		
         if op.type == 26:
             msg = op.message
             if msg.toType == 0:
@@ -450,55 +461,85 @@ def bot(op):
                     cl.sendText(msg.to,helpMessage)
                 else:
                     cl.sendText(msg.to,helpMessage)
-            elif "Protecton" == msg.text:
-				if msg.to in wait['pkick']:
-					cl.sendText(msg.to,"already on")
-				else:
-					wait['pname'][msg.to] = True
-					cl.sendText(msg.to,"turned on")
-            elif "Protectoff" == msg.text:
-				try:
-						del wait['pkick'][msg.to]
-						cl.sendText(msg.to,"turned off")
-				except:
-					cl.sendText(msg.to,"Already Off")
-            elif "Namelockon" in msg.text:
-                if msg.to in wait['pname']:
-                    cl.sendText(msg.to,"Already On")
+
+            elif msg.text in ["Pkickon","pkickon"]:
+                if msg.to in wait['pkick']:
+                    cl.sendText(msg.to,"已開啟禁止踢人保護!")
                 else:
-                    cl.sendText(msg.to,"Turn On.")
+                    cl.sendText(msg.to,"禁止踢人保護開啟!")
+                    wait['pkick'][msg.to] = True
+            elif msg.text in ["Pkickoff","pkickoff"]:
+                if msg.to in wait['pkick']:
+                    del wait['pkick'][msg.to]
+                    cl.sendText(msg.to,"禁止踢人保護關閉!")
+                else:
+                    cl.sendText(msg.to,"已關閉禁止踢人保護!")
+			      
+            elif msg.text in ["Pnameon","pnameon"]:
+                if msg.to in wait['pname']:
+                    cl.sendText(msg.to,"已開啟禁止更改群名保護!")
+                else:
+                    cl.sendText(msg.to,"禁止更改群名保護開啟!")
                     wait['pname'][msg.to] = True
                     wait['pro_name'][msg.to] = cl.getGroup(msg.to).name
-            elif "Namelockoff" in msg.text:
+            elif msg.text in ["Pnameoff","pnameoff"]:
                 if msg.to in wait['pname']:
                     del wait['pname'][msg.to]
-                    cl.sendText(msg.to,"Turn Off.")
+                    cl.sendText(msg.to,"禁止更改群名保護關閉!")
                 else:
-                    cl.sendText(msg.to,"Already Off")
+                    cl.sendText(msg.to,"已關閉禁止更改群名保護!")
 					
-            elif "Inviteon" == msg.text:
-				wait['pinvite'][msg.to] = True
-				cl.sendText(msg.to,"Protect Invitation On")
-            elif "Inviteoff" == msg.text:
-				try:
-					del wait['pinvite'][msg.to]
-					cl.sendText(msg.to,"Protect Invitation Off")
-				except:
-					cl.sendText(msg.to,"Already Off")           
-            elif "Urlprotecton" == msg.text:
-				wait['purl'][msg.to] = True
-				cl.sendText(msg.to,"Protect url On")
-            elif "Urlprotectoff" == msg.text:
-				try:
-					del wait['purl'][msg.to]
-					cl.sendText(msg.to,"Protect url Off")
-				except:
-					cl.sendText(msg.to,"Already Off")       
+            elif msg.text in ["Pinviteon","pinviteon"]:
+                if msg.to in wait['pinvite']:
+                    cl.sendText(msg.to,"已開啟禁止邀人保護!")
+                else:
+                    cl.sendText(msg.to,"禁止邀人保護開啟!")
+                    wait['pinvite'][msg.to] = True
+            elif msg.text in ["Pinviteoff","pinviteoff"]:
+                if msg.to in wait['pinvite']:
+                    del wait['pinvite'][msg.to]
+                    cl.sendText(msg.to,"禁止邀人保護關閉!")
+                else:
+                    cl.sendText(msg.to,"已關閉禁止邀人保護!")       
+            elif msg.text in ["Purlon","purlon"]:
+                if msg.to in wait['purl']:
+                    cl.sendText(msg.to,"已開啟禁止開網址保護!")
+                else:
+                    cl.sendText(msg.to,"禁止開網址保護開啟!")
+                    wait['purl'][msg.to] = True
+            elif msg.text in ["Purloff","purloff"]:
+                if msg.to in wait['purl']:
+                    del wait['purl'][msg.to]
+                    cl.sendText(msg.to,"禁止開網址保護關閉!")
+                else:
+                    cl.sendText(msg.to,"已關閉禁止開網址保護!")  
+					
+            elif msg.text in ["Gset","gset"]:
+                md = ""
+		if msg.to in wait['pkick']: md+="踢人保護:開啟\n"
+                else: md +="踢人保護:關閉\n"
+                if msg.to in wait["purl"]: md+="網址保護:開啟\n"
+                else: md +="網址保護:關閉\n"
+                if msg.to in wait["pname"]: md+="群名保護:開啟\n"
+                else: md +="群名保護:關閉\n"
+                if msg.to in wait["pinvite"]: md+="禁邀保護:開啟"
+                else: md +="禁邀保護:關閉"
+                cl.sendText(msg.to,"[戦神群組設定]\n\n" + md)
+					
+					
+					
+					
             elif msg.text == "Help":
                 if wait["lang"] == "JP":
                     cl.sendText(msg.to,helpMessage)
                 else:
                     cl.sendText(msg.to,helpMessage)
+		
+		
+		
+		
+		
+		
             elif ("Gn:" in msg.text):
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
@@ -690,28 +731,22 @@ def bot(op):
                 else: md +="自動入群:關閉\n"
                 if wait["leaveRoom"] == True: md+="自動離開副本:開啟\n"
                 else: md+="自動離開副本:關閉\n"
-                if wait["linkprotect"] == True: md+="網址保護:開啟\n"
-                else:md+="網址保護:關閉\n"
-                if wait["inviteprotect"] == True: md+="招待保護:開啟"
-                else:md+="招待保護:關閉"
                 cl.sendText(msg.to,"[戦神SelfBOT]\n\n" + md)
 		
             elif msg.text == "Point":
-              if msg.from_ in admin:
-                cl.sendText(msg.to, "設定OK0.0")
                 try:
                   del wait2['readPoint'][msg.to]
                   del wait2['readMember'][msg.to]
                 except:
 	            pass
-                now2 = datetime.now()
                 wait2['readPoint'][msg.to] = msg.id
                 wait2['readMember'][msg.to] = ""
-                wait2['setTime'][msg.to] = datetime.strftime(now2,"%H:%M")
+                wait2['setTime'][msg.to] = datetime.datetime.today().strftime("%H:%M")
                 wait2['ROM'][msg.to] = {}
+		cl.sendText(msg.to, "設定OK0.0")
+		print wait2
 
             elif msg.text == "Read":
-              if msg.from_ in admin:
 		  if msg.to in wait2['readPoint']:
 	            if wait2["ROM"][msg.to].items() == []:
 	              chiya = ""
@@ -2236,7 +2271,35 @@ thread2 = threading.Thread(target=nameUpdate)
 thread2.daemon = True
 thread2.start()
 
-
+def autoSta():
+    count = 1
+    while True:
+        try:
+           for posts in cl.activity(1)["result"]["posts"]:
+             if posts["postInfo"]["liked"] is False:
+                if wait["likeOn"] == True:
+                   cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+                   if wait["commentOn"] == True:
+                      if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
+                         pass
+                      else:
+                          cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
+        except:
+            count += 1
+            if(count == 50):
+                sys.exit(0)
+            else:
+                pass
+thread1 = threading.Thread(target=autoSta)
+thread1.daemon = True
+thread1.start()
+def a2():
+    now2 = datetime.now()
+    nowT = datetime.strftime(now2,"%M")
+    if nowT[14:] in ["10","20","30","40","50","00"]:
+        return False
+    else:
+        return True
 
 while True:
     try:
