@@ -128,7 +128,7 @@ ki8mid = ki8.getProfile().mid
 ki9mid = ki9.getProfile().mid
 ki10mid = ki10.getProfile().mid
 ki11mid = ki11.getProfile().mid
-Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki10mid,ki11mid]
+Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki10mid,ki11mid,"u8dc2983d2e3183303bc466f3283d44d8"]
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
 admin = "uc216d8664c4e1f43772c98b1b0b8956e"
 protectname = []
@@ -249,6 +249,9 @@ def bot(op):
 						pass
 					random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 					ki11.sendText(op.param1,"URL保護開啟中,請勿變更網址!")
+					c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                                        c.contentMetadata={'mid':op.param2}
+					ki11.sendMessage(c)
 				else:
 					pass
 	
@@ -257,6 +260,8 @@ def bot(op):
                 if op.param1 in wait['pname']:
                     try:
                         G = cl.getGroup(op.param1)
+			c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                        c.contentMetadata={'mid':op.param2}
                     except:
                         G = random.choice(KAC).getGroup(op.param1)
                         
@@ -271,8 +276,10 @@ def bot(op):
                         try:
                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
                             ki11.sendText(op.param1,"群名保護開啟中,請勿變更群名!")
+			    ki11.sendMessage(c)
                         except:
                             ki11.sendText(op.param1,"群名保護開啟中,請勿變更群名!")
+			    ki11.sendMessage(c)
                     
 
         if op.type == 13:
@@ -291,8 +298,14 @@ def bot(op):
 				try:
 				    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 				    ki11.sendText(op.param1,"邀請保護開啟中,請勿邀請任何用戶!")
+				    c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                                    c.contentMetadata={'mid':op.param2}
+				    ki11.sendMessage(c)
 				except:
-                                    pass	
+                                    ki11.sendText(op.param1,"邀請保護開啟中,請勿邀請任何用戶!")
+				    c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                                    c.contentMetadata={'mid':op.param2}
+				    ki11.sendMessage(c)	
         if op.type == 19:
              if op.param1 in wait['pkick']:
                     if op.param2 in Bots:
@@ -300,14 +313,23 @@ def bot(op):
                     else:
                       if op.param3 not in Bots:
                         G = cl.getGroup(op.param1)
+			c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                        c.contentMetadata={'mid':op.param2}
+					
                         try:
 				random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				ki11.sendText(op.param1,"踢人保護開啟中,請勿踢出成員!")
                         except:
                                 random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				ki11.sendText(op.param1,"踢人保護開啟中,請勿踢出成員!")
+				
                         G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
+			try:
+			    ki11.sendText(op.param1,"踢人保護開啟中,請勿踢出成員!")
+			    ki11.sendMessage(c)
+			except:
+				pass
+			
+			
              else:
                         pass
                         
@@ -395,9 +417,7 @@ def bot(op):
                     cl.sendText(msg.to,"黑單踢出成功")
 		
 		
-            if msg.toType == 1:
-                if wait["leaveRoom"] == True:
-                    cl.leaveRoom(msg.to)
+            
 		
         if op.type == 26:
             msg = op.message
@@ -413,6 +433,9 @@ def bot(op):
                              ki11.sendText(msg.to,msg.contentMetadata["mid"])
                         else:
 			     ki11.sendText(msg.to,msg.contentMetadata["mid"])
+            if msg.toType == 1:
+                if wait["leaveRoom"] == True:
+                    cl.leaveRoom(msg.to)
 	
 
         if op.type == 25:
