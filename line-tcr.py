@@ -62,28 +62,8 @@ wait = {
     'cancelprotect':False,
     'inviteprotect':False,
     'linkprotect':False,
-    'pnharfbot':{},
-    'pname':{},
-    'pro_name':"万由里☆style", 
-    'pinvite':{},
-    'pkick':{},  
-    'purl':{},  
 }
 
-
-
-
-
-
-
-def sendMessage(to, text, contentMetadata={}, contentType=0):
-    mes = Message()
-    mes.to, mes.from_ = to, profile.mid
-    mes.text = text
-    mes.contentType, mes.contentMetadata = contentType, contentMetadata
-    if to not in messageReq:
-        messageReq[to] = -1
-    messageReq[to] += 1
 
 def bot(op):
     try:
@@ -97,7 +77,7 @@ def bot(op):
                         cl.acceptGroupInvitation(op.param1)
 			G = cl.getGroup(op.param1)
 			try:
-				G.name = wait['pro_name'][op.param1]
+				G.name = "万由里☆style"
 				cl.updateGroup(G)
 			except:
 				pass
@@ -141,12 +121,9 @@ def bot(op):
             if op.param3 == '1':
                     try:
                         G = cl.getGroup(op.param1)
-			c = Message(to=op.param1, from_=None, text=None, contentType=13)
-                        c.contentMetadata={'mid':op.param2}
                     except:
                         G = random.choice(KAC).getGroup(op.param1)
-                        
-                    G.name = wait['pro_name'][op.param1]
+                    G.name = "万由里☆style"
                     try:
                         random.choice(KAC).updateGroup(G)
                     except:
@@ -164,17 +141,16 @@ def bot(op):
 		G.preventJoinByTicket = True
                 random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])  
 		kicker = random.choice(KAC)
+		kicker2 = random.choice(KAC)
 		key1 = "uc216d8664c4e1f43772c98b1b0b8956e"
 		key2 = "ua1d924caa58666ee73d0625ca036a1b1"
 		kicker.findAndAddContactsByMid(key1)
-                kicker.inviteIntoGroup(msg.to,[key1])
-		kicker2 = random.choice(KAC)
+                kicker.inviteIntoGroup(op.param1,[key1])
 		kicker2.findAndAddContactsByMid(key2)
-                kicker2.inviteIntoGroup(msg.to,[key2])
+                kicker2.inviteIntoGroup(op.param1,[key2])
 
         if op.type == 13:
-			OWN = Bots + admin + staff6
-			if op.param2 in OWN:
+			if op.param2 in Bots + admin + staff6:
 				pass
 			else:
 				group = cl.getGroup(op.param1)
@@ -193,15 +169,6 @@ def bot(op):
 				    group.preventJoinByTicket = True
                                     random.choice(KAC).updateGroup(group)
         if op.type == 19:
-                    if op.param3 in admin + staff6:
-                        kicker = random.choice(KAC)
-		        key1 = "uc216d8664c4e1f43772c98b1b0b8956e"
-			key2 = "ua1d924caa58666ee73d0625ca036a1b1"
-		        kicker.findAndAddContactsByMid(key1)
-                        kicker.inviteIntoGroup(msg.to,[key1])
-			kicker2 = random.choice(KAC)
-			kicker2.findAndAddContactsByMid(key2)
-                        kicker2.inviteIntoGroup(msg.to,[key2])
                     if op.param2 not in Bots:
                       if op.param3 not in Bots:
                         G = cl.getGroup(op.param1)
@@ -214,7 +181,16 @@ def bot(op):
                         G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
 
-                        
+        if op.type == 19:
+                    if op.param3 in admin + staff6:
+                        kicker = random.choice(KAC)
+			kicker2 = random.choice(KAC)
+		        key1 = "uc216d8664c4e1f43772c98b1b0b8956e"
+			key2 = "ua1d924caa58666ee73d0625ca036a1b1"
+		        kicker.findAndAddContactsByMid(key1)
+                        kicker.inviteIntoGroup(op.param1,[key1])
+			kicker2.findAndAddContactsByMid(key2)
+                        kicker2.inviteIntoGroup(op.param1,[key2])
 			
 
 
@@ -230,6 +206,8 @@ def bot(op):
 			
         if op.type == 26:
             msg = op.message
+            if msg.text is None:
+                return
             if ("Lv1:" in msg.text):
                 if msg.from_ in admin + staff6:
                    targets = []
@@ -495,37 +473,8 @@ def bot(op):
 
 
 
-def autoSta():
-    count = 1
-    while True:
-        try:
-           for posts in cl.activity(1)["result"]["posts"]:
-             if posts["postInfo"]["liked"] is False:
-                if wait["likeOn"] == True:
-                   cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
-                   if wait["commentOn"] == True:
-                      if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
-                         pass
-                      else:
-                          cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
-        except:
-            count += 1
-            if(count == 50):
-                sys.exit(0)
-            else:
-                pass
-thread1 = threading.Thread(target=autoSta)
-thread1.daemon = True
-thread1.start()
 
 
-def a2():
-    now2 = datetime.now()
-    nowT = datetime.strftime(now2,"%M")
-    if nowT[14:] in ["10","20","30","40","50","00"]:
-        return False
-    else:
-        return True
 
 while True:
     try:
