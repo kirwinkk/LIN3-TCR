@@ -6,86 +6,29 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(qr=True)
+cl.login(token="EmKUkREuwG9katcijZWa.qRHtLeMrYRtDtWS8Gd3XUG.bZccCqSezzSOOmmpTaR4Cs/0TPnLNys0l7mJ3E0sRMU=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(qr=True)
+ki.login(token="EmuDbTqEzubaPQ54hNed.RPlFPNCz9GMhPhBdqO90tq.9dVQXB2KujWkCvJEQvDpXDYcSClin/Cq/3ZsnBzvzak=")
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
-ki2.login(qr=True)
+ki2.login(token="EmG54gejzghjQIh42G35.rDcaNym6DpBGSUxr9n2Vbq.jbR8xK9mVsslTh3YZpGC/0VFTSWanJ//zVJdgQ0V5+s=")
 ki2.loginResult()
 
 ki3 = LINETCR.LINE()
-ki3.login(qr=True)
+ki3.login(token="EmR416XVjFlBUZgB7Vl6.v+K1KGPh4LeOeOJEMER+fG.UH3iIhhSxc/TZNiB/cpmRyZ1lswTYmDDkZPkc4Dt5LU=")
 ki3.loginResult()
 
 ki4 = LINETCR.LINE()
-ki4.login(qr=True)
+ki4.login(token="EmUjXndELGkJl2Ob86db.fESunGlkMJmWdmTqsPzUoW.aCLA52BcAspEXqEulPnOCal+cNhut+2ObLbD6Mqo6Fs=")
 ki4.loginResult()
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""[戦神SelfBOT]
-
-[help]→查看指令
-[Author]→作者顯示
-[Me]→顯示自己友資
-[Mid]→顯示自己mid
-[Gid]→顯示群組
-[封鎖名單]→確認已封鎖用戶
-[Ginfo]→顯示群組詳情
-[Cancel]→取消所有邀請
-[Kick:]→mid踢人
-[Invite:]→mid邀人
-[Nk:]→名字本帳踢人
-[Nkk:]→名字kicker踢人
-[Mk:@]→標註本帳踢人
-[Mkk:@]→標註kicker踢人
-[M1k:@]→標註指定kicker踢人
-[Bl:@]→標註黑單
-[Ubl:@]→標註解除黑單
-[Ban:]→名字黑單
-[Unban:]→名字解除黑單
-[Ban]→友資黑單
-[Unban]→友資解除黑單
-[Mban:]→mid黑單
-[Munban:]→mid解除黑單
-[Bl]→查看黑單
-[Banlist]→查看此群黑單
-[Blk]→踢出黑單
-[Url]→取得群組網址
-[Urlon]→開啟群組網址
-[Urloff]→關閉群組網址
-[Groupid]→目前加入的所有群組
-[Mid:]→顯示被標註者的mid
-[mid:]→顯示mid的友資
-[Gift]→發送禮物
-[TL:]→Po文
-[Time]→現在時間
-[Tagall]→標註所有人
-[Say:]→保鑣講話
-[BGbot]→追加kicker
-[BGbye]→kicker退出
-[Botcontact]→查看Kicker友資
-[Botmid]→查看Kicker的mid
-[Sp]→反應速度
-[Point]→抓已讀者
-[Read]→查看已讀名單
-[Joinon/off]→自動入群開關
-[Leaveon/off]→自動退出副本開關
-[set]→設定確認
-[Pkickon/off]→踢人保護開關
-[Pnameon/off]→群名保護開關
-[Purlon/off]→網址保護開關
-[Pinviteon/off]→招待保護開關
-[Pallon/off]→所有保護開關
-[Gset]→群組設定確認
-
-作者:戦神
-http://line.me/ti/p/4-ZKcjagH0"""
+helpMessage ="""123"""
 KAC=[cl,ki,ki2,ki3,ki4]
 mid = cl.getProfile().mid
 kimid = ki.getProfile().mid
@@ -93,6 +36,7 @@ ki2mid = ki2.getProfile().mid
 ki3mid = ki3.getProfile().mid
 ki4mid = ki4.getProfile().mid
 Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,"uc216d8664c4e1f43772c98b1b0b8956e"]
+staff = []
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
 admin = "uc216d8664c4e1f43772c98b1b0b8956e"
 
@@ -103,7 +47,7 @@ wait = {
     'leaveRoom':False,
     'timeline':True,
     'autoAdd':True,
-    'message':"戦神代行SelfBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
+    'message':"戦神代行\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
     'lang':"JP",
     'comment':"戦神☆style",
     'commentOn':True,
@@ -166,9 +110,8 @@ def bot(op):
         if op.type == 0:
             return
         if op.type == 13:
-            if mid in op.param3:
-                G = cl.getGroup(op.param1)
-                if wait["autoJoin"] == True:
+           if mid in op.param3:
+		if op.param2 in admin + staff:
                         cl.acceptGroupInvitation(op.param1)
 			G = cl.getGroup(op.param1)
                         ginfo = cl.getGroup(op.param1)
@@ -178,19 +121,22 @@ def bot(op):
                         Ticket = cl.reissueGroupTicket(op.param1)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			G.preventJoinByTicket = True
                         cl.updateGroup(G)
 		        try:
-                            cl.sendText(op.param1,"戦神SelfBOT[Made In Taiwan]\n作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0")
+                            cl.sendText(op.param1,"戦神權限保護V.9\n\n[禁止事項]:\n\n$[不會]被黑單[不會]被踢:\n1.禁止開啟網址\n\n$[不會]被黑單[會]被踢:\n1.禁止邀請黑單用戶\n2.禁止踢任何群內成員\n\n$[會]被黑單[會]被踢\n1.踢出機器\n\n#注意:黑單無法解除!\n權限者才可使用指令,不過盡量少用指令,避免盪,謝謝\nLv3.  300$\nLv4.  400$\nLv5.  500$\n\n半垢  暫定價\n本帳+1保鏢  800$\n本帳+2保鏢  900$[推薦]\n本帳+4保鏢  1200$\n本帳+11保鏢  2500$\n皆月付\\n戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
 		        except:
 			    pass
-
+		else:
+		  cl.acceptGroupInvitation(op.param1)
+                  cl.leaveGroup(op.param1)
+           else:
+		pass
 		
         if op.param3 == "4":
-            if op.param1 in wait['purl']:
-		if op.param2 in Bots:
+		if op.param2 in Bots + admin + staff:
 			pass
 		else:
 				group = cl.getGroup(op.param1)
@@ -213,7 +159,6 @@ def bot(op):
 	
         if op.type == 11:
             if op.param3 == '1':
-                if op.param1 in wait['pname']:
                     try:
                         G = cl.getGroup(op.param1)
 			c = Message(to=op.param1, from_=None, text=None, contentType=13)
@@ -239,9 +184,7 @@ def bot(op):
                     
 
         if op.type == 13:
-                if op.param1 in wait['pinvite']:
-			OWN = Bots
-			if op.param2 in OWN:
+			if op.param2 in Bots + admin + staff:
 				pass
 			else:
 				Inviter = op.param3.replace("",',')
@@ -263,8 +206,7 @@ def bot(op):
                                     c.contentMetadata={'mid':op.param2}
 				    ki.sendMessage(c)	
         if op.type == 19:
-             if op.param1 in wait['pkick']:
-                    if op.param2 in Bots:
+                    if op.param2 in Bots + admin + staff:
                         pass
                     else:
                       if op.param3 not in Bots:
