@@ -37,7 +37,7 @@ ki3mid = ki3.getProfile().mid
 ki4mid = ki4.getProfile().mid
 Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,"uc216d8664c4e1f43772c98b1b0b8956e"]
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
-admin = "uc216d8664c4e1f43772c98b1b0b8956e"
+admin = ["uc216d8664c4e1f43772c98b1b0b8956e"]
 staff6 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","ua1d924caa58666ee73d0625ca036a1b1"]
 
 wait = {
@@ -75,12 +75,6 @@ def bot(op):
                 G = cl.getGroup(op.param1)
                 if wait["autoJoin"] == True:
                         cl.acceptGroupInvitation(op.param1)
-			G = cl.getGroup(op.param1)
-			try:
-				G.name = "万由里☆style"
-				cl.updateGroup(G)
-			except:
-				pass
 			G.preventJoinByTicket = False
                         cl.updateGroup(G)
 			invsend = 0
@@ -91,6 +85,12 @@ def bot(op):
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
+			X = cl.getGroup(op.param1)
+			X.name = "万由里☆style"
+			try:
+				cl.updateGroup(G)
+			except:
+				pass
 			
 	      else:
 		  cl.acceptGroupInvitation(op.param1)
