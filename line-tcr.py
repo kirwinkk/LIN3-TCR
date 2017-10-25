@@ -69,6 +69,9 @@ helpMessage ="""[戦神SelfBOT]
 [Cancel]→取消所有邀請
 [Kick:]→mid踢人
 [Invite:]→mid邀人
+[BG1invite:]→mid kicker1邀人
+[Inv:]→標註邀人
+[BG1inv:]→標註kicker1邀人
 [Nk:]→名字本帳踢人
 [Nkk:]→名字kicker踢人
 [Mk:@]→標註本帳踢人
@@ -90,6 +93,7 @@ helpMessage ="""[戦神SelfBOT]
 [Urloff]→關閉群組網址
 [Groupid]→目前加入的所有群組
 [Mid:]→顯示被標註者的mid
+[Mic:]→顯示被標註者的友資
 [mid:]→顯示mid的友資
 [Gift]→發送禮物
 [TL:]→Po文
@@ -97,7 +101,9 @@ helpMessage ="""[戦神SelfBOT]
 [Tagall]→標註所有人
 [Say:]→保鑣講話
 [BGbot]→追加kicker
+[bot1]→追加kicker1
 [BGbye]→kicker退出
+[bot1bye]→kicker1退出
 [Botcontact]→查看Kicker友資
 [Botmid]→查看Kicker的mid
 [Sp]→反應速度
@@ -128,7 +134,7 @@ ki8mid = ki8.getProfile().mid
 ki9mid = ki9.getProfile().mid
 ki10mid = ki10.getProfile().mid
 ki11mid = ki11.getProfile().mid
-Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki10mid,ki11mid]
+Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki10mid,ki11mid,"u8dc2983d2e3183303bc466f3283d44d8"]
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
 admin = "uc216d8664c4e1f43772c98b1b0b8956e"
 protectname = []
@@ -244,11 +250,17 @@ def bot(op):
 				if group.preventJoinByTicket == False:
 					group.preventJoinByTicket = True
 					try:
+						random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+					except:
+						pass
+					try:
 						random.choice(KAC).updateGroup(group)
 					except:
 						pass
-					random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 					ki11.sendText(op.param1,"URL保護開啟中,請勿變更網址!")
+					c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                                        c.contentMetadata={'mid':op.param2}
+					ki11.sendMessage(c)
 				else:
 					pass
 	
@@ -257,6 +269,8 @@ def bot(op):
                 if op.param1 in wait['pname']:
                     try:
                         G = cl.getGroup(op.param1)
+			c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                        c.contentMetadata={'mid':op.param2}
                     except:
                         G = random.choice(KAC).getGroup(op.param1)
                         
@@ -271,8 +285,10 @@ def bot(op):
                         try:
                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
                             ki11.sendText(op.param1,"群名保護開啟中,請勿變更群名!")
+			    ki11.sendMessage(c)
                         except:
                             ki11.sendText(op.param1,"群名保護開啟中,請勿變更群名!")
+			    ki11.sendMessage(c)
                     
 
         if op.type == 13:
@@ -291,8 +307,14 @@ def bot(op):
 				try:
 				    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 				    ki11.sendText(op.param1,"邀請保護開啟中,請勿邀請任何用戶!")
+				    c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                                    c.contentMetadata={'mid':op.param2}
+				    ki11.sendMessage(c)
 				except:
-                                    pass	
+                                    ki11.sendText(op.param1,"邀請保護開啟中,請勿邀請任何用戶!")
+				    c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                                    c.contentMetadata={'mid':op.param2}
+				    ki11.sendMessage(c)	
         if op.type == 19:
              if op.param1 in wait['pkick']:
                     if op.param2 in Bots:
@@ -300,33 +322,29 @@ def bot(op):
                     else:
                       if op.param3 not in Bots:
                         G = cl.getGroup(op.param1)
+			c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                        c.contentMetadata={'mid':op.param2}
+					
                         try:
 				random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				ki11.sendText(op.param1,"踢人保護開啟中,請勿踢出成員!")
                         except:
                                 random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				ki11.sendText(op.param1,"踢人保護開啟中,請勿踢出成員!")
+				
                         G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
+			try:
+			    ki11.sendText(op.param1,"踢人保護開啟中,請勿踢出成員!")
+			    ki11.sendMessage(c)
+			except:
+				pass
+			
+			
              else:
                         pass
                         
 			
 			
-			
-        if op.type == 55:
-            try:
-                if op.param1 in wait2['readPoint']:
-                    Name = cl.getContact(op.param2).displayName
-                    if Name in wait2['readMember'][op.param1]:
-                        pass
-                    else:
-                        wait2['readMember'][op.param1] += "\n->" + Name
-                        wait2['ROM'][op.param1][op.param2] = "->" + Name
-                else:
-                    cl.sendText
-            except:
-                  pass
+	
 		
 		
         if op.type == 26:
@@ -395,9 +413,7 @@ def bot(op):
                     cl.sendText(msg.to,"黑單踢出成功")
 		
 		
-            if msg.toType == 1:
-                if wait["leaveRoom"] == True:
-                    cl.leaveRoom(msg.to)
+            
 		
         if op.type == 26:
             msg = op.message
@@ -413,6 +429,9 @@ def bot(op):
                              ki11.sendText(msg.to,msg.contentMetadata["mid"])
                         else:
 			     ki11.sendText(msg.to,msg.contentMetadata["mid"])
+            if msg.toType == 1:
+                if wait["leaveRoom"] == True:
+                    cl.leaveRoom(msg.to)
 	
 
         if op.type == 25:
@@ -459,6 +478,8 @@ def bot(op):
                     else:
                         msg.text = "文章網址 URL\n" + msg.contentMetadata["postEndUrl"]
                     cl.sendText(msg.to,msg.text)
+		
+
 
             elif msg.text is None:
                 return
@@ -535,6 +556,7 @@ def bot(op):
 			pass
                 try:
 			wait['pname'][msg.to] = True
+			wait['pro_name'][msg.to] = cl.getGroup(msg.to).name
 		except:
 			pass
                 cl.sendText(msg.to,"已開啟所有保護!")
@@ -572,13 +594,29 @@ def bot(op):
                 cl.sendText(msg.to,"[戦神群組設定]\n\n" + md)
 					
 					
-					
-					
+            elif msg.text in ["Tagall","tagall"]:
+                group = cl.getGroup(msg.to)
+                k = len(group.members)//100
+                for j in xrange(k+1):
+                    msg = Message(to=msg.to)
+                    txt = u''
+                    s=0
+                    d=[]
+                    for i in group.members[j*100 : (j+1)*100]:
+                        d.append({"S":str(s), "E" :str(s+8), "M":i.mid})
+                        s += 9
+                        txt += u'@Krampus\n'
+                    msg.text = txt
+                    msg.contentMetadata = {u'MENTION':json.dumps({"MENTIONEES":d})}
+                    cl.sendMessage(msg) 					
             elif msg.text == "Help":
                 if wait["lang"] == "JP":
                     cl.sendText(msg.to,helpMessage)
                 else:
                     cl.sendText(msg.to,helpMessage)
+		
+		
+
 		
 		
 		
@@ -605,6 +643,85 @@ def bot(op):
                 midd = msg.text.replace("BG1invite:","")
                 ki.findAndAddContactsByMid(midd)
                 ki.inviteIntoGroup(msg.to,[midd])
+		
+            elif "Mc:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                msg.contentType = 13
+                msg.contentMetadata = {"mid":key1}
+                cl.sendMessage(msg)
+		
+            elif "Inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                cl.findAndAddContactsByMid(key1)
+                cl.inviteIntoGroup(msg.to,[key1])
+		
+            elif "BG1inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                ki.findAndAddContactsByMid(key1)
+                ki.inviteIntoGroup(msg.to,[key1])
+		
+            elif "BG2inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                ki2.findAndAddContactsByMid(key1)
+                ki2.inviteIntoGroup(msg.to,[key1])
+		
+            elif "BG3inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                ki3.findAndAddContactsByMid(key1)
+                ki3.inviteIntoGroup(msg.to,[key1])
+		
+            elif "BG4inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                ki4.findAndAddContactsByMid(key1)
+                ki4.inviteIntoGroup(msg.to,[key1])
+		
+            elif "BG5inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                ki5.findAndAddContactsByMid(key1)
+                ki5.inviteIntoGroup(msg.to,[key1])
+		
+            elif "BG6inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                ki6.findAndAddContactsByMid(key1)
+                ki6.inviteIntoGroup(msg.to,[key1])
+		
+            elif "BG7inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                ki7.findAndAddContactsByMid(key1)
+                ki7.inviteIntoGroup(msg.to,[key1])
+		
+            elif "BG8inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                midd = key["MENTIONEES"][0]["M"]
+                ki8.findAndAddContactsByMid(midd)
+                ki8.inviteIntoGroup(msg.to,[midd])
+		
+            elif "BG9inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                midd = key["MENTIONEES"][0]["M"]
+                ki9.findAndAddContactsByMid(midd)
+                ki9.inviteIntoGroup(msg.to,[midd])
+		
+            elif "BG10inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                midd = key["MENTIONEES"][0]["M"]
+                ki10.findAndAddContactsByMid(midd)
+                ki10.inviteIntoGroup(msg.to,[midd])
+		
+            elif "BG11inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                midd = key["MENTIONEES"][0]["M"]
+                ki11.findAndAddContactsByMid(midd)
+                ki11.inviteIntoGroup(msg.to,[midd])
 		
             elif "BG2invite:" in msg.text:
                 midd = msg.text.replace("BG2invite:","")
@@ -778,32 +895,7 @@ def bot(op):
                 else: md+="自動離開副本:關閉\n"
                 cl.sendText(msg.to,"[戦神SelfBOT]\n\n" + md)
 		
-            elif msg.text == "Point":
-                try:
-                  del wait2['readPoint'][msg.to]
-                  del wait2['readMember'][msg.to]
-                except:
-	            pass
-                wait2['readPoint'][msg.to] = msg.id
-                wait2['readMember'][msg.to] = ""
-                wait2['setTime'][msg.to] = datetime.datetime.today().strftime("%H:%M")
-                wait2['ROM'][msg.to] = {}
-		cl.sendText(msg.to, "已讀設定OK")
-		print wait2
 
-            elif msg.text == "Read":
-		  if msg.to in wait2['readPoint']:
-	            if wait2["ROM"][msg.to].items() == []:
-	              chiya = ""
-	            else:
-	              chiya = ""
-	              for rom in wait2["ROM"][msg.to].items():
-	                print rom
-	                chiya += rom[1] + "\n"
-
-	            cl.sendText(msg.to,"已讀者(｀・ω・´)\n%s"  % (wait2['readMember'][msg.to]))
-	          else:
-	            cl.sendText(msg.to, "請先設定已讀點")
 #
 
             elif msg.text in ["Cancel","cancel"]:
@@ -1387,32 +1479,7 @@ def bot(op):
 
 
 #-----------------------------------------------
-            elif msg.text in ["tagall","Tagall"]:
-			    group = cl.getGroup(msg.to)
-			    nama = [contact.mid for contact in group.members]
 
-			    cb = ""
-			    cb2 = ""
-			    strt = int(0)
-			    akh = int(0)
-			    for md in nama:
-			        akh = akh + int(6)
-
-			        cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(md)+"},"""
-
-			        strt = strt + int(7)
-			        akh = akh + 1
-			        cb2 += "@nrik \n"
-
-			    cb = (cb[:int(len(cb)-1)])
-			    msg.contentType = 0
-			    msg.text = cb2
-			    msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
-
-			    try:
-			        cl.sendMessage(msg)
-			    except Exception as error:
-			        print error
 #-----------------------------------------------
                        
 #-----------------------------------------------
@@ -1755,11 +1822,17 @@ def bot(op):
 			wait["blacklist"][op.param2] = True
                         G = ki.getGroup(op.param1)
 			try:
-                             ki.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					ki.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki.updateGroup(G)
                         Ticket = ki.reissueGroupTicket(op.param1)
                         cl.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -1801,11 +1874,17 @@ def bot(op):
 			wait["blacklist"][op.param2] = True
                         G = ki2.getGroup(op.param1)
 			try:
-                             ki2.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					ki2.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki2.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki2.updateGroup(G)
                         Ticket = ki2.reissueGroupTicket(op.param1)
                         cl.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -1830,8 +1909,8 @@ def bot(op):
                         ki3.updateGroup(G)
                         Ticket = ki3.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -1843,17 +1922,24 @@ def bot(op):
                         G.preventJoinByTicket = True
                         ki4.updateGroup(G)
                     else:
+                        wait["blacklist"][op.param2] = True
                         G = ki3.getGroup(op.param1)
 			try:
-                             ki3.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					ki3.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki3.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki3.updateGroup(G)
                         Ticket = ki3.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -1864,7 +1950,6 @@ def bot(op):
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki4.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
 			
                 elif op.param3 in ki3mid:
                     if op.param2 in Bots:
@@ -1873,9 +1958,9 @@ def bot(op):
                         ki4.updateGroup(G)
                         Ticket = ki4.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -1886,18 +1971,25 @@ def bot(op):
                         G.preventJoinByTicket = True
                         cl.updateGroup(G)
                     else:
+                        wait["blacklist"][op.param2] = True
                         G = ki4.getGroup(op.param1)
 			try:
-                             ki4.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					ki4.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki4.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki4.updateGroup(G)
                         Ticket = ki4.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -1907,7 +1999,7 @@ def bot(op):
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         cl.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
+
 			
                 elif op.param3 in ki4mid:
                     if op.param2 in Bots:
@@ -1916,10 +2008,10 @@ def bot(op):
                         ki5.updateGroup(G)
                         Ticket = ki5.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -1929,19 +2021,26 @@ def bot(op):
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
                     else:
+                        wait["blacklist"][op.param2] = True
                         G = ki5.getGroup(op.param1)
 			try:
-                             ki5.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					ki5.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki5.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki5.updateGroup(G)
                         Ticket = ki5.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -1950,7 +2049,7 @@ def bot(op):
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
+
 			
                 elif op.param3 in ki5mid:
                     if op.param2 in Bots:
@@ -1959,11 +2058,11 @@ def bot(op):
                         ki6.updateGroup(G)
                         Ticket = ki6.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -1972,20 +2071,27 @@ def bot(op):
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
                     else:
+                        wait["blacklist"][op.param2] = True
                         G = ki6.getGroup(op.param1)
 			try:
-                             ki6.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					ki6.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki6.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki6.updateGroup(G)
                         Ticket = ki6.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -1993,21 +2099,32 @@ def bot(op):
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
+
 			
                 elif op.param3 in ki6mid:
                     if op.param2 in Bots:
+                        wait["blacklist"][op.param2] = True
                         G = ki7.getGroup(op.param1)
+			try:
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+			except:
+				try:
+					ki7.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki7.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki7.updateGroup(G)
                         Ticket = ki7.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -2024,19 +2141,19 @@ def bot(op):
                         ki7.updateGroup(G)
                         Ticket = ki7.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
+
 			
                 elif op.param3 in ki7mid:
                     if op.param2 in Bots:
@@ -2045,41 +2162,48 @@ def bot(op):
                         ki8.updateGroup(G)
                         Ticket = ki8.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
                     else:
+                        wait["blacklist"][op.param2] = True
                         G = ki8.getGroup(op.param1)
 			try:
-                             ki8.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					ki8.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki8.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki8.updateGroup(G)
                         Ticket = ki8.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
+
 			
                 elif op.param3 in ki8mid:
                     if op.param2 in Bots:
@@ -2088,6 +2212,7 @@ def bot(op):
                         ki9.updateGroup(G)
                         Ticket = ki9.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -2095,21 +2220,28 @@ def bot(op):
 			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
                     else:
+                        wait["blacklist"][op.param2] = True
                         G = ki9.getGroup(op.param1)
 			try:
-                             ki9.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					ki9.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki9.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki9.updateGroup(G)
                         Ticket = ki9.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -2117,12 +2249,11 @@ def bot(op):
 			ki5.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
+
 			
                 elif op.param3 in ki9mid:
                     if op.param2 in Bots:
@@ -2131,6 +2262,7 @@ def bot(op):
                         ki10.updateGroup(G)
                         Ticket = ki10.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -2139,20 +2271,27 @@ def bot(op):
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
                     else:
+                        wait["blacklist"][op.param2] = True
                         G = ki10.getGroup(op.param1)
 			try:
-                             ki10.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					ki10.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki10.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki10.updateGroup(G)
                         Ticket = ki10.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -2161,11 +2300,10 @@ def bot(op):
 			ki6.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
+
 			
                 elif op.param3 in ki10mid:
                     if op.param2 in Bots:
@@ -2174,6 +2312,7 @@ def bot(op):
                         ki11.updateGroup(G)
                         Ticket = ki11.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -2183,19 +2322,26 @@ def bot(op):
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
                     else:
+                        wait["blacklist"][op.param2] = True
                         G = ki11.getGroup(op.param1)
 			try:
-                             ki11.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					ki11.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        ki11.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				ki11.updateGroup(G)
                         Ticket = ki11.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -2205,10 +2351,8 @@ def bot(op):
 			ki7.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
 			
                 elif op.param3 in ki11mid:
                     if op.param2 in Bots:
@@ -2217,6 +2361,7 @@ def bot(op):
                         cl.updateGroup(G)
                         Ticket = cl.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -2227,19 +2372,26 @@ def bot(op):
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
                     else:
+                        wait["blacklist"][op.param2] = True
                         G = cl.getGroup(op.param1)
 			try:
-                             cl.kickoutFromGroup(op.param1,[op.param2])
+                             random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			except:
-			     print ("["+op.param1+"]の["+op.param2+"]")
+				try:
+					cl.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					print ("["+op.param1+"]の["+op.param2+"]")
                         G.preventJoinByTicket = False
-                        cl.updateGroup(G)
+			try:
+				random.choice(KAC).updateGroup(G)
+                        except:
+				cl.updateGroup(G)
                         Ticket = cl.reissueGroupTicket(op.param1)
 			cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki.acceptGroupInvitationByTicket(op.param1,Ticket)
                         ki2.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
@@ -2250,10 +2402,9 @@ def bot(op):
 			ki8.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki9.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki10.acceptGroupInvitationByTicket(op.param1,Ticket)
-			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
                         G.preventJoinByTicket = True
                         ki.updateGroup(G)
-                        wait["blacklist"][op.param2] = True
+
 
             except:
                 pass
