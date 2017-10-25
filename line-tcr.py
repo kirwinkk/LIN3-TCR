@@ -105,7 +105,7 @@ wait = {
     'autoAdd':True,
     'message':"戦神代行SelfBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
     'lang':"JP",
-    'comment':"戦神代行SelfBOT\n作者:戦神[Made In Taiwan]",
+    'comment':"戦神☆style",
     'commentOn':True,
     'commentBlack':{},
     'wblack':False,
@@ -1572,6 +1572,8 @@ def autoSta():
 thread1 = threading.Thread(target=autoSta)
 thread1.daemon = True
 thread1.start()
+
+
 def a2():
     now2 = datetime.now()
     nowT = datetime.strftime(now2,"%M")
