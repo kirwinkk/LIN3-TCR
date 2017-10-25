@@ -37,7 +37,7 @@ ki3mid = ki3.getProfile().mid
 ki4mid = ki4.getProfile().mid
 Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,"uc216d8664c4e1f43772c98b1b0b8956e"]
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
-admin = "uc216d8664c4e1f43772c98b1b0b8956e"
+admin = ["uc216d8664c4e1f43772c98b1b0b8956e"]
 staff6 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","ua1d924caa58666ee73d0625ca036a1b1"]
 
 wait = {
@@ -75,12 +75,15 @@ def bot(op):
                 G = cl.getGroup(op.param1)
                 if wait["autoJoin"] == True:
                         cl.acceptGroupInvitation(op.param1)
-			G = cl.getGroup(op.param1)
 			try:
-				G.name = "万由里☆style"
-				cl.updateGroup(G)
-			except:
-				pass
+                            G = cl.getGroup(op.param1)
+                        except:
+                            G = cl.getGroup(op.param1)
+                        G.name = "万由里☆style"
+                        try:
+                            cl.updateGroup(G)
+                        except:
+                            pass
 			G.preventJoinByTicket = False
                         cl.updateGroup(G)
 			invsend = 0
@@ -90,7 +93,8 @@ def bot(op):
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			G.preventJoinByTicket = True
-                        random.choice(KAC).updateGroup(G)
+                        ki3.updateGroup(G)
+			
 			
 	      else:
 		  cl.acceptGroupInvitation(op.param1)
@@ -169,19 +173,14 @@ def bot(op):
 				    group.preventJoinByTicket = True
                                     random.choice(KAC).updateGroup(group)
         if op.type == 19:
-                    if op.param2 not in Bots:
-                      if op.param3 not in Bots:
-                        G = cl.getGroup(op.param1)
-					
+                    if op.param2 not in admin + staff6 + Bots:
+                        G = cl.getGroup(op.param1)	
                         try:
 				random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
                         except:
                                 random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-				
                         G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
-
-        if op.type == 19:
                     if op.param3 in admin + staff6:
                         kicker = random.choice(KAC)
 			kicker2 = random.choice(KAC)
@@ -191,6 +190,8 @@ def bot(op):
                         kicker.inviteIntoGroup(op.param1,[key1])
 			kicker2.findAndAddContactsByMid(key2)
                         kicker2.inviteIntoGroup(op.param1,[key2])
+
+
 			
 
 
