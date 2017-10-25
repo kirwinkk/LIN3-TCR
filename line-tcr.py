@@ -71,20 +71,6 @@ wait = {
 }
 
 
-
-
-
-
-
-def sendMessage(to, text, contentMetadata={}, contentType=0):
-    mes = Message()
-    mes.to, mes.from_ = to, profile.mid
-    mes.text = text
-    mes.contentType, mes.contentMetadata = contentType, contentMetadata
-    if to not in messageReq:
-        messageReq[to] = -1
-    messageReq[to] += 1
-
 def bot(op):
     try:
         if op.type == 0:
@@ -97,7 +83,7 @@ def bot(op):
                         cl.acceptGroupInvitation(op.param1)
 			G = cl.getGroup(op.param1)
 			try:
-				G.name = wait['pro_name'][op.param1]
+				G.name = "万由里☆style"
 				cl.updateGroup(G)
 			except:
 				pass
@@ -146,7 +132,7 @@ def bot(op):
                     except:
                         G = random.choice(KAC).getGroup(op.param1)
                         
-                    G.name = wait['pro_name'][op.param1]
+                    G.name = "万由里☆style"
                     try:
                         random.choice(KAC).updateGroup(G)
                     except:
@@ -230,6 +216,8 @@ def bot(op):
 			
         if op.type == 26:
             msg = op.message
+            if msg.text is None:
+                return
             if ("Lv1:" in msg.text):
                 if msg.from_ in admin + staff6:
                    targets = []
@@ -495,37 +483,8 @@ def bot(op):
 
 
 
-def autoSta():
-    count = 1
-    while True:
-        try:
-           for posts in cl.activity(1)["result"]["posts"]:
-             if posts["postInfo"]["liked"] is False:
-                if wait["likeOn"] == True:
-                   cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
-                   if wait["commentOn"] == True:
-                      if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
-                         pass
-                      else:
-                          cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
-        except:
-            count += 1
-            if(count == 50):
-                sys.exit(0)
-            else:
-                pass
-thread1 = threading.Thread(target=autoSta)
-thread1.daemon = True
-thread1.start()
 
 
-def a2():
-    now2 = datetime.now()
-    nowT = datetime.strftime(now2,"%M")
-    if nowT[14:] in ["10","20","30","40","50","00"]:
-        return False
-    else:
-        return True
 
 while True:
     try:
