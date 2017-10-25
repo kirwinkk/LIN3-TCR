@@ -75,9 +75,9 @@ def bot(op):
                 G = cl.getGroup(op.param1)
                 if wait["autoJoin"] == True:
                         cl.acceptGroupInvitation(op.param1)
-			G = cl.getGroup(op.param1)
+			X = cl.getGroup(op.param1)
 			try:
-				G.name = "万由里☆style"
+				X.name = "万由里☆style"
 				cl.updateGroup(G)
 			except:
 				pass
