@@ -199,7 +199,19 @@ def bot(op):
 					try:
 						random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 					except:
-						pass
+						try:
+							ki4.kickoutFromGroup(op.param1,[op.param2])
+						except:
+							try:
+								ki2.kickoutFromGroup(op.param1,[op.param2])
+							except:
+								try:
+									ki3.kickoutFromGroup(op.param1,[op.param2])
+								except:
+									try:
+										ki.kickoutFromGroup(op.param1,[op.param2])
+									except:
+										pass
 					try:
 						random.choice(KAC).updateGroup(group)
 					except:
@@ -275,7 +287,19 @@ def bot(op):
                         try:
 				random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
                         except:
-                                random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+                                try:
+					ki4.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					try:
+						ki2.kickoutFromGroup(op.param1,[op.param2])
+					except:
+						try:
+							ki3.kickoutFromGroup(op.param1,[op.param2])
+						except:
+							try:
+								ki.kickoutFromGroup(op.param1,[op.param2])
+							except:
+								pass
 				
                         G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
@@ -290,7 +314,70 @@ def bot(op):
                         pass
                         
 			
+	if op.type == 17:
+	    if wait["blacklist"][op.param2] == True:
+		if op.param2 in Bots:
+		    pass
+		else:
+		   try:
 			
+			try:
+			     klist=[ki,ki2,ki3,ki4]
+                             kicker=random.choice(klist)
+                             kicker.kickoutFromGroup(op.param1,[op.param2])
+			except:
+				try:
+					ki4.kickoutFromGroup(op.param1,[op.param2])
+				except:
+					try:
+						ki2.kickoutFromGroup(op.param1,[op.param2])
+					except:
+						try:
+							ki3.kickoutFromGroup(op.param1,[op.param2])
+						except:
+							try:
+								ki.kickoutFromGroup(op.param1,[op.param2])
+							except:
+								pass
+			try:
+			     klist=[ki,ki2,ki3,ki4]
+                             kicker=random.choice(klist)
+                             G = kicker.getGroup(op.param1)
+			except:
+				try:
+					G = ki3.getGroup(op.param1)
+				except:
+					try:
+						G = ki.getGroup(op.param1)
+					except:
+						try:
+							G = ki4.getGroup(op.param1)
+						except:
+							try:
+								G = ki2.getGroup(op.param1)
+							except:
+								pass
+			G.preventJoinByTicket = True
+			try:
+				klist=[ki,ki2,ki3,ki4]
+                                kicker=random.choice(klist)
+				kicker.updateGroup(G)
+                        except:
+				try:
+					ki4.updateGroup(G)
+				except:
+					try:
+						ki2.updateGroup(G)
+					except:
+						try:
+							ki3.updateGroup(G)
+						except:
+							try:
+								ki.updateGroup(G)
+							except:
+								pass
+		   except:
+			pass
 			
         if op.type == 55:
             try:
@@ -358,19 +445,7 @@ def bot(op):
         if op.type == 24:
             if wait["leaveRoom"] == True:
                 cl.leaveRoom(op.param1)
-        if op.type == 17:
-            if mid in op.param3:
-                    group = cl.getGroup(msg.to)
-                    gMembMids = [contact.mid for contact in group.members]
-                    matched_list = []
-                    for tag in wait["blacklist"]:
-                        matched_list+=filter(lambda str: str == tag, gMembMids)
-                    if matched_list == []:
-                        cl.sendText(msg.to,"沒有黑單0.0")
-                        return
-                    for jj in matched_list:
-                        cl.kickoutFromGroup(msg.to,[jj])
-                    cl.sendText(msg.to,"黑單踢出成功")
+
 		
 
 		
