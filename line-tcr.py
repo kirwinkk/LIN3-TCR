@@ -24,6 +24,7 @@ helpMessage ="""[戦神無料代行]
 [Cancel]→取消所有邀請
 [Kick:]→mid踢人
 [Invite:]→mid邀人
+[Inv:]→標註邀人
 [Nk:]→名字踢人
 [Mk:@]→標註踢人
 [Bl:@]→標註黑單
@@ -43,17 +44,20 @@ helpMessage ="""[戦神無料代行]
 [Groupid]→目前加入的所有群組
 [Mid:]→顯示被標註者的mid
 [mid:]→顯示mid的友資
+[Mc:]→顯示被標註者的友資
 [Gift]→發送禮物
 [TL:]→Po文
 [Time]→現在時間
 [Tagall]→標註所有人
 [Sp]→反應速度
-
-☆以下動作對所有群組都有反應
-[Urlprotecton/off]→網址保護開關
 [Leaveon/off]→自動退出副本開關
-[Inviteprotecton/off]→招待保護開關
-[set]→確認設定
+[set]→設定確認
+[Pkickon/off]→踢人保護開關
+[Pnameon/off]→群名保護開關
+[Purlon/off]→網址保護開關
+[Pinviteon/off]→招待保護開關
+[Pallon/off]→所有保護開關
+[Gset]→群組設定確認
 
 作者:戦神
 http://line.me/ti/p/4-ZKcjagH0
@@ -73,19 +77,38 @@ wait = {
     'autoAdd':True,
     'message':"戦神代行SelfBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
     'lang':"JP",
-    'comment':"戦神代行SelfBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
+    'comment':"戦神☆style",
     'commentOn':True,
     'commentBlack':{},
     'wblack':False,
     'dblack':False,
+    'likeOn':True,
     'clock':True,
     'blacklist':{},
     'wblacklist':False,
     'dblacklist':False,
-    'protect':False,
-    'cancelprotect':False,
-    'inviteprotect':False,
-    'linkprotect':False,
+    'pnharfbot':{},
+    'pname':{},
+    'pro_name':{},  
+    'pinvite':{},
+    'pkick':{},  
+    'purl':{},  
+}
+
+wait2 = {
+	'readMember':{},
+	'readPoint':{},
+	'ROM':{},
+	'setTime':{}
+    }
+	
+setTime = {}
+setTime = wait2["setTime"]
+
+res = {
+    'num':{},
+    'us':{},
+    'au':{},
 }
 
 
@@ -150,27 +173,124 @@ def bot(op):
             if wait["leaveRoom"] == True:
                 cl.leaveRoom(op.param1)
 		
-        if op.type == 13:
-	  if op.param2 not in Bots:
-	    if wait["inviteprotect"] == True:
-              group = cl.getGroup(op.param1)
-              gInviMids = [contact.mid for contact in group.invitee]
-              cl.cancelGroupInvitation(op.param1, gInviMids)
-	  else:
-		    pass
-		
-	if op.type == 11:
-	    if op.param2 not in Bots:
+        if op.param3 == "4":
+            if op.param1 in wait['purl']:
 		if op.param2 in Bots:
-		    pass
-		elif wait["linkprotect"] == True:
-		    G = cl.getGroup(op.param1)
-		    G.preventJoinByTicket = True
-		    cl.updateGroup(G)
+			pass
 		else:
-		    pass
-	    else:
-		pass
+				group = cl.getGroup(op.param1)
+				if group.preventJoinByTicket == False:
+					group.preventJoinByTicket = True
+					try:
+						cl.kickoutFromGroup(op.param1,[op.param2])
+					except:
+						pass
+					try:
+						cl.updateGroup(group)
+					except:
+						pass
+					cl.sendText(op.param1,"URL保護開啟中,請勿變更網址!")
+					c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                                        c.contentMetadata={'mid':op.param2}
+					cl.sendMessage(c)
+				else:
+					pass
+	
+        if op.type == 11:
+            if op.param3 == '1':
+                if op.param1 in wait['pname']:
+                    try:
+                        G = cl.getGroup(op.param1)
+			c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                        c.contentMetadata={'mid':op.param2}
+                    except:
+                        G = cl.getGroup(op.param1)
+                        
+                    G.name = wait['pro_name'][op.param1]
+                    try:
+                        cl.updateGroup(G)
+                    except:
+                        pass
+                    if op.param2 in Bots:
+                        pass
+                    else:
+                        try:
+                            cl.kickoutFromGroup(op.param1,[op.param2])
+                            cl.sendText(op.param1,"群名保護開啟中,請勿變更群名!")
+			    cl.sendMessage(c)
+                        except:
+                            cl.sendText(op.param1,"群名保護開啟中,請勿變更群名!")
+			    cl.sendMessage(c)
+                    
+
+        if op.type == 13:
+                if op.param1 in wait['pinvite']:
+			OWN = Bots
+			if op.param2 in OWN:
+				pass
+			else:
+				Inviter = op.param3.replace("",',')
+				InviterX = Inviter.split(",")
+				contact = cl.getContact(op.param2)
+				try:
+				    random.choice(KAC).cancelGroupInvitation(op.param1,InviterX)
+				except:
+				    cl.cancelGroupInvitation(op.param1,InviterX)
+				try:
+				    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+				    cl.sendText(op.param1,"邀請保護開啟中,請勿邀請任何用戶!")
+				    c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                                    c.contentMetadata={'mid':op.param2}
+				    cl.sendMessage(c)
+				except:
+                                    cl.sendText(op.param1,"邀請保護開啟中,請勿邀請任何用戶!")
+				    c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                                    c.contentMetadata={'mid':op.param2}
+				    cl.sendMessage(c)	
+        if op.type == 19:
+             if op.param1 in wait['pkick']:
+                    if op.param2 in Bots:
+                        pass
+                    else:
+                      if op.param3 not in Bots:
+                        G = cl.getGroup(op.param1)
+			c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                        c.contentMetadata={'mid':op.param2}
+					
+                        try:
+				cl.kickoutFromGroup(op.param1,[op.param2])
+                        except:
+                                pass
+				
+                        G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+			try:
+			    cl.sendText(op.param1,"踢人保護開啟中,請勿踢出成員!")
+			    cl.sendMessage(c)
+			except:
+				pass
+			
+			
+             else:
+                        pass
+                        
+			
+
+			
+        if op.type == 55:
+            try:
+                if op.param1 in wait2['readPoint']:
+                    Name = cl.getContact(op.param2).displayName
+                    if Name in wait2['readMember'][op.param1]:
+                        pass
+                    else:
+                        wait2['readMember'][op.param1] += "\n->" + Name
+                        wait2['ROM'][op.param1][op.param2] = "->" + Name
+                else:
+                    cl.sendText
+            except:
+                  pass
+
 		
 		
 		
@@ -302,7 +422,109 @@ def bot(op):
             elif msg.text in ["Time","時刻","time","Now","now"]:
                 cl.sendText(msg.to, "報時:" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S'))
 
+            elif msg.text in ["Pkickon","pkickon"]:
+                if msg.to in wait['pkick']:
+                    cl.sendText(msg.to,"已開啟禁止踢人保護!")
+                else:
+                    cl.sendText(msg.to,"禁止踢人保護開啟!")
+                    wait['pkick'][msg.to] = True
+            elif msg.text in ["Pkickoff","pkickoff"]:
+                if msg.to in wait['pkick']:
+                    del wait['pkick'][msg.to]
+                    cl.sendText(msg.to,"禁止踢人保護關閉!")
+                else:
+                    cl.sendText(msg.to,"已關閉禁止踢人保護!")
+			      
+            elif msg.text in ["Pnameon","pnameon"]:
+                if msg.to in wait['pname']:
+                    cl.sendText(msg.to,"已開啟禁止更改群名保護!")
+                else:
+                    cl.sendText(msg.to,"禁止更改群名保護開啟!")
+                    wait['pname'][msg.to] = True
+                    wait['pro_name'][msg.to] = cl.getGroup(msg.to).name
+            elif msg.text in ["Pnameoff","pnameoff"]:
+                if msg.to in wait['pname']:
+                    del wait['pname'][msg.to]
+                    cl.sendText(msg.to,"禁止更改群名保護關閉!")
+                else:
+                    cl.sendText(msg.to,"已關閉禁止更改群名保護!")
+					
+            elif msg.text in ["Pinviteon","pinviteon"]:
+                if msg.to in wait['pinvite']:
+                    cl.sendText(msg.to,"已開啟禁止邀人保護!")
+                else:
+                    cl.sendText(msg.to,"禁止邀人保護開啟!")
+                    wait['pinvite'][msg.to] = True
+            elif msg.text in ["Pinviteoff","pinviteoff"]:
+                if msg.to in wait['pinvite']:
+                    del wait['pinvite'][msg.to]
+                    cl.sendText(msg.to,"禁止邀人保護關閉!")
+                else:
+                    cl.sendText(msg.to,"已關閉禁止邀人保護!")       
+            elif msg.text in ["Purlon","purlon"]:
+                if msg.to in wait['purl']:
+                    cl.sendText(msg.to,"已開啟禁止開網址保護!")
+                else:
+                    cl.sendText(msg.to,"禁止開網址保護開啟!")
+                    wait['purl'][msg.to] = True
+            elif msg.text in ["Purloff","purloff"]:
+                if msg.to in wait['purl']:
+                    del wait['purl'][msg.to]
+                    cl.sendText(msg.to,"禁止開網址保護關閉!")
+                else:
+                    cl.sendText(msg.to,"已關閉禁止開網址保護!")  
+		
+            elif msg.text in ["Pallon","pallon"]:
+                try:
+			wait['pkick'][msg.to] = True
+		except:
+			pass
+                try:
+			wait['pinvite'][msg.to] = True
+		except:
+			pass
+                try:
+			wait['purl'][msg.to] = True
+		except:
+			pass
+                try:
+			wait['pname'][msg.to] = True
+			wait['pro_name'][msg.to] = cl.getGroup(msg.to).name
+		except:
+			pass
+                cl.sendText(msg.to,"已開啟所有保護!")
 
+            elif msg.text in ["Palloff","palloff"]:
+                try:
+			del wait['pkick'][msg.to]
+		except:
+			pass
+                try:
+			del wait['purl'][msg.to]
+		except:
+			pass
+                try:
+			del wait['pinvite'][msg.to]
+		except:
+			pass
+                try:
+			del wait['pname'][msg.to]
+		except:
+			pass
+                cl.sendText(msg.to,"已關閉所有保護!")
+
+					
+            elif msg.text in ["Gset","gset"]:
+                md = ""
+		if msg.to in wait['pkick']: md+="踢人保護:開啟\n"
+                else: md +="踢人保護:關閉\n"
+                if msg.to in wait["purl"]: md+="網址保護:開啟\n"
+                else: md +="網址保護:關閉\n"
+                if msg.to in wait["pname"]: md+="群名保護:開啟\n"
+                else: md +="群名保護:關閉\n"
+                if msg.to in wait["pinvite"]: md+="禁邀保護:開啟"
+                else: md +="禁邀保護:關閉"
+                cl.sendText(msg.to,"[戦神群組設定]\n\n" + md)
 
             elif msg.text in ["Gift","gift"]:
                 msg.contentType = 9
@@ -422,60 +644,6 @@ def bot(op):
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': mid}
                 cl.sendMessage(msg)
-            elif msg.text in ["Urlprotectoff","urlprotectoff"]:
-                if wait["linkprotect"] == False:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"網址保護關閉")
-                    else:
-                        cl.sendText(msg.to,"網址保護關閉")
-                else:
-                    wait["linkprotect"] = False
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"網址保護關閉")
-                    else:
-                        cl.sendText(msg.to,"網址保護關閉")
-			
-            elif msg.text in ["Urlprotecton","urlprotecton"]:
-                if wait["linkprotect"] == True:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"網址保護開啟")
-                    else:
-                        cl.sendText(msg.to,"網址保護開啟")
-                else:
-                    wait["linkprotect"] = True
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"網址保護開啟")
-                    else:
-                        cl.sendText(msg.to,"網址保護開啟")
-			
-
-			
-            elif msg.text in ["Inviteprotecton","Inviteprotect on"]:
-                if wait["inviteprotect"] == True:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"招待保護開啟")
-                    else:
-                        cl.sendText(msg.to,"招待保護開啟")
-                else:
-                    wait["inviteprotect"] = True
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"招待保護開啟")
-                    else:
-                        cl.sendText(msg.to,"招待保護開啟")
-			
-            elif msg.text in ["Inviteprotectoff"]:
-                if wait["inviteprotect"] == False:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"招待保護關閉")
-                    else:
-                        cl.sendText(msg.to,"招待保護關閉")
-                else:
-                    wait["inviteprotect"] = False
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"招待保護關閉")
-                    else:
-                        cl.sendText(msg.to,"招待保護關閉")
-			
             elif msg.text in ["leaveon","Leaveon"]:
                 if wait["leaveRoom"] == True:
                     if wait["lang"] == "JP":
@@ -500,15 +668,22 @@ def bot(op):
                         cl.sendText(msg.to,"自動退出副本關閉")
                     else:
                         cl.sendText(msg.to,"自動退出副本關閉")
-
+            elif "Mc:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                msg.contentType = 13
+                msg.contentMetadata = {"mid":key1}
+                cl.sendMessage(msg)
+		
+            elif "Inv:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                cl.findAndAddContactsByMid(key1)
+                cl.inviteIntoGroup(msg.to,[key1])
             elif msg.text.lower() == 'set':
                 md = ""
-                if wait["leaveRoom"] == True: md+="自動離開副本:開啟\n"
-                else: md+="自動離開副本:關閉\n"
-                if wait["linkprotect"] == True: md+="網址保護:開啟\n"
-                else:md+="網址保護:關閉\n"
-                if wait["inviteprotect"] == True: md+="招待保護:開啟"
-                else:md+="招待保護:關閉"
+                if wait["leaveRoom"] == True: md+="自動離開副本:開啟"
+                else: md+="自動離開副本:關閉"
                 cl.sendText(msg.to,"[戦神SelfBOT]\n\n" + md)
 		
             elif "Mban:" in msg.text:
@@ -723,32 +898,48 @@ def bot(op):
 #-----------------------------------------------
 
 #-----------------------------------------------
-            elif msg.text in ["tagall","Tagall"]:
-			    group = cl.getGroup(msg.to)
-			    nama = [contact.mid for contact in group.members]
+            elif msg.text == "Point":
+                try:
+                  del wait2['readPoint'][msg.to]
+                  del wait2['readMember'][msg.to]
+                except:
+	            pass
+                wait2['readPoint'][msg.to] = msg.id
+                wait2['readMember'][msg.to] = ""
+                wait2['setTime'][msg.to] = datetime.datetime.today().strftime("%H:%M")
+                wait2['ROM'][msg.to] = {}
+		cl.sendText(msg.to, "[戦神SelfBOT]\n已讀設定OK")
+		print wait2
 
-			    cb = ""
-			    cb2 = ""
-			    strt = int(0)
-			    akh = int(0)
-			    for md in nama:
-			        akh = akh + int(6)
+            elif msg.text == "Read":
+		  if msg.to in wait2['readPoint']:
+	            if wait2["ROM"][msg.to].items() == []:
+	              chiya = ""
+	            else:
+	              chiya = ""
+	              for rom in wait2["ROM"][msg.to].items():
+	                print rom
+	                chiya += rom[1] + "\n"
 
-			        cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(md)+"},"""
+	            cl.sendText(msg.to,"[戦神SelfBOT]\n已讀者\n%s"  % (wait2['readMember'][msg.to]))
+	          else:
+	            cl.sendText(msg.to, "請先設定已讀點")
 
-			        strt = strt + int(7)
-			        akh = akh + 1
-			        cb2 += "@nrik \n"
-
-			    cb = (cb[:int(len(cb)-1)])
-			    msg.contentType = 0
-			    msg.text = cb2
-			    msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
-
-			    try:
-			        cl.sendMessage(msg)
-			    except Exception as error:
-			        print error
+            elif msg.text in ["Tagall","tagall"]:
+                group = cl.getGroup(msg.to)
+                k = len(group.members)//100
+                for j in xrange(k+1):
+                    msg = Message(to=msg.to)
+                    txt = u''
+                    s=0
+                    d=[]
+                    for i in group.members[j*100 : (j+1)*100]:
+                        d.append({"S":str(s), "E" :str(s+8), "M":i.mid})
+                        s += 9
+                        txt += u'@Krampus\n'
+                    msg.text = txt
+                    msg.contentMetadata = {u'MENTION':json.dumps({"MENTIONEES":d})}
+                    cl.sendMessage(msg) 
 
                        
 #-----------------------------------------------
@@ -777,6 +968,28 @@ def bot(op):
         print error
 
 
+def autoSta():
+    count = 1
+    while True:
+        try:
+           for posts in cl.activity(1)["result"]["posts"]:
+             if posts["postInfo"]["liked"] is False:
+                if wait["likeOn"] == True:
+                   cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+                   if wait["commentOn"] == True:
+                      if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
+                         pass
+                      else:
+                          cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
+        except:
+            count += 1
+            if(count == 50):
+                sys.exit(0)
+            else:
+                pass
+thread1 = threading.Thread(target=autoSta)
+thread1.daemon = True
+thread1.start()
 
 
 while True:
