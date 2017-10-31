@@ -186,6 +186,7 @@ helpMessage ="""※指令Lv.1以上使用
 [Unban]...友資解除黑單
 [Unban:]...名字解除黑單
 [Munban:]...mid解除黑單
+[Pnameon/off]→群名保護開關
 
 ※指令Lv.6使用
 [Bl:@]...標註黑單
@@ -199,6 +200,7 @@ helpMessage ="""※指令Lv.1以上使用
 [Lv1:@]...標註增加Lv0權限至Lv1
 [Lvd1:@]...標註刪除Lv1權限至Lv0
 [/test]...查看防翻狀態
+[/sp]...查看防翻反應速度
 
 作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
@@ -258,6 +260,8 @@ wait = {
     'message':"[權限取得方式]:\nLv3. NT300/月\nLv4. NT400/月\nLv5. NT500/月\n\nBot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'message1':"戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
     'lang':"JP",
+    'pname':{},
+    'pro_name':{},  
     'linkprotect':True,
     'blacklist':{},
     'wblacklist':False,
@@ -457,9 +461,16 @@ def bot(op):
                         except:
                             cu = ""
 			if msg.contentMetadata["mid"] in wait["blacklist"]:
+			   try:
                              ki2.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu) + "\n[黑單狀況]:\n此用戶為黑名單用戶,不可邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                        else:
+                           except:
+			     ki2.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nerror" + "\n[封面網址]:\n" + str(cu) + "\n[黑單狀況]:\n此用戶為黑名單用戶,不可邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+			else:
+			   try:
 			     ki2.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]:\n" + str(cu) + "\n[黑單狀況]:\n此用戶並不是黑名單用戶,可以邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		           except:
+			     ki2.sendText(msg.to,"[名字]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[頭貼網址]:\nerror" + "\n[封面網址]:\n" + str(cu) + "\n[黑單狀況]:\n此用戶並不是黑名單用戶,可以邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		
 		
                     else:
                         contact = cl.getContact(msg.contentMetadata["mid"])
@@ -758,12 +769,27 @@ def bot(op):
 		 name = "".join([random.choice(source_str) for x in xrange(9)])
                  ginfo = cl.getGroup(msg.to)
                  try:
-                        gCreator = ginfo.members[0].displayName
+                        gCreator = ginfo.creator.displayName
                  except:
                         gCreator = ginfo.members[0].displayName
 		 ki.sendText(msg.to,"[群長]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
               else:
 		pass
+	
+	
+            elif msg.text in ["Pnameon","pnameon"]:
+                if msg.to in wait['pname']:
+                    cl.sendText(msg.to,"已開啟禁止更改群名保護!")
+                else:
+                    cl.sendText(msg.to,"禁止更改群名保護開啟!")
+                    wait['pname'][msg.to] = True
+                    wait['pro_name'][msg.to] = cl.getGroup(msg.to).name
+            elif msg.text in ["Pnameoff","pnameoff"]:
+                if msg.to in wait['pname']:
+                    del wait['pname'][msg.to]
+                    cl.sendText(msg.to,"禁止更改群名保護關閉!")
+                else:
+                    cl.sendText(msg.to,"已關閉禁止更改群名保護!")
 
 
             if msg.text == "/ginfo":
@@ -788,7 +814,7 @@ def bot(op):
                             u = "open"
                         ki.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        ki.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        ki.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nerror" + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     ki.sendText(msg)
 		
             if msg.text == "/Ginfo":
@@ -812,7 +838,7 @@ def bot(op):
                             u = "open"
                         ki.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
-                        ki.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                        ki.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nerror" + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     ki.sendText(msg)
 		
             elif msg.text in ["/bg9bye","/BG9bye"]:
@@ -1156,7 +1182,7 @@ def bot(op):
             elif "Munban:" in msg.text:
 	      if msg.from_ in admin + staff5 + staff6:
                 midd = msg.text.replace("Munban:","")
-                wait["blacklist"][midd] = False
+		del wait["blacklist"][midd]
 		ki2.sendText(msg.to,"已解除黑單")
 		
             elif "/kick:" in msg.text:
@@ -1485,16 +1511,12 @@ def bot(op):
 						    random.choice(KAC).updateGroup(G)
 						    kicker.kickoutFromGroup(op.param1,[op.param2])
 						    kicker.leaveGroup(op.param1)
-					ki9.sendText(op.param1,"請勿變更群組網址!\n變更者↓")
-					c = Message(to=op.param1, from_=None, text=None, contentType=13)
-                                        c.contentMetadata={'mid':op.param2}
-					ki9.sendMessage(c)
 	
         if op.type == 19:
                     if op.param2 in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
                         pass
                     else:
-                      if op.param3 not in Bots:
+                      if op.param3 not in Bots + staff3 + staff4 + staff5 + staff6:
 			kicker = random.choice(KAC2)
                         G = cl.getGroup(op.param1)
 			c = Message(to=op.param1, from_=None, text=None, contentType=13)
@@ -1512,13 +1534,118 @@ def bot(op):
 			    ki9.sendMessage(c)
 			except:
 				pass
-                      else:
+        if op.type == 19:
+                    if op.param2 in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
+                        pass
+                    else:
+                      if op.param3 in Bots:
                         try:
 				kicker = random.choice(KAC2)
 				G = cl.getGroup(op.param1)
 				kicker.kickoutFromGroup(op.param1,[op.param2])
                         except:
 				pass
+
+			
+        if op.type == 19:
+                    if op.param2 in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
+                        pass
+                    else:
+                      if op.param3 in staff3 + staff4 + staff5 + staff6:
+                        try:
+				kicker = random.choice(KAC2)
+				kicker.kickoutFromGroup(op.param1,[op.param2])
+                        except:
+				random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+			
+			
+			
+        if op.type == 19:
+		if op.param2 not in Bots:
+                    if op.param3 in staff3 + staff4 + staff5 + staff6:
+				wait["blacklist"][op.param2] = True
+				kicker = random.choice(KAC2)
+				G = ki7.getGroup(op.param1)
+				G.preventJoinByTicket = False
+				random.choice(KAC).updateGroup(G)
+				Ticket = ki5.reissueGroupTicket(op.param1)
+				kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
+				G.preventJoinByTicket = True
+				random.choice(KAC).updateGroup(G)
+				try:
+					kicker.findAndAddContactsByMid(op.param3)
+                                	kicker.inviteIntoGroup(op.param1,[op.param3])
+				except:
+					pass
+				kicker.leaveGroup(op.param1)
+				G = cl.getGroup(op.param1)
+				c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                        	c.contentMetadata={'mid':op.param2}
+				ki9.sendText(op.param1,"請勿踢出權限者!\n踢人者↓")
+			        ki9.sendMessage(c)
+				
+        if op.type == 17:
+		if op.param2 in staff:
+			ki8.sendText(op.param1,"歡迎權限Lv.1用戶加入!")
+				
+        if op.type == 17:
+		if op.param2 in staff2:
+			ki8.sendText(op.param1,"歡迎權限Lv.2用戶加入!")
+			
+        if op.type == 17:
+		if op.param2 in staff3:
+			ki8.sendText(op.param1,"歡迎權限Lv.3用戶加入!")
+				
+        if op.type == 17:
+		if op.param2 in staff4:
+			ki8.sendText(op.param1,"歡迎權限Lv.4用戶加入!")
+			
+        if op.type == 17:
+		if op.param2 in staff5:
+			ki8.sendText(op.param1,"歡迎權限Lv.5用戶加入!")
+				
+        if op.type == 17:
+		if op.param2 in staff6:
+			ki8.sendText(op.param1,"歡迎權限Lv.6用戶加入!")
+				
+
+			
+        if op.type == 11:
+            if op.param3 == '1':
+                if op.param1 in wait['pname']:
+                    try:
+                        G = cl.getGroup(op.param1)
+			c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                        c.contentMetadata={'mid':op.param2}
+                    except:
+                        G = random.choice(KAC).getGroup(op.param1)
+                        
+                    G.name = wait['pro_name'][op.param1]
+                    try:
+                        random.choice(KAC).updateGroup(G)
+                    except:
+                        cl.updateGroup(G)
+                    if op.param2 in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
+                        ki9.sendText(op.param1,"群名保護開啟中,權限者請解除鎖定狀態,才可變更群名!")
+                    else:
+                        try:
+				kicker = random.choice(KAC2)
+				kicker.kickoutFromGroup(op.param1,[op.param2])
+                                ki9.sendText(op.param1,"請勿變更群名!\n變更者↓")
+			        ki9.sendMessage(c)
+                        except:
+                                                    G = ki8.getGroup(op.param1)
+						    G.preventJoinByTicket = False
+					            random.choice(KAC).updateGroup(G)
+						    Ticket = ki6.reissueGroupTicket(op.param1)
+						    kicker = random.choice(KAC2)
+						    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
+						    G.preventJoinByTicket = True
+						    random.choice(KAC).updateGroup(G)
+						    kicker.kickoutFromGroup(op.param1,[op.param2])
+						    kicker.leaveGroup(op.param1)
+                                                    ki9.sendText(op.param1,"請勿變更群名!\n變更者↓")
+			                            ki9.sendMessage(c)
 
         if op.type == 19:
             try:
