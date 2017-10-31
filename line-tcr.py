@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+https://github.com/alferdwijaya/InoriYuzuhira/blob/cdc01da9e9da6751094148e970340ef34a5e44cb/x.py
 
 import LINETCR
 from LINETCR.lib.curve.ttypes import *
