@@ -592,7 +592,7 @@ def bot(op):
                 ki4.inviteIntoGroup(msg.to,[key1])
 		
             elif msg.text in ["Time","時刻","time","Now","now"]:
-                cl.sendText(msg.to, "" + datetime.datetime.today().strftime('%Y-%m-%d- %H:%M:%S.%f'))
+                cl.sendText(msg.to, "" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
 		
             elif "BG3invite:" in msg.text:
                 midd = msg.text.replace("BG3invite:","")
@@ -603,6 +603,13 @@ def bot(op):
                 midd = msg.text.replace("BG4invite:","")
                 ki4.findAndAddContactsByMid(midd)
                 ki4.inviteIntoGroup(msg.to,[midd])
+		
+            elif "Mc:" in msg.text:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                msg.contentType = 13
+                msg.contentMetadata = {"mid":key1}
+                cl.sendMessage(msg)
 		
             elif "Botcontact" == msg.text:
                 msg.contentType = 13
@@ -2051,7 +2058,10 @@ def autoSta():
                       if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
                          pass
                       else:
-                          cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
+			try:
+                                cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"] + "\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+			except:
+				cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
         except:
             count += 1
             if(count == 50):
