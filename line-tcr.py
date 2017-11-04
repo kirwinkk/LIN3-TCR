@@ -111,7 +111,7 @@ wait = {
     'autoAdd':True,
     'message':"戦神代行SelfBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
     'lang':"JP",
-    'comment':"戦神☆style",
+    'comment':"台湾戦神☆style",
     'commentOn':True,
     'commentBlack':{},
     'wblack':False,
@@ -2059,7 +2059,7 @@ def autoSta():
                          pass
                       else:
 			try:
-                                cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"] + "\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+                                cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"] + "\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
 			except:
 				cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
         except:
