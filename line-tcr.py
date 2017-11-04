@@ -100,10 +100,6 @@ a10.login(token="El7SEgsY1dmlCTIrqFJf.pyykg7upILnMu7sucQqBVW.eF9xLrkT+ozFZZDjcUE
 a10.loginResult()
 #水母
 
-a11 = LINETCR.LINE()
-a11.login(token="ElLfLh1FoJej5kJLCi1d.VSu/lwQt0BfHIYFV2IIO3q.eX3RwkxpP60a7VWGhmmlylbXj2IcYgR5yPWNXXQnuzw=")
-a11.loginResult()
-
 a12 = LINETCR.LINE()
 a12.login(token="ElCkxC0ty8IIFHi5J5Wc.u6kB6lCxZNreCdd3sRm+ha.zyXY0IRL81SYWuDaSGbAo7Jc4YyQfbPQuvAF5XBuQiA=")
 a12.loginResult()
@@ -354,12 +350,6 @@ def bot(op):
 				try:
 					random.choice(KAC2).kickoutFromGroup(op.param1, matched_list)
 				except:
-					try:
-                                     random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
-			        except:
-				    try:
-					random.choice(KAC).kickoutFromGroup((op.param1, matched_list)
-				    except:
 					try:
 						random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
 					except:
@@ -1594,26 +1584,17 @@ def bot(op):
 						G = cl.getGroup(op.param1)
 						G.preventJoinByTicket = True
 						kicker = random.choice(KAC2)
-						try:
-									    kicker.kickoutFromGroup(op.param1,[op.param2])
-						except:
-									    pass
+						kicker.kickoutFromGroup(op.param1,[op.param2])
 						random.choice(KAC).updateGroup(G)
 						
 					except:
 						    G = ki9.getGroup(op.param1)
 						    Ticket = ki6.reissueGroupTicket(op.param1)
-						    kicker = random.choice(KAC2)		    
-						    try:
-									    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
-						    except:
-									    pass
+						    kicker = random.choice(KAC2)
+						    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
 						    G.preventJoinByTicket = True
-						    random.choice(KAC).updateGroup(G)  
-                                                    try:
-									    kicker.kickoutFromGroup(op.param1,[op.param2])
-						    except:
-									    pass
+						    random.choice(KAC).updateGroup(G)
+						    kicker.kickoutFromGroup(op.param1,[op.param2])
 						    kicker.leaveGroup(op.param1)
 	
         if op.type == 19:
