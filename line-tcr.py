@@ -179,8 +179,8 @@ helpMessage ="""※指令Lv.1以上使用
 [Banlist]...查看本群黑單
 
 ※指令Lv.5以上使用
-[Nk:]...名字踢人
-[Mk:@]...標註踢人
+[/Nk:]...名字踢人
+[/Mk:@]...標註踢人
 [/kick:]...用mid踢人
 [Ubl:@]...標註解除黑單
 [Unban]...友資解除黑單
@@ -354,7 +354,40 @@ def bot(op):
 				try:
 					random.choice(KAC2).kickoutFromGroup(op.param1, matched_list)
 				except:
-					random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
+					try:
+                                     random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
+			        except:
+				    try:
+					random.choice(KAC).kickoutFromGroup((op.param1, matched_list)
+				    except:
+					try:
+						random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
+					except:
+						try:
+							ki4.kickoutFromGroup(op.param1, matched_list)
+						except:
+							try:
+								ki9.kickoutFromGroup(op.param1, matched_list)
+							except:
+								try:
+									ki5.kickoutFromGroup(op.param1, matched_list)
+								except:
+									try:
+										ki6.kickoutFromGroup(op.param1, matched_list)
+									except:
+										try:
+											ki.kickoutFromGroup(op.param1, matched_list)
+										except:
+											try:
+												ki3.kickoutFromGroup(op.param1, matched_list)
+											except:
+												try:
+													ki2.kickoutFromGroup(op.param1, matched_list)
+												except:
+													try:
+														ki7.kickoutFromGroup(op.param1, matched_list)
+													except:
+														ki8.sendText(op.param1,"注意!!\n偵測到黑單用戶加入!\n\n由於機器遭到鎖踢,因此無法踢出!")
 			except:
 				pass
 		
@@ -1254,17 +1287,11 @@ def bot(op):
 		
             elif "/kick:" in msg.text:
 	      if msg.from_ in admin + staff5 + staff6:
-                midd = msg.text.replace("Kick:","")
+                midd = msg.text.replace("/kick:","")
                 random.choice(KAC).kickoutFromGroup(msg.to,[midd])
 
 		
-            elif msg.text in ["77","ㄌㄑ"]:
-	      if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
-		cl.sendText(msg.to,"ㄎㄩ的女人><")
-		
-            elif msg.text in ["戰神","ㄎㄩ"]:
-	      if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
-		cl.sendText(msg.to,"ㄌㄑ的老公><")
+
 		
             elif msg.text in ["/Blhelp","/blhelp"]:
 	      if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
@@ -1343,8 +1370,7 @@ def bot(op):
                         cocoa += "->" +cl.getContact(mm).displayName + "\n"
                     ki2.sendText(msg.to,cocoa + "以上為在本群的黑單用戶")
 		
-            elif "Ban:" in msg.text:  
-		if msg.from_ in admin + staff6:
+            elif "Ban:" in msg.text:                  
                        nk0 = msg.text.replace("Ban:","")
                        nk1 = nk0.lstrip()
                        nk2 = nk1.replace("","")
@@ -1356,7 +1382,7 @@ def bot(op):
                            if _name in s.displayName:
                               targets.append(s.mid)
                        if targets == []:
-                           ki2.sendText(msg.to,"找不到此成員")
+                           cl.sendText(msg.to,"找不到用戶0.0")
                            pass
                        else:
                            for target in targets:
@@ -1365,13 +1391,12 @@ def bot(op):
 									wait["blacklist"][target] = True
 									f=codecs.open('st2__b.json','w','utf-8')
 									json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-									ki2.sendText(msg.to,"已黑單")
+									cl.sendText(msg.to,"黑單成功")
                                 except:
-                                    ki2.sendText(msg.to,"錯誤")
+                                    cl.sendText(msg.to,"黑單成功")
 
-            elif "Unban:" in msg.text:        
-		if msg.from_ in admin + staff5 + staff6:
-                       nk0 = msg.text.replace("Unban","")
+            elif "Unban:" in msg.text:                  
+                       nk0 = msg.text.replace("Unban:","")
                        nk1 = nk0.lstrip()
                        nk2 = nk1.replace("","")
                        nk3 = nk2.rstrip()
@@ -1382,7 +1407,7 @@ def bot(op):
                            if _name in s.displayName:
                               targets.append(s.mid)
                        if targets == []:
-                           ki2.sendText(msg.to,"找不到此成員")
+                           cl.sendText(msg.to,"找不到用戶0.0")
                            pass
                        else:
                            for target in targets:
@@ -1390,9 +1415,9 @@ def bot(op):
 									del wait["blacklist"][target]
 									f=codecs.open('st2__b.json','w','utf-8')
 									json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-									ki2.sendText(msg.to,"已解除黑單")
+									cl.sendText(msg.to,"解黑成功")
                                 except:
-                                    ki2.sendText(msg.to,"錯誤")
+                                    cl.sendText(msg.to,"解黑成功")
 		
             elif "/blk" in msg.text:
               if msg.from_ in admin + staff6:
@@ -1569,17 +1594,26 @@ def bot(op):
 						G = cl.getGroup(op.param1)
 						G.preventJoinByTicket = True
 						kicker = random.choice(KAC2)
-						kicker.kickoutFromGroup(op.param1,[op.param2])
+						try:
+									    kicker.kickoutFromGroup(op.param1,[op.param2])
+						except:
+									    pass
 						random.choice(KAC).updateGroup(G)
 						
 					except:
 						    G = ki9.getGroup(op.param1)
 						    Ticket = ki6.reissueGroupTicket(op.param1)
-						    kicker = random.choice(KAC2)
-						    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
+						    kicker = random.choice(KAC2)		    
+						    try:
+									    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
+						    except:
+									    pass
 						    G.preventJoinByTicket = True
-						    random.choice(KAC).updateGroup(G)
-						    kicker.kickoutFromGroup(op.param1,[op.param2])
+						    random.choice(KAC).updateGroup(G)  
+                                                    try:
+									    kicker.kickoutFromGroup(op.param1,[op.param2])
+						    except:
+									    pass
 						    kicker.leaveGroup(op.param1)
 	
         if op.type == 19:
@@ -1595,7 +1629,40 @@ def bot(op):
                         try:
 				kicker.kickoutFromGroup(op.param1,[op.param2])
                         except:
-                                random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+                                try:
+                                     random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+			        except:
+				    try:
+					random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+				    except:
+					try:
+						random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+					except:
+						try:
+							ki5.kickoutFromGroup(op.param1,[op.param2])
+						except:
+							try:
+								ki2.kickoutFromGroup(op.param1,[op.param2])
+							except:
+								try:
+									ki.kickoutFromGroup(op.param1,[op.param2])
+								except:
+									try:
+										ki6.kickoutFromGroup(op.param1,[op.param2])
+									except:
+										try:
+											ki4.kickoutFromGroup(op.param1,[op.param2])
+										except:
+											try:
+												ki7.kickoutFromGroup(op.param1,[op.param2])
+											except:
+												try:
+													ki8.kickoutFromGroup(op.param1,[op.param2])
+												except:
+													try:
+														ki3.kickoutFromGroup(op.param1,[op.param2])
+													except:
+														pass
 				
                         G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
@@ -1626,13 +1693,61 @@ def bot(op):
 				kicker = random.choice(KAC2)
 				kicker.kickoutFromGroup(op.param1,[op.param2])
                         except:
-				random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+				try:
+                                     random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+			        except:
+				    try:
+					random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+				    except:
+					try:
+						random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+					except:
+						try:
+							ki8.kickoutFromGroup(op.param1,[op.param2])
+						except:
+							try:
+								ki9.kickoutFromGroup(op.param1,[op.param2])
+							except:
+								try:
+									ki5.kickoutFromGroup(op.param1,[op.param2])
+								except:
+									try:
+										ki6.kickoutFromGroup(op.param1,[op.param2])
+									except:
+										try:
+											ki.kickoutFromGroup(op.param1,[op.param2])
+										except:
+											try:
+												ki3.kickoutFromGroup(op.param1,[op.param2])
+											except:
+												try:
+													ki2.kickoutFromGroup(op.param1,[op.param2])
+												except:
+													try:
+														ki7.kickoutFromGroup(op.param1,[op.param2])
+													except:
+														ki4.kickoutFromGroup(op.param1,[op.param2])
 			
 			
 			
         if op.type == 19:
 		if op.param2 not in Bots:
                     if op.param3 in staff3 + staff4 + staff5 + staff6:
+			try:
+				wait["blacklist"][op.param2] = True
+				kicker = random.choice(KAC2)
+				try:
+					kicker.findAndAddContactsByMid(op.param3)
+                                	kicker.inviteIntoGroup(op.param1,[op.param3])
+				except:
+					pass
+				G = cl.getGroup(op.param1)
+				c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                        	c.contentMetadata={'mid':op.param2}
+				ki9.sendText(op.param1,"請勿踢出權限者!\n踢人者↓")
+			        ki9.sendMessage(c)
+									    
+			except:
 				wait["blacklist"][op.param2] = True
 				kicker = random.choice(KAC2)
 				G = ki7.getGroup(op.param1)
@@ -1711,7 +1826,10 @@ def bot(op):
 						    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
 						    G.preventJoinByTicket = True
 						    random.choice(KAC).updateGroup(G)
-						    kicker.kickoutFromGroup(op.param1,[op.param2])
+						    try:
+									kicker.kickoutFromGroup(op.param1,[op.param2])    
+						    except:
+									    pass
 						    kicker.leaveGroup(op.param1)
                                                     ki9.sendText(op.param1,"請勿變更群名!\n變更者↓")
 			                            ki9.sendMessage(c)
