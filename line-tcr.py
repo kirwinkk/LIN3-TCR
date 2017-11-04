@@ -353,9 +353,6 @@ def bot(op):
 			try:
 				try:
 					random.choice(KAC2).kickoutFromGroup(op.param1, matched_list)
-				except:
-					try:
-                                     random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
 			        except:
 				    try:
 					random.choice(KAC).kickoutFromGroup((op.param1, matched_list)
