@@ -355,12 +355,6 @@ def bot(op):
 					random.choice(KAC2).kickoutFromGroup(op.param1, matched_list)
 				except:
 					try:
-                                     random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
-			        except:
-				    try:
-					random.choice(KAC).kickoutFromGroup((op.param1, matched_list)
-				    except:
-					try:
 						random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
 					except:
 						try:
@@ -1594,26 +1588,17 @@ def bot(op):
 						G = cl.getGroup(op.param1)
 						G.preventJoinByTicket = True
 						kicker = random.choice(KAC2)
-						try:
-									    kicker.kickoutFromGroup(op.param1,[op.param2])
-						except:
-									    pass
+						kicker.kickoutFromGroup(op.param1,[op.param2])
 						random.choice(KAC).updateGroup(G)
 						
 					except:
 						    G = ki9.getGroup(op.param1)
 						    Ticket = ki6.reissueGroupTicket(op.param1)
-						    kicker = random.choice(KAC2)		    
-						    try:
-									    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
-						    except:
-									    pass
+						    kicker = random.choice(KAC2)
+						    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
 						    G.preventJoinByTicket = True
-						    random.choice(KAC).updateGroup(G)  
-                                                    try:
-									    kicker.kickoutFromGroup(op.param1,[op.param2])
-						    except:
-									    pass
+						    random.choice(KAC).updateGroup(G)
+						    kicker.kickoutFromGroup(op.param1,[op.param2])
 						    kicker.leaveGroup(op.param1)
 	
         if op.type == 19:
