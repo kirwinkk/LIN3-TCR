@@ -100,21 +100,8 @@ a10.login(token="El7SEgsY1dmlCTIrqFJf.pyykg7upILnMu7sucQqBVW.eF9xLrkT+ozFZZDjcUE
 a10.loginResult()
 #水母
 
-a11 = LINETCR.LINE()
-a11.login(token="ElLfLh1FoJej5kJLCi1d.VSu/lwQt0BfHIYFV2IIO3q.eX3RwkxpP60a7VWGhmmlylbXj2IcYgR5yPWNXXQnuzw=")
-a11.loginResult()
 
-a12 = LINETCR.LINE()
-a12.login(token="ElCkxC0ty8IIFHi5J5Wc.u6kB6lCxZNreCdd3sRm+ha.zyXY0IRL81SYWuDaSGbAo7Jc4YyQfbPQuvAF5XBuQiA=")
-a12.loginResult()
 
-a13 = LINETCR.LINE()
-a13.login(token="ElpfCEBttwuXeMEshcA2.e4ZI31Q97N5EAzwpc+/hSG.UMLvXWR3dooUPYPaLvehECVCNZpIaami2ylznkRBFe8=")
-a13.loginResult()
-
-a14 = LINETCR.LINE()
-a14.login(token="ElhhqMHKmadxMyLVdsle.iT+8/7l878DR2aicLAjOFG.bAEl2O+0GPOLFG2MozptfmieGgYaoBVkIpPqNLAY564=")
-a14.loginResult()
 
 a15 = LINETCR.LINE()
 a15.login(token="Elibg5HYUBwvBJOPYNz7.K8FC8OdgCWbu6m4pI99ALW.G5kAer/FLiiI4PKiZ+7jxHvV260hIMIV04zgiDxmSIg=")
@@ -209,7 +196,7 @@ http://line.me/ti/p/4-ZKcjagH0
 """
 
 KAC=[cl,ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9]
-KAC2=[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20]
+KAC2=[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a15,a16,a17,a18,a19,a20]
 mid = cl.getProfile().mid
 kimid = ki.getProfile().mid
 ki2mid = ki2.getProfile().mid
@@ -231,17 +218,13 @@ a7mid = a7.getProfile().mid
 a8mid = a8.getProfile().mid
 a9mid = a9.getProfile().mid
 a10mid = a10.getProfile().mid
-a11mid = a11.getProfile().mid
-a12mid = a12.getProfile().mid
-a13mid = a13.getProfile().mid
-a14mid = a14.getProfile().mid
 a15mid = a15.getProfile().mid
 a16mid = a16.getProfile().mid
 a17mid = a17.getProfile().mid
 a18mid = a18.getProfile().mid
 a19mid = a19.getProfile().mid
 a20mid = a20.getProfile().mid
-Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,a1mid,a2mid,a3mid,a4mid,a5mid,a6mid,a7mid,a8mid,a9mid,a10mid,a11mid,a12mid,a13mid,a14mid,a15mid,a16mid,a17mid,a18mid,a19mid,a20mid]
+Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,a1mid,a2mid,a3mid,a4mid,a5mid,a6mid,a7mid,a8mid,a9mid,a10mid,a15mid,a16mid,a17mid,a18mid,a19mid,a20mid]
 admin = [mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,"ua1d924caa58666ee73d0625ca036a1b1","u8dc2983d2e3183303bc466f3283d44d8","uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51","uef3dc2c514c550e1935b5b679dac38f6","u7a1c4338e6342bbbc33d9fa3c295b7d4","uad3b11a07372a5955ba75dc1caadeed8","u4ab4047d824385456811a2fe93c95382","u40c17f320e101b9f1abc9edaace6ed51","u8a627a2ff2ed54bcdd6c3b52f2b9691b","u96fd5925ecab120ea325511f4b53db11","ua0c6c9175efd94a9551338c72d6a7d17","u3d860a1bb50f8a536653b4940aa41bbf","u8be7a9504b9185ba75234f2f8110697b"]
 staff = []
 staff2 = []
@@ -354,12 +337,6 @@ def bot(op):
 				try:
 					random.choice(KAC2).kickoutFromGroup(op.param1, matched_list)
 				except:
-					try:
-                                     random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
-			        except:
-				    try:
-					random.choice(KAC).kickoutFromGroup((op.param1, matched_list)
-				    except:
 					try:
 						random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
 					except:
@@ -1594,26 +1571,17 @@ def bot(op):
 						G = cl.getGroup(op.param1)
 						G.preventJoinByTicket = True
 						kicker = random.choice(KAC2)
-						try:
-									    kicker.kickoutFromGroup(op.param1,[op.param2])
-						except:
-									    pass
+						kicker.kickoutFromGroup(op.param1,[op.param2])
 						random.choice(KAC).updateGroup(G)
 						
 					except:
 						    G = ki9.getGroup(op.param1)
 						    Ticket = ki6.reissueGroupTicket(op.param1)
-						    kicker = random.choice(KAC2)		    
-						    try:
-									    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
-						    except:
-									    pass
+						    kicker = random.choice(KAC2)
+						    kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
 						    G.preventJoinByTicket = True
-						    random.choice(KAC).updateGroup(G)  
-                                                    try:
-									    kicker.kickoutFromGroup(op.param1,[op.param2])
-						    except:
-									    pass
+						    random.choice(KAC).updateGroup(G)
+						    kicker.kickoutFromGroup(op.param1,[op.param2])
 						    kicker.leaveGroup(op.param1)
 	
         if op.type == 19:
