@@ -6,23 +6,23 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(qr=True)
+cl.login(token="EmBNR3OfVAvwmHI8zx9f.DipVpti2vNqpZS7KKC8xhW.q9jPbZfhABP7Mmfzqjd/L67UffCQCbukOSBzmBMlt9A=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(qr=True)
+ki.login(token="EmYXUCOcrrABTLIm9a4f.rrb7jIRO35m2aYXNsjZahW.3P0yp4Qsw+YZ41wd+93bsdaDfzPay1376AfExW1Hxrs=")
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
-ki2.login(qr=True)
+ki2.login(token="EmMBWiFhXeVEHSEOFR0d.Yoj0+7WFuUXcpXk5w2Y2Zq.A6F29ypwp70lC7GDpLUx8x3SN/kRkJmXeM5ca3OvlP4=")
 ki2.loginResult()
 
 ki3 = LINETCR.LINE()
-ki3.login(qr=True)
+ki3.login(token="EmUDWmCoBEYcD5Gd4sl0.6yuVMAzIXQJouAIHhLL+Ka./WplAGsKaWDJADuXV1kM4kB/0PLNEgNML+lMwp1hg+o=")
 ki3.loginResult()
 
 ki4 = LINETCR.LINE()
-ki4.login(qr=True)
+ki4.login(token="EmRA94wEcIQdvewg2m32.Y4y39t+QAha6GH5QcrB18G.H8LtPam10Ind8d7fH4dwj0hxMJ0K3k+ZNjVQetJfJ50=")
 ki4.loginResult()
 
 reload(sys)
