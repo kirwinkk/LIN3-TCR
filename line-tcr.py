@@ -797,13 +797,18 @@ def bot(op):
                         gCreator = ginfo.creator.displayName
                  except:
                         gCreator = ginfo.members[0].displayName
-		 ki.sendText(msg.to,"[群長]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		 
 		 msg.contentType = 13
-		 g123 = ginfo.creator.mid
-		 c.contentMetadata={'mid':g123}
+		 try:
+                        gCreator1 = ginfo.creator.mid
+                 except:
+                        gCreator1 = ginfo.members[0].mid
+		 msg.contentMetadata={'mid':gCreator1}
 		 ki.sendMessage(msg)
+		 ki.sendText(msg.to,"[群長]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
               else:
 		pass
+	
 	
 	
             elif msg.text in ["/Pnameon","/pnameon"]:
@@ -905,6 +910,57 @@ def bot(op):
                         pass
 	       else:
                     pass
+		
+		
+            elif "Youtube:" in msg.text:
+	       if msg.from_ in admin + staff6:
+                 query = msg.text.replace("Youtube:","")
+                 with requests.session() as s:
+                     s.headers['user-agent'] = 'Mozilla/5.0'
+                     url    = 'http://www.youtube.com/results'
+                     params = {'search_query': query}
+                     r    = s.get(url, params=params)
+                     soup = BeautifulSoup(r.content, 'html5lib')
+                     for a in soup.select('.yt-lockup-title > a[title]'):
+                         if '&List' not in a['href']:
+                               cl.sendText(msg.to,'http://www.youtube.com' + a['href'] + a['title'])
+            elif "Xvideo:" in msg.text:
+	       if msg.from_ in admin + staff6:
+                 query = msg.text.replace("Xvideo:","")
+                 with requests.session() as s:
+                     s.headers['user-agent'] = 'Mozilla/5.0'
+                     url    = 'https://www.xvideos.com/result'
+                     params = {'search_query': query}
+                     r    = s.get(url, params=params)
+                     soup = BeautifulSoup(r.content, 'html5lib')
+                     for a in soup.select('.yt-lockup-title > a[title]'):
+                         if '&List' not in a['href']:
+                               cl.sendText(msg.to,'https://www.xvideos.com' + a['href'] + a['title'])
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
             elif ("Lv1:" in msg.text):
                 if msg.from_ in admin + staff6:
