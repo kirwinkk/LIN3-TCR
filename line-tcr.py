@@ -1,4 +1,5 @@
 https://github.com/alferdwijaya/InoriYuzuhira/blob/cdc01da9e9da6751094148e970340ef34a5e44cb/x.py
+	https://github.com/bayupro/ayum/blob/838caee2fd0ff8d536640fb71f2859d2e933a9a2/line.py
 
 import LINETCR
 from LINETCR.lib.curve.ttypes import *
