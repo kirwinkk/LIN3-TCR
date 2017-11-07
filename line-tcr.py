@@ -1,5 +1,10 @@
 https://github.com/alferdwijaya/InoriYuzuhira/blob/cdc01da9e9da6751094148e970340ef34a5e44cb/x.py
-
+	https://github.com/bayupro/ayum/blob/838caee2fd0ff8d536640fb71f2859d2e933a9a2/line.py
+https://github.com/nugsazz/bot-sel/blob/d50f1a619e0814939ae21f8fd4c1f2a87bc55cb1/self.py
+		
+		
+		
+		
 import LINETCR
 from LINETCR.lib.curve.ttypes import *
 from datetime import datetime
