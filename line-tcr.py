@@ -631,11 +631,11 @@ def bot(op):
 				group = cl.getGroup(msg.to)
                 		k = len(group.members)//100
                 		for j in xrange(k+1):
-                    		msg = Message(to=msg.to)
-                    		txt = u''
-                    		s=0
-                    		d=[]
-                    		for i in group.members[j*100 : (j+1)*100]:
+                    		  msg = Message(to=msg.to)
+                    		  txt = u''
+                    		  s=0
+                    		  d=[]
+                    		  for i in group.members[j*100 : (j+1)*100]:
                         		d.append({"S":str(s), "E" :str(s+8), "M":i.mid})
                         		s += 9
                         		txt += u'@Krampus\n'
@@ -4240,13 +4240,13 @@ def bot(op):
 														cl.updateGroup(G)
 													except:
 														pass
+            except:
+		pass
 			
 	
 
 		
-#------------------------------------------------------------------------------------
 
-#------------------------------------------------------------------------------------
         if op.type == 59:
             print op
 
@@ -4277,7 +4277,7 @@ def autoSta():
 			ki9.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
 		  except:
 				pass
-                   if wait["commentOn"] == True:
+                  if wait["commentOn"] == True:
                       if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
                          pass
                       else:
