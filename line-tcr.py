@@ -190,6 +190,7 @@ helpMessage ="""※指令Lv.1以上使用
 [/sp]...查看防翻反應速度
 [/Level]...查看權限名單
 [/Bot]...查看機器名單
+[Add:@]...使機器加好友
 
 作者:戦神[Made In Taiwan]
 http://line.me/ti/p/4-ZKcjagH0
@@ -593,6 +594,16 @@ def bot(op):
               if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
                 ki2.sendText(msg.to,msg.from_)
 		
+            elif "個簽:" in msg.text:
+              if msg.from_ in admin:
+                string = msg.text.replace("個簽:","")
+                if len(string.decode('utf-8')) <= 500:
+                    profile = cl.getProfile()
+                    profile.statusMessage = string
+                    cl.updateProfile(profile)
+                else:
+                    cl.sendText(msg.to,"完成")
+		
             elif msg.text in ["/me","/Me"]:
               if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
 		msg.contentType = 13
@@ -610,38 +621,27 @@ def bot(op):
 			ki2.sendText(msg.to,"[權限狀況]:Lv.4")
                 if msg.from_ in staff5:
 			ki2.sendText(msg.to,"[權限狀況]:Lv.5")
-		if msg.from_ in admin:
+		if msg.from_ in staff6:
 			ki2.sendText(msg.to,"[權限狀況]:Lv.6(最高)")
 		
 		
 		
             elif msg.text in ["/tagall","/Tagall"]:
                 if msg.from_ in admin + staff6:
-			    group = cl.getGroup(msg.to)
-			    nama = [contact.mid for contact in group.members]
-
-			    cb = ""
-			    cb2 = ""
-			    strt = int(0)
-			    akh = int(0)
-			    for md in nama:
-			        akh = akh + int(6)
-
-			        cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(md)+"},"""
-
-			        strt = strt + int(7)
-			        akh = akh + 1
-			        cb2 += "@nrik \n"
-
-			    cb = (cb[:int(len(cb)-1)])
-			    msg.contentType = 0
-			    msg.text = cb2
-			    msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
-
-			    try:
-			        cl.sendMessage(msg)
-			    except Exception as error:
-			        print error
+				group = cl.getGroup(msg.to)
+                		k = len(group.members)//100
+                		for j in xrange(k+1):
+                    		msg = Message(to=msg.to)
+                    		txt = u''
+                    		s=0
+                    		d=[]
+                    		for i in group.members[j*100 : (j+1)*100]:
+                        		d.append({"S":str(s), "E" :str(s+8), "M":i.mid})
+                        		s += 9
+                        		txt += u'@Krampus\n'
+                    		msg.text = txt
+                    		msg.contentMetadata = {u'MENTION':json.dumps({"MENTIONEES":d})}
+                    		cl.sendMessage(msg) 
                 else:
 		   pass
 
@@ -649,36 +649,66 @@ def bot(op):
 
             elif msg.text in ["/test"]:
 	       if msg.from_ in admin + staff6:
-                profile = cl.getProfile()
-                text = "[正常] " + profile.displayName
-                cl.sendText(msg.to, text)
-                profile = ki.getProfile()
-                text = "[正常] " + profile.displayName
-                ki.sendText(msg.to, text)
-                profile = ki2.getProfile()
-                text = "[正常] " + profile.displayName
-                ki2.sendText(msg.to, text)
-                profile = ki3.getProfile()
-                text = "[正常] " + profile.displayName
-                ki3.sendText(msg.to, text)
-                profile = ki4.getProfile()
-                text = "[正常] " + profile.displayName
-                ki4.sendText(msg.to, text)
-                profile = ki5.getProfile()
-                text = "[正常] " + profile.displayName
-                ki5.sendText(msg.to, text)
-                profile = ki6.getProfile()
-                text = "[正常] " + profile.displayName
-                ki6.sendText(msg.to, text)
-                profile = ki7.getProfile()
-                text = "[正常] " + profile.displayName
-                ki7.sendText(msg.to, text)
-                profile = ki8.getProfile()
-                text = "[正常] " + profile.displayName
-                ki8.sendText(msg.to, text)
-                profile = ki9.getProfile()
-                text = "[正常] " + profile.displayName
-                ki9.sendText(msg.to, text)
+		try:
+                 profile = cl.getProfile()
+                 text = "[正常] " + profile.displayName
+                 cl.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki2.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki2.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki3.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki3.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki4.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki4.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki5.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki5.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki6.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki6.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki7.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki7.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki8.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki8.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki9.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki9.sendText(msg.to, text)
+		except:
+			pass
 	       else:
 			pass
 		
@@ -694,7 +724,7 @@ def bot(op):
                     group = ki5.getGroup(msg.to)
                     if group.invitee is not None:
                         gInviMids = [contact.mid for contact in group.invitee]
-                        ki5.cancelGroupInvitation(msg.to, gInviMids)
+                        random.choice(KAC).cancelGroupInvitation(msg.to, gInviMids)
                         ki.sendText(msg.to,"取消了 "+ str(len(group.invitee)) + " 個邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     else:
                         if wait["lang"] == "JP":
@@ -704,23 +734,7 @@ def bot(op):
                 else:
                         pass
 			
-            elif msg.text in ["/Cancel2","/cancel2"]:
-	       if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
-                if msg.toType == 2:
-		    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
-		    name = "".join([random.choice(source_str) for x in xrange(9)])
-                    group = ki7.getGroup(msg.to)
-                    if group.invitee is not None:
-                        gInviMids = [contact.mid for contact in group.invitee]
-                        ki7.cancelGroupInvitation(msg.to, gInviMids)
-                        ki.sendText(msg.to,"取消了 "+ str(len(group.invitee)) + " 個邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                    else:
-                        if wait["lang"] == "JP":
-                            ki.sendText(msg.to,"找不到能取消的邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                        else:
-                            ki.sendText(msg.to,"找不到能取消的邀請\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                else:
-                    pass
+
 
             elif msg.text in ["/author","/Author","/作者"]:
               if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
@@ -762,16 +776,14 @@ def bot(op):
 		   pass
             elif msg.text in ["/Time","/時刻","/time","/Now","/now"]:
               if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
-		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
-		name = "".join([random.choice(source_str) for x in xrange(9)])
-                ki.sendText(msg.to, "" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                ki.sendText(msg.to, "" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
 		
 		
             elif msg.text in ["/Url","/url"]:
               if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
 		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		name = "".join([random.choice(source_str) for x in xrange(9)])
-                gurl = cl.reissueGroupTicket(msg.to)
+                gurl = random.choice(KAC).reissueGroupTicket(msg.to)
                 ki.sendText(msg.to,"群組網址...\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 		
 		
@@ -786,6 +798,10 @@ def bot(op):
                  except:
                         gCreator = ginfo.members[0].displayName
 		 ki.sendText(msg.to,"[群長]\n->" + gCreator + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+		 msg.contentType = 13
+		 g123 = ginfo.creator.mid
+		 c.contentMetadata={'mid':g123}
+		 ki.sendMessage(msg)
               else:
 		pass
 	
@@ -810,12 +826,12 @@ def bot(op):
                     cl.sendText(msg.to,"已關閉禁止更改群名保護!")
 
 
-            if msg.text == "/ginfo":
+            elif msg.text in ["/ginfo","/Ginfo"]:
               if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
                     source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
 		    name = "".join([random.choice(source_str) for x in xrange(9)])
                     ginfo = cl.getGroup(msg.to)
-                    gurl = cl.reissueGroupTicket(msg.to)
+                    gurl = random.choice(KAC).reissueGroupTicket(msg.to)
                     print "SUKSES -- SEND GINFO"
                     try:
                         gCreator = ginfo.creator.displayName
@@ -836,30 +852,7 @@ def bot(op):
                         ki.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nerror" + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
                     ki.sendText(msg)
 		
-            if msg.text == "/Ginfo":
-              if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
-                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
-		    name = "".join([random.choice(source_str) for x in xrange(9)])
-                    ginfo = cl.getGroup(msg.to)
-                    print "SUKSES -- SEND GINFO"
-                    try:
-                        gCreator = ginfo.creator.displayName
-                    except:
-                        gCreator = ginfo.members[0].displayName
-                    if wait["lang"] == "JP":
-                        if ginfo.invitee is None:
-                            sinvitee = "0"
-                        else:
-                            sinvitee = str(len(ginfo.invitee))
-                        if ginfo.preventJoinByTicket == True:
-                            u = "close"
-                        else:
-                            u = "open"
-		    try:
-                        ki.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                    except:
-                        ki.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nerror" + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                    ki.sendText(msg)
+
 		
             elif msg.text in ["/bg9bye","/BG9bye"]:
 	       if msg.from_ in admin + staff4 + staff5 + staff6:
@@ -933,7 +926,31 @@ def bot(op):
                 else:
                     pass
 	
-
+            elif "Add:" in msg.text:
+              if msg.from_ in admin + staff6:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                cl.findAndAddContactsByMid(key1)
+		cl.sendText(msg.to,"追加好友成功")
+		ki.findAndAddContactsByMid(key1)
+		ki.sendText(msg.to,"追加好友成功")
+		ki2.findAndAddContactsByMid(key1)
+		ki2.sendText(msg.to,"追加好友成功")
+		ki3.findAndAddContactsByMid(key1)
+		ki3.sendText(msg.to,"追加好友成功")
+		ki4.findAndAddContactsByMid(key1)
+		ki4.sendText(msg.to,"追加好友成功")
+		ki5.findAndAddContactsByMid(key1)
+		ki5.sendText(msg.to,"追加好友成功")
+		ki6.findAndAddContactsByMid(key1)
+		ki6.sendText(msg.to,"追加好友成功")
+		ki7.findAndAddContactsByMid(key1)
+		ki7.sendText(msg.to,"追加好友成功")
+		ki8.findAndAddContactsByMid(key1)
+		ki8.sendText(msg.to,"追加好友成功")
+		ki9.findAndAddContactsByMid(key1)
+		ki9.sendText(msg.to,"追加好友成功")
+		
 	
             elif ("Lv2:" in msg.text):
                 if msg.from_ in admin + staff6:
@@ -1213,7 +1230,7 @@ def bot(op):
               else:
                     pass
 			
-            elif ("Mk:" in msg.text):
+            elif ("/Mk:" in msg.text):
 		if msg.from_ in admin + staff5 + staff6:
                    targets = []
                    key = eval(msg.contentMetadata["MENTION"])
@@ -1230,9 +1247,9 @@ def bot(op):
                     pass
 
 			
-            elif "Nk:" in msg.text:
+            elif "/Nk:" in msg.text:
 	      if msg.from_ in admin + staff5 + staff6:
-                    _name = msg.text.replace("Nk:","")
+                    _name = msg.text.replace("/Nk:","")
                     gs = ki.getGroup(msg.to)
                     targets = []
                     for g in gs.members:
@@ -1396,6 +1413,8 @@ def bot(op):
                                 except:
                                     cl.sendText(msg.to,"解黑成功")
 		
+
+		
             elif "/blk" in msg.text:
               if msg.from_ in admin + staff6:
                 if msg.toType == 2:
@@ -1405,16 +1424,16 @@ def bot(op):
                     for tag in wait["blacklist"]:
                         matched_list+=filter(lambda str: str == tag, gMembMids)
                     if matched_list == []:
-                        ki.sendText(msg.to,"群內沒有黑單用戶")
+                        cl.sendText(msg.to,"群內沒有黑單用戶")
                         return
                     for jj in matched_list:
-		      if target not in Bots + bgbot:
+		      if jj not in Bots:
                         try:
                             klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9]
                             kicker=random.choice(klist)
                             kicker.kickoutFromGroup(msg.to,[jj])
                         except:
-                            pass
+                            cl.sendText(msg.to,"因規制,無法踢出!")
 		
 		
 		
@@ -1499,10 +1518,6 @@ def bot(op):
                         a8.acceptGroupInvitationByTicket(msg.to,Ticket)
 			a9.acceptGroupInvitationByTicket(msg.to,Ticket)
 			a10.acceptGroupInvitationByTicket(msg.to,Ticket)
-			a11.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        a12.acceptGroupInvitationByTicket(msg.to,Ticket)
-                        a13.acceptGroupInvitationByTicket(msg.to,Ticket)
-			a14.acceptGroupInvitationByTicket(msg.to,Ticket)
                         a15.acceptGroupInvitationByTicket(msg.to,Ticket)
 			a16.acceptGroupInvitationByTicket(msg.to,Ticket)
                         a17.acceptGroupInvitationByTicket(msg.to,Ticket)
@@ -1536,6 +1551,16 @@ def bot(op):
                    key1 = key["MENTIONEES"][0]["M"]
                    mi = cl.getContact(key1)
                    ki.sendText(msg.to,"" +  key1)
+		
+            elif "名字:" in msg.text:
+                string = msg.text.replace("名字:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = cl.getProfile()
+                    profile.displayName = string
+                    cl.updateProfile(profile)
+                    cl.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
 			
 
 
@@ -1739,27 +1764,27 @@ def bot(op):
 				
         if op.type == 17:
 		if op.param2 in staff:
-			ki8.sendText(op.param1,"歡迎權限Lv.1用戶加入!(´▽｀)")
+			ki8.sendText(op.param1,"歡迎權限Lv.1用戶加入!\n(´▽｀)")
 				
         if op.type == 17:
 		if op.param2 in staff2:
-			ki8.sendText(op.param1,"歡迎權限Lv.2用戶加入!(๑•̀ㅁ•́๑)✧")
+			ki8.sendText(op.param1,"歡迎權限Lv.2用戶加入!\n(๑•̀ㅁ•́๑)✧")
 			
         if op.type == 17:
 		if op.param2 in staff3:
-			ki8.sendText(op.param1,"歡迎權限Lv.3用戶加入!ヾ(*´∀｀*)ﾉ")
+			ki8.sendText(op.param1,"歡迎權限Lv.3用戶加入!\nヾ(*´∀｀*)ﾉ")
 				
         if op.type == 17:
 		if op.param2 in staff4:
-			ki8.sendText(op.param1,"歡迎權限Lv.4用戶加入!(●´ϖ`●)")
+			ki8.sendText(op.param1,"歡迎權限Lv.4用戶加入!\n(●´ϖ`●)")
 			
         if op.type == 17:
 		if op.param2 in staff5:
-			ki8.sendText(op.param1,"歡迎權限Lv.5用戶加入!(≧▽≦)")
+			ki8.sendText(op.param1,"歡迎權限Lv.5用戶加入!\n(≧▽≦)")
 				
         if op.type == 17:
 		if op.param2 in staff6:
-			ki8.sendText(op.param1,"歡迎權限Lv.6用戶加入!ʕ•̀ω•́ʔ✧")
+			ki8.sendText(op.param1,"歡迎權限Lv.6用戶加入!\nʕ•̀ω•́ʔ✧")
 				
 
 			
@@ -4216,52 +4241,6 @@ def bot(op):
 													except:
 														pass
 			
-                elif op.param3 in a1mid:
-                    if op.param2 in Bots:
-                        G = a2.getGroup(op.param1)
-                        G.preventJoinByTicket = False
-                        a2.updateGroup(G)
-                        Ticket = a3.reissueGroupTicket(op.param1)
-                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        a1.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        G.preventJoinByTicket = True
-                        a6.updateGroup(G)
-                    else:
-			wait["blacklist"][op.param2] = True
-                        G = a2.getGroup(op.param1)
-			a2.kickoutFromGroup(op.param1,[op.param2])
-                        G.preventJoinByTicket = False
-                        a2.updateGroup(G)
-                        Ticket = a3.reissueGroupTicket(op.param1)
-                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        a1.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        G.preventJoinByTicket = True
-                        a7.updateGroup(G)
-			
-                elif op.param3 in a2mid:
-                    if op.param2 in Bots:
-                        G = a3.getGroup(op.param1)
-                        G.preventJoinByTicket = False
-                        a3.updateGroup(G)
-                        Ticket = a4.reissueGroupTicket(op.param1)
-                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        a2.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        G.preventJoinByTicket = True
-                        a5.updateGroup(G)
-                    else:
-			wait["blacklist"][op.param2] = True
-                        G = a3.getGroup(op.param1)
-			a3.kickoutFromGroup(op.param1,[op.param2])
-                        G.preventJoinByTicket = False
-                        a3.updateGroup(G)
-                        Ticket = a4.reissueGroupTicket(op.param1)
-                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        a2.acceptGroupInvitationByTicket(op.param1,Ticket)
-                        G.preventJoinByTicket = True
-                        a5.updateGroup(G)
-			
-            except:
-                pass
 	
 
 		
@@ -4275,7 +4254,52 @@ def bot(op):
     except Exception as error:
         print error
 
-
+def autoSta():
+    count = 1
+    while True:
+        try:
+           for posts in cl.activity(1)["result"]["posts"]:
+             if posts["postInfo"]["liked"] is False:
+                if wait["likeOn"] == True:
+		  try:
+                   cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+		  except:
+				pass
+		  try:
+                        ki.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+		        ki2.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+			ki3.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+			ki4.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+			ki5.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+			ki6.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+			ki7.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+			ki8.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+			ki9.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+		  except:
+				pass
+                   if wait["commentOn"] == True:
+                      if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
+                         pass
+                      else:
+                                cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+				ki.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+				ki2.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+				ki3.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+				ki4.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+				ki5.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+				ki6.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+				ki7.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+				ki8.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+				ki9.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+        except:
+            count += 1
+            if(count == 50):
+                sys.exit(0)
+            else:
+                pass
+thread1 = threading.Thread(target=autoSta)
+thread1.daemon = True
+thread1.start()
 
 
 
