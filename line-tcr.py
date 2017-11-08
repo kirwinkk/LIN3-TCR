@@ -10,7 +10,7 @@ cl.login(token="EllH4TrW9b5WLGC1C6ce.WHByzKXoh0n3ljIXSlIvBG.lcNynhimCDzpiJ0pO7M5
 cl.loginResult()
 
 ki5 = LINETCR.LINE()
-ki5.login(token="Emi7Bh5uVET0oeLIyQtd.PLWd/iKoGdd5H7Uk0vpvZq.gyrlAYcB9qaTjSNs6UPgDYK9mzeNth6m/sirkZZj9zk=")
+ki5.login(token="EmrCHAttFyJMshE52utd.IZJXUWaNDJ79amYKIzddlq.3YcAMAMW+c9dqa0mU2AE5w7OMbIdcrF967JceC5vJYk=")
 ki5.loginResult()
 
 ki11 = LINETCR.LINE()
@@ -121,7 +121,7 @@ helpMessage ="""[戦神SelfBOT]
 
 作者:戦神
 http://line.me/ti/p/4-ZKcjagH0"""
-KAC=[cl,ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+KAC=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
 KAC3=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
 mid = cl.getProfile().mid
 kimid = ki.getProfile().mid
@@ -4808,30 +4808,46 @@ def bot(op):
 
     except Exception as error:
         print error
-
-def autoSta():
-    count = 1
-    while True:
-        try:
-           for posts in cl.activity(1)["result"]["posts"]:
-             if posts["postInfo"]["liked"] is False:
-                if wait["likeOn"] == True:
-                   cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
-                   if wait["commentOn"] == True:
-                      if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
-                         pass
-                      else:
-                          cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
-			  cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],"作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0")
-        except:
-            count += 1
-            if(count == 50):
-                sys.exit(0)
-            else:
-                pass
-thread1 = threading.Thread(target=autoSta)
-thread1.daemon = True
-thread1.start()
+def autolike():
+			for zx in range(0,20):
+				hasil = cl.activity(limit=20)
+				if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
+					try:    
+						cl.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						cl.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						ki.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						ki2.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki2.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						ki3.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki3.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						ki4.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki4.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						ki5.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki5.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						ki6.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki6.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						ki7.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki7.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						ki8.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki8.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						ki9.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki9.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						
+						ki10.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki10.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						
+						ki11.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+						ki11.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+						
+					except:
+							pass
+				else:
+						pass
+			time.sleep(10)
+thread3 = threading.Thread(target=autolike)
+thread3.daemon = True
+thread3.start()
 
 
 while True:
