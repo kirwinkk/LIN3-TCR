@@ -1617,6 +1617,16 @@ def bot(op):
                     cl.sendText(msg.to,"成功:" + string + "")
 		else:
 			pass
+		
+            elif "名字9:" in msg.text:
+                string = msg.text.replace("名字9:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki9.getProfile()
+                    profile.displayName = string
+                    ki9.updateProfile(profile)
+                    ki9.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
 			
 
 
@@ -1842,7 +1852,124 @@ def bot(op):
 		if op.param2 in staff6:
 			ki8.sendText(op.param1,"歡迎權限Lv.6用戶加入!\nʕ•̀ω•́ʔ✧")
 				
-
+	if op.type == 17:
+	    if wait["blacklist"][op.param2] == True:
+		if op.param2 in Bots:
+		    pass
+		else:
+		   try:
+			try:
+				G = random.choice(KAC).getGroup(op.param1)
+			except:
+				G = cl.getGroup(op.param1)
+			G.preventJoinByTicket = False
+			random.choice(KAC).updateGroup(G)
+			try:
+				Ticket = random.choice(KAC).reissueGroupTicket(op.param1)
+                        except:
+				try:
+					Ticket = ki7.reissueGroupTicket(op.param1)
+				except:
+					try:
+						Ticket = ki2.reissueGroupTicket(op.param1)
+					except:
+						try:
+							Ticket = ki3.reissueGroupTicket(op.param1)
+						except:
+							try:
+								Ticket = ki4.reissueGroupTicket(op.param1)
+							except:
+								try:
+									Ticket = ki5.reissueGroupTicket(op.param1)
+								except:
+									try:
+										Ticket = ki6.reissueGroupTicket(op.param1)
+									except:
+										try:
+											Ticket = ki8.reissueGroupTicket(op.param1)
+										except:
+											try:
+												Ticket = ki.reissueGroupTicket(op.param1)
+											except:
+												try:
+													Ticket = ki9.reissueGroupTicket(op.param1)
+												except:
+													pass
+				
+			try:
+                             kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
+			except:
+				pass
+			G.preventJoinByTicket = True
+			random.choice(KAC).updateGroup(G)
+			try:
+                             kicker.kickoutFromGroup(op.param1,[op.param2])
+			except:
+				try:
+					random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+				except:
+					pass
+			kicker.leaveGroup(op.param1)
+			G.preventJoinByTicket = True
+			random.choice(KAC).updateGroup(G)
+		   except:
+			
+			try:
+				G = random.choice(KAC).getGroup(op.param1)
+			except:
+				G = cl.getGroup(op.param1)
+			G.preventJoinByTicket = False
+			random.choice(KAC).updateGroup(G)
+			try:
+				Ticket = random.choice(KAC).reissueGroupTicket(op.param1)
+                        except:
+				try:
+					Ticket = ki7.reissueGroupTicket(op.param1)
+				except:
+					try:
+						Ticket = ki2.reissueGroupTicket(op.param1)
+					except:
+						try:
+							Ticket = ki3.reissueGroupTicket(op.param1)
+						except:
+							try:
+								Ticket = ki4.reissueGroupTicket(op.param1)
+							except:
+								try:
+									Ticket = ki5.reissueGroupTicket(op.param1)
+								except:
+									try:
+										Ticket = ki6.reissueGroupTicket(op.param1)
+									except:
+										try:
+											Ticket = ki8.reissueGroupTicket(op.param1)
+										except:
+											try:
+												Ticket = ki.reissueGroupTicket(op.param1)
+											except:
+												try:
+													Ticket = ki9.reissueGroupTicket(op.param1)
+												except:
+													pass
+				
+			try:
+                             kicker.acceptGroupInvitationByTicket(op.param1,Ticket)
+			except:
+				pass
+			G.preventJoinByTicket = True
+			random.choice(KAC).updateGroup(G)
+			try:
+                             kicker.kickoutFromGroup(op.param1,[op.param2])
+			except:
+				try:
+					random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+				except:
+					pass
+			kicker.leaveGroup(op.param1)
+			G.preventJoinByTicket = True
+			random.choice(KAC).updateGroup(G)
+			
+			
 			
         if op.type == 11:
             if op.param3 == '1':
