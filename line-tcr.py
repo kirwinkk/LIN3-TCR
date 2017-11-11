@@ -6,52 +6,62 @@ from datetime import datetime
 import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 cl = LINETCR.LINE()
-cl.login(token="EllH4TrW9b5WLGC1C6ce.WHByzKXoh0n3ljIXSlIvBG.lcNynhimCDzpiJ0pO7M5df1sNLDSd/lK8f0G6nbANQY=")
+cl.login(token="EmiOc8nvbbvwfchX8eZc.WLRCsJRm0xoKELSKVXYJFa.TevkCPa1hjGh7N0VEa/XY3n6unFgp3JrmQtG5Rk2T1s=")
 cl.loginResult()
 
-ki5 = LINETCR.LINE()
-ki5.login(token="EmrCHAttFyJMshE52utd.IZJXUWaNDJ79amYKIzddlq.3YcAMAMW+c9dqa0mU2AE5w7OMbIdcrF967JceC5vJYk=")
-ki5.loginResult()
-
-ki11 = LINETCR.LINE()
-ki11.login(token="EmOqfo8FK3qTIxwyik48.jdMIEzKkEKyvwIqjnO2qca.4k4hQNNQh0jIYFmkl4gmjhF0zNyeFET6t1x/PMFNgCQ=")
-ki11.loginResult()
-
-ki10 = LINETCR.LINE()
-ki10.login(token="EmDTOMGiclhpnwXeuQTf.Qs7ZE7sSJQ0Uae4ufNxUpW.2hWYKq7ZzdnxMpJ0PtIR/I0n78W7zj1puMbLCq2ci2k=")
-ki10.loginResult()
-
-ki4 = LINETCR.LINE()
-ki4.login(token="EmC44aeLWBpn2KlZ22Jf.9GY0amPdY9QBs4xGRc6ghW.RU5DOI1xzzT1tgtLqDRT0BPXkxw1iDqGCrDRmzeKMLw=")
-ki4.loginResult()
-
-ki3 = LINETCR.LINE()
-ki3.login(token="EmlSCvogqMtAh11r6tsa.GiTq6xq+GUWzjgNJq9FLwG.+sn5SgmUFCym0QXQRFCjBlglj776/6Z/c6qbrZ4il4c=")
-ki3.loginResult()
-
-ki6 = LINETCR.LINE()
-ki6.login(token="Emay0DRtrYaaOrSwDX62.cBe5pKvojYKvF/KAFJ2DmG.MHhmrebemJwYKB3aq7Xflu4aB/k1ThNtAJOOSWiSrfs=")
-ki6.loginResult()
-
-ki7 = LINETCR.LINE()
-ki7.login(token="EmEQfrjgSRCEGMCue0o3.34zweF4xcWy/GLIrRVolmW.3lpXpC1PEj+fkA43mcNoX3CELuT22iDszxljPGKr2/0=")
-ki7.loginResult()
-
-ki8 = LINETCR.LINE()
-ki8.login(token="Em4QKDp4s72jnfTxHGm8.z0+dEUhzyVIe7HpSctNAca.wTUlvJcny5IDQqBoOqCN365DvnHY70N8f6/FFStpaLc=")
-ki8.loginResult()
-
-ki9 = LINETCR.LINE()
-ki9.login(token="EmCnULLKsBmRiVu3pBXe.0OQnT1Czi60mmjq6Ucfq+G.Eif+8HoaAbkpyb8dfHMHy1ngrzl2mJeBuSFLj4iqRz8=")
-ki9.loginResult()
-
-ki2 = LINETCR.LINE()
-ki2.login(token="EmKTBCUbXYAbMtmpjmOc.NVtTPQgB4kl/eeX4PYzb3a.yB5W4KBod8cxy2zD0qfm5r9SpDfumA90mnSX2q0PeIs=")
-ki2.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(token="EmXUoCCyqSKij4dzgzzd.ZofRhui6zRvhw7jIhFQQ7q.m5SDZ/nxS4ZVoM1TIEeHj+q7kS7NH/Aa48SJxw3zpbU=")
+ki.login(token="EmMqK1Iy4wOZSzF9Nz0e.MM/lmsWyPqaOXUzfmNLwpG.yknRCwQNcsYg9wg2rbmxsTQSKQ7sPgG7RkoeTm39/TA=")
 ki.loginResult()
+
+
+ki2 = LINETCR.LINE()
+ki2.login(token="EmauyUM9i6tEmRzzRGd6.0FzcDg6DlE2Zzgh4jmXITG.cWPYFzTrFW7qykxnm88DgAasysFFhWlH3bvfFeqoKNY=")
+ki2.loginResult()
+
+
+ki3 = LINETCR.LINE()
+ki3.login(token="Emllq2opZT2mH5qLrrdd.y5uKOl5vkdH88JG96gA/3q.yu9EcjVPabbbXQsWSbhCHK5eGjr1EAYUAdgwwGa+cOo=")
+ki3.loginResult()
+
+
+ki4 = LINETCR.LINE()
+ki4.login(token="EmlJrZFzNxl05j3g2Y40.oVCSiGdNzkXHvuGyYsCf4a.RSSTi/03hrMFcAShaNU0Bqiu2HS1UWvgGuO0Vc8p2fY=")
+ki4.loginResult()
+
+
+ki5 = LINETCR.LINE()
+ki5.login(token="EmC03j4ktIyT5OosKXTb.nd1EnvG4MSHUqjnC8eKYQW.lnJq6JV748Ml8YvV1Dej/7pVtQv0EvUzoCY34jMjl74=")
+ki5.loginResult()
+
+
+ki6 = LINETCR.LINE()
+ki6.login(token="Em42jIzNbjWR537iSxv3.IyVZW2pcvY6KpyfY05FmSW.UJv2fc713HYC2nHTqxYPYzqxjhPndk7NJMPGx9eIyco=")
+ki6.loginResult()
+
+
+ki7 = LINETCR.LINE()
+ki7.login(token="Emjt0Y4LJRYsE2MvZw94.Nyu3cmo7uwhUzrp8zQsoja.0tkPd5dRfJRNNlMVNrEZ2CLnqpG+SEX18hAUMrOYslk=")
+ki7.loginResult()
+
+
+ki8 = LINETCR.LINE()
+ki8.login(token="EmKTFaKERF8GNAnv3t01.G+CFyIC/aZmNLw/a2ZdS0q.iPz4gGbB+VtueqKTdKJMAAt4v1vNY4QKX8Q5XxVOvNc=")
+ki8.loginResult()
+
+
+ki9 = LINETCR.LINE()
+ki9.login(token="EmzgKE72ZP6B2EhEFa33.BY+PNmAwY2YOUw6R7E0qKW.PZyyXEujZJcDbkTrDbufvNmERyKMYdBwK9oIsW1/nfs=")
+ki9.loginResult()
+
+
+ki10 = LINETCR.LINE()
+ki10.login(token="EmRpgzsjyWulpgDyrgd8.MzTc0trBAWQR3q7w6uHv6a.ukqvRZe3c6r7gyVmer/0i/mugK6nVmghqn+IGOdBvrE=")
+ki10.loginResult()
+
+ki11 = LINETCR.LINE()
+ki11.login(token="Em55pBNdAcupX2AA6wK6.AMMZOO6GzAMI+1kaIF3D1G.QfuZXfzsgw4RjqwIRMt0kMIHZBK838BvREgk27JGdiU=")
+ki11.loginResult()
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -87,6 +97,9 @@ helpMessage ="""[戦神SelfBOT]
 [Bl]→查看黑單
 [Banlist]→查看此群黑單
 [Blk]→踢出黑單
+[Wl:@]→標註白單
+[Wld:@]→標註解除白單
+[Wl]→查看白單
 [Url]→取得群組網址
 [Urlon]→開啟群組網址
 [Urloff]→關閉群組網址
@@ -145,6 +158,7 @@ protection = []
 autocancel = {}
 autoinvite = []
 autoleaveroom = []
+bgbot = []
 
 wait = {
     'contact':True,
@@ -242,13 +256,13 @@ def bot(op):
 			G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
 		        try:
-                            cl.sendText(op.param1,"安安我是戦神^^")
+                            cl.sendText(op.param1,"戦神☆style^^\n\n作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0")
 		        except:
 			    pass
 
         if op.param3 == "4":
             if op.param1 in wait['purl']:
-		if op.param2 in Bots:
+		if op.param2 in Bots + bgbot:
 			pass
 		else:
 				group = cl.getGroup(op.param1)
@@ -265,15 +279,49 @@ def bot(op):
 						random.choice(KAC).updateGroup(group)
 					except:
 						try:
-							random.choice(KAC).updateGroup(group)
-						except:
-							pass
+							random.choice(KAC).updateGroup(G)
+                        			except:
+							try:
+								ki7.updateGroup(G)
+							except:
+							    try:
+									ki8.updateGroup(G)
+							    except:
+								try:
+									ki3.updateGroup(G)
+								except:
+							           try:
+								     ki4.updateGroup(G)
+							           except:
+								     try:
+									ki10.updateGroup(G)
+								     except:
+									try:
+										ki.updateGroup(G)
+									except:
+										try:
+											ki6.updateGroup(G)
+										except:
+											try:
+												ki2.updateGroup(G)
+											except:
+												try:
+													ki9.updateGroup(G)
+												except:
+													try:
+														ki11.updateGroup(G)
+													except:
+														try:
+															ki5.updateGroup(G)
+														except:
+															cl.updateGroup(G)
 				else:
 					pass
 	
         if op.type == 11:
             if op.param3 == '1':
                 if op.param1 in wait['pname']:
+		  if op.param2 not in Bots + bgbot:
                     try:
                         G = cl.getGroup(op.param1)
 			c = Message(to=op.param1, from_=None, text=None, contentType=13)
@@ -291,7 +339,7 @@ def bot(op):
                         random.choice(KAC).updateGroup(G)
                     except:
                         cl.updateGroup(G)
-                    if op.param2 in Bots:
+                    if op.param2 in Bots + bgbot:
                         pass
                     else:
                         try:
@@ -306,7 +354,7 @@ def bot(op):
         if op.type == 13:
                 if op.param1 in wait['pinvite']:
 			OWN = Bots
-			if op.param2 in OWN:
+			if op.param2 in OWN + bgbot:
 				pass
 			else:
 				Inviter = op.param3.replace("",',')
@@ -386,7 +434,7 @@ def bot(op):
                                     pass
         if op.type == 19:
              if op.param1 in wait['pkick']:
-                    if op.param2 in Bots:
+                    if op.param2 in Bots + bgbot:
                         pass
                     else:
                       if op.param3 not in Bots:
@@ -511,11 +559,100 @@ def bot(op):
         if op.type == 24:
             if wait["leaveRoom"] == True:
                 cl.leaveRoom(op.param1)
+		
+        if op.param3 == "4":
+            if wait["blacklist"][op.param2] == True:
+		if op.param2 in Bots + bgbot:
+			pass
+		else:
+				group = cl.getGroup(op.param1)
+				if group.preventJoinByTicket == False:
+					group.preventJoinByTicket = True
+					try:
+                                          random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+			                except:
+				             try:
+					         random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+				             except:
+						  try:
+							ki.kickoutFromGroup(op.param1,[op.param2])
+						  except:
+							try:
+								ki9.kickoutFromGroup(op.param1,[op.param2])
+							except:
+								try:
+									ki5.kickoutFromGroup(op.param1,[op.param2])
+								except:
+									try:
+										ki4.kickoutFromGroup(op.param1,[op.param2])
+									except:
+										try:
+											ki.kickoutFromGroup(op.param1,[op.param2])
+										except:
+											try:
+												ki3.kickoutFromGroup(op.param1,[op.param2])
+											except:
+												try:
+													ki2.kickoutFromGroup(op.param1,[op.param2])
+												except:
+													try:
+														ki10.kickoutFromGroup(op.param1,[op.param2])
+													except:
+														try:
+															ki11.kickoutFromGroup(op.param1,[op.param2])
+														except:
+															try:
+																cl.kickoutFromGroup(op.param1,[op.param2])
+															except:
+																pass
+															
+					try:
+						random.choice(KAC).updateGroup(group)
+					except:
+						try:
+							random.choice(KAC).updateGroup(G)
+                        			except:
+							try:
+								ki7.updateGroup(G)
+							except:
+							    try:
+									ki8.updateGroup(G)
+							    except:
+								try:
+									ki3.updateGroup(G)
+								except:
+							           try:
+								     ki4.updateGroup(G)
+							           except:
+								     try:
+									ki10.updateGroup(G)
+								     except:
+									try:
+										ki.updateGroup(G)
+									except:
+										try:
+											ki6.updateGroup(G)
+										except:
+											try:
+												ki2.updateGroup(G)
+											except:
+												try:
+													ki9.updateGroup(G)
+												except:
+													try:
+														ki11.updateGroup(G)
+													except:
+														try:
+															ki5.updateGroup(G)
+														except:
+															cl.updateGroup(G)
+				else:
+					pass
 
 		
 	if op.type == 17:
 	    if wait["blacklist"][op.param2] == True:
-		if op.param2 in Bots:
+		if op.param2 in Bots + bgbot:
 		    pass
 		else:
 		   try:
@@ -647,9 +784,9 @@ def bot(op):
                         except:
                             cu = ""
 			if msg.contentMetadata["mid"] in wait["blacklist"]:
-                             ki11.sendText(msg.to,msg.contentMetadata["mid"])
+                             cl.sendText(msg.to,msg.contentMetadata["mid"])
                         else:
-			     ki11.sendText(msg.to,msg.contentMetadata["mid"])
+			     cl.sendText(msg.to,msg.contentMetadata["mid"])
 
 			
 			
@@ -990,6 +1127,60 @@ def bot(op):
                 ki5.findAndAddContactsByMid(midd)
                 ki5.inviteIntoGroup(msg.to,[midd])
 		
+		
+            elif ("Wl:" in msg.text):
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                bgbot.append(target)
+                                cl.sendText(msg.to,"加入白單\n" + mi)
+                            except:
+                                pass
+                   print "[Command]bgbot add executed"
+	
+
+            elif ("Wld:" in msg.text):
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                bgbot.remove(target)
+				cl.sendText(msg.to,"刪除白單\n" + mi)
+                            except:
+                                pass
+                   print "[Command]bgbot remove executed"
+
+	
+            elif msg.text in ["wl","Wl"]:
+                if bgbot == []:
+                    cl.sendText(msg.to,"沒有白單")
+                else:
+                    cl.sendText(msg.to,"白單讀取中...")
+                    m1 = ""
+		    
+                    for mi_d in bgbot:
+                        m1 += "->" +cl.getContact(mi_d).displayName + "\n"
+                    cl.sendText(msg.to,"機器名單:\n\n" + m1)
+
+		
+		
+		
+		
+		
+		
             elif "BG6invite:" in msg.text:
                 midd = msg.text.replace("BG6invite:","")
                 ki6.findAndAddContactsByMid(midd)
@@ -1019,6 +1210,126 @@ def bot(op):
                 midd = msg.text.replace("BG11invite:","")
                 ki11.findAndAddContactsByMid(midd)
                 ki11.inviteIntoGroup(msg.to,[midd])
+		
+            elif "名字更改:" in msg.text:
+                string = msg.text.replace("名字更改:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = cl.getProfile()
+                    profile.displayName = string
+                    cl.updateProfile(profile)
+                    cl.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改1:" in msg.text:
+                string = msg.text.replace("名字更改1:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki.getProfile()
+                    profile.displayName = string
+                    ki.updateProfile(profile)
+                    ki.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改2:" in msg.text:
+                string = msg.text.replace("名字更改2:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki2.getProfile()
+                    profile.displayName = string
+                    ki2.updateProfile(profile)
+                    ki2.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改3:" in msg.text:
+                string = msg.text.replace("名字更改3:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki3.getProfile()
+                    profile.displayName = string
+                    ki3.updateProfile(profile)
+                    ki3.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改4:" in msg.text:
+                string = msg.text.replace("名字更改4:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki4.getProfile()
+                    profile.displayName = string
+                    ki4.updateProfile(profile)
+                    ki4.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改5:" in msg.text:
+                string = msg.text.replace("名字更改5:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki5.getProfile()
+                    profile.displayName = string
+                    ki5.updateProfile(profile)
+                    ki5.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改6:" in msg.text:
+                string = msg.text.replace("名字更改6:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki6.getProfile()
+                    profile.displayName = string
+                    ki6.updateProfile(profile)
+                    ki6.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改7:" in msg.text:
+                string = msg.text.replace("名字更改7:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki7.getProfile()
+                    profile.displayName = string
+                    ki7.updateProfile(profile)
+                    ki7.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改8:" in msg.text:
+                string = msg.text.replace("名字更改8:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki8.getProfile()
+                    profile.displayName = string
+                    ki8.updateProfile(profile)
+                    ki8.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改9:" in msg.text:
+                string = msg.text.replace("名字更改9:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki9.getProfile()
+                    profile.displayName = string
+                    ki9.updateProfile(profile)
+                    ki9.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改10:" in msg.text:
+                string = msg.text.replace("名字更改10:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki10.getProfile()
+                    profile.displayName = string
+                    ki10.updateProfile(profile)
+                    ki10.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
+		
+            elif "名字更改11:" in msg.text:
+                string = msg.text.replace("名字更改11:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki11.getProfile()
+                    profile.displayName = string
+                    ki11.updateProfile(profile)
+                    ki11.sendText(msg.to,"成功:" + string + "")
+		else:
+			pass
 		
 
 		
@@ -1692,40 +2003,82 @@ def bot(op):
 #-----------------------------------------------------------
 
 #-----------------------------------------------------------
-            elif "Test" in msg.text:
-                profile = ki.getProfile()
-                text = profile.displayName + ""
-                ki.sendText(msg.to, text)
-                profile = ki2.getProfile()
-                text = profile.displayName + ""
-                ki2.sendText(msg.to, text)
-		profile = ki3.getProfile()
-                text = profile.displayName + ""
-                ki3.sendText(msg.to, text)
-		profile = ki4.getProfile()
-                text = profile.displayName + ""
-                ki4.sendText(msg.to, text)
-                profile = ki5.getProfile()
-                text = profile.displayName + ""
-                ki5.sendText(msg.to, text)
-                profile = ki6.getProfile()
-                text = profile.displayName + ""
-                ki6.sendText(msg.to, text)
-                profile = ki7.getProfile()
-                text = profile.displayName + ""
-                ki7.sendText(msg.to, text)
-                profile = ki8.getProfile()
-                text = profile.displayName + ""
-                ki8.sendText(msg.to, text)
-                profile = ki9.getProfile()
-                text = profile.displayName + ""
-                ki9.sendText(msg.to, text)
-                profile = ki10.getProfile()
-                text = profile.displayName + ""
-                ki10.sendText(msg.to, text)
-                profile = ki11.getProfile()
-                text = profile.displayName + ""
-                ki11.sendText(msg.to, text)
+            elif msg.text in ["Test","test"]:
+	       if msg.from_ in admin + staff6:
+		try:
+                 profile = cl.getProfile()
+                 text = "[正常] " + profile.displayName
+                 cl.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki2.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki2.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki3.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki3.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki4.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki4.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki5.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki5.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki6.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki6.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki7.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki7.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki8.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki8.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki9.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki9.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki10.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki10.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki11.getProfile()
+                 text = "[正常] " + profile.displayName
+                 ki11.sendText(msg.to, text)
+		except:
+			pass
+
+
 
 #-----------------------------------------------------------speed
             elif msg.text in ["Ban"]:
@@ -4844,7 +5197,7 @@ def autolike():
 							pass
 				else:
 						pass
-			time.sleep(10)
+			time.sleep(50)
 thread3 = threading.Thread(target=autolike)
 thread3.daemon = True
 thread3.start()
