@@ -21,7 +21,7 @@ ki2.loginResult()
 
 
 ki3 = LINETCR.LINE()
-ki3.login(token="Emllq2opZT2mH5qLrrdd.y5uKOl5vkdH88JG96gA/3q.yu9EcjVPabbbXQsWSbhCHK5eGjr1EAYUAdgwwGa+cOo=")
+ki3.login(token="EmHIeBTuMAiGUzzBR9fb.teS33yz1Gm5aDFKFPFCTsW.L5h02YfBGUDmMncKwcdVSJkp1Ii7mUfvT3L9zhBBs84=")
 ki3.loginResult()
 
 
@@ -36,7 +36,7 @@ ki5.loginResult()
 
 
 ki6 = LINETCR.LINE()
-ki6.login(token="Em42jIzNbjWR537iSxv3.IyVZW2pcvY6KpyfY05FmSW.UJv2fc713HYC2nHTqxYPYzqxjhPndk7NJMPGx9eIyco=")
+ki6.login(token="Ems1RSRAdsg2Wu69iJf3.uwjeJKNBljacc2UbuiYjGW.KLK7btiiIfFmOWORd3BNL2I1CebQWfYBKB1bIacmTm4=")
 ki6.loginResult()
 
 
@@ -1110,7 +1110,7 @@ def bot(op):
                 ki2.inviteIntoGroup(msg.to,[midd])
 		
             elif msg.text in ["Time","時刻","time","Now","now"]:
-                cl.sendText(msg.to, "" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S'))
+                cl.sendText(msg.to, "" + datetime.datetime.today().strftime('%Y/%m/%d %H:%M:%S.%f'))
 		
             elif "BG3invite:" in msg.text:
                 midd = msg.text.replace("BG3invite:","")
