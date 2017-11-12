@@ -51,7 +51,7 @@ ki15.login(token="EllH4TrW9b5WLGC1C6ce.WHByzKXoh0n3ljIXSlIvBG.lcNynhimCDzpiJ0pO7
 ki15.loginResult()
 
 a1 = LINETCR.LINE()
-a1.login(token="EmKpbGWQBrXavtkavr60.0O8+K7IEnm5p60tyI4BTia.GYLioe/yRNEn/0J4M6MPe/StVlfWGWkozWKuA0LX/Qg=")
+a1.login(token="EmzEXKTpGh45j0wNbGtc.K4Q8rlE6E9N3FY3RLiEeNa.UXwKLSut951YS/dSAXgRN1wzKguIHIHANgx/L5xF4+M=")
 a1.loginResult()
 
 
