@@ -390,6 +390,20 @@ def bot(op):
 				random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			    except:
 				pass
+			
+        if op.type == 55:
+            try:
+                if op.param1 in wait2['readPoint']:
+                    Name = cl.getContact(op.param2).displayName
+                    if Name in wait2['readMember'][op.param1]:
+                        pass
+                    else:
+                        wait2['readMember'][op.param1] += "\n->" + Name
+                        wait2['ROM'][op.param1][op.param2] = "->" + Name
+                else:
+                    cl.sendText
+            except:
+                  pass
                     
 
         if op.type == 13:
@@ -889,6 +903,7 @@ def bot(op):
 		
             elif msg.text in ["#Point","#point"]:
               if msg.from_ in admin + staff:
+		ki.sendText(msg.to, "[戦神SelfBOT]\n已讀設定OK")
                 try:
                   del wait2['readPoint'][msg.to]
                   del wait2['readMember'][msg.to]
@@ -898,7 +913,7 @@ def bot(op):
                 wait2['readMember'][msg.to] = ""
                 wait2['setTime'][msg.to] = datetime.datetime.today().strftime("%H:%M")
                 wait2['ROM'][msg.to] = {}
-		ki.sendText(msg.to, "[戦神SelfBOT]\n已讀設定OK")
+		
 
             elif msg.text in ["#read","#Read"]:
               if msg.from_ in admin + staff:
@@ -1016,6 +1031,13 @@ def bot(op):
                 ki2.sendText(key1,wait["bang"])
                 ki3.sendText(key1,wait["bang"])
                 ki4.sendText(key1,wait["bang"])
+                ki5.sendText(key1,wait["bang"])
+                ki6.sendText(key1,wait["bang"])
+                ki7.sendText(key1,wait["bang"])
+                ki8.sendText(key1,wait["bang"])
+                ki9.sendText(key1,wait["bang"])
+                ki10.sendText(key1,wait["bang"])
+                ki11.sendText(key1,wait["bang"])
                 ki.sendText(msg.to, "成功")
 		
             elif "#bang:" in msg.text:
@@ -1026,6 +1048,13 @@ def bot(op):
                 ki2.sendText(key1,wait["bang"])
                 ki3.sendText(key1,wait["bang"])
                 ki4.sendText(key1,wait["bang"])
+                ki5.sendText(key1,wait["bang"])
+                ki6.sendText(key1,wait["bang"])
+                ki7.sendText(key1,wait["bang"])
+                ki8.sendText(key1,wait["bang"])
+                ki9.sendText(key1,wait["bang"])
+                ki10.sendText(key1,wait["bang"])
+                ki11.sendText(key1,wait["bang"])
                 ki.sendText(msg.to, "成功")
 		
             elif "#Say:" in msg.text:
@@ -1035,6 +1064,13 @@ def bot(op):
 				ki2.sendText(msg.to,(bctxt))
 				ki3.sendText(msg.to,(bctxt))
 				ki4.sendText(msg.to,(bctxt))
+				ki5.sendText(msg.to,(bctxt))
+				ki6.sendText(msg.to,(bctxt))
+				ki7.sendText(msg.to,(bctxt))
+				ki8.sendText(msg.to,(bctxt))
+				ki9.sendText(msg.to,(bctxt))
+				ki10.sendText(msg.to,(bctxt))
+				ki11.sendText(msg.to,(bctxt))
 		
             elif "#say:" in msg.text:
               if msg.from_ in admin + staff:
@@ -1043,21 +1079,49 @@ def bot(op):
 				ki2.sendText(msg.to,(bctxt))
 				ki3.sendText(msg.to,(bctxt))
 				ki4.sendText(msg.to,(bctxt))
+				ki5.sendText(msg.to,(bctxt))
+				ki6.sendText(msg.to,(bctxt))
+				ki7.sendText(msg.to,(bctxt))
+				ki8.sendText(msg.to,(bctxt))
+				ki9.sendText(msg.to,(bctxt))
+				ki10.sendText(msg.to,(bctxt))
+				ki11.sendText(msg.to,(bctxt))
 				
             elif msg.text in ["#Botcontact","#botcontact"]:		
               if msg.from_ in admin + staff:
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': kimid}
-                ki.sendMessage(msg) 
+                cl.sendMessage(msg) 
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': ki2mid}
-                ki.sendMessage(msg) 
+                cl.sendMessage(msg) 
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': ki3mid}
-                ki.sendMessage(msg) 
+                cl.sendMessage(msg) 
 		msg.contentType = 13
                 msg.contentMetadata = {'mid': ki4mid}
-                ki.sendMessage(msg) 
+                cl.sendMessage(msg) 
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': ki5mid}
+                cl.sendMessage(msg) 
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': ki6mid}
+                cl.sendMessage(msg) 
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': ki7mid}
+                cl.sendMessage(msg) 
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': ki8mid}
+                cl.sendMessage(msg) 
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': ki9mid}
+                cl.sendMessage(msg) 
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': ki10mid}
+                cl.sendMessage(msg) 
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': ki11mid}
+                cl.sendMessage(msg) 
 		
 		
             elif msg.text in ["#Banlist","#banlist"]:
@@ -1081,19 +1145,7 @@ def bot(op):
 			
 			
 
-        if op.type == 55:
-            try:
-                if op.param1 in wait2['readPoint']:
-                    Name = cl.getContact(op.param2).displayName
-                    if Name in wait2['readMember'][op.param1]:
-                        pass
-                    else:
-                        wait2['readMember'][op.param1] += "\n->" + Name
-                        wait2['ROM'][op.param1][op.param2] = "->" + Name
-                else:
-                    cl.sendText
-            except:
-                  pass
+
 
         if op.type == 25:
             msg = op.message
