@@ -10,7 +10,7 @@ cl.login(token="EmBNR3OfVAvwmHI8zx9f.DipVpti2vNqpZS7KKC8xhW.q9jPbZfhABP7Mmfzqjd/
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(token="EmYXUCOcrrABTLIm9a4f.rrb7jIRO35m2aYXNsjZahW.3P0yp4Qsw+YZ41wd+93bsdaDfzPay1376AfExW1Hxrs=")
+ki.login(token="Em58PCxttKo2ibX5SHDf.foLrk2MV4xG7fHXjBqr73W.p4BhFzcYky9iBqeyFtMNcZLW+qtAHlvif8ZglmxGhIY=")
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
@@ -28,6 +28,35 @@ ki4.loginResult()
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+
+helpMessage2 ="""[戦神BOT]
+
+[#help]→查看指令
+[#Author]→作者顯示
+[#Me]→顯示自己友資
+[#Mid]→顯示自己mid
+[#Gid]→顯示群組
+[#Ginfo]→顯示群組詳情
+[#Point]→抓已讀者
+[#Read]→查看已讀名單
+[#Mid:]→顯示被標註者的mid
+[#mid:]→顯示mid的友資
+[#Mc:]→顯示被標註者的友資
+[#Gift]→發送禮物
+[#Time]→現在時間
+[#Tagall]→標註所有人
+[#Sp]→反應速度
+[#Cancel]→取消所有邀請
+[#Bangset:]→設定內容
+[#Bang:@]→密標註者
+[#Say:]→保鏢說話
+[#Botcontact]→查看Kicker友資
+[#Banlist]→查看此群黑單
+[#Url]→取得群組網址
+
+作者:戦神
+http://line.me/ti/p/4-ZKcjagH0"""
+
 helpMessage ="""[戦神SelfBOT]
 
 [help]→查看指令
@@ -38,6 +67,8 @@ helpMessage ="""[戦神SelfBOT]
 [封鎖名單]→確認已封鎖用戶
 [Ginfo]→顯示群組詳情
 [Cancel]→取消所有邀請
+[Bangset:]→設定內容
+[Bang:@]→密標註者
 [Kick:]→mid踢人
 [Invite:]→mid邀人
 [BG1invite:]→mid kicker1邀人
@@ -57,6 +88,12 @@ helpMessage ="""[戦神SelfBOT]
 [Mban:]→mid黑單
 [Munban:]→mid解除黑單
 [Bl]→查看黑單
+[Wl:@]→標註白單
+[Wld:@]→標註解除白單
+[Wl]→查看白單
+[Lv:@]→標註增加權限名單
+[Lvd:@]→標註解除權限名單
+[Level]→查看權限名單
 [Banlist]→查看此群黑單
 [Blk]→踢出黑單
 [Url]→取得群組網址
@@ -71,6 +108,8 @@ helpMessage ="""[戦神SelfBOT]
 [Time]→現在時間
 [Tagall]→標註所有人
 [Say:]→保鑣講話
+[Bangset:]→設定內容
+[Bang:@]→密標註者
 [BGbot]→追加kicker
 [bot1]→追加kicker1
 [BGbye]→kicker退出
@@ -80,6 +119,10 @@ helpMessage ="""[戦神SelfBOT]
 [Sp]→反應速度
 [Point]→抓已讀者
 [Read]→查看已讀名單
+[名字更改:]→更改本帳名字
+[名字更改1:]→更改kicker1名字
+[個簽更改:]→更改本帳個簽
+[個簽更改1:]→更改kicker1個簽
 [Joinon/off]→自動入群開關
 [Leaveon/off]→自動退出副本開關
 [set]→設定確認
@@ -92,7 +135,7 @@ helpMessage ="""[戦神SelfBOT]
 
 作者:戦神
 http://line.me/ti/p/4-ZKcjagH0"""
-KAC=[cl,ki,ki2,ki3,ki4]
+KAC=[ki,ki2,ki3,ki4]
 mid = cl.getProfile().mid
 kimid = ki.getProfile().mid
 ki2mid = ki2.getProfile().mid
@@ -100,7 +143,9 @@ ki3mid = ki3.getProfile().mid
 ki4mid = ki4.getProfile().mid
 Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,"uc216d8664c4e1f43772c98b1b0b8956e"]
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
-admin = "uc216d8664c4e1f43772c98b1b0b8956e"
+admin = ["uc216d8664c4e1f43772c98b1b0b8956e"]
+bgbot = []
+staff = []
 
 wait = {
     'contact':True,
@@ -126,6 +171,7 @@ wait = {
     'linkprotect':False,
     'pnharfbot':{},
     'pname':{},
+    'bang':{},
     'pro_name':{},  
     'pinvite':{},
     'pkick':{},  
@@ -137,7 +183,7 @@ wait2 = {
 	'readPoint':{},
 	'ROM':{},
 	'setTime':{}
-    }
+}
 	
 setTime = {}
 setTime = wait2["setTime"]
@@ -196,7 +242,7 @@ def bot(op):
 		
         if op.param3 == "4":
             if op.param1 in wait['purl']:
-		if op.param2 in Bots:
+		if op.param2 in Bots + bgbot:
 			pass
 		else:
 				group = cl.getGroup(op.param1)
@@ -226,7 +272,8 @@ def bot(op):
 	
         if op.type == 11:
             if op.param3 == '1':
-                if op.param1 in wait['pname']:
+              if op.param1 in wait['pname']:
+		if op.param2 not in Bots + bgbot:
                     try:
                         G = cl.getGroup(op.param1)
                     except:
@@ -237,16 +284,12 @@ def bot(op):
                         random.choice(KAC).updateGroup(G)
                     except:
                         cl.updateGroup(G)
-                    if op.param2 in Bots:
-                        pass
-                    else:
-                        pass
+
                     
 
         if op.type == 13:
                 if op.param1 in wait['pinvite']:
-			OWN = Bots
-			if op.param2 in OWN:
+			if op.param2 in Bots + bgbot:
 				pass
 			else:
 				Inviter = op.param3.replace("",',')
@@ -259,7 +302,7 @@ def bot(op):
 
         if op.type == 19:
              if op.param1 in wait['pkick']:
-                    if op.param2 in Bots:
+                    if op.param2 in Bots + bgbot:
                         pass
                     else:
                       if op.param3 not in Bots:
@@ -295,7 +338,7 @@ def bot(op):
 			
 	if op.type == 17:
 	    if wait["blacklist"][op.param2] == True:
-		if op.param2 in Bots:
+		if op.param2 in Bots + bgbot:
 		    pass
 		else:
 		   try:
@@ -317,10 +360,7 @@ def bot(op):
 							try:
 								ki.kickoutFromGroup(op.param1,[op.param2])
 							except:
-								try:
-									cl.kickoutFromGroup(op.param1,[op.param2])
-								except:
-									pass
+								pass
 			try:
 			     klist=[ki,ki2,ki3,ki4]
                              kicker=random.choice(klist)
@@ -466,8 +506,262 @@ def bot(op):
                              cl.sendText(msg.to,msg.contentMetadata["mid"])
                         else:
 			     cl.sendText(msg.to,msg.contentMetadata["mid"])
+			
+            if msg.text == "#help":
+                if msg.from_ in admin + staff:
+                    ki.sendText(msg.to,helpMessage2)
+
+		
+            if msg.text == "#Help":
+                if msg.from_ in admin + staff:
+                    ki.sendText(msg.to,helpMessage2)
+
+			
+            elif msg.text in ["#me","#Me"]:
+              if msg.from_ in admin + staff:
+		msg.contentType = 13
+		X = msg.from_
+                msg.contentMetadata = {"mid": X }
+		ki.sendMessage(msg)
+                ki.sendText(msg.to,msg.from_)
+
+		
+            elif msg.text in ["#author","#Author","#作者"]:
+              if msg.from_ in admin + staff:
+		msg.contentType = 13
+                msg.contentMetadata = {"mid":"uc216d8664c4e1f43772c98b1b0b8956e"}
+		ki.sendMessage(msg)
+		ki.sendText(msg.to,"防翻作者:戦神\nMade In Taiwan")
+		
+            elif msg.text in ["#mid","#Mid"]:
+              if msg.from_ in admin + staff:
+                ki.sendText(msg.to,msg.from_)
+		
+            elif msg.text in ["#Gid","#gid"]:
+              if msg.from_ in admin + staff:
+                ki.sendText(msg.to, msg.to)
+		
+            elif msg.text in ["#Ginfo","#ginfo"]:
+              if msg.from_ in admin + staff:
+                    ginfo = ki.getGroup(msg.to)
+                    gurl = ki.reissueGroupTicket(msg.to)
+                    try:
+                        gCreator = ginfo.creator.displayName
+                    except:
+                        gCreator = ginfo.members[0].displayName
+                    if wait["lang"] == "JP":
+                        if ginfo.invitee is None:
+                            sinvitee = "0"
+                        else:
+                            sinvitee = str(len(ginfo.invitee))
+                        if ginfo.preventJoinByTicket == True:
+                            u = "關閉"
+                        else:
+                            u = "開啟"
+		    try:
+                        ki.sendText(msg.to,"[戦神SelfBOT代行]\n[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\nline://ti/g/" + gurl)
+                    except:
+                        ki.sendText(msg.to,"[戦神SelfBOT代行]\n[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nerror" + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n群組網址:" + u + "中\nline://ti/g/" + gurl)
+                    ki.sendText(msg)
+
+		
+            elif msg.text in ["#Point","#point"]:
+              if msg.from_ in admin + staff:
+		ki.sendText(msg.to,"[戦神SelfBOT]\n已讀設定OK")
+                try:
+                  del wait2['readPoint'][msg.to]
+                  del wait2['readMember'][msg.to]
+                except:
+	            pass
+                wait2['readPoint'][msg.to] = msg.id
+                wait2['readMember'][msg.to] = ""
+                wait2['setTime'][msg.to] = datetime.datetime.today().strftime("%H:%M")
+                wait2['ROM'][msg.to] = {}
+		
+
+            elif msg.text in ["#read","#Read"]:
+              if msg.from_ in admin + staff:
+		  if msg.to in wait2['readPoint']:
+	            if wait2["ROM"][msg.to].items() == []:
+	              chiya = ""
+	            else:
+	              chiya = ""
+	              for rom in wait2["ROM"][msg.to].items():
+	                chiya += rom[1] + "\n"
+
+	            ki.sendText(msg.to,"[戦神SelfBOT]\n已讀者\n%s"  % (wait2['readMember'][msg.to]))
+	          else:
+	            ki.sendText(msg.to,"請先設定已讀點")
+		
+            elif "#mid:" in msg.text:
+              if msg.from_ in admin + staff:
+                mmid = msg.text.replace("#mid:","")
+                msg.contentType = 13
+                msg.contentMetadata = {"mid":mmid}
+                ki.sendMessage(msg)
+		
+            elif ("#Mid:" in msg.text):
+              if msg.from_ in admin + staff:
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi = ki.getContact(key1)
+                   ki.sendText(msg.to,"" +  key1)
+		
+            elif "#Mc:" in msg.text:
+              if msg.from_ in admin + staff:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                msg.contentType = 13
+                msg.contentMetadata = {"mid":key1}
+                ki.sendMessage(msg)
+            elif "#mc:" in msg.text:
+              if msg.from_ in admin + staff:
+		key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                msg.contentType = 13
+                msg.contentMetadata = {"mid":key1}
+                ki.sendMessage(msg)
+		
+            elif msg.text in ["#gift","#Gift"]:
+              if msg.from_ in admin + staff:
+                msg.contentType = 9
+                msg.contentMetadata={'PRDID': '3b92ccf5-54d3-4765-848f-c9ffdc1da020',
+                                    'PRDTYPE': 'THEME',
+                                    'MSGTPL': '3'}
+                msg.text = None
+                ki.sendMessage(msg)
+		
+            elif msg.text in ["#Time","#時刻","#time","#Now","#now"]:
+              if msg.from_ in admin + staff:
+                ki.sendText(msg.to, "" + datetime.datetime.today().strftime('%Y/%m/%d  %H:%M:%S.%f'))
 
 
+            elif msg.text in ["#Tagall","#tagall"]:
+              if msg.from_ in admin + staff:
+                group = ki.getGroup(msg.to)
+                k = len(group.members)//100
+                for j in xrange(k+1):
+                    msg = Message(to=msg.to)
+                    txt = u''
+                    s=0
+                    d=[]
+                    for i in group.members[j*100 : (j+1)*100]:
+                        d.append({"S":str(s), "E" :str(s+8), "M":i.mid})
+                        s += 9
+                        txt += u'@Krampus\n'
+                    msg.text = txt
+                    msg.contentMetadata = {u'MENTION':json.dumps({"MENTIONEES":d})}
+                    ki.sendMessage(msg) 
+		
+		
+
+            elif msg.text in ["#Sp","#Speed","#speed","#sp"]:
+              if msg.from_ in admin + staff:
+                start = time.time()
+                ki.sendText(msg.to, "BG戦神Bot讀取中...")
+                elapsed_time = time.time() - start
+                ki.sendText(msg.to, "%sseconds" % (elapsed_time))
+		
+            elif msg.text in ["#Cancel","#cancel"]:
+              if msg.from_ in admin + staff:
+                    group = ki.getGroup(msg.to)
+                    if group.invitee is not None:
+                        gInviMids = [contact.mid for contact in group.invitee]
+                        ki.cancelGroupInvitation(msg.to, gInviMids)
+                        ki.sendText(msg.to,"[戦神SelfBOT代行]\n取消了 "+ str(len(group.invitee)) + " 個邀請\n(´∀｀)♡")
+                    else:
+                            ki.sendText(msg.to,"邀請中沒人><")
+				
+				
+            elif "#Bangset:" in msg.text:
+              if msg.from_ in admin + staff:
+                c = msg.text.replace("#Bangset:","")
+		del wait["bang"]
+                wait["bang"] = c
+                ki.sendText(msg.to,"更改內容:\n" + c)
+		
+            elif "#bangset:" in msg.text:
+              if msg.from_ in admin + staff:
+                c = msg.text.replace("#bangset:","")
+		del wait["bang"]
+                wait["bang"] = c
+                ki.sendText(msg.to,"更改內容:\n" + c)
+		
+            elif "#Bang:" in msg.text:
+              if msg.from_ in admin + staff:
+                key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                ki.sendText(key1,wait["bang"])
+                ki2.sendText(key1,wait["bang"])
+                ki3.sendText(key1,wait["bang"])
+                ki4.sendText(key1,wait["bang"])
+                ki.sendText(msg.to, "成功")
+		
+            elif "#bang:" in msg.text:
+              if msg.from_ in admin + staff:
+                key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                ki.sendText(key1,wait["bang"])
+                ki2.sendText(key1,wait["bang"])
+                ki3.sendText(key1,wait["bang"])
+                ki4.sendText(key1,wait["bang"])
+                ki.sendText(msg.to, "成功")
+		
+            elif "#Say:" in msg.text:
+              if msg.from_ in admin + staff:
+				bctxt = msg.text.replace("#Say:","")
+				ki.sendText(msg.to,(bctxt))
+				ki2.sendText(msg.to,(bctxt))
+				ki3.sendText(msg.to,(bctxt))
+				ki4.sendText(msg.to,(bctxt))
+		
+            elif "#say:" in msg.text:
+              if msg.from_ in admin + staff:
+				bctxt = msg.text.replace("#say:","")
+				ki.sendText(msg.to,(bctxt))
+				ki2.sendText(msg.to,(bctxt))
+				ki3.sendText(msg.to,(bctxt))
+				ki4.sendText(msg.to,(bctxt))
+				
+            elif msg.text in ["#Botcontact","#botcontact"]:		
+              if msg.from_ in admin + staff:
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': kimid}
+                ki.sendMessage(msg) 
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': ki2mid}
+                ki.sendMessage(msg) 
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': ki3mid}
+                ki.sendMessage(msg) 
+		msg.contentType = 13
+                msg.contentMetadata = {'mid': ki4mid}
+                ki.sendMessage(msg) 
+		
+		
+            elif msg.text in ["#Banlist","#banlist"]:
+              if msg.from_ in admin + staff:
+                    group = ki.getGroup(msg.to)
+                    gMembMids = [contact.mid for contact in group.members]
+                    matched_list = []
+                    for tag in wait["blacklist"]:
+                        matched_list+=filter(lambda str: str == tag, gMembMids)
+                    cocoa = ""
+                    for mm in matched_list:
+                        cocoa += "->" +ki.getContact(mm).displayName + "\n"
+                    ki.sendText(msg.to,cocoa + "以上為在本群的黑單用戶")
+		
+		
+            elif msg.text in ["#url","#Url"]:
+              if msg.from_ in admin + staff:
+                    g = ki.getGroup(msg.to)
+                    gurl = ki.reissueGroupTicket(msg.to)
+                    ki.sendText(msg.to,"line://ti/g/" + gurl)
+		
+		
+		
+		
+		
 			
 
         if op.type == 25:
@@ -630,6 +924,25 @@ def bot(op):
                 ki2.sendText(msg.to,ki2mid)
                 ki3.sendText(msg.to,ki3mid)
 		ki4.sendText(msg.to,ki4mid)  
+		
+            elif "Bangset:" in msg.text:
+                c = msg.text.replace("Bangset:","")
+		del wait["bang"]
+                wait["bang"] = c
+                cl.sendText(msg.to,"更改內容:\n" + c)
+		
+		
+		
+            elif "Bang:" in msg.text:
+                key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                cl.sendText(key1,wait["bang"])
+                ki.sendText(key1,wait["bang"])
+                ki2.sendText(key1,wait["bang"])
+                ki3.sendText(key1,wait["bang"])
+                ki4.sendText(key1,wait["bang"])
+                cl.sendText(key1,wait["bang"])
+                cl.sendText(msg.to, "成功")
                 
             elif msg.text in ["BG1gift","Bot1gift"]:
                 msg.contentType = 9
@@ -786,6 +1099,57 @@ def bot(op):
                 if msg.to in wait["pinvite"]: md+="禁邀保護:開啟"
                 else: md +="禁邀保護:關閉"
                 cl.sendText(msg.to,"[戦神群組設定]\n\n" + md)
+		
+		
+            elif ("Wl:" in msg.text):
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                bgbot.append(target)
+                                cl.sendText(msg.to,"加入白單\n" + mi)
+                            except:
+                                pass
+
+	
+
+            elif ("Wld:" in msg.text):
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                bgbot.remove(target)
+				cl.sendText(msg.to,"刪除白單\n" + mi)
+                            except:
+                                pass
+
+
+	
+            elif msg.text in ["wl","Wl"]:
+                if bgbot == []:
+                    cl.sendText(msg.to,"沒有白單")
+                else:
+                    cl.sendText(msg.to,"白單讀取中...")
+                    m1 = ""
+		    
+                    for mi_d in bgbot:
+                        m1 += "->" +cl.getContact(mi_d).displayName + "\n"
+                    cl.sendText(msg.to,"白單名單:\n\n" + m1)
+
+		
+		
 		
 		
 		
@@ -958,6 +1322,55 @@ def bot(op):
                 tl_text = msg.text.replace("TL:","")
                 cl.sendText(msg.to,"[戦神SelfBOT代行]\nline://home/post?userMid="+mid+"&postId="+cl.new_post(tl_text)["result"]["post"]["postInfo"]["postId"])
 
+		
+
+            elif ("Lvd:" in msg.text):
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff.remove(target)
+				cl.sendText(msg.to,"解除權限\n" + mi)
+                            except:
+                                pass
+
+
+
+            elif ("Lv:" in msg.text):
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff.append(target)
+                                cl.sendText(msg.to,"提升權限\n" + mi)
+                            except:
+                                pass
+
+	
+            elif msg.text in ["Level","level"]:
+		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
+		name = "".join([random.choice(source_str) for x in xrange(9)])
+                if staff == []:
+                    cl.sendText(msg.to,"沒有權限用戶")
+                else:
+                    cl.sendText(msg.to,"權限名單讀取中...")
+                    mc = ""
+                    for mi_d in staff:
+                        mc += "->" +cl.getContact(mi_d).displayName + "\n"
+                    cl.sendText(msg.to,"權限用戶:\n" + mc)
+		
 
 #--------------------------------------------------------
             elif "mid:" in msg.text:
@@ -1255,7 +1668,105 @@ def bot(op):
                                     cl.sendText(msg.to,"解黑成功")
 #-----------------------------------------------------------
 #-----------------------------------------------------------
-
+            elif "名字更改:" in msg.text:
+                string = msg.text.replace("名字更改:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = cl.getProfile()
+                    profile.displayName = string
+                    cl.updateProfile(profile)
+                    cl.sendText(msg.to,"名字更改成功:\n" + string + "")
+		else:
+			pass
+		
+            elif "名字更改1:" in msg.text:
+                string = msg.text.replace("名字更改1:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki.getProfile()
+                    profile.displayName = string
+                    ki.updateProfile(profile)
+                    ki.sendText(msg.to,"[1]名字更改成功:\n" + string + "")
+		else:
+			pass
+		
+            elif "名字更改2:" in msg.text:
+                string = msg.text.replace("名字更改2:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki2.getProfile()
+                    profile.displayName = string
+                    ki2.updateProfile(profile)
+                    ki2.sendText(msg.to,"[2]名字更改成功:\n" + string + "")
+		else:
+			pass
+		
+            elif "名字更改3:" in msg.text:
+                string = msg.text.replace("名字更改3:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki3.getProfile()
+                    profile.displayName = string
+                    ki3.updateProfile(profile)
+                    ki3.sendText(msg.to,"[3]名字更改成功:\n" + string + "")
+		else:
+			pass
+		
+            elif "名字更改4:" in msg.text:
+                string = msg.text.replace("名字更改4:","")
+                if len(string.decode('utf-8')) <= 20:
+                    profile = ki4.getProfile()
+                    profile.displayName = string
+                    ki4.updateProfile(profile)
+                    ki4.sendText(msg.to,"[4]名字更改成功:\n" + string + "")
+		else:
+			pass
+		
+            elif "個簽更改:" in msg.text:
+                string = msg.text.replace("個簽更改:","")
+                if len(string.decode('utf-8')) <= 500:
+                    profile = cl.getProfile()
+                    profile.statusMessage = string
+                    cl.updateProfile(profile)
+                    cl.sendText(msg.to,"個簽更改成功:\n" + string + "")
+		else:
+			pass
+		
+            elif "個簽更改1:" in msg.text:
+                string = msg.text.replace("個簽更改1:","")
+                if len(string.decode('utf-8')) <= 500:
+                    profile = ki.getProfile()
+                    profile.statusMessage = string
+                    ki.updateProfile(profile)
+                    ki.sendText(msg.to,"[1]個簽更改成功:\n" + string + "")
+		else:
+			pass
+		
+            elif "個簽更改2:" in msg.text:
+                string = msg.text.replace("個簽更改2:","")
+                if len(string.decode('utf-8')) <= 500:
+                    profile = ki2.getProfile()
+                    profile.statusMessage = string
+                    ki2.updateProfile(profile)
+                    ki2.sendText(msg.to,"[2]個簽更改成功:\n" + string + "")
+		else:
+			pass
+		
+            elif "個簽更改3:" in msg.text:
+                string = msg.text.replace("個簽更改3:","")
+                if len(string.decode('utf-8')) <= 500:
+                    profile = ki3.getProfile()
+                    profile.statusMessage = string
+                    ki3.updateProfile(profile)
+                    ki3.sendText(msg.to,"[3]個簽更改成功:\n" + string + "")
+		else:
+			pass
+		
+            elif "個簽更改4:" in msg.text:
+                string = msg.text.replace("個簽更改4:","")
+                if len(string.decode('utf-8')) <= 500:
+                    profile = ki4.getProfile()
+                    profile.statusMessage = string
+                    ki4.updateProfile(profile)
+                    ki4.sendText(msg.to,"[4]個簽更改成功:\n" + string + "")
+		else:
+			pass
 #-----------------------------------------------------------
             elif "#leave" in msg.text:
                 try:
@@ -1266,29 +1777,35 @@ def bot(op):
 #-----------------------------------------------------------
 
 #-----------------------------------------------------------
-            elif "Test" in msg.text:
+            elif msg.text in ["Test","test"]:
 		try:
-                	profile = ki.getProfile()
-                	text = profile.displayName + ""
-                	ki.sendText(msg.to, text)
-		except:
-			pass
-                try:
-                	profile = ki2.getProfile()
-                	text = profile.displayName + ""
-                	ki2.sendText(msg.to, text)
+                 profile = cl.getProfile()
+                 text = "[正常] " + profile.displayName
+                 cl.sendText(msg.to, text)
 		except:
 			pass
 		try:
-                	profile = ki3.getProfile()
-                	text = profile.displayName + ""
-                	ki3.sendText(msg.to, text)
+                 profile = ki.getProfile()
+                 text = "[正常1] " + profile.displayName
+                 ki.sendText(msg.to, text)
 		except:
 			pass
 		try:
-                	profile = ki4.getProfile()
-                	text = profile.displayName + ""
-                	ki4.sendText(msg.to, text)
+                 profile = ki2.getProfile()
+                 text = "[正常2] " + profile.displayName
+                 ki2.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki3.getProfile()
+                 text = "[正常3] " + profile.displayName
+                 ki3.sendText(msg.to, text)
+		except:
+			pass
+		try:
+                 profile = ki4.getProfile()
+                 text = "[正常4] " + profile.displayName
+                 ki4.sendText(msg.to, text)
 		except:
 			pass
 
