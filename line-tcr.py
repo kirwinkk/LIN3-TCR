@@ -7,43 +7,43 @@ import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 
 cl = LINETCR.LINE()
-cl.login(token="ElXDgFI1GBPkORGIXsd4.bOTjwJ4IY6/M4ng+aUJmLa.0UJiAWJxe9wDqD6K1zzS4S7GY7jHlrPcoxGGqYGCgnE=")
+cl.login(token="EmkPXa3rElh9xxo27Hl0.K3GKBAf655flcPON2KGcOa.+wxllliT31HTi7sF8nXHMIuuJyckj+fW5LOZOcIGXzY=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
-ki.login(token="El5sszK6zNtf81vVvjv4.CJqd24edERcutbKcGz5hDa.+zgEZ0tooD0nfs4KQiKQQAmCZbEee7Mzc++G30bQv/0=")
+ki.login(token="EmbVHOm5cWoAo9celPed.+DtB7JoIR0xboNjeqNCPJq.d+ZVtHTXcFaoz3wThyhbJj6zx1VIXCCP1owqKCu6dOQ=")
 ki.loginResult()
 
 ki2 = LINETCR.LINE()
-ki2.login(token="ElL5SWJQbuKcLi9ePLEe.SrCSpiP/rYSAQZYxykGUBG.GdjtlfkpmsYsdhDFE/CUd3Yl1NZ7dl7kiZa9wqvrTJc=")
+ki2.login(token="EmCwlDXpqEXBK8UqVe8c.TuL/izwf5nRtnZ8LAwYf+a.FAC91hn3KH9vnBPtFvXbt/xrOaLU2FBkDksAzS4TTaY=")
 ki2.loginResult()
 
 ki3 = LINETCR.LINE()
-ki3.login(token="Elrn6F9ra7rsFTYU0g3c.sXCxy0CKzb/86fdMQWIJNa.MV4pT5VumEcGJYZsOtD6g4SvLxc5XuTJM2XvoxIh5fk=")
+ki3.login(token="EmcJTeQiWdPEiWOjpp93.wgi9JOfRlB/CYnWvSKpJeW.It0hgnBvZqbDJHurVaRbdd3EL9TRfAamiLe7F+VMILA=")
 ki3.loginResult()
 
 ki4 = LINETCR.LINE()
-ki4.login(token="EmDTOMGiclhpnwXeuQTf.Qs7ZE7sSJQ0Uae4ufNxUpW.2hWYKq7ZzdnxMpJ0PtIR/I0n78W7zj1puMbLCq2ci2k=")
+ki4.login(token="EmarjXV7m5cQwWyo8Pod.BihjNlEUCyDuZRFBfXJN3q.IN+siEaP3/d3U+l1mYxSbBgNtD1v/T0MqzwhosV6NFE=")
 ki4.loginResult()
 
 ki5 = LINETCR.LINE()
-ki5.login(token="EmC44aeLWBpn2KlZ22Jf.9GY0amPdY9QBs4xGRc6ghW.RU5DOI1xzzT1tgtLqDRT0BPXkxw1iDqGCrDRmzeKMLw=")
+ki5.login(token="EmBgCAx9w1tag2K1SBJ3.mVdCjobiOEnx9LwV8kx6mW.27lhbyuPUmQte4k0Ebe4U/38zia8coLpogDzuBh9X4U=")
 ki5.loginResult()
 
 ki6 = LINETCR.LINE()
-ki6.login(token="EmlSCvogqMtAh11r6tsa.GiTq6xq+GUWzjgNJq9FLwG.+sn5SgmUFCym0QXQRFCjBlglj776/6Z/c6qbrZ4il4c=")
+ki6.login(token="EmrcHGFUD7gVrnh0RAZ6.rePJvB+CqconnqNHyuwjfG.iVeTQp92Hsm34VmShKvDjV6slczDD9XlRfol7DdU72I=")
 ki6.loginResult()
 
 ki7 = LINETCR.LINE()
-ki7.login(token="El1XEUBmYDuAzDTYBMke.jDxhAGROvQjm1IFQHi4uxG.u+ngeXvfqRsoRLN0oqSqd20yg2kcXBHuroBQYweH6j4=")
+ki7.login(token="Emzl6IsoC0bTUEGNYOPe.1lmk8Grcj8kb1DpSAAweVG.+ddNsTzf2VSDcLWZbJmv4jlIrpOILpm867zYMRu+eQQ=")
 ki7.loginResult()
 
 ki8 = LINETCR.LINE()
-ki8.login(token="El0BVjh5bVypVqugfhn0.3FLXqaAHaqU2vr+bb+uJKa.u/7QzS/nYzXmQvo/Ut9gs3ZsGPuO953jK7ZYRdgCv0U=")
+ki8.login(token="EmyShHpdt7Y8JQOR0k48.+zVSrQQ8UJZDKNhW20TkYa.mFr+Cw3nHEP6cus++BN9wTxPsgPxAGTNKKqFCSN0YW4=")
 ki8.loginResult()
 
 ki9 = LINETCR.LINE()
-ki9.login(token="EljrYo9So6Khmhdmt790.3d81No0uyJfmd61BOYIYCa.fXe+2O+h/CuP6/MDyk1NnG4kYsKkNM7EVquzc6qfN9U=")
+ki9.login(token="EmjgiqlHAbwJP33huQL4.c9wBq87XboJO8mDX1gAj9a.jmVKytUynnsLLgcz7hPI+m2s2e9zZLPXYATVWe/CsF8=")
 ki9.loginResult() 
 
 ki15 = LINETCR.LINE()
@@ -230,11 +230,11 @@ Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,
 admin = [mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,"ua1d924caa58666ee73d0625ca036a1b1","u8dc2983d2e3183303bc466f3283d44d8","uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51","uef3dc2c514c550e1935b5b679dac38f6","u7a1c4338e6342bbbc33d9fa3c295b7d4","uad3b11a07372a5955ba75dc1caadeed8","u4ab4047d824385456811a2fe93c95382","u40c17f320e101b9f1abc9edaace6ed51","u8a627a2ff2ed54bcdd6c3b52f2b9691b","u96fd5925ecab120ea325511f4b53db11","ua0c6c9175efd94a9551338c72d6a7d17","u3d860a1bb50f8a536653b4940aa41bbf","u8be7a9504b9185ba75234f2f8110697b"]
 staff = []
 staff2 = []
-staff3 = ["u27a2e1c6d2067d3c644c3a04efc00b80","ua3f3e627b3f06be52532e5b6f6d328cf"]
+staff3 = []
 staff4 = []
-staff5 = ["ufa38cdb1f6c60532d332cd1feb2811de","u8b07f7b099be4007077725f2159aa3ed","u46e7da8442293abda863cea5730db308","u34f1c3444e6a70f00fa1aa5502917800","ufa6c8088780a26834e335ae948ae1b42","u67f77712583c341c2624a1b3aa38e4a0"]
+staff5 = ["ufa38cdb1f6c60532d332cd1feb2811de","u8b07f7b099be4007077725f2159aa3ed","u34f1c3444e6a70f00fa1aa5502917800","ufa6c8088780a26834e335ae948ae1b42","u67f77712583c341c2624a1b3aa38e4a0"]
 staff6 = ["uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u8dc2983d2e3183303bc466f3283d44d8","ua1d924caa58666ee73d0625ca036a1b1"]
-bgbot = []
+bgbot = ["u27a2e1c6d2067d3c644c3a04efc00b80","ua3f3e627b3f06be52532e5b6f6d328cf"]
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
 admin2 = "ubecd98a04cbf74a830b6c95b67bd6b74"
 
@@ -4482,8 +4482,15 @@ def bot(op):
 def nameUpdate():
     while True:
         try:
-		profile = ki5.getProfile()
+		profile = ki.getProfile()
+		profile = ki2.getProfile()
+		profile = ki3.getProfile()
 		profile = ki4.getProfile()
+		profile = ki5.getProfile()
+		profile = ki6.getProfile()
+		profile = ki7.getProfile()
+		profile = ki8.getProfile()
+		profile = ki9.getProfile()
                 profile = a1.getProfile()
 		profile = a2.getProfile()
                 profile = a3.getProfile()
@@ -4503,108 +4510,69 @@ def nameUpdate():
                 profile = a21.getProfile()
                 profile = a22.getProfile()
                 profile = a23.getProfile()
-		profile.displayName = "Destroyer"
-                ki5.updateProfile(profile)
-		profile.displayName = "Canceler"
+		profile.displayName = "戦神Helper"
+                ki.updateProfile(profile)
+		profile.displayName = "Checker_Bot"
+                ki2.updateProfile(profile)
+		profile.displayName = "Python2.13"
+                ki3.updateProfile(profile)
+		profile.displayName = "Visual Basic"
                 ki4.updateProfile(profile)
-                profile.displayName = "台湾戦神☆Protect-kicker@A"
+		profile.displayName = "JavaScript"
+                ki5.updateProfile(profile)
+		profile.displayName = "HTML DOM"
+                ki6.updateProfile(profile)
+		profile.displayName = "SQL Server"
+                ki7.updateProfile(profile)
+		profile.displayName = "CSS Selectors"
+                ki8.updateProfile(profile)
+		profile.displayName = "戦神☆Group-Protector"
+                ki9.updateProfile(profile)
+                profile.displayName = "Protect-kicker_A"
                 a1.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@B"
+		profile.displayName = "Protect-kicker_B"
                 a2.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@C"
+		profile.displayName = "Protect-kicker_C"
                 a3.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@D"
+		profile.displayName = "Protect-kicker_D"
                 a4.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@E"
+		profile.displayName = "Protect-kicker_E"
                 a5.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@F"
+		profile.displayName = "Protect-kicker_F"
                 a6.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@G"
+		profile.displayName = "Protect-kicker_G"
                 a7.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@H"
+		profile.displayName = "Protect-kicker_H"
                 a8.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@I"
+		profile.displayName = "Protect-kicker_I"
                 a9.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@J"
+		profile.displayName = "Protect-kicker_J"
                 a10.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@K"
+		profile.displayName = "Protect-kicker_K"
                 a15.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@L"
+		profile.displayName = "Protect-kicker_L"
                 a16.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@M"
+		profile.displayName = "Protect-kicker_M"
                 a17.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@N"
+		profile.displayName = "Protect-kicker_N"
                 a18.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@O"
+		profile.displayName = "Protect-kicker_O"
                 a19.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@P"
+		profile.displayName = "Protect-kicker_P"
                 a20.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@Q"
+		profile.displayName = "Protect-kicker_Q"
                 a21.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@R"
+		profile.displayName = "Protect-kicker_R"
                 a22.updateProfile(profile)
-		profile.displayName = "台湾戦神☆Protect-kicker@S"
+		profile.displayName = "Protect-kicker_S"
                 a23.updateProfile(profile)
-                time.sleep(60000)
+                time.sleep(600000)
         except:
             pass
 thread2 = threading.Thread(target=nameUpdate)
 thread2.daemon = True
 thread2.start()
 
-def autolike():
-			for zx in range(0,20):
-				hasil = cl.activity(limit=20)
-				if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
-					try:    
-						cl.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						cl.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki2.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki2.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki3.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki3.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki4.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki4.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki5.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki5.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki6.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki6.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki7.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki7.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki8.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki8.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki9.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki9.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						a1.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						
-						a2.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						
-						a3.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						
-						a4.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						
-						a5.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						
-						a6.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						
-						a7.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						
-						a8.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						
-						a9.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						
-						a10.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						
-					except:
-							pass
-				else:
-						pass
-			time.sleep(10)
-thread3 = threading.Thread(target=autolike)
-thread3.daemon = True
-thread3.start()
 
 
 	
