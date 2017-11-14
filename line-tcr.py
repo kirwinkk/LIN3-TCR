@@ -1,7 +1,7 @@
 https://github.com/alferdwijaya/InoriYuzuhira/blob/cdc01da9e9da6751094148e970340ef34a5e44cb/x.py
 	https://github.com/bayupro/ayum/blob/838caee2fd0ff8d536640fb71f2859d2e933a9a2/line.py
 https://github.com/nugsazz/bot-sel/blob/d50f1a619e0814939ae21f8fd4c1f2a87bc55cb1/self.py
-		
+https://github.com/liliskha/vno/blob/53c76e6b8d89dc4c9a7741356c98506c5a437f92/vino2.py
 		
 		
 		
