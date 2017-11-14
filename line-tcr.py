@@ -7,7 +7,7 @@ import time,datetime,random,sys,re,os,json,subprocess,codecs,threading,glob
 
 
 cl = LINETCR.LINE()
-cl.login(token="ElDu2YnXzcSCGW9IJL47.1kyf4+QsP7krNDEVhERE5W.G2C9vbhttcWNvJp1mi7Zc4tRsrGXdPRrK0FxFahvpZQ=")
+cl.login(token="El8ZWksA0RZ1Ubdwrm0a.VRtkE8ldWOmWhFjp0ZIgMG.GcWssPMcEwL40kQ9PEdD9EO0izmc7tJ7TwthpANhdhg=")
 cl.loginResult()
 
 ki = LINETCR.LINE()
@@ -27,7 +27,7 @@ ki4.login(token="ElDQG1DLc5Qo6X8Uwug0.WwqPm0ukL9ODJ0m39TY4Sa.RrzMcY05yddE3jbjbHX
 ki4.loginResult()
 
 ki5 = LINETCR.LINE()
-ki5.login(token="El8ZWksA0RZ1Ubdwrm0a.VRtkE8ldWOmWhFjp0ZIgMG.GcWssPMcEwL40kQ9PEdD9EO0izmc7tJ7TwthpANhdhg=")
+ki5.login(token="EmOqfo8FK3qTIxwyik48.jdMIEzKkEKyvwIqjnO2qca.4k4hQNNQh0jIYFmkl4gmjhF0zNyeFET6t1x/PMFNgCQ=")
 ki5.loginResult()
 
 ki6 = LINETCR.LINE()
@@ -526,7 +526,7 @@ def bot(op):
                     ki.sendText(msg.to,helpMessage)
                 if msg.from_ in staff6 + admin:
 		    ki.sendText(msg.to,helpMessage + "\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
-                    ki.sendText(msg.to,"※指令Lv.6使用\n[/Nk:]...名字踢人\n[/Mk:@]...標註踢人\n[Bl:@]...標註黑單\n[Ban]...友資黑單\n[Ban:]...名字黑單\n[Mban]...mid黑單\n[/blk]...踢出黑單用戶\n[/tagall]...標註所有人\n[Bl]...查看黑單\n[Bot:@]...查看機器名單\n[Lv1:@]...標註增加Lv0權限至Lv1\n[Lvd1:@]...標註刪除Lv1權限至Lv0\n[/test]...查看防翻狀態\n[/sp]...查看防翻反應速度\n[/Level]...查看權限名單\n[/Bot]...查看機器名單\n[Add:@]...使機器加好友\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
+                    ki.sendText(msg.to,"※指令Lv.6使用\n[/Nk:]...名字踢人\n[/Mk:@]...標註踢人\n[Bl:@]...標註黑單\n[Ban]...友資黑單\n[Ban:]...名字黑單\n[Mban]...mid黑單\n[/Unbanall]...解除所有黑單\n[/blk]...踢出黑單用戶\n[/tagall]...標註所有人\n[Bl]...查看黑單\n[Blmid]...查看黑單用戶mid\n[Bot:@]...查看機器名單\n[Lv1:@]...標註增加Lv0權限至Lv1\n[Lvd1:@]...標註刪除Lv1權限至Lv0\n[/test]...查看防翻狀態\n[/sp]...查看防翻反應速度\n[/Level]...查看權限名單\n[/Bot]...查看機器名單\n[Add:@]...使機器加好友\n" + datetime.datetime.today().strftime('%H:%M:%S') + " [" + name)
 
             if msg.text == "/gid":
               if msg.from_ in admin + staff + staff2 + staff3 + staff4 + staff5 + staff6:
@@ -1271,61 +1271,7 @@ def bot(op):
                        try:
                            random.choice(KAC).kickoutFromGroup(msg.to,[target])
                        except:
-                            try:
-				G = random.choice(KAC).getGroup(msg.to)
-			    except:
-				G = cl.getGroup(msg.to)
-			    G.preventJoinByTicket = False
-			    random.choice(KAC).updateGroup(G)
-			    kicker = random.choice(KAC2)
-			    try:
-				    Ticket = random.choice(KAC).reissueGroupTicket(msg.to)
-                            except:
-				try:
-					Ticket = ki7.reissueGroupTicket(msg.to)
-				except:
-					try:
-						Ticket = ki2.reissueGroupTicket(msg.to)
-					except:
-						try:
-							Ticket = ki3.reissueGroupTicket(msg.to)
-						except:
-							try:
-								Ticket = ki4.reissueGroupTicket(msg.to)
-							except:
-								try:
-									Ticket = ki5.reissueGroupTicket(msg.to)
-								except:
-									try:
-										Ticket = ki6.reissueGroupTicket(msg.to)
-									except:
-										try:
-											Ticket = ki8.reissueGroupTicket(msg.to)
-										except:
-											try:
-												Ticket = ki.reissueGroupTicket(msg.to)
-											except:
-												try:
-													Ticket = ki9.reissueGroupTicket(msg.to)
-												except:
-													pass
-				
-			    try:
-                                 kicker.acceptGroupInvitationByTicket(msg.to,Ticket)
-			    except:
-				pass
-			    G.preventJoinByTicket = True
-			    random.choice(KAC).updateGroup(G)
-			    for target in targets:
-				try:
-					random.choice(KAC).kickoutFromGroup(msg.to,[target])
-				except:
-					pass
-			    kicker.leaveGroup(msg.to)
-			    G.preventJoinByTicket = True
-			    random.choice(KAC).updateGroup(G)
-		else:
-                    pass
+                            pass
 
 			
             elif "/Nk:" in msg.text:
@@ -1344,62 +1290,7 @@ def bot(op):
 			  try:
                                 random.choice(KAC).kickoutFromGroup(msg.to,[target])
                           except:
-                            try:
-				G = random.choice(KAC).getGroup(msg.to)
-			    except:
-				G = cl.getGroup(msg.to)
-			    G.preventJoinByTicket = False
-			    random.choice(KAC).updateGroup(G)
-			    kicker = random.choice(KAC2)
-			    try:
-				    Ticket = random.choice(KAC).reissueGroupTicket(msg.to)
-                            except:
-				try:
-					Ticket = ki7.reissueGroupTicket(msg.to)
-				except:
-					try:
-						Ticket = ki2.reissueGroupTicket(msg.to)
-					except:
-						try:
-							Ticket = ki3.reissueGroupTicket(msg.to)
-						except:
-							try:
-								Ticket = ki4.reissueGroupTicket(msg.to)
-							except:
-								try:
-									Ticket = ki5.reissueGroupTicket(msg.to)
-								except:
-									try:
-										Ticket = ki6.reissueGroupTicket(msg.to)
-									except:
-										try:
-											Ticket = ki8.reissueGroupTicket(msg.to)
-										except:
-											try:
-												Ticket = ki.reissueGroupTicket(msg.to)
-											except:
-												try:
-													Ticket = ki9.reissueGroupTicket(msg.to)
-												except:
-													pass
-				
-			    try:
-                                 kicker.acceptGroupInvitationByTicket(msg.to,Ticket)
-			    except:
 				pass
-			    G.preventJoinByTicket = True
-			    random.choice(KAC).updateGroup(G)
-			    for target in targets:
-				try:
-					random.choice(KAC).kickoutFromGroup(msg.to,[target])
-				except:
-					pass
-			    kicker.leaveGroup(msg.to)
-			    G.preventJoinByTicket = True
-			    random.choice(KAC).updateGroup(G)
-				
-	      else:
-                    pass
 		
             elif "Mban:" in msg.text:
 	      if msg.from_ in admin + staff6:
@@ -1497,7 +1388,27 @@ def bot(op):
                         cocoa += "->" +cl.getContact(mm).displayName + "\n"
                     ki2.sendText(msg.to,cocoa + "以上為在本群的黑單用戶")
 		
-            elif "Ban:" in msg.text:                  
+            elif msg.text in ["Blmid","blmid"]:
+              if msg.from_ in admin + staff6:
+                if wait["blacklist"] == {}:
+                    cl.sendText(msg.to,"沒有黑名單")
+                else:
+                    cl.sendText(msg.to,"黑名單用戶讀取中...")
+                    mc = ""
+                    for mi_d in wait["blacklist"]:
+                        mc += "" + mi_d + "\n\n"
+                    cl.sendText(msg.to,"[戦神SelfBOT代行]\n黑名單用戶m_i_d:\n\n" + mc)
+		
+            elif msg.text in ["/Unbanall","/unbanall"]:
+              if msg.from_ in admin + staff6:
+		if wait["blacklist"] == {}:
+                    cl.sendText(msg.to,"沒有黑名單")
+                else:
+			wait["blacklist"] = {}
+		        cl.sendText(msg.to,"已解除所有黑單")
+		
+            elif "Ban:" in msg.text:          
+              if msg.from_ in admin + staff6:
                        nk0 = msg.text.replace("Ban:","")
                        nk1 = nk0.lstrip()
                        nk2 = nk1.replace("","")
@@ -1522,7 +1433,8 @@ def bot(op):
                                 except:
                                     cl.sendText(msg.to,"黑單成功")
 
-            elif "Unban:" in msg.text:                  
+            elif "Unban:" in msg.text:      
+              if msg.from_ in admin + staff6:
                        nk0 = msg.text.replace("Unban:","")
                        nk1 = nk0.lstrip()
                        nk2 = nk1.replace("","")
@@ -1566,61 +1478,8 @@ def bot(op):
                             kicker=random.choice(klist)
                             kicker.kickoutFromGroup(msg.to,[jj])
                         except:
-                            try:
-				G = random.choice(KAC).getGroup(msg.to)
-			    except:
-				G = cl.getGroup(msg.to)
-			    G.preventJoinByTicket = False
-			    random.choice(KAC).updateGroup(G)
-			    kicker = random.choice(KAC2)
-			    try:
-				    Ticket = random.choice(KAC).reissueGroupTicket(msg.to)
-                            except:
-				try:
-					Ticket = ki7.reissueGroupTicket(msg.to)
-				except:
-					try:
-						Ticket = ki2.reissueGroupTicket(msg.to)
-					except:
-						try:
-							Ticket = ki3.reissueGroupTicket(msg.to)
-						except:
-							try:
-								Ticket = ki4.reissueGroupTicket(msg.to)
-							except:
-								try:
-									Ticket = ki5.reissueGroupTicket(msg.to)
-								except:
-									try:
-										Ticket = ki6.reissueGroupTicket(msg.to)
-									except:
-										try:
-											Ticket = ki8.reissueGroupTicket(msg.to)
-										except:
-											try:
-												Ticket = ki.reissueGroupTicket(msg.to)
-											except:
-												try:
-													Ticket = ki9.reissueGroupTicket(msg.to)
-												except:
-													pass
-				
-			    try:
-                                 kicker.acceptGroupInvitationByTicket(msg.to,Ticket)
-			    except:
 				pass
-			    G.preventJoinByTicket = True
-			    random.choice(KAC).updateGroup(G)
-			    try:
-                                 kicker.kickoutFromGroup(msg.to,[jj])
-			    except:
-				try:
-					random.choice(KAC).kickoutFromGroup(msg.to,[jj])
-				except:
-					pass
-			    kicker.leaveGroup(msg.to)
-			    G.preventJoinByTicket = True
-			    random.choice(KAC).updateGroup(G)
+                            
 		
 		
 		
