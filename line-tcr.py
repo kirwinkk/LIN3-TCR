@@ -78,9 +78,10 @@ helpMessage2 ="""[戦神BOT]
 [#Ginfo]→顯示群組詳情
 [#Point]→抓已讀者
 [#Read]→查看已讀名單
-[#Mid:]→顯示被標註者的mid
 [#mid:]→顯示mid的友資
-[#Mc:]→顯示被標註者的友資
+[#Mid:@]→顯示被標註者的mid
+[#Mc:@]→顯示被標註者的友資
+[#User:@]→查看標註者詳情
 [#Gift]→發送禮物
 [#Time]→現在時間
 [#Tagall]→標註所有人
@@ -89,7 +90,6 @@ helpMessage2 ="""[戦神BOT]
 [#Bangset:]→設定內容
 [#Bang:@]→密標註者
 [#Say:]→保鏢說話
-[#Botcontact]→查看Kicker友資
 [#Banlist]→查看此群黑單
 [#Url]→取得群組網址
 
@@ -102,24 +102,46 @@ http://line.me/ti/p/4-ZKcjagH0"""
 
 helpMessage ="""[戦神SelfBOT]
 
-[help]→查看指令
-[Author]→作者顯示
-[Me]→顯示自己友資
-[Mid]→顯示自己mid
-[Gid]→顯示群組
+[help]→指令表
+[Author]→作者
+[Me]→自己友資
+[Mid]→自己的mid
+[Gid]→群組gid
 [封鎖名單]→確認已封鎖用戶
-[Ginfo]→顯示群組詳情
+[Ginfo]→群組詳情
 [Cancel]→取消所有邀請
+[Mid:@]→被標註者的mid
+[mid:]→mid查看友資
+[Mc:@]→標註查看友資
+[User:@]→查看標註者詳情
+[TL:]→Po文
+[Gift]→發送禮物
+[Time]→現在時間
+[Sp]→反應速度
+[Point]→設定已讀點
+[Read]→查看已讀名單
+[Tagall]→標註所有人
+
+[Url]→取得群組網址
+[Urlon]→開啟群組網址
+[Urloff]→關閉群組網址
+[BGbot]→追加kicker
+[bot1]→追加kicker1
+[BGbye]→kicker退出
+[bot1bye]→kicker1退出
+[Botcontact]→kicker友資
+[Botmid]→kicker的mid
 [Kick:]→mid踢人
 [Invite:]→mid邀人
 [BG1invite:]→mid kicker1邀人
-[Inv:]→標註邀人
-[BG1inv:]→標註kicker1邀人
+[Inv:@]→標註邀人
+[BG1inv:@]→標註kicker1邀人
 [Nk:]→名字本帳踢人
 [Nkk:]→名字kicker踢人
 [Mk:@]→標註本帳踢人
 [Mkk:@]→標註kicker踢人
-[M1k:@]→標註指定kicker踢人
+[M1k:@]→標註kicker1踢人
+
 [Bl:@]→標註黑單
 [Ubl:@]→標註解除黑單
 [Ban:]→名字黑單
@@ -128,7 +150,9 @@ helpMessage ="""[戦神SelfBOT]
 [Unban]→友資解除黑單
 [Mban:]→mid黑單
 [Munban:]→mid解除黑單
-[Bl]→查看黑單
+[Unbanall]→解除所有黑單
+[Bl]→查看黑單用戶名字
+[Blmid]→查看黑單用戶mid
 [Banlist]→查看此群黑單
 [Blk]→踢出黑單
 [Wl:@]→標註白單
@@ -137,33 +161,17 @@ helpMessage ="""[戦神SelfBOT]
 [Lv:@]→標註增加權限名單
 [Lvd:@]→標註解除權限名單
 [Level]→查看權限名單
-[Url]→取得群組網址
-[Urlon]→開啟群組網址
-[Urloff]→關閉群組網址
-[Groupid]→目前加入的所有群組
-[Mid:]→顯示被標註者的mid
-[Mc:]→顯示被標註者的友資
-[mid:]→顯示mid的友資
-[Gift]→發送禮物
-[TL:]→Po文
-[Time]→現在時間
-[Tagall]→標註所有人
-[Say:]→保鑣講話
-[Bangset:]→設定內容
-[Bang:@]→密標註者
-[BGbot]→追加kicker
-[bot1]→追加kicker1
-[BGbye]→kicker退出
-[bot1bye]→kicker1退出
-[Botcontact]→查看Kicker友資
-[Botmid]→查看Kicker的mid
-[Sp]→反應速度
-[Point]→抓已讀者
-[Read]→查看已讀名單
+
+[Glist]→所有群組
+[Groupid]→所有群組gid
+[名字更改:]→更改本帳名字
+[名字更改1:]→更改kicker1名字
+[個簽更改:]→更改本帳個簽
+[個簽更改1:]→更改kicker1個簽
 [Joinon/off]→自動入群開關
-[Botjoinon/off]→kicker自動入群開關
-[Leaveon/off]→自動退出副本開關
+[Leaveon/off]→自動退副本開關
 [set]→設定確認
+
 [Pkickon/off]→踢人保護開關
 [Pnameon/off]→群名保護開關
 [Purlon/off]→網址保護開關
@@ -197,7 +205,7 @@ protection = []
 autocancel = {}
 autoinvite = []
 autoleaveroom = []
-bgbot = []
+bgbot = ["ubecd98a04cbf74a830b6c95b67bd6b74","ua1d924caa58666ee73d0625ca036a1b1","u8dc2983d2e3183303bc466f3283d44d8""ufdd4dbee33a2af45c13a72444277298d","ub5497e219585e4dad3373f25696c85fc","u58623d8e816b2dbf9cc8dc15b243e313","u6c81c99cb7ae718754ceb7db1718e7dd","u32f0dc24e048a1e357f655aff0a5fa33","u444a6355bfdc40238d3509e161458916","ud4b30af2044227c281d5d3ec69a584be","ufd9bec46aabcba3cdd9271f0db4b4ac8","u0bd59b43cef104e8e8f0c771d46689f4"]
 staff = []
 
 wait = {
@@ -276,7 +284,8 @@ def bot(op):
             if mid in op.param3:
                 G = cl.getGroup(op.param1)
                 if wait["autoJoin"] == True:
-                        cl.acceptGroupInvitation(op.param1)
+                     cl.acceptGroupInvitation(op.param1)
+	             if wait["urlJoin"] == True:
 			G = cl.getGroup(op.param1)
                         ginfo = cl.getGroup(op.param1)
 			G.preventJoinByTicket = False
@@ -296,9 +305,11 @@ def bot(op):
 			ki11.acceptGroupInvitationByTicket(op.param1,Ticket)
 			G.preventJoinByTicket = True
                         random.choice(KAC).updateGroup(G)
-		        try:
+                     else:
+			pass
+                     try:
                             cl.sendText(op.param1,"戦神☆style^^\n\n作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0")
-		        except:
+                     except:
 			    pass
 
         if op.param3 == "4":
@@ -390,6 +401,20 @@ def bot(op):
 				random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
 			    except:
 				pass
+			
+        if op.type == 55:
+            try:
+                if op.param1 in wait2['readPoint']:
+                    Name = cl.getContact(op.param2).displayName
+                    if Name in wait2['readMember'][op.param1]:
+                        pass
+                    else:
+                        wait2['readMember'][op.param1] += "\n->" + Name
+                        wait2['ROM'][op.param1][op.param2] = "->" + Name
+                else:
+                    cl.sendText
+            except:
+                  pass
                     
 
         if op.type == 13:
@@ -889,6 +914,7 @@ def bot(op):
 		
             elif msg.text in ["#Point","#point"]:
               if msg.from_ in admin + staff:
+		cl.sendText(msg.to, "[戦神SelfBOT]\n已讀設定OK")
                 try:
                   del wait2['readPoint'][msg.to]
                   del wait2['readMember'][msg.to]
@@ -896,9 +922,8 @@ def bot(op):
 	            pass
                 wait2['readPoint'][msg.to] = msg.id
                 wait2['readMember'][msg.to] = ""
-                wait2['setTime'][msg.to] = datetime.datetime.today().strftime("%H:%M")
                 wait2['ROM'][msg.to] = {}
-		ki.sendText(msg.to, "[戦神SelfBOT]\n已讀設定OK")
+		
 
             elif msg.text in ["#read","#Read"]:
               if msg.from_ in admin + staff:
@@ -943,6 +968,31 @@ def bot(op):
                 msg.contentMetadata = {"mid":key1}
                 ki.sendMessage(msg)
 		
+
+            elif "#User:" in msg.text:
+              if msg.from_ in admin + staff:
+                key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                contact = cl.getContact(key1)
+                cu = cl.channel.getCover(key1)
+                try:
+                    ki.sendText(msg.to,"[戦神SelfBOT]\n\n[名字]\n" + contact.displayName + "\n[mid]\n" + contact.mid + "\n[個簽]\n" + contact.statusMessage + "\n[頭貼網址]\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]\n" + str(cu))
+                except:
+                    ki.sendText(msg.to,"[戦神SelfBOT]\n\n[名字]\n" + contact.displayName + "\n[mid]\n" + contact.mid + "\n[個簽]\n" + contact.statusMessage + "\n[封面網址]\n" + str(cu))
+		
+            elif "#user:" in msg.text:
+              if msg.from_ in admin + staff:
+                key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                contact = cl.getContact(key1)
+                cu = cl.channel.getCover(key1)
+                try:
+                    ki.sendText(msg.to,"[戦神SelfBOT]\n\n[名字]\n" + contact.displayName + "\n[mid]\n" + contact.mid + "\n[個簽]\n" + contact.statusMessage + "\n[頭貼網址]\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]\n" + str(cu))
+                except:
+                    ki.sendText(msg.to,"[戦神SelfBOT]\n\n[名字]\n" + contact.displayName + "\n[mid]\n" + contact.mid + "\n[個簽]\n" + contact.statusMessage + "\n[封面網址]\n" + str(cu))
+		
+		
+		
             elif msg.text in ["#gift","#Gift"]:
               if msg.from_ in admin + staff:
                 msg.contentType = 9
@@ -951,6 +1001,38 @@ def bot(op):
                                     'MSGTPL': '3'}
                 msg.text = None
                 ki.sendMessage(msg)
+		
+            elif "#gift:" in msg.text:
+              if msg.from_ in admin + staff:
+                key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+		msg.contentType = 9
+                msg.contentMetadata={'PRDID': '3b92ccf5-54d3-4765-848f-c9ffdc1da020',
+                                    'PRDTYPE': 'THEME',
+                                    'MSGTPL': '3'}
+		msg.text = None
+		msg = Message(to=key1)
+                ki.sendMessage(msg)
+                ki2.sendMessage(msg)
+                ki3.sendMessage(msg)
+                ki4.sendMessage(msg)
+                ki.sendText(msg.to, "成功")
+			
+            elif "#Gift:" in msg.text:
+              if msg.from_ in admin + staff:
+                key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+		msg.contentType = 9
+                msg.contentMetadata={'PRDID': '3b92ccf5-54d3-4765-848f-c9ffdc1da020',
+                                    'PRDTYPE': 'THEME',
+                                    'MSGTPL': '3'}
+		msg.text = None
+		msg = Message(to=key1)
+                ki.sendMessage(msg)
+                ki2.sendMessage(msg)
+                ki3.sendMessage(msg)
+                ki4.sendMessage(msg)
+                ki.sendText(msg.to, "成功")
 		
             elif msg.text in ["#Time","#時刻","#time","#Now","#now"]:
               if msg.from_ in admin + staff:
@@ -1016,6 +1098,13 @@ def bot(op):
                 ki2.sendText(key1,wait["bang"])
                 ki3.sendText(key1,wait["bang"])
                 ki4.sendText(key1,wait["bang"])
+                ki5.sendText(key1,wait["bang"])
+                ki6.sendText(key1,wait["bang"])
+                ki7.sendText(key1,wait["bang"])
+                ki8.sendText(key1,wait["bang"])
+                ki9.sendText(key1,wait["bang"])
+                ki10.sendText(key1,wait["bang"])
+                ki11.sendText(key1,wait["bang"])
                 ki.sendText(msg.to, "成功")
 		
             elif "#bang:" in msg.text:
@@ -1026,6 +1115,13 @@ def bot(op):
                 ki2.sendText(key1,wait["bang"])
                 ki3.sendText(key1,wait["bang"])
                 ki4.sendText(key1,wait["bang"])
+                ki5.sendText(key1,wait["bang"])
+                ki6.sendText(key1,wait["bang"])
+                ki7.sendText(key1,wait["bang"])
+                ki8.sendText(key1,wait["bang"])
+                ki9.sendText(key1,wait["bang"])
+                ki10.sendText(key1,wait["bang"])
+                ki11.sendText(key1,wait["bang"])
                 ki.sendText(msg.to, "成功")
 		
             elif "#Say:" in msg.text:
@@ -1035,6 +1131,13 @@ def bot(op):
 				ki2.sendText(msg.to,(bctxt))
 				ki3.sendText(msg.to,(bctxt))
 				ki4.sendText(msg.to,(bctxt))
+				ki5.sendText(msg.to,(bctxt))
+				ki6.sendText(msg.to,(bctxt))
+				ki7.sendText(msg.to,(bctxt))
+				ki8.sendText(msg.to,(bctxt))
+				ki9.sendText(msg.to,(bctxt))
+				ki10.sendText(msg.to,(bctxt))
+				ki11.sendText(msg.to,(bctxt))
 		
             elif "#say:" in msg.text:
               if msg.from_ in admin + staff:
@@ -1043,21 +1146,15 @@ def bot(op):
 				ki2.sendText(msg.to,(bctxt))
 				ki3.sendText(msg.to,(bctxt))
 				ki4.sendText(msg.to,(bctxt))
+				ki5.sendText(msg.to,(bctxt))
+				ki6.sendText(msg.to,(bctxt))
+				ki7.sendText(msg.to,(bctxt))
+				ki8.sendText(msg.to,(bctxt))
+				ki9.sendText(msg.to,(bctxt))
+				ki10.sendText(msg.to,(bctxt))
+				ki11.sendText(msg.to,(bctxt))
 				
-            elif msg.text in ["#Botcontact","#botcontact"]:		
-              if msg.from_ in admin + staff:
-                msg.contentType = 13
-                msg.contentMetadata = {'mid': kimid}
-                ki.sendMessage(msg) 
-                msg.contentType = 13
-                msg.contentMetadata = {'mid': ki2mid}
-                ki.sendMessage(msg) 
-                msg.contentType = 13
-                msg.contentMetadata = {'mid': ki3mid}
-                ki.sendMessage(msg) 
-		msg.contentType = 13
-                msg.contentMetadata = {'mid': ki4mid}
-                ki.sendMessage(msg) 
+
 		
 		
             elif msg.text in ["#Banlist","#banlist"]:
@@ -1081,19 +1178,7 @@ def bot(op):
 			
 			
 
-        if op.type == 55:
-            try:
-                if op.param1 in wait2['readPoint']:
-                    Name = cl.getContact(op.param2).displayName
-                    if Name in wait2['readMember'][op.param1]:
-                        pass
-                    else:
-                        wait2['readMember'][op.param1] += "\n->" + Name
-                        wait2['ROM'][op.param1][op.param2] = "->" + Name
-                else:
-                    cl.sendText
-            except:
-                  pass
+
 
         if op.type == 25:
             msg = op.message
@@ -1893,7 +1978,46 @@ def bot(op):
                 cl.sendText(msg.to,"[戦神SelfBOT]\n\n" + md)
 		
 
-
+            elif "User:" in msg.text:
+                key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                contact = cl.getContact(key1)
+                cu = cl.channel.getCover(key1)
+                try:
+                    cl.sendText(msg.to,"[戦神SelfBOT]\n\n[名字]\n" + contact.displayName + "\n[mid]\n" + contact.mid + "\n[個簽]\n" + contact.statusMessage + "\n[頭貼網址]\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]\n" + str(cu))
+                except:
+                    cl.sendText(msg.to,"[戦神SelfBOT]\n\n[名字]\n" + contact.displayName + "\n[mid]\n" + contact.mid + "\n[個簽]\n" + contact.statusMessage + "\n[封面網址]\n" + str(cu))
+		
+		
+            elif "user:" in msg.text:
+                key = eval(msg.contentMetadata["MENTION"])
+                key1 = key["MENTIONEES"][0]["M"]
+                contact = cl.getContact(key1)
+                cu = cl.channel.getCover(key1)
+                try:
+                    cl.sendText(msg.to,"[戦神SelfBOT]\n\n[名字]\n" + contact.displayName + "\n[mid]\n" + contact.mid + "\n[個簽]\n" + contact.statusMessage + "\n[頭貼網址]\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[封面網址]\n" + str(cu))
+                except:
+                    cl.sendText(msg.to,"[戦神SelfBOT]\n\n[名字]\n" + contact.displayName + "\n[mid]\n" + contact.mid + "\n[個簽]\n" + contact.statusMessage + "\n[封面網址]\n" + str(cu))
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
             elif msg.text in ["Cancel","cancel"]:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
@@ -1907,10 +2031,7 @@ def bot(op):
                         else:
                             cl.sendText(msg.to,"邀請中沒人><")
                 else:
-                    if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"邀請中沒人><")
-                    else:
-                        cl.sendText(msg.to,"邀請中沒人><")
+                    pass
 
             elif msg.text in ["author","Author","作者"]:
 			msg.contentType = 13
@@ -1918,13 +2039,36 @@ def bot(op):
 			cl.sendText(msg.to,"此機器作者↓")
                         cl.sendMessage(msg)
 			
-            elif msg.text in ["Groupid","所有群組","Allgid"]:
-                gid = cl.getGroupIdsJoined()
-                h = ""
-                for i in gid:
-                    h += "[%s]:%s\n" % (cl.getGroup(i).name,i)
-                cl.sendText(msg.to,h)
+            elif msg.text in ["mid","Mid"]:
+                cl.sendText(msg.to,msg.from_)
 		
+            elif msg.text in ["Gid","gid"]:
+                cl.sendText(msg.to, msg.to)
+		
+
+		
+            elif msg.text in ["Glist","glist"]:
+                gs = cl.getGroupIdsJoined()
+                L = "[戦神SelfBOT全部群組]\n"
+		num=1
+                for i in gs:
+                    L += "[%i]  %s\n" % (num,"" + str(len (cl.getGroup(i).members)) + "人\n " + cl.getGroup(i).name + "")
+                    num=(num+1)
+                cl.sendText(msg.to, L + "\n總共:" + str(len(gs)) +"群")
+			
+            elif msg.text in ["Groupid","Allgid"]:
+                gid = cl.getGroupIdsJoined()
+		k = len(gid)//50
+                h = ""
+		for j in xrange(k+1):
+		    msg = Message(to=msg.to)
+                    for i in gid[j*50 : (j+1)*50]:
+                        h += "[%s]:\n%s\n" % (cl.getGroup(i).name,i)
+			msg.text = h
+                cl.sendMessage(msg) 
+		
+
+
             elif msg.text in ["Urlon","urlon"]:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
@@ -1938,8 +2082,10 @@ def bot(op):
                     group = cl.getGroup(msg.to)
                     group.preventJoinByTicket = False
                     random.choice(KAC).updateGroup(group)
-                    gurl = cl.reissueGroupTicket(msg.to)
+                    gurl = random.choice(KAC).reissueGroupTicket(msg.to)
                     cl.sendText(msg.to,"line://ti/g/" + gurl)
+		
+		
             elif msg.text in ["Urloff","urloff"]:
                 if msg.toType == 2:
                     group = cl.getGroup(msg.to)
@@ -1962,9 +2108,9 @@ def bot(op):
                         else:
                             sinvitee = str(len(ginfo.invitee))
                         if ginfo.preventJoinByTicket == True:
-                            u = "close"
+                            u = "關閉"
                         else:
-                            u = "open"
+                            u = "開啟"
 		    try:
                         cl.sendText(msg.to,"[戦神SelfBOT代行]\n[群組名稱]\n" + str(ginfo.name) + "\n[群組gid]\n" + msg.to + "\n[創立群組者]\n" + gCreator + "\n[群圖網址]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n成員人數:" + str(len(ginfo.members)) + "人\n招待中人數:" + sinvitee + "人\n網址URL:" + u + "中\nline://ti/g/" + gurl)
                     except:
@@ -2032,6 +2178,8 @@ def bot(op):
 		del wait["blacklist"][midd]
 		cl.sendText(msg.to,"已解除黑單")
 		
+
+		
             elif ("Mid:" in msg.text):
                    key = eval(msg.contentMetadata["MENTION"])
                    key1 = key["MENTIONEES"][0]["M"]
@@ -2050,8 +2198,30 @@ def bot(op):
                     cl.sendText(msg.to,"黑名單用戶讀取中...")
                     mc = ""
                     for mi_d in wait["blacklist"]:
-                        mc += "->" +cl.getContact(mi_d).displayName + "\n"
+                        mc += "->" + cl.getContact(mi_d).displayName + "\n"
                     cl.sendText(msg.to,"[戦神SelfBOT代行]\n黑名單用戶:\n\n" + mc)
+		
+            elif msg.text in ["Blmid","blmid"]:
+                if wait["blacklist"] == {}:
+                    cl.sendText(msg.to,"沒有黑名單")
+                else:
+                    cl.sendText(msg.to,"黑名單用戶讀取中...")
+                    mc = ""
+                    for mi_d in wait["blacklist"]:
+                        mc += "" + mi_d + "\n"
+                    cl.sendText(msg.to,"[戦神SelfBOT代行]\n黑名MID列表:\n\n" + mc)
+		
+            elif msg.text in ["Unbanall","unbanall"]:
+             try:
+	      for target in wait["blacklist"]:
+		try:
+			wait["blacklist"] = {}
+		except:
+			cl.sendText(msg.to,"失敗")
+	      cl.sendText(msg.to,"已解除所有黑單")
+             except:
+			cl.sendText(msg.to,"沒有黑單用戶")
+		
 
 #-----------------------------------------------------------
 
@@ -2318,6 +2488,23 @@ def bot(op):
 		del wait["bang"]
                 wait["bang"] = c
                 cl.sendText(msg.to,"更改內容:\n" + c)
+		
+		
+		
+            elif "Mid0" in msg.text:
+                    key = msg.text.replace("Nk:","")
+                    gs = cl.getGroup(msg.to)
+		    Names = [contact.displayName for contact in gs.members]
+		    Mids = [contact.mid for contact in gs.members]
+                    targets = []
+                    if key in Names:
+			kazu = Names.index(key)
+			cl.sendText(""+Mids[kazu]+"",""+Mids[kazu]+"")
+                    else:
+                        cl.sendText(msg.to,"找不到用戶")
+
+			
+
 		
 		
 		
@@ -2825,6 +3012,8 @@ def bot(op):
 	            cl.sendText(msg.to,"[戦神SelfBOT]\n已讀者\n%s"  % (wait2['readMember'][msg.to]))
 	          else:
 	            cl.sendText(msg.to, "請先設定已讀點")
+		
+
 #-----------------------------------------------
 
 #-----------------------------------------------
@@ -2845,6 +3034,7 @@ def bot(op):
                         ki11.leaveGroup(msg.to)
                     except:
                         pass
+		
 		
 
             elif msg.text in ["Bot1bye","bot1bye"]:
@@ -5636,46 +5826,34 @@ def bot(op):
 
     except Exception as error:
         print error
-def autolike():
-			for zx in range(0,20):
-				hasil = cl.activity(limit=20)
-				if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
-					try:    
-						cl.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						cl.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki2.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki2.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki3.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki3.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki4.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki4.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki5.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki5.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki6.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki6.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki7.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki7.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki8.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki8.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						ki9.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki9.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						
-						ki10.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki10.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						
-						ki11.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
-						ki11.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"台湾戦神☆style\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
-						
-					except:
-							pass
-				else:
-						pass
-			time.sleep(50)
-thread3 = threading.Thread(target=autolike)
-thread3.daemon = True
-thread3.start()
+
+	
+
+def autoSta():
+    count = 1
+    while True:
+        try:
+           for posts in cl.activity(1)["result"]["posts"]:
+             if posts["postInfo"]["liked"] is False:
+                if wait["likeOn"] == True:
+                   cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+                   if wait["commentOn"] == True:
+                      if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
+                         pass
+                      else:
+			try:
+                                cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"] + "\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f'))
+			except:
+				cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
+        except:
+            count += 1
+            if(count == 50):
+                sys.exit(0)
+            else:
+                pass
+thread1 = threading.Thread(target=autoSta)
+thread1.daemon = True
+thread1.start()
 
 
 while True:
