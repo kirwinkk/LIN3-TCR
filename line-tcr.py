@@ -127,6 +127,7 @@ helpMessage ="""[戦神SelfBOT]
 [個簽更改:]→更改本帳個簽
 [個簽更改1:]→更改kicker1個簽
 [Joinon/off]→自動入群開關
+[Botjoinon/off]→kicker自動入群開關
 [Leaveon/off]→自動退副本開關
 [set]→設定確認
 
@@ -153,7 +154,8 @@ staff = []
 
 wait = {
     'contact':True,
-    'autoJoin':True,
+    'autoJoin':False,
+    'urlJoin':True,
     'autoCancel':{"on":True,"members":1},
     'leaveRoom':False,
     'timeline':True,
@@ -1125,6 +1127,42 @@ def bot(op):
                 cl.sendText(msg.to,"[戦神群組設定]\n\n" + md)
 		
 		
+            elif msg.text in ["Botjoinon","botjoinon"]:
+                if wait["urlJoin"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"kicker自動入群開啟")
+                    else:
+                        cl.sendText(msg.to,"kicker自動入群開啟")
+                else:
+                    wait["urlJoin"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"kicker自動入群開啟")
+                    else:
+                        cl.sendText(msg.to,"kicker自動入群開啟")
+			
+            elif msg.text in ["Botjoinoff","botjoinoff"]:
+                if wait["urlJoin"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"kicker自動入群關閉")
+                    else:
+                        cl.sendText(msg.to,"kicker自動入群關閉")
+                else:
+                    wait["urlJoin"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"kicker自動入群關閉")
+                    else:
+                        cl.sendText(msg.to,"kicker自動入群關閉")	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
             elif ("Wl:" in msg.text):
                    targets = []
                    mi = ""
@@ -1210,7 +1248,7 @@ def bot(op):
                 for i in gs:
                     L += "[%i]  %s\n" % (num,"" + str(len (cl.getGroup(i).members)) + "人\n " + cl.getGroup(i).name + "")
                     num=(num+1)
-                cl.sendText(msg.to, L + "\n總共:" + str(len(gs)) +"群")
+                cl.sendText(msg.to, L + "\n總共: " + str(len(gs)) +"群")
 			
             elif msg.text in ["Groupid","Allgid"]:
                 gid = cl.getGroupIdsJoined()
@@ -1317,6 +1355,8 @@ def bot(op):
                 md = ""
 		if wait["autoJoin"] == True: md+="自動入群:開啟\n"
                 else: md +="自動入群:關閉\n"
+                if wait["urlJoin"] == True: md+="kicker自動入群:開啟\n"
+                else: md+="kicker自動入群:關閉\n"
                 if wait["leaveRoom"] == True: md+="自動離開副本:開啟"
                 else: md+="自動離開副本:關閉"
                 cl.sendText(msg.to,"[戦神SelfBOT]\n\n" + md)
@@ -1406,11 +1446,11 @@ def bot(op):
                     mc = ""
 		    num=1
                     for mi_d in staff:
-                        mc += "[" + num + "] " +cl.getContact(mi_d).displayName + "\n"
+                        mc += "[%i] %s\n" % (num,cl.getContact(mi_d).displayName)
 			num=(num+1)
-                    cl.sendText(msg.to,"權限用戶:\n" + mc + "\n總共:" + num + "人")
+                    cl.sendText(msg.to,"權限用戶:\n" + mc)
 		
-		
+
 	
 
 #--------------------------------------------------------
