@@ -127,6 +127,7 @@ helpMessage ="""[戦神SelfBOT]
 [個簽更改:]→更改本帳個簽
 [個簽更改1:]→更改kicker1個簽
 [Joinon/off]→自動入群開關
+[Botjoinon/off]→kicker自動入群開關
 [Leaveon/off]→自動退副本開關
 [set]→設定確認
 
@@ -146,6 +147,7 @@ ki2mid = ki2.getProfile().mid
 ki3mid = ki3.getProfile().mid
 ki4mid = ki4.getProfile().mid
 Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,"uc216d8664c4e1f43772c98b1b0b8956e","u8dc2983d2e3183303bc466f3283d44d8"]
+Botttt=[mid,kimid,ki2mid,ki3mid,ki4mid]
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
 admin = ["uc216d8664c4e1f43772c98b1b0b8956e","u8dc2983d2e3183303bc466f3283d44d8"]
 bgbot = ["uc216d8664c4e1f43772c98b1b0b8956e","u8dc2983d2e3183303bc466f3283d44d8","ubecd98a04cbf74a830b6c95b67bd6b74","u9378246da17ae7914b0a9a27da4802a0","ufdd4dbee33a2af45c13a72444277298d","ub5497e219585e4dad3373f25696c85fc","u58623d8e816b2dbf9cc8dc15b243e313","u6c81c99cb7ae718754ceb7db1718e7dd","u32f0dc24e048a1e357f655aff0a5fa33","u444a6355bfdc40238d3509e161458916","ud4b30af2044227c281d5d3ec69a584be","ufd9bec46aabcba3cdd9271f0db4b4ac8","u0bd59b43cef104e8e8f0c771d46689f4"]
@@ -153,7 +155,8 @@ staff = []
 
 wait = {
     'contact':True,
-    'autoJoin':True,
+    'autoJoin':False,
+    'urlJoin':True,
     'autoCancel':{"on":True,"members":1},
     'leaveRoom':False,
     'timeline':True,
@@ -225,7 +228,8 @@ def bot(op):
             if mid in op.param3:
                 G = cl.getGroup(op.param1)
                 if wait["autoJoin"] == True:
-                        cl.acceptGroupInvitation(op.param1)
+                     cl.acceptGroupInvitation(op.param1)
+	             if wait["urlJoin"] == True:
 			G = cl.getGroup(op.param1)
                         ginfo = cl.getGroup(op.param1)
 			G.preventJoinByTicket = False
@@ -237,12 +241,14 @@ def bot(op):
 			ki3.acceptGroupInvitationByTicket(op.param1,Ticket)
 			ki4.acceptGroupInvitationByTicket(op.param1,Ticket)
 			G.preventJoinByTicket = True
-                        cl.updateGroup(G)
-		        try:
-                            cl.sendText(op.param1,"戦神SelfBOT[Made In Taiwan]\n作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0")
-		        except:
+                        random.choice(KAC).updateGroup(G)
+                     else:
+			pass
+                     try:
+                            cl.sendText(op.param1,"戦神☆style^^\n\n作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0")
+                     except:
 			    pass
-
+			
 		
         if op.param3 == "4":
             if op.param1 in wait['purl']:
@@ -1125,6 +1131,42 @@ def bot(op):
                 cl.sendText(msg.to,"[戦神群組設定]\n\n" + md)
 		
 		
+            elif msg.text in ["Botjoinon","botjoinon"]:
+                if wait["urlJoin"] == True:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"kicker自動入群開啟")
+                    else:
+                        cl.sendText(msg.to,"kicker自動入群開啟")
+                else:
+                    wait["urlJoin"] = True
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"kicker自動入群開啟")
+                    else:
+                        cl.sendText(msg.to,"kicker自動入群開啟")
+			
+            elif msg.text in ["Botjoinoff","botjoinoff"]:
+                if wait["urlJoin"] == False:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"kicker自動入群關閉")
+                    else:
+                        cl.sendText(msg.to,"kicker自動入群關閉")
+                else:
+                    wait["urlJoin"] = False
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"kicker自動入群關閉")
+                    else:
+                        cl.sendText(msg.to,"kicker自動入群關閉")	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
             elif ("Wl:" in msg.text):
                    targets = []
                    mi = ""
@@ -1167,10 +1209,11 @@ def bot(op):
                 else:
                     cl.sendText(msg.to,"白單讀取中...")
                     m1 = ""
-		    
+		    num=1
                     for mi_d in bgbot:
-                        m1 += "->" +cl.getContact(mi_d).displayName + "\n"
-                    cl.sendText(msg.to,"白單名單:\n\n" + m1)
+                        m1 += "[%i] %s\n" % (num,cl.getContact(mi_d).displayName)
+			num=(num+1)
+                    cl.sendText(msg.to,"戦神SelfBOT白單用戶:\n\n" + m1 + "\n總共: " + str(len(bgbot)) +"人")
 
 		
 		
@@ -1210,7 +1253,7 @@ def bot(op):
                 for i in gs:
                     L += "[%i]  %s\n" % (num,"" + str(len (cl.getGroup(i).members)) + "人\n " + cl.getGroup(i).name + "")
                     num=(num+1)
-                cl.sendText(msg.to, L + "\n總共:" + str(len(gs)) +"群")
+                cl.sendText(msg.to, L + "\n總共: " + str(len(gs)) +"群")
 			
             elif msg.text in ["Groupid","Allgid"]:
                 gid = cl.getGroupIdsJoined()
@@ -1317,6 +1360,8 @@ def bot(op):
                 md = ""
 		if wait["autoJoin"] == True: md+="自動入群:開啟\n"
                 else: md +="自動入群:關閉\n"
+                if wait["urlJoin"] == True: md+="kicker自動入群:開啟\n"
+                else: md+="kicker自動入群:關閉\n"
                 if wait["leaveRoom"] == True: md+="自動離開副本:開啟"
                 else: md+="自動離開副本:關閉"
                 cl.sendText(msg.to,"[戦神SelfBOT]\n\n" + md)
@@ -1397,8 +1442,6 @@ def bot(op):
 
 	
             elif msg.text in ["Level","level"]:
-		source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;/!&%$#'
-		name = "".join([random.choice(source_str) for x in xrange(9)])
                 if staff == []:
                     cl.sendText(msg.to,"沒有權限用戶")
                 else:
@@ -1406,11 +1449,11 @@ def bot(op):
                     mc = ""
 		    num=1
                     for mi_d in staff:
-                        mc += "[" + num + "] " +cl.getContact(mi_d).displayName + "\n"
+                        mc += "[%i] %s\n" % (num,cl.getContact(mi_d).displayName)
 			num=(num+1)
-                    cl.sendText(msg.to,"權限用戶:\n" + mc + "\n總共:" + num + "人")
+                    cl.sendText(msg.to,"戦神SelfBOT權限用戶\n\n" + mc + "\n總共: " + str(len(staff)) +"人")
 		
-		
+
 	
 
 #--------------------------------------------------------
@@ -1468,9 +1511,11 @@ def bot(op):
                 else:
                     cl.sendText(msg.to,"黑名單用戶讀取中...")
                     mc = ""
+                    num=1
                     for mi_d in wait["blacklist"]:
-                        mc += "->" +cl.getContact(mi_d).displayName + "\n"
-                    cl.sendText(msg.to,"[戦神SelfBOT代行]\n黑名單用戶:\n\n" + mc)
+                        mc += "[%i] %s\n" % (num,cl.getContact(mi_d).displayName)
+			num=(num+1)
+                    cl.sendText(msg.to,"戦神SelfBOT黑單用戶\n\n" + mc + "\n總共: " + str(len(wait["blacklist"])) +"人")
 		
             elif msg.text in ["Blmid","blmid"]:
                 if wait["blacklist"] == {}:
@@ -1478,9 +1523,11 @@ def bot(op):
                 else:
                     cl.sendText(msg.to,"黑名單用戶讀取中...")
                     mc = ""
+                    num=1
                     for mi_d in wait["blacklist"]:
-                        mc += "" + mi_d + "\n\n"
-                    cl.sendText(msg.to,"[戦神SelfBOT代行]\n黑名單用戶m_i_d:\n\n" + mc)
+                        mc += "[%i] %s\n" % (num,mi_d)
+			num=(num+1)
+                    cl.sendText(msg.to,"戦神SelfBOT黑單MID\n\n" + mc + "\n總共: " + str(len(wait["blacklist"])) +"人")
 		
             elif msg.text in ["Unbanall","unbanall"]:
              try:
