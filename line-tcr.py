@@ -27,7 +27,7 @@ staff = []
 staff2 = []
 staff3 = []
 staff4 = []
-staff5 = ["u9378246da17ae7914b0a9a27da4802a0","ufdd4dbee33a2af45c13a72444277298d","ub5497e219585e4dad3373f25696c85fc","u58623d8e816b2dbf9cc8dc15b243e313","u6c81c99cb7ae718754ceb7db1718e7dd","u32f0dc24e048a1e357f655aff0a5fa33","u444a6355bfdc40238d3509e161458916","ud4b30af2044227c281d5d3ec69a584be","ufd9bec46aabcba3cdd9271f0db4b4ac8","u0bd59b43cef104e8e8f0c771d46689f4"]
+staff5 = []
 staff6 = ["uc216d8664c4e1f43772c98b1b0b8956e","ua821dbd83afa9b0d6bfa059b76567226","ubecd98a04cbf74a830b6c95b67bd6b74","u8dc2983d2e3183303bc466f3283d44d8","ua1d924caa58666ee73d0625ca036a1b1"]
 bgbot = []
 admsa = "uc216d8664c4e1f43772c98b1b0b8956e"
@@ -154,8 +154,6 @@ def nameUpdate():
 		profile = cl.getProfile()
 		profile.displayName = "Python_Bot"
                 cl.updateProfile(profile)
-		profile.statusMessage = "台湾戦神☆style  Made In Taiwan"
-		cl.updateProfile(profile)
                 time.sleep(600000)
         except:
             pass
@@ -163,7 +161,18 @@ thread2 = threading.Thread(target=nameUpdate)
 thread2.daemon = True
 thread2.start()
 
-
+def nameUpdate():
+    while True:
+		fid =  cl.getAllContactIds()
+		profile = cl.getProfile()
+		profile.statusMessage = "台湾戦神☆style\n\nFriend: " + str(len(fid)) + "\n\nMade In Taiwan"
+		cl.updateProfile(profile)
+                time.sleep(600)
+        except:
+            pass
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
 
 	
 while True:
