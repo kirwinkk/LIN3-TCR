@@ -1602,6 +1602,7 @@ def bot(op):
                    ki.sendText(msg.to,"" +  key1)
 		
             elif "名字:" in msg.text:
+              if msg.from_ in admin + staff6:
                 string = msg.text.replace("名字:","")
                 if len(string.decode('utf-8')) <= 20:
                     profile = cl.getProfile()
@@ -1612,6 +1613,7 @@ def bot(op):
 			pass
 		
             elif "名字9:" in msg.text:
+              if msg.from_ in admin + staff6:
                 string = msg.text.replace("名字9:","")
                 if len(string.decode('utf-8')) <= 20:
                     profile = ki9.getProfile()
@@ -1672,7 +1674,7 @@ def bot(op):
                     if op.param2 in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6 + bgbot:
                         pass
                     else:
-                      if op.param3 not in Bots + staff3 + staff4 + staff5 + staff6:
+                      if op.param3 not in Bots + staff3 + staff4 + staff5 + staff6 + bgbot:
 			kicker = random.choice(KAC2)
                         G = cl.getGroup(op.param1)
 			c = Message(to=op.param1, from_=None, text=None, contentType=13)
@@ -1776,7 +1778,7 @@ def bot(op):
 
 			
         if op.type == 19:
-                    if op.param2 in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6:
+                    if op.param2 in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6 + bgbot:
                         pass
                     else:
                       if op.param3 in staff3 + staff4 + staff5 + staff6:
@@ -2012,6 +2014,7 @@ def bot(op):
         if op.type == 11:
             if op.param3 == '1':
                 if op.param1 in wait['pname']:
+                  if op.param2 not in Bots + admin + staff2 + staff3 + staff4 + staff5 + staff6 + bgbot:
                     try:
                         G = cl.getGroup(op.param1)
 			c = Message(to=op.param1, from_=None, text=None, contentType=13)
