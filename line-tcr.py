@@ -1602,6 +1602,7 @@ def bot(op):
                    ki.sendText(msg.to,"" +  key1)
 		
             elif "名字:" in msg.text:
+              if msg.from_ in admin + staff6:
                 string = msg.text.replace("名字:","")
                 if len(string.decode('utf-8')) <= 20:
                     profile = cl.getProfile()
@@ -1612,6 +1613,7 @@ def bot(op):
 			pass
 		
             elif "名字9:" in msg.text:
+              if msg.from_ in admin + staff6:
                 string = msg.text.replace("名字9:","")
                 if len(string.decode('utf-8')) <= 20:
                     profile = ki9.getProfile()
