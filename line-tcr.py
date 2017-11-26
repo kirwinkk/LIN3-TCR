@@ -71,12 +71,12 @@ a4.loginResult()
 #蟹老闆
 
 a5 = LINETCR.LINE()
-a5.login(token="EmKUkREuwG9katcijZWa.qRHtLeMrYRtDtWS8Gd3XUG.bZccCqSezzSOOmmpTaR4Cs/0TPnLNys0l7mJ3E0sRMU=")
+a5.login(token="Emea2zZWDTaiWK8V6ST9.MZrkjd9u6Oz3cBqGai+WIq.v68AtOIgGt2DvIsYrdZMmzka9CKX0xmSH0jRWX0WWL8=")
 a5.loginResult()
 #
 
 a6 = LINETCR.LINE()
-a6.login(token="EmG54gejzghjQIh42G35.rDcaNym6DpBGSUxr9n2Vbq.jbR8xK9mVsslTh3YZpGC/0VFTSWanJ//zVJdgQ0V5+s=")
+a6.login(token="EmHjXOHKpRmRdtPwrO62.vQeByXNACbaCG8K+wsf/uG.zj0FZeRgBLBVpVKCTLQ0NkHVTtTd8AMAG2IpzxEn51U=")
 a6.loginResult()
 #皮
 
