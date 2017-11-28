@@ -56,7 +56,7 @@ a1.loginResult()
 
 
 a2 = LINETCR.LINE()
-a2.login(token="Em6M0ZaRNHtDMI7UO8Kc.BIGl05eigTBfiQPn91QTda.Jmg+bL1YREUsFfS1rXOVxeb9gYrtUz9IS3u/eaA2VEU=")
+a2.login(token="Emea2zZWDTaiWK8V6ST9.MZrkjd9u6Oz3cBqGai+WIq.v68AtOIgGt2DvIsYrdZMmzka9CKX0xmSH0jRWX0WWL8=")
 a2.loginResult()
 #派大
 
@@ -245,8 +245,8 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"[權限取得方式]:\nLv3. NT300/月\nLv4. NT400/月\nLv5. NT500/月\n\nBot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
-    'message1':"戦神Bot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0",
+    'message':"[權限取得方式]:\nLv3. NT300/月\nLv4. NT400/月\nLv5. NT500/月\n\nBot作者:戦神 Made In Taiwan\nhttps://line.me/R/ti/p/%40cld3625n",
+    'message1':"台湾戦神BOT\n作者:https://line.me/R/ti/p/%40cld3625n\n[Made In Taiwan]",
     'lang':"JP",
     'pname':{},
     'pro_name':{},  
@@ -299,11 +299,21 @@ def bot(op):
 			G.preventJoinByTicket = True
                         cl.updateGroup(G)
 		        try:
-                            cl.sendText(op.param1,"戦神權限保護V.9\n\n[權限取得方式]:\nLv3. NT300/月\nLv4. NT400/月\nLv5. NT500/月\n\nBot作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
+                            cl.sendText(op.param1,"戦神權限保護V.9\n\n[權限取得方式]:\nLv3. NT300/月\nLv4. NT400/月\nLv5. NT500/月\n\nBOT作者:戦神\n戦神販賣所↓")
+			    c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                	    c.contentMetadata={'mid':"u85a9b62af4ce6248cfe05324e474e226"}
+			    cl.sendMessage(c)
 		        except:
 			    pass
 		else:
 		  cl.acceptGroupInvitation(op.param1)
+		  try:
+			cl.sendText(op.param1,"您尚無權限,無法邀請防翻bot\n\nBOT作者:戦神\n戦神販賣所↓")
+			c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                	c.contentMetadata={'mid':"u85a9b62af4ce6248cfe05324e474e226"}
+			cl.sendMessage(c)
+		  except:
+			pass
                   cl.leaveGroup(op.param1)
            else:
 		pass
@@ -866,7 +876,7 @@ def bot(op):
                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
-			cl.sendText(msg.to,"作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
+			cl.sendText(msg.to,"作者:戦神 Made In Taiwan\nhttps://line.me/R/ti/p/%40cld3625n")
 			cl.leaveGroup(msg.to)
 			ki.leaveGroup(msg.to)
 			ki2.leaveGroup(msg.to)
@@ -887,7 +897,7 @@ def bot(op):
                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
-			cl.sendText(msg.to,"作者:戦神 Made In Taiwan\nhttp://line.me/ti/p/4-ZKcjagH0")
+			cl.sendText(msg.to,"作者:戦神 Made In Taiwan\nhttps://line.me/R/ti/p/%40cld3625n")
 			a1.leaveGroup(msg.to)
 			a2.leaveGroup(msg.to)
 			a3.leaveGroup(msg.to)
