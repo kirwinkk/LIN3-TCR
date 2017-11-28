@@ -55,95 +55,6 @@ a1.login(token="EmrCHAttFyJMshE52utd.IZJXUWaNDJ79amYKIzddlq.3YcAMAMW+c9dqa0mU2AE
 a1.loginResult()
 
 
-a2 = LINETCR.LINE()
-a2.login(token="Em6M0ZaRNHtDMI7UO8Kc.BIGl05eigTBfiQPn91QTda.Jmg+bL1YREUsFfS1rXOVxeb9gYrtUz9IS3u/eaA2VEU=")
-a2.loginResult()
-#派大
-
-a3 = LINETCR.LINE()
-a3.login(token="EmX5SHmmyuKhXqRkwGqa.FTpO3YJMXlt9Y4ZnbeFJoG.2FxZ3gxZcS8eqihJM7Tanz3V8pmiHfM1ELfibHNVRL0=")
-a3.loginResult()
-#章魚
-
-a4 = LINETCR.LINE()
-a4.login(token="EmPyI6HiUCan4vCWnmV0./sM4sYhoPgEqw2KISWiqGa.WTWqlVWGnWu+F/miKRMhz6TwqtYsza3ta/Rsbnd0SOY=")
-a4.loginResult()
-#蟹老闆
-
-a5 = LINETCR.LINE()
-a5.login(token="Emea2zZWDTaiWK8V6ST9.MZrkjd9u6Oz3cBqGai+WIq.v68AtOIgGt2DvIsYrdZMmzka9CKX0xmSH0jRWX0WWL8=")
-a5.loginResult()
-#
-
-a6 = LINETCR.LINE()
-a6.login(token="EmHjXOHKpRmRdtPwrO62.vQeByXNACbaCG8K+wsf/uG.zj0FZeRgBLBVpVKCTLQ0NkHVTtTd8AMAG2IpzxEn51U=")
-a6.loginResult()
-#皮
-
-a7 = LINETCR.LINE()
-a7.login(token="Emllq2opZT2mH5qLrrdd.y5uKOl5vkdH88JG96gA/3q.yu9EcjVPabbbXQsWSbhCHK5eGjr1EAYUAdgwwGa+cOo=")
-a7.loginResult()
-#泡芙
-
-a8 = LINETCR.LINE()
-a8.login(token="EmbdaDwm2FzUKtrmz3h0.Z3UPvSwklykyvs15/Bopua.pRstNgi9ZtyCL+bQ2wRZ9o7275MZxVQThwIkIYfDrHs=")
-a8.loginResult()
-#飛行
-
-a9 = LINETCR.LINE()
-a9.login(token="Em42jIzNbjWR537iSxv3.IyVZW2pcvY6KpyfY05FmSW.UJv2fc713HYC2nHTqxYPYzqxjhPndk7NJMPGx9eIyco=")
-a9.loginResult()
-#小蝸
-
-a10 = LINETCR.LINE()
-a10.login(token="Em6zE3sSTuIXrZyBguTa.z9R0Ak9xOpkCp0OdIsLlYG.vNnSu/+kJs1fQ6R62KEsvpr7bu6bSrKtR6GtMDpYBHA=")
-a10.loginResult()
-#水母
-
-
-
-
-a15 = LINETCR.LINE()
-a15.login(token="EmJQbpzHlwQlSEPmuqV6.UZ5cAh82BkhqrQF+b0rVnG.7wlf2s8+KqbjqwDcQFhdXbfNdd1qoeKILKSpAwpwd/A=")
-a15.loginResult()
-
-a16 = LINETCR.LINE()
-a16.login(token="Em87uCyt37quq8p5dZe6.R909ux0qpOXLDpe8GYM7nG.P2S6wOhWM3x2b5iMgPq8u6sRVaifjtMQxuyuxCgaMYQ=")
-a16.loginResult()
-
-a17 = LINETCR.LINE()
-a17.login(token="EmlSCvogqMtAh11r6tsa.GiTq6xq+GUWzjgNJq9FLwG.+sn5SgmUFCym0QXQRFCjBlglj776/6Z/c6qbrZ4il4c=")
-a17.loginResult()
-
-a18 = LINETCR.LINE()
-a18.login(token="EmC44aeLWBpn2KlZ22Jf.9GY0amPdY9QBs4xGRc6ghW.RU5DOI1xzzT1tgtLqDRT0BPXkxw1iDqGCrDRmzeKMLw=")
-a18.loginResult()
-
-a19 = LINETCR.LINE()
-a19.login(token="EmDTOMGiclhpnwXeuQTf.Qs7ZE7sSJQ0Uae4ufNxUpW.2hWYKq7ZzdnxMpJ0PtIR/I0n78W7zj1puMbLCq2ci2k=")
-a19.loginResult()
-
-a20 = LINETCR.LINE()
-a20.login(token="Emjty9o1Y8Q1XXnrDZD7.W+Q5Q1pDSVmVmWSJ5hHhjW.7SPf+ljbhIGtR/FYI9f23csAoqZNJltiCb3uz4LqFsk=")
-a20.loginResult()
-
-a21 = LINETCR.LINE()
-a21.login(token="Em4TIyLVQj3SxxVlX6Ra.ClJWs8fVdq5uEkfOdirFEG.iiwvDEhknlQYf6qrx7FQ2cdZyzBQ3AEWQmlcz3s2dBc=")
-a21.loginResult()
-
-a22 = LINETCR.LINE()
-a22.login(token="EmgF8YgYWgq02nWvTa2e.9/HeZ3gmT19tnkJdKqLWlG.zSMxOqYvacQz8RDRujtXSc24OstF71J4iK895LN32n8=")
-a22.loginResult()
-
-a23 = LINETCR.LINE()
-a23.login(token="EmmMdkq0xxlBWavB6hL8.bWHV2zcPIpOMJViAZIJmIa.HpTfm6xeLv1E1f6duJbzvaiZVF9M4TLIK3YeBVOPoT4=")
-a23.loginResult()
-
-
-
-
-
-
 
 
 reload(sys)
@@ -195,7 +106,7 @@ http://line.me/ti/p/4-ZKcjagH0
 """
 
 KAC=[cl,ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9]
-KAC2=[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a15,a16,a17,a18,a19,a20,a21,a22,a23]
+KAC2=[a1]
 mid = cl.getProfile().mid
 kimid = ki.getProfile().mid
 ki2mid = ki2.getProfile().mid
@@ -208,25 +119,8 @@ ki8mid = ki8.getProfile().mid
 ki9mid = ki9.getProfile().mid
 ki15mid = ki15.getProfile().mid
 a1mid = a1.getProfile().mid
-a2mid = a2.getProfile().mid
-a3mid = a3.getProfile().mid
-a4mid = a4.getProfile().mid
-a5mid = a5.getProfile().mid
-a6mid = a6.getProfile().mid
-a7mid = a7.getProfile().mid
-a8mid = a8.getProfile().mid
-a9mid = a9.getProfile().mid
-a10mid = a10.getProfile().mid
-a15mid = a15.getProfile().mid
-a16mid = a16.getProfile().mid
-a17mid = a17.getProfile().mid
-a18mid = a18.getProfile().mid
-a19mid = a19.getProfile().mid
-a20mid = a20.getProfile().mid
-a21mid = a21.getProfile().mid
-a22mid = a22.getProfile().mid
-a23mid = a23.getProfile().mid
-Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,a1mid,a2mid,a3mid,a4mid,a5mid,a6mid,a7mid,a8mid,a9mid,a10mid,a15mid,a16mid,a17mid,a18mid,a19mid,a20mid,a21mid,a22mid,a23mid]
+
+Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,a1mid]
 admin = [mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki15mid,"ua1d924caa58666ee73d0625ca036a1b1","u8dc2983d2e3183303bc466f3283d44d8","uc216d8664c4e1f43772c98b1b0b8956e","ubecd98a04cbf74a830b6c95b67bd6b74","u40c17f320e101b9f1abc9edaace6ed51","uef3dc2c514c550e1935b5b679dac38f6","u7a1c4338e6342bbbc33d9fa3c295b7d4","uad3b11a07372a5955ba75dc1caadeed8","u4ab4047d824385456811a2fe93c95382","u40c17f320e101b9f1abc9edaace6ed51","u8a627a2ff2ed54bcdd6c3b52f2b9691b","u96fd5925ecab120ea325511f4b53db11","ua0c6c9175efd94a9551338c72d6a7d17","u3d860a1bb50f8a536653b4940aa41bbf","u8be7a9504b9185ba75234f2f8110697b"]
 staff = []
 staff2 = []
