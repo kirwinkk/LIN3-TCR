@@ -131,6 +131,7 @@ def bot(op):
                                 cl.sendText(op.param1,"人數未達50人 " + random.choice(omikujilist) + "\n\nBOT作者:戦神\n戦神販賣所↓")
 				c = Message(to=op.param1, from_=None, text=None, contentType=13)
                 	        c.contentMetadata={'mid':"u85a9b62af4ce6248cfe05324e474e226"}
+		                msg.text = None
 				cl.sendMessage(c)
 		            except:
 			        pass
@@ -143,6 +144,7 @@ def bot(op):
 					c = Message(to=op.param1, from_=None, text=None, contentType=13)
                 	        	c.contentMetadata={'mid':"u85a9b62af4ce6248cfe05324e474e226"}
 					cl.sendText(op.param1,"戦神功能機 " + random.choice(omikujilist) + "\n請打[/help]查看指令\n\nBOT作者:戦神\n戦神販賣所↓")
+					msg.text = None
 					cl.sendMessage(c)
 				except:
 					pass
@@ -151,6 +153,7 @@ def bot(op):
 			cl.sendText(op.param1,"戦神已讀功能機\n請打[/help]查看指令\n\nBOT作者:戦神\n\n戦神販賣所↓")
 			c = Message(to=op.param1, from_=None, text=None, contentType=13)
                 	c.contentMetadata={'mid':"u85a9b62af4ce6248cfe05324e474e226"}
+			msg.text = None
 			cl.sendMessage(c)
                 elif wait["autoCancel"]["on"] == True:
                     if len(G.members) <= wait["autoCancel"]["members"]:
@@ -174,9 +177,9 @@ def bot(op):
                 else:
                             sinvitee = str(len(ginfo.invitee))
 		try:
-                        cl.sendText(op.param1,"招待中人數: " + sinvitee)
+                        cl.sendText(op.param1,"[現在的邀請人數]\n" + sinvitee + "人")
                 except:
-                        cl.sendText(op.param1,"招待中人數: " + sinvitee)
+                        cl.sendText(op.param1,"[現在的邀請人數]\n" + sinvitee + "人")
 		
 
 #-------------------------------------------------------------------------------
@@ -254,6 +257,7 @@ def bot(op):
             elif msg.text in ["/author","/Author","/作者"]:
 		msg.contentType = 13
                 msg.contentMetadata = {"mid":"u85a9b62af4ce6248cfe05324e474e226"}
+		msg.text = None
 		cl.sendMessage(msg)
 		cl.sendText(msg.to,"作者:戦神 Made In Taiwan" + "\n\n[" + datetime.datetime.today().strftime('%Y/%m/%d  %H:%M:%S.%f') + "]")
 		
@@ -289,6 +293,7 @@ def bot(op):
                 mmid = msg.text.replace("/mid:","")
                 msg.contentType = 13
                 msg.contentMetadata = {"mid":mmid}
+		msg.text = None
                 cl.sendMessage(msg)
 		
             elif ("/Mid:" in msg.text):
@@ -302,12 +307,14 @@ def bot(op):
                 key1 = key["MENTIONEES"][0]["M"]
                 msg.contentType = 13
                 msg.contentMetadata = {"mid":key1}
+		msg.text = None
                 cl.sendMessage(msg)
             elif "/mc:" in msg.text:
 		key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
                 msg.contentType = 13
                 msg.contentMetadata = {"mid":key1}
+		msg.text = None
                 cl.sendMessage(msg)
 		
 
@@ -412,6 +419,7 @@ def bot(op):
                  except:
                         gCreator1 = ginfo.members[0].mid
 		 msg.contentMetadata={'mid':gCreator1}
+		 msg.text = None
 		 cl.sendMessage(msg)
 		 cl.sendText(msg.to,"[群長]\n->" + gCreator + "\n\n[" + datetime.datetime.today().strftime('%Y/%m/%d  %H:%M:%S.%f') + "]")
               else:
