@@ -94,7 +94,7 @@ helpMessage2 ="""[戦神SelfBOT]
 [#banlist]→查看此群黑單
 
 作者:戦神
-http://line.me/ti/p/4-ZKcjagH0"""
+https://line.me/R/ti/p/%40cld3625n"""
 
 helpMessage ="""[戦神SelfBOT]
 
@@ -177,7 +177,7 @@ helpMessage ="""[戦神SelfBOT]
 [Gset]→群組設定確認
 
 作者:戦神
-http://line.me/ti/p/4-ZKcjagH0"""
+https://line.me/R/ti/p/%40cld3625n"""
 KAC=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
 KAC3=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
 mid = cl.getProfile().mid
@@ -193,16 +193,16 @@ ki9mid = ki9.getProfile().mid
 ki10mid = ki10.getProfile().mid
 ki11mid = ki11.getProfile().mid
 
-Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki10mid,ki11mid,"u8dc2983d2e3183303bc466f3283d44d8","ubecd98a04cbf74a830b6c95b67bd6b74","ua1d924caa58666ee73d0625ca036a1b1","u8dc2983d2e3183303bc466f3283d44d8"]
+Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid,ki7mid,ki8mid,ki9mid,ki10mid,ki11mid,"uddf9714006a1010bb6551fc107f52390","u8dc2983d2e3183303bc466f3283d44d8","ubecd98a04cbf74a830b6c95b67bd6b74","ua1d924caa58666ee73d0625ca036a1b1","u8dc2983d2e3183303bc466f3283d44d8"]
 admsa = ["uc216d8664c4e1f43772c98b1b0b8956e"]
-admin = ["uc216d8664c4e1f43772c98b1b0b8956e","u8dc2983d2e3183303bc466f3283d44d8"]
+admin = ["uc216d8664c4e1f43772c98b1b0b8956e","u8dc2983d2e3183303bc466f3283d44d8","uddf9714006a1010bb6551fc107f52390"]
 protectname = []
 protecturl = []
 protection = []
 autocancel = {}
 autoinvite = []
 autoleaveroom = []
-bgbot = ["uc216d8664c4e1f43772c98b1b0b8956e","u8dc2983d2e3183303bc466f3283d44d8","ubecd98a04cbf74a830b6c95b67bd6b74","u9378246da17ae7914b0a9a27da4802a0","ufdd4dbee33a2af45c13a72444277298d","ub5497e219585e4dad3373f25696c85fc","u58623d8e816b2dbf9cc8dc15b243e313","u6c81c99cb7ae718754ceb7db1718e7dd","u32f0dc24e048a1e357f655aff0a5fa33","u444a6355bfdc40238d3509e161458916","ud4b30af2044227c281d5d3ec69a584be","ufd9bec46aabcba3cdd9271f0db4b4ac8","u0bd59b43cef104e8e8f0c771d46689f4"]
+bgbot = ["uc216d8664c4e1f43772c98b1b0b8956e","uddf9714006a1010bb6551fc107f52390","u8dc2983d2e3183303bc466f3283d44d8","ubecd98a04cbf74a830b6c95b67bd6b74","u9378246da17ae7914b0a9a27da4802a0","ufdd4dbee33a2af45c13a72444277298d","ub5497e219585e4dad3373f25696c85fc","u58623d8e816b2dbf9cc8dc15b243e313","u6c81c99cb7ae718754ceb7db1718e7dd","u32f0dc24e048a1e357f655aff0a5fa33","u444a6355bfdc40238d3509e161458916","ud4b30af2044227c281d5d3ec69a584be","ufd9bec46aabcba3cdd9271f0db4b4ac8","u0bd59b43cef104e8e8f0c771d46689f4"]
 staff = []
 
 wait = {
@@ -213,7 +213,7 @@ wait = {
     'leaveRoom':False,
     'timeline':True,
     'autoAdd':True,
-    'message':"戦神SelfBOT\n作者:http://line.me/ti/p/4-ZKcjagH0\n[Made In Taiwan]",
+    'message':"戦神SelfBOT\n作者:https://line.me/R/ti/p/%40cld3625n\n[Made In Taiwan]",
     'lang':"JP",
     'comment':"台湾戦神☆style",
     'commentOn':True,
@@ -305,7 +305,7 @@ def bot(op):
                      else:
 			pass
                      try:
-                            cl.sendText(op.param1,"戦神☆style^^\n\n作者:戦神\nhttp://line.me/ti/p/4-ZKcjagH0")
+                            cl.sendText(op.param1,"戦神☆style^^\n\n作者:戦神\nhttps://line.me/R/ti/p/%40cld3625n")
                      except:
 			    pass
 
@@ -873,9 +873,9 @@ def bot(op):
             elif msg.text in ["#author","#Author","#作者"]:
               if msg.from_ in admin + staff:
 		msg.contentType = 13
-                msg.contentMetadata = {"mid":"uc216d8664c4e1f43772c98b1b0b8956e"}
+                msg.contentMetadata = {"mid":"u85a9b62af4ce6248cfe05324e474e226"}
 		ki.sendMessage(msg)
-		ki.sendText(msg.to,"防翻作者:戦神\nMade In Taiwan")
+		ki.sendText(msg.to,"作者:戦神\nMade In Taiwan")
 		
             elif msg.text in ["#mid","#Mid"]:
               if msg.from_ in admin + staff:
@@ -2035,7 +2035,7 @@ def bot(op):
 
             elif msg.text in ["author","Author","作者"]:
 			msg.contentType = 13
-                        msg.contentMetadata = {"mid":"uc216d8664c4e1f43772c98b1b0b8956e"}
+                        msg.contentMetadata = {"mid":"u85a9b62af4ce6248cfe05324e474e226"}
 			cl.sendText(msg.to,"此機器作者↓")
                         cl.sendMessage(msg)
 			
