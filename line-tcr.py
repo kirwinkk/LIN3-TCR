@@ -12,7 +12,7 @@ import goslate
 
 
 cl = LINETCR.LINE()
-cl.login(token="EnVFVST0YE4ULQeViJs3.2XannlnZppIccyjdoNFtaW.soaW4CPYf1dRxNSRQHncCbJd6Olm+XUJJx5/xkpvCtc=")
+cl.login(token="EnbI9nRF3Z0vJf4Ba2i3.2XannlnZppIccyjdoNFtaW.EFbhxdhEm2HdwZy5RtIMG032venSPPs0XKmVzG0r5DE=")
 cl.loginResult()
 
 
