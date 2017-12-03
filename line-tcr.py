@@ -12,7 +12,7 @@ import goslate
 
 
 cl = LINETCR.LINE()
-cl.login(token="EnVFVST0YE4ULQeViJs3.2XannlnZppIccyjdoNFtaW.soaW4CPYf1dRxNSRQHncCbJd6Olm+XUJJx5/xkpvCtc=")
+cl.login(qr=True)
 cl.loginResult()
 
 
@@ -388,7 +388,7 @@ def bot(op):
               if msg.from_ in admin:
                 gid = cl.getGroupIdsJoined()
                 for i in gid:
-		    cl.sendText(i,"一鍵退群功能啟用,若需要此機器,請重新邀請\n作者:戦神\nhttps://line.me/R/ti/p/%40cld3625n" + "\n\n[" + datetime.datetime.today().strftime('%Y/%m/%d  %H:%M:%S.%f') + "]")
+		    cl.sendText(i,"戦神bot作者:\nhttps://line.me/R/ti/p/%40cld3625n" + "\n\n[" + datetime.datetime.today().strftime('%Y/%m/%d  %H:%M:%S.%f') + "]")
                     cl.leaveGroup(i)
                 if wait["lang"] == "JP":
                     cl.sendText(msg.to,"已退出所有群組" + "\n\n[" + datetime.datetime.today().strftime('%Y/%m/%d  %H:%M:%S.%f') + "]")
