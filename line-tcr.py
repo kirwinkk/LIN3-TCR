@@ -2,9 +2,56 @@ https://github.com/alferdwijaya/InoriYuzuhira/blob/cdc01da9e9da6751094148e970340
 	https://github.com/bayupro/ayum/blob/838caee2fd0ff8d536640fb71f2859d2e933a9a2/line.py
 https://github.com/nugsazz/bot-sel/blob/d50f1a619e0814939ae21f8fd4c1f2a87bc55cb1/self.py
 https://github.com/liliskha/vno/blob/53c76e6b8d89dc4c9a7741356c98506c5a437f92/vino2.py
+	
+	
+https://github.com/adekrisna/Kris-10BotProtect/blob/4fb496f1ef47d8da8064c8d32ebd01476216bbc0/10bot.kris.py
 		
+	    elif msg.text in ["Remove all chat"]:
+	      if msg.from_ in admin:
+		cl.removeAllMessages(op.param2)
+		ki.removeAllMessages(op.param2)
+		kk.removeAllMessages(op.param2)
+		kc.removeAllMessages(op.param2)
+		ks.removeAllMessages(op.param2)
+		k1.removeAllMessages(op.param2)
+		k2.removeAllMessages(op.param2)
+		k3.removeAllMessages(op.param2)
+		k4.removeAllMessages(op.param2)
+		k5.removeAllMessages(op.param2)
+		cl.sendText(msg.to,"Removed all chat")
+		https://github.com/Acil95/acill/blob/6e048e0a4d211acf82c4aef9be1916754d9621b8/Tdprotect.py
+			
+	if op.type == 46:
+	    if op.param2 in Bots:
+		   cl.removeAllMessages()
+	   	   ki.removeAllMessages()
+	   	   kk.removeAllMessages()
+		   kc.removeAllMessages()
+		   kb.removeAllMessages()
+		   kd.removeAllMessages()
+		   ke.removeAllMessages()
+		   kg.removeAllMessages()
+		   kh.removeAllMessages()
 		
-
+            elif 'wiki ' in msg.text.lower():
+              if msg.from_ in admin:
+                  try:
+                      wiki = msg.text.lower().replace("wiki ","")
+                      wikipedia.set_lang("id")
+                      pesan="Title ("
+                      pesan+=wikipedia.page(wiki).title
+                      pesan+=")\n\n"
+                      pesan+=wikipedia.summary(wiki, sentences=1)
+                      pesan+="\n"
+                      pesan+=wikipedia.page(wiki).url
+                      cl.sendText(msg.to, pesan)
+                  except:
+                          try:
+                              pesan="Over Text Limit! Please Click link\n"
+                              pesan+=wikipedia.page(wiki).url
+                              cl.sendText(msg.to, pesan)
+                          except Exception as e:
+                              cl.sendText(msg.to, str(e))
 		
 		
 https://github.com/liliskha/klienmimi/blob/master/mimi.py
