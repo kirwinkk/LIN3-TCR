@@ -68,8 +68,9 @@ sys.setdefaultencoding('utf-8')
 
 
 
-helpMessage2 ="""[戦神SelfBOT]
+helpMessage2 ="""[戦神SelfBOT權限]
 
+Level.1
 [#help]→查看指令
 [#author]→作者顯示
 [#me]→顯示自己友資
@@ -84,7 +85,6 @@ helpMessage2 ="""[戦神SelfBOT]
 [#user:@]→查看標註者詳情
 [#point]→抓已讀者
 [#read]→查看已讀名單
-[#tagall]→標註所有人
 [#gift]→發送禮物
 [#time]→現在時間
 [#sp]→反應速度
@@ -92,6 +92,34 @@ helpMessage2 ="""[戦神SelfBOT]
 [#bang:@]→密標註者
 [#say:]→保鏢說話
 [#banlist]→查看此群黑單
+
+Level.2
+[#tagall]→標註所有人
+[#Ubl:@]→標註解除黑單
+[#Unban:]→名字解除黑單
+[#Unban]→友資解除黑單
+[#Munban:]→mid解除黑單
+[#Pkickon/off]→踢人保護開關
+[#Pnameon/off]→群名保護開關
+[#Purlon/off]→網址保護開關
+[#Pinviteon/off]→招待保護開關
+[#Pcancelon/off]→取消保護開關
+[#Pallon/off]→所有保護開關
+[#Gset]→群組設定確認
+
+Level.3
+[#Nkk:]→名字kicker踢人
+[#Mkk:@]→標註kicker踢人
+[#Blk]→踢出黑單
+[#Bl:@]→標註黑單
+[#Ban:]→名字黑單
+[#Ban]→友資黑單
+[#Mban:]→mid黑單
+[#Bl]→查看黑單用戶名字
+[#Blmid]→查看黑單用戶mid
+[#Wl:@]→標註白單
+[#Wld:@]→標註解除白單
+[#Wl]→查看白單
 
 作者:戦神
 https://line.me/R/ti/p/%40cld3625n"""
@@ -137,6 +165,7 @@ helpMessage ="""[戦神SelfBOT]
 [Mk:@]→標註本帳踢人
 [Mkk:@]→標註kicker踢人
 [M1k:@]→標註kicker1踢人
+[Destroy]→踢出所有成員
 
 [Bl:@]→標註黑單
 [Ubl:@]→標註解除黑單
@@ -154,8 +183,12 @@ helpMessage ="""[戦神SelfBOT]
 [Wl:@]→標註白單
 [Wld:@]→標註解除白單
 [Wl]→查看白單
-[Lv:@]→標註增加權限名單
-[Lvd:@]→標註解除權限名單
+[Lv1:@]→標註增加權限1
+[Lvd1:@]→標註解除權限1
+[Lv2:@]→標註增加權限2
+[Lvd2:@]→標註解除權限2
+[Lv3:@]→標註增加權限3
+[Lvd3:@]→標註解除權限3
 [Level]→查看權限名單
 
 [Glist]→所有群組
@@ -164,6 +197,8 @@ helpMessage ="""[戦神SelfBOT]
 [名字更改1:]→更改kicker1名字
 [個簽更改:]→更改本帳個簽
 [個簽更改1:]→更改kicker1個簽
+[Rmechat]→刪除本帳鎖有紀錄
+[Rbotchat]→刪除所有kicker紀錄
 [Joinon/off]→自動入群開關
 [Botjoinon/off]→kicker自動入群開關
 [Leaveon/off]→自動退副本開關
@@ -173,6 +208,7 @@ helpMessage ="""[戦神SelfBOT]
 [Pnameon/off]→群名保護開關
 [Purlon/off]→網址保護開關
 [Pinviteon/off]→招待保護開關
+[Pcancelon/off]→取消保護開關
 [Pallon/off]→所有保護開關
 [Gset]→群組設定確認
 
@@ -203,7 +239,9 @@ autocancel = {}
 autoinvite = []
 autoleaveroom = []
 bgbot = ["uc216d8664c4e1f43772c98b1b0b8956e","uddf9714006a1010bb6551fc107f52390","u8dc2983d2e3183303bc466f3283d44d8","ubecd98a04cbf74a830b6c95b67bd6b74","u9378246da17ae7914b0a9a27da4802a0","ufdd4dbee33a2af45c13a72444277298d","ub5497e219585e4dad3373f25696c85fc","u58623d8e816b2dbf9cc8dc15b243e313","u6c81c99cb7ae718754ceb7db1718e7dd","u32f0dc24e048a1e357f655aff0a5fa33","u444a6355bfdc40238d3509e161458916","ud4b30af2044227c281d5d3ec69a584be","ufd9bec46aabcba3cdd9271f0db4b4ac8","u0bd59b43cef104e8e8f0c771d46689f4"]
-staff = []
+staff = ["uc216d8664c4e1f43772c98b1b0b8956e"]
+staff2 = ["uc216d8664c4e1f43772c98b1b0b8956e"]
+staff3 = ["uc216d8664c4e1f43772c98b1b0b8956e"]
 
 wait = {
     'contact':True,
@@ -234,7 +272,8 @@ wait = {
     'bang':{},
     'pinvite':{},
     'pkick':{},  
-    'purl':{},  
+    'purl':{},
+    'pcancel':{},    
 }
 
 wait2 = {
@@ -623,6 +662,89 @@ def bot(op):
             if wait["leaveRoom"] == True:
                 cl.leaveRoom(op.param1)
 		
+        if op.type == 32:
+            if op.param1 in wait['pcancel']:
+               if op.param2 not in Bots + bgbot:
+                        try:
+                                          random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+			except:
+				             try:
+					         random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+				             except:
+						  try:
+							ki.kickoutFromGroup(op.param1,[op.param2])
+						  except:
+							try:
+								ki9.kickoutFromGroup(op.param1,[op.param2])
+							except:
+								try:
+									ki5.kickoutFromGroup(op.param1,[op.param2])
+								except:
+									try:
+										ki4.kickoutFromGroup(op.param1,[op.param2])
+									except:
+										try:
+											ki.kickoutFromGroup(op.param1,[op.param2])
+										except:
+											try:
+												ki3.kickoutFromGroup(op.param1,[op.param2])
+											except:
+												try:
+													ki2.kickoutFromGroup(op.param1,[op.param2])
+												except:
+													try:
+														ki10.kickoutFromGroup(op.param1,[op.param2])
+													except:
+														try:
+															ki11.kickoutFromGroup(op.param1,[op.param2])
+														except:
+															try:
+																cl.kickoutFromGroup(op.param1,[op.param2])
+															except:
+																pass
+															
+				             try:
+						random.choice(KAC).updateGroup(group)
+				             except:
+						try:
+							random.choice(KAC).updateGroup(G)
+                        			except:
+							try:
+								ki7.updateGroup(G)
+							except:
+							    try:
+									ki8.updateGroup(G)
+							    except:
+								try:
+									ki3.updateGroup(G)
+								except:
+							           try:
+								     ki4.updateGroup(G)
+							           except:
+								     try:
+									ki10.updateGroup(G)
+								     except:
+									try:
+										ki.updateGroup(G)
+									except:
+										try:
+											ki6.updateGroup(G)
+										except:
+											try:
+												ki2.updateGroup(G)
+											except:
+												try:
+													ki9.updateGroup(G)
+												except:
+													try:
+														ki11.updateGroup(G)
+													except:
+														try:
+															ki5.updateGroup(G)
+														except:
+															cl.updateGroup(G)
+
+		
         if op.param3 == "4":
             if wait["blacklist"][op.param2] == True:
 		if op.param2 in Bots + bgbot:
@@ -839,6 +961,23 @@ def bot(op):
         if op.type == 26:
             msg = op.message
             if msg.contentType == 13:
+                if wait["wblacklist"] == True:
+                    if msg.contentMetadata["mid"] in wait["blacklist"]:
+                        ki.sendText(msg.to,msg.contentMetadata["displayName"] + " 已加入黑單")
+                        wait["wblacklist"] = False
+                    else:
+                        wait["blacklist"][msg.contentMetadata["mid"]] = True
+                        wait["wblacklist"] = False
+                        ki.sendText(msg.to,msg.contentMetadata["displayName"] + " 已加入黑單")
+                elif wait["dblacklist"] == True:
+                    if msg.contentMetadata["mid"] in wait["blacklist"]:
+                        del wait["blacklist"][msg.contentMetadata["mid"]]
+                        ki.sendText(msg.to,msg.contentMetadata["displayName"] + " 已解除黑單")
+                        wait["dblacklist"] = False
+                    else:
+                        wait["dblacklist"] = False
+                        ki.sendText(msg.to,msg.contentMetadata["displayName"] + " 已解除黑單")
+            if msg.contentType == 13:
                     msg.contentType = 0
                     if 'displayName' in msg.contentMetadata:
                         contact = cl.getContact(msg.contentMetadata["mid"])
@@ -851,18 +990,23 @@ def bot(op):
                         else:
 			     cl.sendText(msg.to,msg.contentMetadata["mid"])
 			
+
+
+            elif msg.text is None:
+                return
+			
             if msg.text == "#help":
-                if msg.from_ in admin + staff:
+                if msg.from_ in admin + staff + staff2 + staff3:
                     ki.sendText(msg.to,helpMessage2)
 
 		
             if msg.text == "#Help":
-                if msg.from_ in admin + staff:
+                if msg.from_ in admin + staff + staff2 + staff3:
                     ki.sendText(msg.to,helpMessage2)
 
 			
             elif msg.text in ["#me","#Me"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
 		msg.contentType = 13
 		X = msg.from_
                 msg.contentMetadata = {"mid": X }
@@ -871,22 +1015,22 @@ def bot(op):
 
 		
             elif msg.text in ["#author","#Author","#作者"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
 		msg.contentType = 13
                 msg.contentMetadata = {"mid":"u85a9b62af4ce6248cfe05324e474e226"}
 		ki.sendMessage(msg)
 		ki.sendText(msg.to,"作者:戦神\nMade In Taiwan")
 		
             elif msg.text in ["#mid","#Mid"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 ki.sendText(msg.to,msg.from_)
 		
             elif msg.text in ["#Gid","#gid"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 ki.sendText(msg.to, msg.to)
 		
             elif msg.text in ["#Ginfo","#ginfo"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                     ginfo = ki.getGroup(msg.to)
                     gurl = ki.reissueGroupTicket(msg.to)
                     try:
@@ -910,7 +1054,7 @@ def bot(op):
 
 		
             elif msg.text in ["#Point","#point"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
 		cl.sendText(msg.to, "[戦神SelfBOT]\n已讀設定OK")
                 try:
                   del wait2['readPoint'][msg.to]
@@ -923,7 +1067,7 @@ def bot(op):
 		
 
             elif msg.text in ["#read","#Read"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
 		  if msg.to in wait2['readPoint']:
 	            if wait2["ROM"][msg.to].items() == []:
 	              chiya = ""
@@ -937,28 +1081,28 @@ def bot(op):
 	            ki.sendText(msg.to, "請先設定已讀點")
 		
             elif "#mid:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 mmid = msg.text.replace("#mid:","")
                 msg.contentType = 13
                 msg.contentMetadata = {"mid":mmid}
                 ki.sendMessage(msg)
 		
             elif ("#Mid:" in msg.text):
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                    key = eval(msg.contentMetadata["MENTION"])
                    key1 = key["MENTIONEES"][0]["M"]
                    mi = ki.getContact(key1)
                    ki.sendText(msg.to,"" +  key1)
 		
             elif "#Mc:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
 		key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
                 msg.contentType = 13
                 msg.contentMetadata = {"mid":key1}
                 ki.sendMessage(msg)
             elif "#mc:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
 		key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
                 msg.contentType = 13
@@ -967,7 +1111,7 @@ def bot(op):
 		
 
             elif "#User:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
                 contact = cl.getContact(key1)
@@ -978,7 +1122,7 @@ def bot(op):
                     ki.sendText(msg.to,"[戦神SelfBOT]\n\n[名字]\n" + contact.displayName + "\n[mid]\n" + contact.mid + "\n[個簽]\n" + contact.statusMessage + "\n[封面網址]\n" + str(cu))
 		
             elif "#user:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
                 contact = cl.getContact(key1)
@@ -991,7 +1135,7 @@ def bot(op):
 		
 		
             elif msg.text in ["#gift","#Gift"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 msg.contentType = 9
                 msg.contentMetadata={'PRDID': '3b92ccf5-54d3-4765-848f-c9ffdc1da020',
                                     'PRDTYPE': 'THEME',
@@ -1000,7 +1144,7 @@ def bot(op):
                 ki.sendMessage(msg)
 		
             elif "#gift:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
 		msg.contentType = 9
@@ -1016,7 +1160,7 @@ def bot(op):
                 ki.sendText(msg.to, "成功")
 			
             elif "#Gift:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
 		msg.contentType = 9
@@ -1032,12 +1176,12 @@ def bot(op):
                 ki.sendText(msg.to, "成功")
 		
             elif msg.text in ["#Time","#時刻","#time","#Now","#now"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 ki.sendText(msg.to, "" + datetime.datetime.today().strftime('%Y/%m/%d  %H:%M:%S.%f'))
 
 
             elif msg.text in ["#Tagall","#tagall"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff2 + staff3:
                 group = ki.getGroup(msg.to)
                 k = len(group.members)//100
                 for j in xrange(k+1):
@@ -1056,14 +1200,14 @@ def bot(op):
 		
 
             elif msg.text in ["#Sp","#Speed","#speed","#sp"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 start = time.time()
                 ki.sendText(msg.to, "BG戦神Bot讀取中...")
                 elapsed_time = time.time() - start
                 ki.sendText(msg.to, "%sseconds" % (elapsed_time))
 		
             elif msg.text in ["#Cancel","#cancel"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                     group = ki.getGroup(msg.to)
                     if group.invitee is not None:
                         gInviMids = [contact.mid for contact in group.invitee]
@@ -1074,21 +1218,21 @@ def bot(op):
 				
 				
             elif "#Bangset:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 c = msg.text.replace("#Bangset:","")
 		del wait["bang"]
                 wait["bang"] = c
                 ki.sendText(msg.to,"更改內容:\n" + c)
 		
             elif "#bangset:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 c = msg.text.replace("#bangset:","")
 		del wait["bang"]
                 wait["bang"] = c
                 ki.sendText(msg.to,"更改內容:\n" + c)
 		
             elif "#Bang:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
                 ki.sendText(key1,wait["bang"])
@@ -1105,7 +1249,7 @@ def bot(op):
                 ki.sendText(msg.to, "成功")
 		
             elif "#bang:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
                 ki.sendText(key1,wait["bang"])
@@ -1122,7 +1266,7 @@ def bot(op):
                 ki.sendText(msg.to, "成功")
 		
             elif "#Say:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
 				bctxt = msg.text.replace("#Say:","")
 				ki.sendText(msg.to,(bctxt))
 				ki2.sendText(msg.to,(bctxt))
@@ -1137,7 +1281,7 @@ def bot(op):
 				ki11.sendText(msg.to,(bctxt))
 		
             elif "#say:" in msg.text:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
 				bctxt = msg.text.replace("#say:","")
 				ki.sendText(msg.to,(bctxt))
 				ki2.sendText(msg.to,(bctxt))
@@ -1155,7 +1299,7 @@ def bot(op):
 		
 		
             elif msg.text in ["#Banlist","#banlist"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                     group = ki.getGroup(msg.to)
                     gMembMids = [contact.mid for contact in group.members]
                     matched_list = []
@@ -1168,10 +1312,620 @@ def bot(op):
 		
 		
             elif msg.text in ["#url","#Url"]:
-              if msg.from_ in admin + staff:
+              if msg.from_ in admin + staff + staff2 + staff3:
                     g = ki.getGroup(msg.to)
                     gurl = ki.reissueGroupTicket(msg.to)
                     ki.sendText(msg.to,"line://ti/g/" + gurl)
+			
+			
+			
+			
+			
+			
+			
+
+
+            elif msg.text in ["#Pkickon","#pkickon"]:
+              if msg.from_ in admin + staff2 + staff3:
+                if msg.to in wait['pkick']:
+                    ki.sendText(msg.to,"已開啟禁止踢人保護!")
+                else:
+                    ki.sendText(msg.to,"禁止踢人保護開啟!")
+                    wait['pkick'][msg.to] = True
+            elif msg.text in ["#Pkickoff","#pkickoff"]:
+              if msg.from_ in admin + staff2 + staff3:
+                if msg.to in wait['pkick']:
+                    del wait['pkick'][msg.to]
+                    ki.sendText(msg.to,"禁止踢人保護關閉!")
+                else:
+                    ki.sendText(msg.to,"已關閉禁止踢人保護!")
+			      
+            elif msg.text in ["#Pnameon","#pnameon"]:
+              if msg.from_ in admin + staff2 + staff3:
+                if msg.to in wait['pname']:
+                    ki.sendText(msg.to,"已開啟禁止更改群名保護!")
+                else:
+                    ki.sendText(msg.to,"禁止更改群名保護開啟!")
+                    wait['pname'][msg.to] = True
+                    wait['pro_name'][msg.to] = cl.getGroup(msg.to).name
+            elif msg.text in ["#Pnameoff","#pnameoff"]:
+              if msg.from_ in admin + staff2 + staff3:
+                if msg.to in wait['pname']:
+                    del wait['pname'][msg.to]
+                    ki.sendText(msg.to,"禁止更改群名保護關閉!")
+                else:
+                    ki.sendText(msg.to,"已關閉禁止更改群名保護!")
+					
+            elif msg.text in ["#Pinviteon","#pinviteon"]:
+              if msg.from_ in admin + staff2 + staff3:
+                if msg.to in wait['pinvite']:
+                    ki.sendText(msg.to,"已開啟禁止邀人保護!")
+                else:
+                    ki.sendText(msg.to,"禁止邀人保護開啟!")
+                    wait['pinvite'][msg.to] = True
+            elif msg.text in ["#Pinviteoff","#pinviteoff"]:
+              if msg.from_ in admin + staff2 + staff3:
+                if msg.to in wait['pinvite']:
+                    del wait['pinvite'][msg.to]
+                    ki.sendText(msg.to,"禁止邀人保護關閉!")
+                else:
+                    ki.sendText(msg.to,"已關閉禁止邀人保護!")       
+            elif msg.text in ["#Purlon","#purlon"]:
+              if msg.from_ in admin + staff2 + staff3:
+                if msg.to in wait['purl']:
+                    ki.sendText(msg.to,"已開啟禁止開網址保護!")
+                else:
+                    ki.sendText(msg.to,"禁止開網址保護開啟!")
+                    wait['purl'][msg.to] = True
+            elif msg.text in ["#Purloff","#purloff"]:
+              if msg.from_ in admin + staff2 + staff3:
+                if msg.to in wait['purl']:
+                    del wait['purl'][msg.to]
+                    ki.sendText(msg.to,"禁止開網址保護關閉!")
+                else:
+                    ki.sendText(msg.to,"已關閉禁止開網址保護!")  
+		
+		
+		
+            elif msg.text in ["#Pcancelon","#pcancelon"]:
+              if msg.from_ in admin + staff2 + staff3:
+                if msg.to in wait['pcancel']:
+                    ki.sendText(msg.to,"已開啟禁止取消邀請保護!")
+                else:
+                    ki.sendText(msg.to,"禁止取消邀請保護開啟!")
+                    wait['pcancel'][msg.to] = True
+            elif msg.text in ["#Pcanceloff","#pcanceloff"]:
+              if msg.from_ in admin + staff2 + staff3:
+                if msg.to in wait['pcancel']:
+                    del wait['pcancel'][msg.to]
+                    ki.sendText(msg.to,"禁止取消邀請保護關閉!")
+                else:
+                    ki.sendText(msg.to,"已關閉禁止取消邀請保護!")  
+		
+            elif msg.text in ["#Pallon","#pallon"]:
+              if msg.from_ in admin + staff2 + staff3:
+                try:
+			wait['pkick'][msg.to] = True
+		except:
+			pass
+                try:
+			wait['pinvite'][msg.to] = True
+		except:
+			pass
+                try:
+			wait['purl'][msg.to] = True
+		except:
+			pass
+                try:
+			wait['pcancel'][msg.to] = True
+		except:
+			pass
+                try:
+			wait['pname'][msg.to] = True
+			wait['pro_name'][msg.to] = cl.getGroup(msg.to).name
+		except:
+			pass
+                ki.sendText(msg.to,"已開啟所有保護!")
+
+            elif msg.text in ["#Palloff","#palloff"]:
+              if msg.from_ in admin + staff2 + staff3:
+                try:
+			del wait['pkick'][msg.to]
+		except:
+			pass
+                try:
+			del wait['purl'][msg.to]
+		except:
+			pass
+                try:
+			del wait['pcancel'][msg.to]
+		except:
+			pass
+                try:
+			del wait['pinvite'][msg.to]
+		except:
+			pass
+                try:
+			del wait['pname'][msg.to]
+		except:
+			pass
+                ki.sendText(msg.to,"已關閉所有保護!")
+
+					
+            elif msg.text in ["#Gset","#gset"]:
+              if msg.from_ in admin + staff2 + staff3:
+                md = ""
+		if msg.to in wait['pkick']: md+="踢人保護:開啟\n"
+                else: md +="踢人保護:關閉\n"
+                if msg.to in wait["purl"]: md+="網址保護:開啟\n"
+                else: md +="網址保護:關閉\n"
+                if msg.to in wait["pname"]: md+="群名保護:開啟\n"
+                else: md +="群名保護:關閉\n"
+                if msg.to in wait["pinvite"]: md+="邀請保護:開啟\n"
+                else: md +="邀請保護:關閉\n"
+		if msg.to in wait['pcancel']: md+="取消邀請保護:開啟"
+                else: md +="取消邀請保護:關閉"
+                ki.sendText(msg.to,"[戦神群組設定]\n\n" + md)	
+			
+            elif msg.text in ["#Bl","#BL","#bl"]:
+              if msg.from_ in admin + staff3:
+                if wait["blacklist"] == {}:
+                    ki.sendText(msg.to,"沒有黑名單")
+                else:
+                    ki.sendText(msg.to,"黑名單用戶讀取中...")
+                    mc = ""
+                    num=1
+                    for mi_d in wait["blacklist"]:
+                        mc += "[%i] %s\n" % (num,cl.getContact(mi_d).displayName)
+			num=(num+1)
+                    ki.sendText(msg.to,"戦神SelfBOT黑單用戶\n\n" + mc + "\n總共: " + str(len(wait["blacklist"])) +"人")
+		
+            elif msg.text in ["#Blmid","#blmid"]:
+              if msg.from_ in admin + staff3:
+                if wait["blacklist"] == {}:
+                    ki.sendText(msg.to,"沒有黑名單")
+                else:
+                    ki.sendText(msg.to,"黑名單用戶讀取中...")
+                    mc = ""
+                    num=1
+                    for mi_d in wait["blacklist"]:
+                        mc += "[%i] %s\n" % (num,mi_d)
+			num=(num+1)
+                    ki.sendText(msg.to,"戦神SelfBOT黑單MID\n\n" + mc + "\n總共: " + str(len(wait["blacklist"])) +"人")
+			
+			
+            elif ("#Bl:" in msg.text):
+              if msg.from_ in admin + staff3:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                wait["blacklist"][target] = True
+                                f=codecs.open('st2__b.json','w','utf-8')
+                                json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                                ki.sendText(msg.to,"已黑單此用戶")
+                            except:
+                                ki.sendText(msg.to,"此用戶已是黑單")
+				
+            elif ("#Ubl:" in msg.text):
+              if msg.from_ in admin + staff2 + staff3:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                del wait["blacklist"][target]
+                                f=codecs.open('st2__b.json','w','utf-8')
+                                json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                                ki.sendText(msg.to,"已解除黑單")
+                            except:
+                                ki.sendText(msg.to,"此用戶並不是黑單")
+				
+            elif ("#bl:" in msg.text):
+              if msg.from_ in admin + staff3:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                wait["blacklist"][target] = True
+                                f=codecs.open('st2__b.json','w','utf-8')
+                                json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                                ki.sendText(msg.to,"已黑單此用戶")
+                            except:
+                                ki.sendText(msg.to,"此用戶已是黑單")
+				
+            elif ("#ubl:" in msg.text):
+              if msg.from_ in admin + staff2 + staff3:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                del wait["blacklist"][target]
+                                f=codecs.open('st2__b.json','w','utf-8')
+                                json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                                ki.sendText(msg.to,"已解除黑單")
+                            except:
+                                ki.sendText(msg.to,"此用戶並不是黑單")
+				
+            elif "#Nkk:" in msg.text:
+              if msg.from_ in admin + staff3:
+                if msg.toType == 2:
+                    print "ok"
+                    _name = msg.text.replace("#Nkk:","")
+                    gs = cl.getGroup(msg.to)
+		    gs = ki.getGroup(msg.to)
+		    gs = ki2.getGroup(msg.to)
+		    gs = ki3.getGroup(msg.to)
+		    gs = ki4.getGroup(msg.to)
+		    gs = ki5.getGroup(msg.to)
+		    gs = ki6.getGroup(msg.to)
+		    gs = ki7.getGroup(msg.to)
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        ki.sendText(msg.to,"找不到用戶")
+                    else:
+                        for target in targets:
+			  if target not in Bots+bgbot:
+                            try:
+                                klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                            except:
+                                klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+				
+				
+            elif ("#Mkk:" in msg.text):
+              if msg.from_ in admin + staff3:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+		     if target not in Bots:
+                       try:
+                           klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+				
+            elif "#nkk:" in msg.text:
+              if msg.from_ in admin + staff3:
+                if msg.toType == 2:
+                    print "ok"
+                    _name = msg.text.replace("#nkk:","")
+                    gs = cl.getGroup(msg.to)
+		    gs = ki.getGroup(msg.to)
+		    gs = ki2.getGroup(msg.to)
+		    gs = ki3.getGroup(msg.to)
+		    gs = ki4.getGroup(msg.to)
+		    gs = ki5.getGroup(msg.to)
+		    gs = ki6.getGroup(msg.to)
+		    gs = ki7.getGroup(msg.to)
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        ki.sendText(msg.to,"找不到用戶")
+                    else:
+                        for target in targets:
+			  if target not in Bots+bgbot:
+                            try:
+                                klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                            except:
+                                klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+				
+				
+            elif ("#mkk:" in msg.text):
+              if msg.from_ in admin + staff3:
+                   targets = []
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+		     if target not in Bots:
+                       try:
+                           klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+                       except:
+                           klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                           kicker=random.choice(klist)
+                           kicker.kickoutFromGroup(msg.to,[target])
+				
+
+            elif "#Ban:" in msg.text:   
+              if msg.from_ in admin + staff3:               
+                       nk0 = msg.text.replace("#Ban:","")
+                       nk1 = nk0.lstrip()
+                       nk2 = nk1.replace("","")
+                       nk3 = nk2.rstrip()
+                       _name = nk3
+                       gs = cl.getGroup(msg.to)
+                       targets = []
+                       for s in gs.members:
+                           if _name in s.displayName:
+                              targets.append(s.mid)
+                       if targets == []:
+                           ki.sendText(msg.to,"找不到用戶0.0")
+                           pass
+                       else:
+                           for target in targets:
+			     if target not in Bots:
+                                try:
+									wait["blacklist"][target] = True
+									f=codecs.open('st2__b.json','w','utf-8')
+									json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+									ki.sendText(msg.to,"黑單成功")
+                                except:
+                                    ki.sendText(msg.to,"黑單成功")
+
+            elif "#Unban:" in msg.text:
+              if msg.from_ in admin + staff2 + staff3:                  
+                       nk0 = msg.text.replace("#Unban:","")
+                       nk1 = nk0.lstrip()
+                       nk2 = nk1.replace("","")
+                       nk3 = nk2.rstrip()
+                       _name = nk3
+                       gs = cl.getGroup(msg.to)
+                       targets = []
+                       for s in gs.members:
+                           if _name in s.displayName:
+                              targets.append(s.mid)
+                       if targets == []:
+                           ki.sendText(msg.to,"找不到用戶0.0")
+                           pass
+                       else:
+                           for target in targets:
+                                try:
+									del wait["blacklist"][target]
+									f=codecs.open('st2__b.json','w','utf-8')
+									json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+									ki.sendText(msg.to,"解黑成功")
+                                except:
+                                    ki.sendText(msg.to,"解黑成功")
+				
+            elif "#ban:" in msg.text:   
+              if msg.from_ in admin + staff3:               
+                       nk0 = msg.text.replace("#ban:","")
+                       nk1 = nk0.lstrip()
+                       nk2 = nk1.replace("","")
+                       nk3 = nk2.rstrip()
+                       _name = nk3
+                       gs = cl.getGroup(msg.to)
+                       targets = []
+                       for s in gs.members:
+                           if _name in s.displayName:
+                              targets.append(s.mid)
+                       if targets == []:
+                           ki.sendText(msg.to,"找不到用戶0.0")
+                           pass
+                       else:
+                           for target in targets:
+			     if target not in Bots:
+                                try:
+									wait["blacklist"][target] = True
+									f=codecs.open('st2__b.json','w','utf-8')
+									json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+									ki.sendText(msg.to,"黑單成功")
+                                except:
+                                    ki.sendText(msg.to,"黑單成功")
+
+            elif "#unban:" in msg.text:
+              if msg.from_ in admin + staff2 + staff3:                  
+                       nk0 = msg.text.replace("#unban:","")
+                       nk1 = nk0.lstrip()
+                       nk2 = nk1.replace("","")
+                       nk3 = nk2.rstrip()
+                       _name = nk3
+                       gs = cl.getGroup(msg.to)
+                       targets = []
+                       for s in gs.members:
+                           if _name in s.displayName:
+                              targets.append(s.mid)
+                       if targets == []:
+                           ki.sendText(msg.to,"找不到用戶0.0")
+                           pass
+                       else:
+                           for target in targets:
+                                try:
+									del wait["blacklist"][target]
+									f=codecs.open('st2__b.json','w','utf-8')
+									json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+									ki.sendText(msg.to,"解黑成功")
+                                except:
+                                    ki.sendText(msg.to,"解黑成功")
+				
+            elif msg.text in ["#Ban","#ban"]:
+              if msg.from_ in admin + staff3:
+                wait["wblacklist"] = True
+                ki.sendText(msg.to,"請傳送友資")
+            elif msg.text in ["#Unban","#unban"]:
+              if msg.from_ in admin + staff2 + staff3:
+                wait["dblacklist"] = True
+                ki.sendText(msg.to,"請傳送友資")
+				
+            elif "#Blk" in msg.text:
+              if msg.from_ in admin + staff3:
+                if msg.toType == 2:
+                    group = cl.getGroup(msg.to)
+                    gMembMids = [contact.mid for contact in group.members]
+                    matched_list = []
+                    for tag in wait["blacklist"]:
+                        matched_list+=filter(lambda str: str == tag, gMembMids)
+                    if matched_list == []:
+                        ki.sendText(msg.to,"群內沒有黑單用戶")
+                        return
+                    for jj in matched_list:
+		      if jj not in Bots:
+                        try:
+                            klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                            kicker=random.choice(klist)
+                            kicker.kickoutFromGroup(msg.to,[jj])
+                        except:
+                            ki.sendText(msg.to,"因規制,無法踢出!")
+			
+            elif "#blk" in msg.text:
+              if msg.from_ in admin + staff3:
+                if msg.toType == 2:
+                    group = cl.getGroup(msg.to)
+                    gMembMids = [contact.mid for contact in group.members]
+                    matched_list = []
+                    for tag in wait["blacklist"]:
+                        matched_list+=filter(lambda str: str == tag, gMembMids)
+                    if matched_list == []:
+                        cl.sendText(msg.to,"群內沒有黑單用戶")
+                        return
+                    for jj in matched_list:
+		      if jj not in Bots:
+                        try:
+                            klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                            kicker=random.choice(klist)
+                            kicker.kickoutFromGroup(msg.to,[jj])
+                        except:
+                            ki.sendText(msg.to,"因規制,無法踢出!")
+				
+		
+            elif ("#Wl:" in msg.text):
+              if msg.from_ in admin + staff3:
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                bgbot.append(target)
+                                ki.sendText(msg.to,"加入白單\n" + mi)
+                            except:
+                                pass
+                   print "[Command]bgbot add executed"
+	
+
+            elif ("#Wld:" in msg.text):
+              if msg.from_ in admin + staff3:
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                bgbot.remove(target)
+				ki.sendText(msg.to,"刪除白單\n" + mi)
+                            except:
+                                pass
+                   print "[Command]bgbot remove executed"
+
+            elif ("#wl:" in msg.text):
+              if msg.from_ in admin + staff3:
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                bgbot.append(target)
+                                ki.sendText(msg.to,"加入白單\n" + mi)
+                            except:
+                                pass
+                   print "[Command]bgbot add executed"
+	
+
+            elif ("#wld:" in msg.text):
+              if msg.from_ in admin + staff3:
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                bgbot.remove(target)
+				ki.sendText(msg.to,"刪除白單\n" + mi)
+                            except:
+                                pass
+                   print "[Command]bgbot remove executed"
+	
+            elif msg.text in ["#wl","#Wl"]:
+              if msg.from_ in admin + staff3:
+                if bgbot == []:
+                    ki.sendText(msg.to,"沒有白單")
+                else:
+                    ki.sendText(msg.to,"白單讀取中...")
+                    m1 = ""
+		    num=1
+                    for mi_d in bgbot:
+                        m1 += "[%i] %s\n" % (num,cl.getContact(mi_d).displayName)
+			num=(num+1)
+                    ki.sendText(msg.to,"戦神SelfBOT白單用戶:\n\n" + m1 + "\n總共: " + str(len(bgbot)) +"人")
+		
+				
+
+		
+            elif "#Mban:" in msg.text:
+              if msg.from_ in admin + staff3:
+                midd = msg.text.replace("#Mban:","")
+                wait["blacklist"][midd] = True
+		ki.sendText(msg.to,"已黑單此用戶")
+            elif "#Munban:" in msg.text:
+              if msg.from_ in admin + staff2 + staff3:
+                midd = msg.text.replace("#Munban:","")
+		del wait["blacklist"][midd]
+		ki.sendText(msg.to,"已解除黑單")
+				
+            elif "#mban:" in msg.text:
+              if msg.from_ in admin + staff3:
+                midd = msg.text.replace("#mban:","")
+                wait["blacklist"][midd] = True
+		ki.sendText(msg.to,"已黑單此用戶")
+            elif "#munban:" in msg.text:
+              if msg.from_ in admin + staff2 + staff3:
+                midd = msg.text.replace("#munban:","")
+		del wait["blacklist"][midd]
+		ki.sendText(msg.to,"已解除黑單")		
 			
 			
 
@@ -1284,6 +2038,21 @@ def bot(op):
                 else:
                     cl.sendText(msg.to,"已關閉禁止開網址保護!")  
 		
+		
+		
+            elif msg.text in ["Pcancelon","pcancelon"]:
+                if msg.to in wait['pcancel']:
+                    cl.sendText(msg.to,"已開啟禁止取消邀請保護!")
+                else:
+                    cl.sendText(msg.to,"禁止取消邀請保護開啟!")
+                    wait['pcancel'][msg.to] = True
+            elif msg.text in ["Pcanceloff","pcanceloff"]:
+                if msg.to in wait['pcancel']:
+                    del wait['pcancel'][msg.to]
+                    cl.sendText(msg.to,"禁止取消邀請保護關閉!")
+                else:
+                    cl.sendText(msg.to,"已關閉禁止取消邀請保護!")  
+		
             elif msg.text in ["Pallon","pallon"]:
                 try:
 			wait['pkick'][msg.to] = True
@@ -1295,6 +2064,10 @@ def bot(op):
 			pass
                 try:
 			wait['purl'][msg.to] = True
+		except:
+			pass
+                try:
+			wait['pcancel'][msg.to] = True
 		except:
 			pass
                 try:
@@ -1311,6 +2084,10 @@ def bot(op):
 			pass
                 try:
 			del wait['purl'][msg.to]
+		except:
+			pass
+                try:
+			del wait['pcancel'][msg.to]
 		except:
 			pass
                 try:
@@ -1332,8 +2109,10 @@ def bot(op):
                 else: md +="網址保護:關閉\n"
                 if msg.to in wait["pname"]: md+="群名保護:開啟\n"
                 else: md +="群名保護:關閉\n"
-                if msg.to in wait["pinvite"]: md+="禁邀保護:開啟"
-                else: md +="禁邀保護:關閉"
+                if msg.to in wait["pinvite"]: md+="邀請保護:開啟\n"
+                else: md +="邀請保護:關閉\n"
+		if msg.to in wait['pcancel']: md+="取消邀請保護:開啟"
+                else: md +="取消邀請保護:關閉"
                 cl.sendText(msg.to,"[戦神群組設定]\n\n" + md)
 					
 					
@@ -1498,6 +2277,48 @@ def bot(op):
                 midd = msg.text.replace("BG5invite:","")
                 ki5.findAndAddContactsByMid(midd)
                 ki5.inviteIntoGroup(msg.to,[midd])
+		
+		
+		
+		
+		
+		
+	    elif msg.text in ["Rbotchat","rbotchat"]:
+		ki.removeAllMessages(op.param2)
+		ki2.removeAllMessages(op.param2)
+		ki3.removeAllMessages(op.param2)
+		ki4.removeAllMessages(op.param2)
+		ki5.removeAllMessages(op.param2)
+		ki6.removeAllMessages(op.param2)
+		ki7.removeAllMessages(op.param2)
+		ki8.removeAllMessages(op.param2)
+		ki9.removeAllMessages(op.param2)
+		ki10.removeAllMessages(op.param2)
+		ki11.removeAllMessages(op.param2)
+		cl.sendText(msg.to,"已刪除鎖有保鑣訊息")
+		
+	    elif msg.text in ["Rmechat","rmechat"]:
+		ki.removeAllMessages(op.param2)
+		cl.sendText(msg.to,"已刪除鎖有訊息")
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
             elif ("Wl:" in msg.text):
@@ -2157,7 +2978,7 @@ def bot(op):
                 num=1
                 msgs="已封鎖用戶:\n"
                 for ids in kontak:
-                    msgs+="\n%i. %s" % (num, ids.displayName)
+                    msgs+="\n[%i.] %s" % (num, ids.displayName)
                     num=(num+1)
                 msgs+="\n\n總共 %i 位被我封鎖" % len(kontak)
                 cl.sendText(msg.to, msgs)
@@ -2480,7 +3301,7 @@ def bot(op):
                         cl.sendText(msg.to,"找不到用戶")
                     else:
                         for target in targets:
-			  if target not in Bots:
+			  if target not in Bots+bgbot:
                             try:
                                 klist=[cl]
                                 kicker=random.choice(klist)
@@ -2510,7 +3331,7 @@ def bot(op):
                 cl.sendText(key1,wait["bang"])
                 cl.sendText(msg.to, "成功")
 		
-            elif ("Lvd:" in msg.text):
+            elif ("Lvd1:" in msg.text):
                    targets = []
                    mi = ""
                    key = eval(msg.contentMetadata["MENTION"])
@@ -2528,7 +3349,7 @@ def bot(op):
 
 
 
-            elif ("Lv:" in msg.text):
+            elif ("Lv1:" in msg.text):
                    targets = []
                    mi = ""
                    key = eval(msg.contentMetadata["MENTION"])
@@ -2543,6 +3364,74 @@ def bot(op):
                                 cl.sendText(msg.to,"提升權限\n" + mi)
                             except:
                                 pass
+			
+            elif ("Lvd2:" in msg.text):
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff2.remove(target)
+				cl.sendText(msg.to,"解除權限\n" + mi)
+                            except:
+                                pass
+
+
+
+            elif ("Lv2:" in msg.text):
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff2.append(target)
+                                cl.sendText(msg.to,"提升權限\n" + mi)
+                            except:
+                                pass
+			
+            elif ("Lvd3:" in msg.text):
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff3.remove(target)
+				cl.sendText(msg.to,"解除權限\n" + mi)
+                            except:
+                                pass
+
+
+
+            elif ("Lv3:" in msg.text):
+                   targets = []
+                   mi = ""
+                   key = eval(msg.contentMetadata["MENTION"])
+                   key["MENTIONEES"][0]["M"]
+                   key1 = key["MENTIONEES"][0]["M"]
+                   mi += "\n->" + cl.getContact(key1).displayName
+                   for x in key["MENTIONEES"]:
+                       targets.append(x["M"])
+                   for target in targets:
+                            try:
+                                staff3.append(target)
+                                cl.sendText(msg.to,"提升權限\n" + mi)
+                            except:
+                                pass
 
 	
             elif msg.text in ["Level","level"]:
@@ -2551,11 +3440,21 @@ def bot(op):
                 else:
                     cl.sendText(msg.to,"權限名單讀取中...")
                     mc = ""
+		    mc2 = ""
+	            mc3 = ""
 		    num=1
+		    num2=1
+		    num3=1
                     for mi_d in staff:
                         mc += "[%i] %s\n" % (num,cl.getContact(mi_d).displayName)
 			num=(num+1)
-                    cl.sendText(msg.to,"戦神SelfBOT權限用戶\n\n" + mc + "\n總共: " + str(len(staff)) +"人")
+                    for mi_d in staff2:
+                        mc2 += "[%i] %s\n" % (num2,cl.getContact(mi_d).displayName)
+			num2=(num2+1)
+                    for mi_d in staff3:
+                        mc3 += "[%i] %s\n" % (num3,cl.getContact(mi_d).displayName)
+			num3=(num3+1)
+                    cl.sendText(msg.to,"戦神SelfBOT權限用戶\n\nLevel.1\n" + mc + "\n總共: " + str(len(staff)) +"人\n\nLevel.2\n" + mc2 + "\n總共: " + str(len(staff2)) +"人\n\nLevel.3\n" + mc3 + "\n總共: " + str(len(staff3)) +"人")
 				
 
 				
@@ -2579,7 +3478,42 @@ def bot(op):
                         ki.sendText(msg.to,"找不到用戶")
                     else:
                         for target in targets:
-			  if target not in Bots:
+			  if target not in Bots+bgbot:
+                            try:
+                                klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                            except:
+                                klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+				
+				
+            elif "Destroy" in msg.text:
+                if msg.toType == 2:
+                    _name = msg.text.replace("Destroy","")
+                    gs = cl.getGroup(msg.to)
+		    gs = ki.getGroup(msg.to)
+		    gs = ki2.getGroup(msg.to)
+		    gs = ki3.getGroup(msg.to)
+		    gs = ki4.getGroup(msg.to)
+		    gs = ki5.getGroup(msg.to)
+		    gs = ki6.getGroup(msg.to)
+		    gs = ki7.getGroup(msg.to)
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        pass
+                    else:
+			if gs.invitee is not None:
+                           gInviMids = [contact.mid for contact in gs.invitee]
+                           cl.cancelGroupInvitation(msg.to, gInviMids)
+                        for target in targets:
+			  if target not in Bots+bgbot:
                             try:
                                 klist=[ki,ki2,ki3,ki4,ki5,ki6,ki7,ki8,ki9,ki10,ki11]
                                 kicker=random.choice(klist)
